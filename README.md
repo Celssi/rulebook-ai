@@ -4,7 +4,7 @@ Local rules assistant with selectable game modes:
 - **Warhammer 40k** (Leviathan Space Marines and Tyranids)
 - **Brambletrek**
 
-- **LLM:** Ollama ([Qwen 3.6](https://ollama.com/library/qwen3.6))
+- **LLM:** Ollama ([Gemma 4](https://ollama.com/library/gemma4))
 - **RAG:** LlamaIndex + ChromaDB
 - **UI:** Streamlit
 - **OCR:** Tesseract fallback for image-only PDFs
@@ -13,7 +13,7 @@ Use your own PDFs in `docs/`.
 
 ## Requirements
 
-1. [Ollama](https://ollama.com/download) (recent release for [Qwen 3.6](https://ollama.com/library/qwen3.6))
+1. [Ollama](https://ollama.com/download) (recent release for [Gemma 4](https://ollama.com/library/gemma4))
 2. Python 3.11+
 3. Tesseract:
 
@@ -59,17 +59,18 @@ pip install -e .
 
 ### 4) Pull Ollama models
 
-Default model:
+Default model (M4 Mac with 32GB+ RAM, e.g. 48GB):
 
 ```bash
-ollama pull qwen3.6:35b
+ollama pull gemma4:31b
 ollama pull nomic-embed-text
 ```
 
-Lighter alternative (~17 GB):
+Lighter alternatives:
 
 ```bash
-ollama pull qwen3.6:27b
+ollama pull gemma4:26b   # MoE, ~18 GB — good balance
+ollama pull gemma4:e4b   # ~10 GB — laptops with 16GB RAM
 ```
 
 ### 5) Check Ollama integration
@@ -111,14 +112,14 @@ streamlit run app/streamlit_app.py
 Embeddings stay the same (`nomic-embed-text`), so you can switch chat model without re-indexing.
 
 ```bash
-export OLLAMA_CHAT_MODEL=qwen3.6:27b
+export OLLAMA_CHAT_MODEL=gemma4:26b
 streamlit run app/streamlit_app.py
 ```
 
-Apple Silicon (MLX, lower RAM):
+Apple Silicon MLX build (lower RAM):
 
 ```bash
-export OLLAMA_CHAT_MODEL=qwen3.6:27b-mlx
+export OLLAMA_CHAT_MODEL=gemma4:26b-mlx
 ```
 
 ## OCR behavior
@@ -235,13 +236,13 @@ python3 scripts/eval_retrieval.py --game brambletrek --candidate-k 70 --top-k 8
 python -m streamlit run app/streamlit_app.py
 ```
 
-### Qwen 3.6 pull fails
+### Gemma 4 pull fails
 
 ```bash
 ollama --version
 ```
 
-Upgrade Ollama if needed.
+Upgrade Ollama if needed. Then retry `ollama pull gemma4:31b`.
 
 ### OCR fails
 

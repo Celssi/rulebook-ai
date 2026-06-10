@@ -17,9 +17,10 @@ TESSERACT_LANG = "eng"
 
 OLLAMA_BASE_URL = "http://localhost:11434"
 
-# Chat model (Ollama). See https://ollama.com/library/qwen3.6
-# Override: export OLLAMA_CHAT_MODEL=qwen2.5:7b (works on older Ollama)
-CHAT_MODEL = os.environ.get("OLLAMA_CHAT_MODEL", "qwen3.6:35b")
+# Chat model (Ollama). See https://ollama.com/library/gemma4
+# Default gemma4:31b fits M-series Macs with ~32GB+ unified memory (e.g. M4 Pro 48GB).
+# Override: export OLLAMA_CHAT_MODEL=gemma4:26b (lighter) or gemma4:e4b (8GB machines)
+CHAT_MODEL = os.environ.get("OLLAMA_CHAT_MODEL", "gemma4:31b")
 EMBED_MODEL = "nomic-embed-text"
 # Increase for slower models/hardware. Override with env var if needed.
 OLLAMA_REQUEST_TIMEOUT = float(os.environ.get("OLLAMA_REQUEST_TIMEOUT", "600"))
