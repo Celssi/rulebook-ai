@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.uv/
+dist/
+*.egg-info/
+
+# Data & indexes (personal use; do not commit)
+data/chroma/
+data/ocr_cache/
+data/feedback.jsonl
+data/saves/
+
+# Large copyrighted PDFs (keep locally)
+docs/**/*.pdf
+docs/**/*.PDF
+
+# IDE
+.idea/
+.vscode/
+.DS_Store
+
+# Streamlit
+.streamlit/secrets.toml

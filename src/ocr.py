@@ -1,0 +1,160 @@
+"""Tesseract OCR for image-only PDFs with JSON cache."""
+
+from __future__ import annotations
+
+import json
+import shutil
+from pathlib import Path
+
+import fitz
+import pytesseract
+from pypdf import PdfReader
+from pytesseract import TesseractNotFoundError
+
+from src.config import OCR_CACHE_DIR, OCR_MIN_CHARS_SAMPLE, OCR_RENDER_DPI, TESSERACT_LANG
+from src.text_utils import clean_text, is_meaningful
+
+
+class OcrNotAvailableError(RuntimeError):
+    """Raised when Tesseract is not installed on the system."""
+
+
+def tesseract_available() -> bool:
+    return shutil.which("tesseract") is not None
+
+
+def _cache_path(pdf_path: Path) -> Path:
+    return OCR_CACHE_DIR / f"{pdf_path.stem}.json"
+
+
+def sample_extracted_chars(pdf_path: Path, sample_pages: int = 3) -> int:
+    reader = PdfReader(str(pdf_path))
+    total = 0
+    for i in range(min(sample_pages, len(reader.pages))):
+        total += len((reader.pages[i].extract_text() or "").strip())
+    return total
+
+
+def needs_ocr(pdf_path: Path, min_chars: int | None = None) -> bool:
+    threshold = min_chars if min_chars is not None else OCR_MIN_CHARS_SAMPLE
+    return sample_extracted_chars(pdf_path) < threshold
+
+
+def ocr_pdf_pages(
+    pdf_path: Path,
+    dpi: int | None = None,
+    progress_callback=None,
+) -> list[dict]:
+    """Run Tesseract on each page. progress_callback(current, total) optional."""
+    if not tesseract_available():
+        raise OcrNotAvailableError(
+            "Tesseract not found. Install with: brew install tesseract"
+        )
+
+    dpi = dpi or OCR_RENDER_DPI
+    doc = fitz.open(str(pdf_path))
+    pages_out: list[dict] = []
+    total = len(doc)
+
+    from PIL import Image
+    import io
+
+    for i in range(total):
+        page = doc[i]
+        pix = page.get_pixmap(dpi=dpi)
+        img = Image.open(io.BytesIO(pix.tobytes("png")))
+        text = pytesseract.image_to_string(img, lang=TESSERACT_LANG)
+        cleaned = clean_text(text)
+        if is_meaningful(cleaned, min_chars=40):
+            pages_out.append({"page": i + 1, "text": cleaned})
+        if progress_callback:
+            progress_callback(i + 1, total)
+
+    doc.close()
+    return pages_out
+
+
+def ocr_pdf_page_indices(
+    pdf_path: Path,
+    page_indices: list[int],
+    dpi: int | None = None,
+) -> list[tuple[int, str]]:
+    """OCR only selected 1-indexed pages from a PDF."""
+    if not page_indices:
+        return []
+    if not tesseract_available():
+        raise OcrNotAvailableError(
+            "Tesseract not found. Install with: brew install tesseract"
+        )
+
+    dpi = dpi or OCR_RENDER_DPI
+    wanted = sorted({p for p in page_indices if p > 0})
+    doc = fitz.open(str(pdf_path))
+
+    from PIL import Image
+    import io
+
+    pages_out: list[tuple[int, str]] = []
+    for page_no in wanted:
+        idx = page_no - 1
+        if idx >= len(doc):
+            continue
+        pix = doc[idx].get_pixmap(dpi=dpi)
+        img = Image.open(io.BytesIO(pix.tobytes("png")))
+        text = pytesseract.image_to_string(img, lang=TESSERACT_LANG)
+        cleaned = clean_text(text)
+        if is_meaningful(cleaned, min_chars=30, min_alpha_ratio=0.15):
+            pages_out.append((page_no, cleaned))
+    doc.close()
+    return pages_out
+
+
+def save_cache(pdf_path: Path, pages: list[dict]) -> Path:
+    OCR_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    path = _cache_path(pdf_path)
+    payload = {
+        "source_file": pdf_path.name,
+        "pages": pages,
+    }
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    return path
+
+
+def load_cache(pdf_path: Path) -> list[tuple[int, str]] | None:
+    path = _cache_path(pdf_path)
+    if not path.exists():
+        return None
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return [(int(p["page"]), p["text"]) for p in data.get("pages", [])]
+
+
+def load_or_run_ocr(
+    pdf_path: Path,
+    force: bool = False,
+    progress_callback=None,
+) -> list[tuple[int, str]]:
+    if not force:
+        cached = load_cache(pdf_path)
+        if cached:
+            print(f"    OCR cache hit: {_cache_path(pdf_path).name} ({len(cached)} pages)")
+            return cached
+
+    print(f"    Running OCR on {pdf_path.name} ({OCR_RENDER_DPI} dpi)...")
+    try:
+        pages = ocr_pdf_pages(pdf_path, progress_callback=progress_callback)
+    except TesseractNotFoundError as e:
+        raise OcrNotAvailableError(
+            "Tesseract not found. Install with: brew install tesseract"
+        ) from e
+
+    save_cache(pdf_path, pages)
+    print(f"    OCR done: {len(pages)} pages with text")
+    return [(int(p["page"]), p["text"]) for p in pages]
+
+
+def extract_pages_with_ocr(
+    pdf_path: Path,
+    force: bool = False,
+    progress_callback=None,
+) -> list[tuple[int, str]]:
+    return load_or_run_ocr(pdf_path, force=force, progress_callback=progress_callback)

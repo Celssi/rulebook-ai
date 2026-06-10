@@ -1,0 +1,34 @@
+[project]
+name = "rulebook-ai"
+version = "0.1.0"
+description = "Local tabletop rulebook assistant (40k, Brambletrek) with Ollama RAG and agents"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    # Vector store & RAG (LlamaIndex 0.14.x line)
+    "chromadb>=1.5.0,<2",
+    "llama-index-core>=0.14.0,<0.15",
+    "llama-index-embeddings-ollama>=0.9.0,<0.10",
+    "llama-index-llms-ollama>=0.10.0,<0.11",
+    "llama-index-vector-stores-chroma>=0.5.0,<0.6",
+    # Agents (LangChain 1.x / LangGraph 1.x — not 0.3 legacy)
+    "langchain-core>=1.0.0,<2",
+    "langchain-ollama>=1.0.0,<2",
+    "langgraph>=1.0.0,<2",
+    # PDF & OCR
+    "pymupdf>=1.27.0,<2",
+    "pypdf>=6.0.0,<7",
+    "cryptography>=43.0.0,<46",
+    "pytesseract>=0.3.13,<0.4",
+    "pillow>=12.0.0,<13",
+    # UI & config
+    "pyyaml>=6.0,<7",
+    "streamlit>=1.57.0,<2",
+]
+
+[build-system]
+requires = ["hatchling>=1.26.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]

@@ -1,0 +1,72 @@
+[
+  {
+    "query": "Explain how to resolve a basic skill check roll.",
+    "expected_terms": ["roll", "check", "difficulty"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "What do dice results mean in Brambletrek?",
+    "expected_terms": ["dice", "result", "success"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "How should the facilitator interpret failed rolls?",
+    "expected_terms": ["fail", "outcome", "narrative"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "Draw for my reason for adventure — I pulled 8 of diamonds. Give the card-value band and matching Reason for Adventure table row (Core Rulebook page 12).",
+    "expected_terms": ["8-10", "reason for adventure"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "Draw for my Background — Ace of hearts. Explain from the Background table (Core Rulebook page 13).",
+    "expected_terms": ["background", "ace"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "Character resources — six cards for Health, Morale, and Supplies. Ace=11, J/Q/K=10, max 20 per stat, two cards per stat.",
+    "expected_terms": ["six cards", "health", "morale"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "Summarize the six Brambletrek Legacies (Seer, Scrapper, Storyteller, Seeker, Sneaker, Soother) from the Core Rulebook.",
+    "expected_terms": ["seer", "scrapper", "legacy"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "Brambletrek random Gnawborn character creation (Core Rulebook pages 10-16).\nPulled from the table deck:\n- Reason for adventure: 8 of diamonds\n- Background: Ace of hearts\n- Trinket: 4 of spades\nFor each pull, give the card-value band and matching table row.",
+    "expected_terms": ["8-10", "background", "trinket"],
+    "require_core_in_top_n": 5
+  },
+  {
+    "query": "Journey day — Event 1: 9 of spades. Journey & Exploration table (pages 24-25). Resolve in order, clubs and spades on page 25.",
+    "expected_terms": ["stealthy predator", "morale", "spades"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "I have a character ready. Give me today's journey cards and meanings. Journey and exploration four cards.",
+    "expected_terms": ["four cards", "journey", "exploration"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "How does my story end? Reason ending Lost Light page 36 Core Rulebook.",
+    "expected_terms": ["lost light", "fireflies", "ending"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "Brambletrek Birthday of Wonders adventure opening celebration forest.",
+    "expected_terms": ["birthday", "wonders"],
+    "require_faction_in_top_n": "adventure"
+  },
+  {
+    "query": "Pumpkin Party pumpkin hunt table Brambletrek Complete Digital Edition.",
+    "expected_terms": ["pumpkin", "party"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "Brambletrek adventure scene — The Pumpkin Party (Complete Digital Edition). Scene 1: 7 of hearts. adventure module PDF pumpkin festival.",
+    "expected_terms": ["pumpkin", "festival"],
+    "require_core_in_top_n": 3
+  }
+]

@@ -1,0 +1,66 @@
+# Card-band prompts from Brambletrek Core Rulebook (pages 12–14).
+card_bands:
+  - id: ""
+    label: "— Not set —"
+  - id: ace
+    label: "Ace (11)"
+  - id: "2-4"
+    label: "2–4"
+  - id: "5-7"
+    label: "5–7"
+  - id: "8-10"
+    label: "8–10"
+  - id: jack
+    label: "Jack (10)"
+  - id: queen
+    label: "Queen (10)"
+  - id: king
+    label: "King (10)"
+
+reasons:
+  ace:
+    label: "Yearning for adventure — mythical golden grove"
+  "2-4":
+    label: "The Mysterious Stone — monument symbols and a dream"
+  "5-7":
+    label: "Hunt for the Elixir — Harvest's Dawn festival herbs"
+  "8-10":
+    label: "Search for Kin — brother's terrifying giant tree"
+  jack:
+    label: "Lost Light — fireflies vanished from the forest"
+  queen:
+    label: "Whispers of the Leaves — forest urges you deeper"
+  king:
+    label: "Luna's Blossomed Light — cure for the Forest Seer"
+
+backgrounds:
+  ace:
+    label: "Descendant of adventurers; oddity among farmers"
+  "2-4":
+    label: "Blacksmith's apprentice — forge rhythm, hunger for stories"
+  "5-7":
+    label: "Child of the forest's best tracker"
+  "8-10":
+    label: "Travelling troupe storytellers' child"
+  jack:
+    label: "Humble baker's child — hearth warmth, heroic dreams"
+  queen:
+    label: "Youngest child of the village leader"
+  king:
+    label: "Born into a family of healers"
+
+trinkets:
+  ace:
+    label: "Mother's locket with portrait and pet fur"
+  "2-4":
+    label: "Grandfather's compass pointing to the heart of adventure"
+  "5-7":
+    label: "Worn storybook of heroic tales"
+  "8-10":
+    label: "Crystal shard necklace from a Seer ancestor"
+  jack:
+    label: "Father's carved wolf with gem eyes"
+  queen:
+    label: "Mentor's engraved hunter's knife"
+  king:
+    label: "Grandmother's medicinal herb pouch"

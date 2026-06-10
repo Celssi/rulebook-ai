@@ -1,0 +1,57 @@
+# Leviathan box contents (10th Edition starter)
+# Personal reference – not official GW text
+
+box: Leviathan
+edition: 10th
+
+space_marines:
+  faction: Adeptus Astartes
+  units:
+    - name: Captain in Terminator Armour
+      role: HQ
+      notes: Terminator-armoured Chapter commander.
+    - name: Librarian in Terminator Armour
+      role: HQ
+      notes: Psychic support in Terminator plate.
+    - name: Lieutenant in Reiver Armour
+      role: HQ
+      notes: Reiver Lieutenant for Assault Intercessors synergy.
+    - name: Assault Intercessors Squad
+      role: Battleline
+      notes: Close-assault infantry with jump packs.
+    - name: Terminator Squad
+      role: Elite
+      notes: Heavy infantry in Terminator armour.
+    - name: Ballistus Dreadnought
+      role: Vehicle
+      notes: Ranged Dreadnought platform.
+
+tyranids:
+  faction: Tyranids
+  units:
+    - name: Winged Tyranid Prime
+      role: HQ
+      notes: Synapse leader with wings; supports swarm units.
+    - name: Termagants
+      role: Battleline
+      notes: Ranged gaunt swarm; often paired with Tervigon in full lists.
+    - name: Hormagaunts
+      role: Battleline
+      notes: Fast melee gaunts.
+    - name: Von Ryan's Leapers
+      role: Elite
+      notes: Jump-capable Tyranid hunters.
+    - name: Norn Emissary
+      role: Monster
+      notes: Large synaptic beast from Leviathan.
+    - name: Psychophage
+      role: Monster
+      notes: Psychic-hunter monster.
+
+tips:
+  fi:
+    - "Laatikko antaa kaksi pientä armeijaa – rakenna 500–1000 pisteen listat codexin ja Combat Patrol -rajojen mukaan."
+    - "Tyranidien Synapse-sääntö löytyy Tyranid Cards -vihosta; SM:n Oath of Moment cards-vihosta."
+  en:
+    - "The box gives two small forces – build 500–1000 pt lists per codex and mission rules."
+    - "Tyranid Synapse is in Tyranid Cards; Space Marines Oath of Moment in Adeptus Astartes Cards."

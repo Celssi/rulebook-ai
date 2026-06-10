@@ -1,0 +1,38 @@
+[
+  {
+    "query": "What does Deep Strike do?",
+    "expected_terms": ["deep strike", "reinforcements", "reserves"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "Explain Leader keyword",
+    "expected_terms": ["leader", "attached unit", "bodyguard"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "Explain Lone Operative keyword",
+    "expected_terms": ["lone operative", "target", "12"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "What does Deep Strike keyword mean?",
+    "expected_terms": ["deep strike", "reinforcements", "set up"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "How does Synapse work for Tyranids?",
+    "expected_terms": ["synapse", "tyranid", "leadership"]
+  },
+  {
+    "query": "What happens in the charge phase?",
+    "expected_terms": ["charge", "declare", "engagement range"]
+  },
+  {
+    "query": "How does Rapid Ingress work?",
+    "expected_terms": ["rapid ingress", "reinforcements", "reserves"]
+  },
+  {
+    "query": "What is an invulnerable save?",
+    "expected_terms": ["invulnerable", "saving throw", "save"]
+  }
+]
