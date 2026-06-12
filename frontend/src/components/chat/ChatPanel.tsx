@@ -38,16 +38,19 @@ export default function ChatPanel({
     setStreaming(true);
     const optimistic = [...messages, { role: "user" as const, content: prompt }];
     onMessagesUpdate(optimistic, sources, lastRoute || "");
-    streamChat(
-      prompt,
-      (data) => {
-        onMessagesUpdate(data.messages, data.sources, data.route);
-        setStreaming(false);
-      },
-      () => {
-        onSend(prompt).finally(() => setStreaming(false));
-      }
-    );
+    try {
+      await streamChat(
+        prompt,
+        (data) => {
+          onMessagesUpdate(data.messages, data.sources, data.route);
+        },
+        async () => {
+          await onSend(prompt);
+        }
+      );
+    } finally {
+      setStreaming(false);
+    }
   };
 
   return (

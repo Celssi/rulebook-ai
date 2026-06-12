@@ -135,8 +135,8 @@ export async function streamChat(
     route: string;
     messages: Message[];
   }) => void,
-  onError: (err: Error) => void
-) {
+  onError: (err: Error) => void | Promise<void>
+): Promise<void> {
   const res = await fetch(`${API}/chat/stream`, {
     method: "POST",
     credentials: "include",
@@ -147,26 +147,53 @@ export async function streamChat(
     onError(new Error(await res.text()));
     return;
   }
+
   const reader = res.body.getReader();
   const decoder = new TextDecoder();
   let buffer = "";
-  while (true) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    buffer += decoder.decode(value, { stream: true });
-    const parts = buffer.split("\n\n");
-    buffer = parts.pop() || "";
-    for (const part of parts) {
-      const lines = part.split("\n");
-      let event = "message";
-      let data = "";
-      for (const line of lines) {
-        if (line.startsWith("event:")) event = line.slice(6).trim();
-        if (line.startsWith("data:")) data = line.slice(5).trim();
-      }
-      if (event === "done" && data) {
-        onDone(JSON.parse(data));
-      }
+  let gotDone = false;
+
+  const handleBlock = (block: string) => {
+    const trimmed = block.trim();
+    if (!trimmed) return;
+    let event = "message";
+    let data = "";
+    for (const line of trimmed.split("\n")) {
+      if (line.startsWith("event:")) event = line.slice(6).trim();
+      else if (line.startsWith("data:")) data = line.slice(5).trim();
     }
+    if (event !== "done" || !data) return;
+    try {
+      onDone(JSON.parse(data));
+      gotDone = true;
+    } catch (e) {
+      throw new Error(e instanceof Error ? e.message : "Invalid stream payload");
+    }
+  };
+
+  const flushBuffer = (final = false) => {
+    const parts = buffer.split("\n\n");
+    if (final) {
+      for (const part of parts) handleBlock(part);
+      buffer = "";
+      return;
+    }
+    buffer = parts.pop() || "";
+    for (const part of parts) handleBlock(part);
+  };
+
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (value) {
+        buffer += decoder.decode(value, { stream: true });
+        flushBuffer();
+      }
+      if (done) break;
+    }
+    flushBuffer(true);
+    if (!gotDone) await onError(new Error("Stream ended without response"));
+  } catch (e) {
+    await onError(e instanceof Error ? e : new Error(String(e)));
   }
 }
