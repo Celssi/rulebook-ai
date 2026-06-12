@@ -93,6 +93,64 @@ def label_for_band(table_key: str, band_id: str) -> str:
     return band_id
 
 
+def label_for_card_band(band_id: str) -> str:
+    """Human label for a table card-value band (Ace, 2–4, Jack, …)."""
+    if not band_id:
+        return ""
+    for row in load_character_tables().get("card_bands") or []:
+        if isinstance(row, dict) and row.get("id") == band_id:
+            return str(row.get("label", band_id))
+    return band_id
+
+
+def character_table_band(rank_key: str) -> str:
+    """Map a playing-card rank to a character table band id (rulebook pp. 12–14)."""
+    if rank_key == "ace":
+        return "ace"
+    if rank_key in ("jack", "queen", "king"):
+        return rank_key
+    n = int(rank_key)
+    if 2 <= n <= 4:
+        return "2-4"
+    if 5 <= n <= 7:
+        return "5-7"
+    return "8-10"
+
+
+def legacy_stat_deltas(legacy_id: str) -> tuple[int, int, int]:
+    """Return (health, morale, supplies) deltas from legacy YAML."""
+    if not legacy_id:
+        return (0, 0, 0)
+    from src.games.brambletrek.curated import _legacies_data
+
+    meta = (_legacies_data().get("legacies") or {}).get(legacy_id) or {}
+    if not isinstance(meta, dict):
+        return (0, 0, 0)
+    return (
+        int(meta.get("health_delta", 0) or 0),
+        int(meta.get("morale_delta", 0) or 0),
+        int(meta.get("supplies_delta", 0) or 0),
+    )
+
+
+def apply_legacy_stat_change(
+    char: BrambletrekCharacter,
+    old_legacy: str,
+    new_legacy: str,
+) -> None:
+    """Swap legacy boost/flaw on current resource stats (rulebook p. 17)."""
+    if old_legacy == new_legacy:
+        return
+    oh, om, os = legacy_stat_deltas(old_legacy)
+    nh, nm, ns = legacy_stat_deltas(new_legacy)
+    char.health = char.health - oh + nh
+    char.morale = char.morale - om + nm
+    char.supplies = char.supplies - os + ns
+    char.legacy = new_legacy
+    char.legacy_abilities_used = {}
+    char.clamp_stats()
+
+
 def default_character() -> BrambletrekCharacter:
     return BrambletrekCharacter()
 
@@ -188,17 +246,23 @@ def format_for_prompt(
     if char.name.strip():
         lines.append(f"- Name: {char.name.strip()}")
     if char.reason_band:
-        lines.append(f"- Reason: {label_for_band('reasons', char.reason_band)}")
-    if char.reason_card:
-        lines.append(f"- Reason card drawn: {char.reason_card}")
+        card_note = char.reason_card or label_for_card_band(char.reason_band)
+        line = f"- Reason: {label_for_band('reasons', char.reason_band)}"
+        if card_note:
+            line += f" ({card_note})"
+        lines.append(line)
     if char.background_band:
-        lines.append(f"- Background: {label_for_band('backgrounds', char.background_band)}")
-    if char.background_card:
-        lines.append(f"- Background card drawn: {char.background_card}")
+        card_note = char.background_card or label_for_card_band(char.background_band)
+        line = f"- Background: {label_for_band('backgrounds', char.background_band)}"
+        if card_note:
+            line += f" ({card_note})"
+        lines.append(line)
     if char.trinket_band:
-        lines.append(f"- Trinket: {label_for_band('trinkets', char.trinket_band)}")
-    if char.trinket_card:
-        lines.append(f"- Trinket card drawn: {char.trinket_card}")
+        card_note = char.trinket_card or label_for_card_band(char.trinket_band)
+        line = f"- Trinket: {label_for_band('trinkets', char.trinket_band)}"
+        if card_note:
+            line += f" ({card_note})"
+        lines.append(line)
     if char.legacy:
         from src.games.brambletrek.curated import legacy_abilities, overcome_the_odds
 

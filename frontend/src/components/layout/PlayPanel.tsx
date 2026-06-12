@@ -20,7 +20,10 @@ interface Props {
     summary: string;
     options: Record<string, Record<string, string>>;
   } | null;
-  onJourneyChange: () => void;
+  onJourneyApply: (index: number) => Promise<{ summary?: string; item_error?: string | null }>;
+  onJourneyDrawItem: (index: number) => Promise<{ item_error?: string | null }>;
+  onJourneyFinish: () => Promise<void>;
+  onJourneyDiscard: () => Promise<void>;
   onDeckAction: (formatted: string) => void;
   onShortcut: (id: string) => void;
   on40kUpdate: (game_state: Record<string, unknown>, summary: string) => void;
@@ -35,7 +38,10 @@ export default function PlayPanel({
   deckRemaining,
   cardSource,
   state40k,
-  onJourneyChange,
+  onJourneyApply,
+  onJourneyDrawItem,
+  onJourneyFinish,
+  onJourneyDiscard,
   onDeckAction,
   onShortcut,
   on40kUpdate,
@@ -90,7 +96,14 @@ export default function PlayPanel({
 
       <div className="flex-1 overflow-y-auto p-3 min-h-0">
         {tab === "journey" && (
-          <JourneyPanel journey={journey} onChange={onJourneyChange} embedded />
+          <JourneyPanel
+            journey={journey}
+            onApply={onJourneyApply}
+            onDrawItem={onJourneyDrawItem}
+            onFinish={onJourneyFinish}
+            onDiscard={onJourneyDiscard}
+            embedded
+          />
         )}
         {tab === "deck" && (
           <DeckPanel

@@ -39,8 +39,8 @@ export default function StatsBar({ header, gameLabel, onOpenSettings }: Props) {
         <div className="flex items-center gap-3 min-w-0 flex-1">
           <div className="min-w-0 hidden sm:block">
             <div className="font-medium text-sm truncate">{header.name || "Unnamed"}</div>
-            {header.legacy && (
-              <div className="text-xs text-muted truncate">{header.legacy}</div>
+            {header.legacy_label && (
+              <div className="text-xs text-muted truncate">{header.legacy_label}</div>
             )}
           </div>
 

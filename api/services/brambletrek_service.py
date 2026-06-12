@@ -19,6 +19,7 @@ from src.games.brambletrek.character import (
     format_summary as format_character_summary,
     get_legacy_options,
     label_for_band,
+    load_character_tables,
     save_character,
     table_options,
 )
@@ -69,10 +70,25 @@ def get_character(ctx: PlayContext):
 def persist_character(ctx: PlayContext, data: dict | None = None) -> dict:
     store = _store()
     raw = data if data is not None else ctx.entity or {}
+    old = get_character(ctx)
     char = character_from_dict(raw)
     char.clamp_stats()
     if ctx.slot_id:
         char.id = ctx.slot_id
+    if char.legacy != old.legacy:
+        from src.games.brambletrek.character import apply_legacy_stat_change, legacy_stat_deltas
+
+        oh, om, os = legacy_stat_deltas(old.legacy)
+        nh, nm, ns = legacy_stat_deltas(char.legacy)
+        pre_applied = (
+            char.health == max(0, min(20, old.health - oh + nh))
+            and char.morale == max(0, min(20, old.morale - om + nm))
+            and char.supplies == max(0, min(20, old.supplies - os + ns))
+        )
+        if pre_applied:
+            char.legacy_abilities_used = {}
+        else:
+            apply_legacy_stat_change(char, old.legacy, char.legacy)
     ctx.entity = character_to_dict(char)
     save_character(char)
     if store:
@@ -90,14 +106,13 @@ def get_play_settings(ctx: PlayContext) -> tuple[str, str]:
 
 def shortcut_kwargs(ctx: PlayContext) -> dict:
     char = get_character(ctx)
-    story_mode, card_source = get_play_settings(ctx)
+    _, card_source = get_play_settings(ctx)
     return {
         "in_aldwund": char.in_aldwund,
         "reason_band": char.reason_band,
         "active_adventure": char.active_adventure,
         "char_id": ctx.slot_id or None,
         "card_source": card_source,
-        "story_mode": story_mode,
     }
 
 
@@ -263,6 +278,7 @@ def apply_journey_event(ctx: PlayContext, event_index: int) -> dict:
         "summary": summary,
         "item_error": item_error,
         "entity": ctx.entity,
+        "header": character_header(ctx),
         "pending_journey": pending_journey_payload(ctx),
     }
 
@@ -282,6 +298,7 @@ def draw_journey_item(ctx: PlayContext, event_index: int) -> dict:
     return {
         "item_error": item_error,
         "entity": ctx.entity,
+        "header": character_header(ctx),
         "pending_journey": pending_journey_payload(ctx),
     }
 
@@ -300,7 +317,7 @@ def finish_journey_day(ctx: PlayContext) -> dict:
             char=char,
         )
     ctx.set_extra(PENDING_JOURNEY_KEY, None)
-    return {"entity": ctx.entity, "pending_journey": None}
+    return {"entity": ctx.entity, "header": character_header(ctx), "pending_journey": None}
 
 
 def discard_journey(ctx: PlayContext) -> dict:
@@ -340,7 +357,7 @@ def bulk_apply_journey(ctx: PlayContext) -> dict:
             format_resources(char.health, char.morale, char.supplies),
             char=char,
         )
-    return {"entity": ctx.entity, "pending_journey": pending_journey_payload(ctx)}
+    return {"entity": ctx.entity, "header": character_header(ctx), "pending_journey": pending_journey_payload(ctx)}
 
 
 def maybe_narrator_log(ctx: PlayContext, context: str, *, chat_provider: ChatProvider) -> str | None:
@@ -474,14 +491,43 @@ def try_handle_prompt(
 
 
 def character_options_payload() -> dict:
+    from src.games.brambletrek.curated import _legacies_data
+
+    legacies = []
+    for lid, data in get_legacy_options().items():
+        if not lid:
+            continue
+        raw = (_legacies_data().get("legacies") or {}).get(lid) or {}
+        legacies.append(
+            {
+                "id": lid,
+                "label": data["label"],
+                "boost": data.get("boost"),
+                "flaw": data.get("flaw"),
+                "health_delta": int(raw.get("health_delta", 0) or 0),
+                "morale_delta": int(raw.get("morale_delta", 0) or 0),
+                "supplies_delta": int(raw.get("supplies_delta", 0) or 0),
+                "abilities": [
+                    {
+                        "id": ab["id"],
+                        "label": ab["label"],
+                        "description": ab.get("description", ""),
+                        "tags": ab.get("tags") or [],
+                    }
+                    for ab in legacy_abilities(lid)
+                ],
+            }
+        )
     return {
         "reasons": [{"id": o[0], "label": o[1]} for o in table_options("reasons")],
         "backgrounds": [{"id": o[0], "label": o[1]} for o in table_options("backgrounds")],
         "trinkets": [{"id": o[0], "label": o[1]} for o in table_options("trinkets")],
-        "legacies": [
-            {"id": lid, "label": data["label"], "boost": data.get("boost"), "flaw": data.get("flaw")}
-            for lid, data in get_legacy_options().items()
+        "card_bands": [
+            {"id": str(row.get("id", "")), "label": str(row.get("label", ""))}
+            for row in (load_character_tables().get("card_bands") or [])
+            if isinstance(row, dict) and row.get("id")
         ],
+        "legacies": legacies,
         "adventures": [{"id": o[0], "label": o[1]} for o in adventure_options()],
     }
 
@@ -562,6 +608,50 @@ def reason_ending_preview(reason_band: str) -> str:
     )
 
 
+_CHARACTER_TABLES = {
+    "reason": ("reasons", "reason_band", "reason_card"),
+    "background": ("backgrounds", "background_band", "background_card"),
+    "trinket": ("trinkets", "trinket_band", "trinket_card"),
+}
+
+
+def draw_character_table(ctx: PlayContext, table: str) -> dict:
+    meta = _CHARACTER_TABLES.get(table)
+    if not meta:
+        raise ValueError(f"Unknown table: {table}")
+    table_key, _, _ = meta
+    from src.games.brambletrek.character import character_table_band
+    from src.games.brambletrek.curated import parse_playing_card
+
+    result = draw_cards(count=1, game_id=GAME_BRAMBLETREK, char_id=ctx.slot_id or None)
+    if not result.get("ok"):
+        raise ValueError(result.get("error") or result.get("summary") or "Deck draw failed")
+    card = result["cards"][0]
+    parsed = parse_playing_card(card)
+    if not parsed:
+        raise ValueError(f"Could not parse drawn card: {card}")
+    band_id = character_table_band(parsed["rank_key"])
+    store = _store()
+    if ctx.slot_id and store:
+        log_draw(
+            ctx.slot_id,
+            [card],
+            label=f"{table.title()} table draw",
+            char=get_character(ctx),
+        )
+        ctx.refresh_deck()
+        store.persist_ctx(ctx)
+    return {
+        "table": table,
+        "band_id": band_id,
+        "band_field": meta[1],
+        "card_field": meta[2],
+        "card": card,
+        "row_label": label_for_band(table_key, band_id),
+        "remaining": result.get("remaining", 0),
+    }
+
+
 def character_header(ctx: PlayContext) -> dict:
     char = get_character(ctx)
     return {
@@ -572,5 +662,6 @@ def character_header(ctx: PlayContext) -> dict:
         "journey_day": char.journey_day,
         "name": char.name,
         "legacy": char.legacy,
+        "legacy_label": get_legacy_options().get(char.legacy, {}).get("label", ""),
         "in_aldwund": char.in_aldwund,
     }

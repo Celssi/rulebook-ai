@@ -1,5 +1,6 @@
 import type {
   CharacterHeader,
+  JourneyActionResult,
   LegacyAbility,
   Message,
   PendingJourney,
@@ -10,6 +11,19 @@ import type {
 
 const API = "/api";
 
+function parseErrorBody(text: string, fallback: string): string {
+  try {
+    const body = JSON.parse(text) as { detail?: string | { msg: string }[] };
+    if (typeof body.detail === "string") return body.detail;
+    if (Array.isArray(body.detail)) {
+      return body.detail.map((d) => d.msg).join("; ");
+    }
+  } catch {
+    /* plain text */
+  }
+  return text || fallback;
+}
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${API}${path}`, {
     credentials: "include",
@@ -18,7 +32,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   });
   if (!res.ok) {
     const text = await res.text();
-    throw new Error(text || res.statusText);
+    throw new Error(parseErrorBody(text, res.statusText));
   }
   return res.json() as Promise<T>;
 }
@@ -70,18 +84,21 @@ export const api = {
     ),
   getJourney: () => request<{ pending_journey: PendingJourney | null }>("/brambletrek/journey"),
   applyJourney: (event_index: number) =>
-    request<Record<string, unknown>>("/brambletrek/journey/apply", {
+    request<JourneyActionResult>("/brambletrek/journey/apply", {
       method: "POST",
       body: JSON.stringify({ event_index }),
     }),
   drawJourneyItem: (event_index: number) =>
-    request<Record<string, unknown>>("/brambletrek/journey/draw-item", {
+    request<JourneyActionResult>("/brambletrek/journey/draw-item", {
       method: "POST",
       body: JSON.stringify({ event_index }),
     }),
-  finishJourney: () => request<Record<string, unknown>>("/brambletrek/journey/finish", { method: "POST" }),
-  discardJourney: () => request<Record<string, unknown>>("/brambletrek/journey/discard", { method: "POST" }),
-  bulkApplyJourney: () => request<Record<string, unknown>>("/brambletrek/journey/bulk-apply", { method: "POST" }),
+  finishJourney: () =>
+    request<JourneyActionResult>("/brambletrek/journey/finish", { method: "POST" }),
+  discardJourney: () =>
+    request<JourneyActionResult>("/brambletrek/journey/discard", { method: "POST" }),
+  bulkApplyJourney: () =>
+    request<JourneyActionResult>("/brambletrek/journey/bulk-apply", { method: "POST" }),
   getShortcuts: () => request<{ shortcuts: Shortcut[] }>("/brambletrek/shortcuts"),
   runShortcut: (id: string) =>
     request<{
@@ -94,6 +111,23 @@ export const api = {
       header: CharacterHeader;
     }>(`/brambletrek/shortcuts/${id}`, { method: "POST" }),
   getLonelog: (n = 50) => request<{ lines: string[]; path: string | null }>(`/brambletrek/lonelog?n_lines=${n}`),
+  reasonEndingPreview: (reason_band: string) =>
+    request<{ preview: string }>(
+      `/brambletrek/reason-ending?reason_band=${encodeURIComponent(reason_band)}`
+    ),
+  drawCharacterTable: (table: "reason" | "background" | "trinket") =>
+    request<{
+      table: string;
+      band_id: string;
+      band_field: string;
+      card_field: string;
+      card: string;
+      row_label: string;
+      remaining: number;
+    }>("/brambletrek/character/draw-table", {
+      method: "POST",
+      body: JSON.stringify({ table }),
+    }),
   deckStatus: () => request<{ remaining: number; card_source: string }>("/deck/status"),
   drawDeck: (count = 1) =>
     request<{ formatted: string; remaining: number }>("/deck/draw", {

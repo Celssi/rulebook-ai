@@ -29,7 +29,13 @@ def post_chat(
 
 
 @router.post("/stream")
-async def stream_chat(body: ChatRequest, app: AppSession = Depends(get_app_session)):
+async def stream_chat(
+    body: ChatRequest,
+    response: Response,
+    app: AppSession = Depends(get_app_session),
+):
+    response.set_cookie(key=SESSION_COOKIE, value=app.session_id, httponly=True, samesite="lax")
+
     async def event_generator():
         messages = list(get_messages(app))
         messages.append({"role": "user", "content": body.prompt.strip()})

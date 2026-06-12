@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { BookOpen, Database, Play, User, X } from "lucide-react";
 import { api } from "../../api/client";
-import type { SessionState } from "../../types";
+import CharacterSetupPanel from "../brambletrek/CharacterSetupPanel";
+import type { CharacterHeader, SessionState } from "../../types";
 
 type Tab = "play" | "rag" | "character" | "index";
 
@@ -9,7 +10,7 @@ interface Props {
   open: boolean;
   session: SessionState;
   onClose: () => void;
-  onSaved: (session: SessionState) => void;
+  onSaved: (session: SessionState, header?: CharacterHeader) => void;
 }
 
 const TABS: { id: Tab; label: string; icon: typeof Play }[] = [
@@ -44,6 +45,12 @@ export default function SettingsDialog({ open, session, onClose, onSaved }: Prop
   const providers = (meta?.chat_providers as { id: string; label: string }[]) || [];
   const profiles = (meta?.retrieval_profiles as string[]) || [];
 
+  const handleCharacterSaved = (updated: Record<string, unknown>, header: CharacterHeader) => {
+    setEntity(updated);
+    onSaved({ ...session, entity: updated }, header);
+    onClose();
+  };
+
   const saveSession = async (patch: Record<string, unknown>) => {
     setSaving(true);
     try {
@@ -51,12 +58,6 @@ export default function SettingsDialog({ open, session, onClose, onSaved }: Prop
       onSaved(res);
     } finally {
       setSaving(false);
-    }
-  };
-
-  const saveCharacter = async () => {
-    if (session.has_character_sheet) {
-      await api.updateCharacter(entity);
     }
   };
 
@@ -222,51 +223,11 @@ export default function SettingsDialog({ open, session, onClose, onSaved }: Prop
             )}
 
             {tab === "character" && session.has_character_sheet && (
-              <div className="space-y-4">
-                <p className="text-muted text-xs">
-                  Optional setup cards and journal notes for the active Gnawborn.
-                </p>
-                <input
-                  className="input"
-                  placeholder="Reason card (optional)"
-                  value={String(entity.reason_card || "")}
-                  onChange={(e) => setEntity({ ...entity, reason_card: e.target.value })}
-                />
-                <input
-                  className="input"
-                  placeholder="Background card (optional)"
-                  value={String(entity.background_card || "")}
-                  onChange={(e) => setEntity({ ...entity, background_card: e.target.value })}
-                />
-                <input
-                  className="input"
-                  placeholder="Trinket card (optional)"
-                  value={String(entity.trinket_card || "")}
-                  onChange={(e) => setEntity({ ...entity, trinket_card: e.target.value })}
-                />
-                <input
-                  className="input"
-                  placeholder="Legacy (optional)"
-                  value={String(entity.legacy || "")}
-                  onChange={(e) => setEntity({ ...entity, legacy: e.target.value })}
-                />
-                <textarea
-                  className="input min-h-[80px]"
-                  placeholder="Journal notes"
-                  value={String(entity.notes || "")}
-                  onChange={(e) => setEntity({ ...entity, notes: e.target.value })}
-                />
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={async () => {
-                    await saveCharacter();
-                    onClose();
-                  }}
-                >
-                  Save character setup
-                </button>
-              </div>
+              <CharacterSetupPanel
+                entity={entity}
+                onChange={setEntity}
+                onSaved={handleCharacterSaved}
+              />
             )}
 
             {tab === "character" && !session.has_character_sheet && (

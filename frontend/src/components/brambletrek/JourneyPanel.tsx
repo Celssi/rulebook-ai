@@ -1,24 +1,49 @@
-import { Check, Circle, Sparkles } from "lucide-react";
-import { api } from "../../api/client";
+import { useState } from "react";
+import { AlertCircle, Check, Circle, Loader2, Sparkles } from "lucide-react";
 import PlayingCard from "./PlayingCard";
 import type { JourneyEvent, PendingJourney } from "../../types";
 
+interface ApplyResult {
+  summary?: string;
+  item_error?: string | null;
+}
+
 interface Props {
   journey: PendingJourney | null;
-  onChange: () => void;
+  onApply: (index: number) => Promise<ApplyResult>;
+  onDrawItem: (index: number) => Promise<{ item_error?: string | null }>;
+  onFinish: () => Promise<void>;
+  onDiscard: () => Promise<void>;
   embedded?: boolean;
 }
 
 function EventRow({
   ev,
   isLast,
-  onChange,
+  onApply,
+  onDrawItem,
 }: {
   ev: JourneyEvent;
   isLast: boolean;
-  onChange: () => void;
+  onApply: (index: number) => Promise<ApplyResult>;
+  onDrawItem: (index: number) => Promise<{ item_error?: string | null }>;
 }) {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [resultText, setResultText] = useState<string | null>(null);
   const active = !ev.applied && ev.can_apply;
+
+  const run = async (action: () => Promise<void>) => {
+    setLoading(true);
+    setError(null);
+    try {
+      await action();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Action failed");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="flex gap-3">
@@ -84,29 +109,66 @@ function EventRow({
               </div>
             )}
 
+            {resultText && ev.applied && (
+              <p className="mt-2 text-xs text-moss leading-relaxed">{resultText}</p>
+            )}
+
+            {error && (
+              <p className="mt-2 text-xs text-red-300 flex items-start gap-1">
+                <AlertCircle className="w-3.5 h-3.5 shrink-0 mt-0.5" />
+                {error}
+              </p>
+            )}
+
             {!ev.applied && (
               <button
                 type="button"
-                className="btn btn-primary w-full mt-3 text-xs"
-                disabled={!ev.can_apply}
-                onClick={async () => {
-                  await api.applyJourney(ev.index);
-                  onChange();
-                }}
+                className="btn btn-primary w-full mt-3 text-xs inline-flex items-center justify-center gap-1.5"
+                disabled={!ev.can_apply || loading}
+                onClick={() =>
+                  run(async () => {
+                    const res = await onApply(ev.index);
+                    if (res.summary) {
+                      setResultText(res.summary.replace(/\*\*/g, ""));
+                    }
+                    if (res.item_error) {
+                      setError(res.item_error);
+                    }
+                  })
+                }
               >
-                {active ? "Apply to sheet" : "Apply previous first"}
+                {loading ? (
+                  <>
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                    Applying…
+                  </>
+                ) : active ? (
+                  "Apply to sheet"
+                ) : (
+                  "Apply previous first"
+                )}
               </button>
             )}
             {ev.applied && ev.needs_item && !ev.item_card && (
               <button
                 type="button"
-                className="btn w-full mt-3 text-xs"
-                onClick={async () => {
-                  await api.drawJourneyItem(ev.index);
-                  onChange();
-                }}
+                className="btn w-full mt-3 text-xs inline-flex items-center justify-center gap-1.5"
+                disabled={loading}
+                onClick={() =>
+                  run(async () => {
+                    const res = await onDrawItem(ev.index);
+                    if (res.item_error) setError(res.item_error);
+                  })
+                }
               >
-                Draw item
+                {loading ? (
+                  <>
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                    Drawing…
+                  </>
+                ) : (
+                  "Draw item"
+                )}
               </button>
             )}
           </div>
@@ -116,7 +178,17 @@ function EventRow({
   );
 }
 
-export default function JourneyPanel({ journey, onChange, embedded }: Props) {
+export default function JourneyPanel({
+  journey,
+  onApply,
+  onDrawItem,
+  onFinish,
+  onDiscard,
+  embedded,
+}: Props) {
+  const [footerLoading, setFooterLoading] = useState<"finish" | "discard" | null>(null);
+  const [footerError, setFooterError] = useState<string | null>(null);
+
   if (!journey?.events?.length) {
     return (
       <div
@@ -133,6 +205,18 @@ export default function JourneyPanel({ journey, onChange, embedded }: Props) {
   const appliedCount = journey.events.filter((e) => e.applied).length;
   const total = journey.events.length;
   const progress = total > 0 ? (appliedCount / total) * 100 : 0;
+
+  const runFooter = async (kind: "finish" | "discard", action: () => Promise<void>) => {
+    setFooterLoading(kind);
+    setFooterError(null);
+    try {
+      await action();
+    } catch (e) {
+      setFooterError(e instanceof Error ? e.message : "Action failed");
+    } finally {
+      setFooterLoading(null);
+    }
+  };
 
   const content = (
     <div className="flex flex-col min-h-0">
@@ -160,31 +244,49 @@ export default function JourneyPanel({ journey, onChange, embedded }: Props) {
             key={ev.index}
             ev={ev}
             isLast={i === journey.events.length - 1}
-            onChange={onChange}
+            onApply={onApply}
+            onDrawItem={onDrawItem}
           />
         ))}
       </div>
 
+      {footerError && (
+        <p className="mt-2 text-xs text-red-300 flex items-start gap-1">
+          <AlertCircle className="w-3.5 h-3.5 shrink-0 mt-0.5" />
+          {footerError}
+        </p>
+      )}
+
       <div className="flex gap-2 mt-2 pt-3 border-t border-border sticky bottom-0 bg-panel/95 backdrop-blur-sm">
         <button
           type="button"
-          className="btn btn-primary flex-1"
-          onClick={async () => {
-            await api.finishJourney();
-            onChange();
-          }}
+          className="btn btn-primary flex-1 inline-flex items-center justify-center gap-1.5"
+          disabled={footerLoading !== null}
+          onClick={() => runFooter("finish", onFinish)}
         >
-          Finish day
+          {footerLoading === "finish" ? (
+            <>
+              <Loader2 className="w-4 h-4 animate-spin" />
+              Finishing…
+            </>
+          ) : (
+            "Finish day"
+          )}
         </button>
         <button
           type="button"
-          className="btn-ghost flex-1 border border-border rounded-lg py-2"
-          onClick={async () => {
-            await api.discardJourney();
-            onChange();
-          }}
+          className="btn-ghost flex-1 border border-border rounded-lg py-2 inline-flex items-center justify-center gap-1.5"
+          disabled={footerLoading !== null}
+          onClick={() => runFooter("discard", onDiscard)}
         >
-          Discard
+          {footerLoading === "discard" ? (
+            <>
+              <Loader2 className="w-4 h-4 animate-spin" />
+              Discarding…
+            </>
+          ) : (
+            "Discard"
+          )}
         </button>
       </div>
     </div>

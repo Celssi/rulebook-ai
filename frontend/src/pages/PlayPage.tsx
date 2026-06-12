@@ -9,6 +9,7 @@ import StatsBar from "../components/layout/StatsBar";
 import SettingsDialog from "../components/settings/SettingsDialog";
 import type {
   CharacterHeader,
+  JourneyActionResult,
   LegacyAbility,
   Message,
   PendingJourney,
@@ -113,6 +114,7 @@ export default function PlayPage() {
 
   const handleShortcut = async (id: string) => {
     setShortcutLoading(id);
+    setMobileTab("chat");
     try {
       const res = await api.runShortcut(id);
       setMessages(res.messages);
@@ -122,9 +124,47 @@ export default function PlayPage() {
       setJourney(res.pending_journey);
       if (res.entity) setSession((s) => (s ? { ...s, entity: res.entity } : s));
       await loadBrambletrek();
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : "Shortcut failed";
+      setMessages((m) => [
+        ...m,
+        { role: "assistant", content: `**Shortcut error:** ${msg}` },
+      ]);
     } finally {
       setShortcutLoading(null);
     }
+  };
+
+  const applyJourneyResult = useCallback((res: JourneyActionResult) => {
+    if (res.header) setHeader(res.header);
+    if (res.pending_journey !== undefined) setJourney(res.pending_journey);
+    if (res.entity) setSession((s) => (s ? { ...s, entity: res.entity } : s));
+  }, []);
+
+  const handleJourneyApply = async (eventIndex: number) => {
+    const res = await api.applyJourney(eventIndex);
+    applyJourneyResult(res);
+    const lonelogRes = await api.getLonelog();
+    setLonelog(lonelogRes.lines);
+    return { summary: res.summary, item_error: res.item_error };
+  };
+
+  const handleJourneyDrawItem = async (eventIndex: number) => {
+    const res = await api.drawJourneyItem(eventIndex);
+    applyJourneyResult(res);
+    return { item_error: res.item_error };
+  };
+
+  const handleJourneyFinish = async () => {
+    const res = await api.finishJourney();
+    applyJourneyResult(res);
+    const lonelogRes = await api.getLonelog();
+    setLonelog(lonelogRes.lines);
+  };
+
+  const handleJourneyDiscard = async () => {
+    const res = await api.discardJourney();
+    applyJourneyResult(res);
   };
 
   const handleDeckAction = (formatted: string) => {
@@ -175,7 +215,10 @@ export default function PlayPage() {
       deckRemaining={deckRemaining}
       cardSource={cardSource}
       state40k={state40k}
-      onJourneyChange={loadBrambletrek}
+      onJourneyApply={handleJourneyApply}
+      onJourneyDrawItem={handleJourneyDrawItem}
+      onJourneyFinish={handleJourneyFinish}
+      onJourneyDiscard={handleJourneyDiscard}
       onDeckAction={handleDeckAction}
       onShortcut={handleShortcut}
       on40kUpdate={(game_state, summary) =>
@@ -337,9 +380,10 @@ export default function PlayPage() {
         open={settingsOpen}
         session={session}
         onClose={() => setSettingsOpen(false)}
-        onSaved={(s) => {
+        onSaved={(s, header) => {
           setSession(s);
-          refresh();
+          if (header) setHeader(header);
+          else refresh();
         }}
       />
     </div>

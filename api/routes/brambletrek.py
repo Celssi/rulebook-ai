@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Response
 
-from api.deps import get_app_session
-from api.models import CharacterUpdate, JourneyApplyRequest, RosterCreate
+from api.deps import SESSION_COOKIE, get_app_session
+from api.models import CharacterTableDrawRequest, CharacterUpdate, JourneyApplyRequest, RosterCreate
 from api.services import brambletrek_service as bt
 from api.services.session_service import app_session_payload, get_active_play_context, get_messages
 from src.config import GAME_BRAMBLETREK
@@ -44,6 +44,21 @@ def update_character(body: CharacterUpdate, app: AppSession = Depends(get_app_se
     ctx = _ctx(app)
     entity = bt.persist_character(ctx, body.entity)
     return {"entity": entity, "header": bt.character_header(ctx)}
+
+
+@router.post("/character/draw-table")
+def draw_character_table(
+    body: CharacterTableDrawRequest,
+    response: Response,
+    app: AppSession = Depends(get_app_session),
+):
+    ctx = _ctx(app)
+    try:
+        result = bt.draw_character_table(ctx, body.table)
+    except ValueError as e:
+        raise HTTPException(400, str(e)) from e
+    response.set_cookie(key=SESSION_COOKIE, value=app.session_id, httponly=True, samesite="lax")
+    return result
 
 
 @router.post("/character/reset")
@@ -88,23 +103,49 @@ def get_journey(app: AppSession = Depends(get_app_session)):
 
 
 @router.post("/journey/apply")
-def apply_journey(body: JourneyApplyRequest, app: AppSession = Depends(get_app_session)):
-    return bt.apply_journey_event(_ctx(app), body.event_index)
+def apply_journey(
+    body: JourneyApplyRequest,
+    response: Response,
+    app: AppSession = Depends(get_app_session),
+):
+    ctx = _ctx(app)
+    try:
+        result = bt.apply_journey_event(ctx, body.event_index)
+    except ValueError as e:
+        raise HTTPException(400, str(e)) from e
+    response.set_cookie(key=SESSION_COOKIE, value=app.session_id, httponly=True, samesite="lax")
+    return result
 
 
 @router.post("/journey/draw-item")
-def draw_journey_item(body: JourneyApplyRequest, app: AppSession = Depends(get_app_session)):
-    return bt.draw_journey_item(_ctx(app), body.event_index)
+def draw_journey_item(
+    body: JourneyApplyRequest,
+    response: Response,
+    app: AppSession = Depends(get_app_session),
+):
+    ctx = _ctx(app)
+    try:
+        result = bt.draw_journey_item(ctx, body.event_index)
+    except ValueError as e:
+        raise HTTPException(400, str(e)) from e
+    response.set_cookie(key=SESSION_COOKIE, value=app.session_id, httponly=True, samesite="lax")
+    return result
 
 
 @router.post("/journey/finish")
-def finish_journey(app: AppSession = Depends(get_app_session)):
-    return bt.finish_journey_day(_ctx(app))
+def finish_journey(response: Response, app: AppSession = Depends(get_app_session)):
+    ctx = _ctx(app)
+    result = bt.finish_journey_day(ctx)
+    response.set_cookie(key=SESSION_COOKIE, value=app.session_id, httponly=True, samesite="lax")
+    return result
 
 
 @router.post("/journey/discard")
-def discard_journey(app: AppSession = Depends(get_app_session)):
-    return bt.discard_journey(_ctx(app))
+def discard_journey(response: Response, app: AppSession = Depends(get_app_session)):
+    ctx = _ctx(app)
+    result = bt.discard_journey(ctx)
+    response.set_cookie(key=SESSION_COOKIE, value=app.session_id, httponly=True, samesite="lax")
+    return result
 
 
 @router.post("/journey/bulk-apply")
@@ -118,7 +159,11 @@ def shortcuts(app: AppSession = Depends(get_app_session)):
 
 
 @router.post("/shortcuts/{shortcut_id}")
-def run_shortcut_route(shortcut_id: str, app: AppSession = Depends(get_app_session)):
+def run_shortcut_route(
+    shortcut_id: str,
+    response: Response,
+    app: AppSession = Depends(get_app_session),
+):
     ctx = _ctx(app)
     user_message, answer, sources, route = bt.execute_shortcut(ctx, shortcut_id, app=app)
     messages = list(get_messages(app))
@@ -131,6 +176,7 @@ def run_shortcut_route(shortcut_id: str, app: AppSession = Depends(get_app_sessi
     store = get_play_store(GAME_BRAMBLETREK)
     if store:
         store.persist_ctx(ctx)
+    response.set_cookie(key=SESSION_COOKIE, value=app.session_id, httponly=True, samesite="lax")
     return {
         "answer": answer,
         "sources": sources,

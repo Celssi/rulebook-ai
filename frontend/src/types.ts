@@ -41,6 +41,7 @@ export interface CharacterHeader {
   journey_day: number;
   name: string;
   legacy: string;
+  legacy_label?: string;
   in_aldwund: boolean;
 }
 
@@ -61,6 +62,14 @@ export interface JourneyEvent {
 export interface PendingJourney {
   events: JourneyEvent[];
   shortcut_id?: string;
+}
+
+export interface JourneyActionResult {
+  summary?: string;
+  item_error?: string | null;
+  entity?: Record<string, unknown>;
+  header?: CharacterHeader;
+  pending_journey?: PendingJourney | null;
 }
 
 export interface LegacyAbility {

@@ -8,6 +8,7 @@ from typing import Any
 
 from src.games.saves.keys import session_extra_key, slot_entity_key
 from src.games.saves.session import PlaySession, load_session, save_session
+from src.games.saves.ui_preferences import apply_ui_preferences
 from src.llm import ChatProvider
 from src.play_tools import deck_scope_key, get_deck_snapshot, sync_deck_store
 
@@ -99,6 +100,7 @@ class SessionManager:
     def create(self) -> AppSession:
         session_id = uuid.uuid4().hex
         app = AppSession(session_id=session_id)
+        apply_ui_preferences(app)
         self._sessions[session_id] = app
         return app
 
@@ -108,6 +110,11 @@ class SessionManager:
     def get_or_create(self, session_id: str | None) -> AppSession:
         if session_id and session_id in self._sessions:
             return self._sessions[session_id]
+        if session_id:
+            app = AppSession(session_id=session_id)
+            apply_ui_preferences(app)
+            self._sessions[session_id] = app
+            return app
         return self.create()
 
 

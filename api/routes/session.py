@@ -7,6 +7,7 @@ from fastapi import APIRouter, Depends, Response
 from api.deps import SESSION_COOKIE, get_app_session
 from api.models import SessionUpdate
 from api.services.session_service import app_session_payload, get_active_play_context
+from src.games.saves.ui_preferences import save_ui_preferences
 from api.utils import RETRIEVAL_PROFILES
 from src.config import get_all_factions
 from src.games.registry import get_game_plugin
@@ -18,7 +19,8 @@ router = APIRouter(prefix="/api/session", tags=["session"])
 
 
 @router.get("")
-def get_session(app: AppSession = Depends(get_app_session)):
+def get_session(response: Response, app: AppSession = Depends(get_app_session)):
+    response.set_cookie(key=SESSION_COOKIE, value=app.session_id, httponly=True, samesite="lax")
     return app_session_payload(app)
 
 
@@ -55,6 +57,7 @@ def update_session(
         store = get_play_store(app.selected_game_id)
         if store:
             store.persist_ctx(ctx)
+    save_ui_preferences(app)
     response.set_cookie(key=SESSION_COOKIE, value=app.session_id, httponly=True, samesite="lax")
     return app_session_payload(app)
 

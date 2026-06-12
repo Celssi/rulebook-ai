@@ -33,6 +33,10 @@ class CharacterUpdate(BaseModel):
     entity: dict[str, Any]
 
 
+class CharacterTableDrawRequest(BaseModel):
+    table: str  # reason | background | trinket
+
+
 class RosterCreate(BaseModel):
     name: str = ""
 
