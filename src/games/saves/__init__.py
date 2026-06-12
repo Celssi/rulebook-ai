@@ -42,6 +42,7 @@ from src.games.saves.lonelog import (
     format_track,
     format_wealth,
 )
+from src.games.saves.context import AppSession, PlayContext, SessionManager
 from src.games.saves.play_store import (
     PlayProfile,
     PlayStore,
@@ -62,7 +63,10 @@ from src.games.saves.storage import (
 )
 
 __all__ = [
+    "AppSession",
     "CampaignHeader",
+    "PlayContext",
+    "SessionManager",
     "LonelogStore",
     "PlayProfile",
     "PlaySession",

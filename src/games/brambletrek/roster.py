@@ -33,5 +33,14 @@ def delete_character(char_id: str) -> None:
     get_brambletrek_store().delete_slot(char_id)
 
 
+def rename_character(char_id: str, name: str) -> None:
+    char = load_character(char_id)
+    if hasattr(char, "name"):
+        char.name = name.strip()
+    elif isinstance(char, dict):
+        char["name"] = name.strip()
+    save_character(char)
+
+
 def ensure_roster_initialized() -> str:
     return get_brambletrek_store().ensure_initialized()

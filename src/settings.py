@@ -47,4 +47,7 @@ CHUNK_SIZE = 1000
 CHUNK_OVERLAP = 150
 TOP_K_DEFAULT = 5
 
+# Cross-encoder reranking (shared retrieval layer for all games)
+RERANK_MODEL = os.environ.get("RERANK_MODEL", "cross-encoder/ms-marco-MiniLM-L-6-v2")
+
 DEFAULT_GAME_ID = "40k"

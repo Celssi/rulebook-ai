@@ -54,6 +54,7 @@ def brambletrek_multi_node(state: dict) -> dict:
         top_k=top_k,
         candidate_k=retrieval_cfg.get("candidate_k"),
         use_hybrid=bool(retrieval_cfg.get("use_hybrid", True)),
+        use_rerank=bool(retrieval_cfg.get("use_rerank", False)),
         brambletrek_character=bt,
         chat_provider=state.get("chat_provider", "ollama"),
     )

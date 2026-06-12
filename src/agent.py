@@ -194,6 +194,7 @@ def card_rag_node(state: AgentState) -> dict:
         game_id=game_id,
         candidate_k=retrieval_cfg.get("candidate_k"),
         use_hybrid=bool(retrieval_cfg.get("use_hybrid", True)),
+        use_rerank=bool(retrieval_cfg.get("use_rerank", False)),
         brambletrek_character=_bt_character(state),
         chat_provider=state.get("chat_provider", "ollama"),
     )
@@ -232,6 +233,7 @@ def rag_node(state: AgentState) -> dict:
         game_id=game_id,
         candidate_k=retrieval_cfg.get("candidate_k"),
         use_hybrid=bool(retrieval_cfg.get("use_hybrid", True)),
+        use_rerank=bool(retrieval_cfg.get("use_rerank", False)),
         brambletrek_character=_bt_character(state),
         chat_provider=state.get("chat_provider", "ollama"),
     )

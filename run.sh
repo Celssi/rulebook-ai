@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Bootstrap and run rulebook-ai (venv, deps, Ollama, indexes, Streamlit).
+# Bootstrap and run rulebook-ai (venv, deps, Ollama, indexes, API + React UI).
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")" && pwd)"
@@ -16,7 +16,8 @@ if ! python3 -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 11) e
 fi
 
 BOOTSTRAP_ARGS=()
-STREAMLIT_ARGS=()
+API_ARGS=()
+UI_MODE="react"
 PASSTHRU=false
 for arg in "$@"; do
   if [[ "$arg" == "--" ]]; then
@@ -24,7 +25,7 @@ for arg in "$@"; do
     continue
   fi
   if $PASSTHRU; then
-    STREAMLIT_ARGS+=("$arg")
+    API_ARGS+=("$arg")
   else
     BOOTSTRAP_ARGS+=("$arg")
   fi
@@ -66,9 +67,33 @@ ensure_venv
 # shellcheck disable=SC1091
 source .venv/bin/activate
 
-echo "Installing dependencies..."
+echo "Installing Python dependencies..."
 python -m pip install -q -e .
 
 python scripts/bootstrap.py ${BOOTSTRAP_ARGS[@]+"${BOOTSTRAP_ARGS[@]}"}
 
-exec python -m streamlit run app/streamlit_app.py ${STREAMLIT_ARGS[@]+"${STREAMLIT_ARGS[@]}"}
+if ! command -v npm >/dev/null 2>&1; then
+  echo "npm not found. Install Node.js 18+ for the React UI."
+  exit 1
+fi
+
+if [[ ! -d frontend/node_modules ]]; then
+  echo "Installing frontend dependencies..."
+  (cd frontend && npm install)
+fi
+
+cleanup() {
+  if [[ -n "${API_PID:-}" ]]; then kill "$API_PID" 2>/dev/null || true; fi
+  if [[ -n "${VITE_PID:-}" ]]; then kill "$VITE_PID" 2>/dev/null || true; fi
+}
+trap cleanup EXIT INT TERM
+
+echo "Starting API on http://127.0.0.1:8000"
+python -m uvicorn api.main:app --host 127.0.0.1 --port 8000 --reload &
+API_PID=$!
+
+echo "Starting React UI on http://127.0.0.1:5173"
+(cd frontend && npm run dev) &
+VITE_PID=$!
+
+wait "$VITE_PID"

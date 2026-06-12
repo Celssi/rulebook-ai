@@ -15,6 +15,10 @@ data/ocr_cache/
 data/feedback.jsonl
 data/saves/
 
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
 # Large copyrighted PDFs (keep locally)
 docs/**/*.pdf
 docs/**/*.PDF

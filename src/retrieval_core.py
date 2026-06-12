@@ -262,3 +262,70 @@ def retrieve_hybrid(
         return dedupe_nodes(dense)
     lexical = _lexical_retrieve(game_id, collection, query_text, candidate_k, factions)
     return dedupe_nodes(_fuse_nodes_rrf(dense, lexical, candidate_k))
+
+
+_reranker = None
+_reranker_unavailable: str | None = None
+
+
+def rerank_available() -> bool:
+    """True if sentence-transformers cross-encoder can be loaded."""
+    global _reranker_unavailable
+    if _reranker_unavailable is not None:
+        return _reranker_unavailable == ""
+    try:
+        from sentence_transformers import CrossEncoder  # noqa: F401
+    except ImportError:
+        _reranker_unavailable = "sentence-transformers not installed"
+        return False
+    _reranker_unavailable = ""
+    return True
+
+
+def rerank_unavailable_reason() -> str | None:
+    rerank_available()
+    return _reranker_unavailable or None
+
+
+def _get_reranker():
+    global _reranker, _reranker_unavailable
+    if _reranker is not None:
+        return _reranker
+    try:
+        from sentence_transformers import CrossEncoder
+
+        from src.settings import RERANK_MODEL
+
+        _reranker = CrossEncoder(RERANK_MODEL)
+        _reranker_unavailable = ""
+        return _reranker
+    except ImportError as exc:
+        _reranker_unavailable = str(exc)
+        raise
+
+
+def rerank_nodes(
+    query: str,
+    nodes: list[NodeWithScore],
+    *,
+    use_rerank: bool = True,
+) -> list[NodeWithScore]:
+    """Reorder hybrid candidates with a cross-encoder (game-agnostic second stage)."""
+    if not use_rerank or len(nodes) <= 1:
+        return nodes
+    if not rerank_available():
+        return nodes
+    try:
+        model = _get_reranker()
+    except ImportError:
+        return nodes
+
+    pairs = [(query, node.get_content()) for node in nodes]
+    raw_scores = model.predict(pairs)
+    scored: list[tuple[float, NodeWithScore]] = []
+    for idx, node in enumerate(nodes):
+        score = float(raw_scores[idx])
+        node.score = round(score, 6)
+        scored.append((score, node))
+    scored.sort(key=lambda item: item[0], reverse=True)
+    return [node for _, node in scored]

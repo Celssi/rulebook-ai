@@ -77,6 +77,7 @@ class GamePlugin:
         nodes: list[NodeWithScore],
         boost_ctx: RetrievalBoostContext,
     ) -> list[NodeWithScore]:
+        """Adjust node order after hybrid search and optional cross-encoder rerank."""
         return nodes
 
     def prompt_top_k(self, question: str, top_k: int, context: RagContext) -> int:

@@ -74,6 +74,11 @@ def main() -> None:
         action="store_true",
         help="Disable lexical+dense fusion and run dense-only retrieval",
     )
+    parser.add_argument(
+        "--use-rerank",
+        action="store_true",
+        help="Enable cross-encoder reranking after hybrid retrieval",
+    )
     args = parser.parse_args()
 
     case_path = args.cases
@@ -85,7 +90,12 @@ def main() -> None:
     ordering_checks = 0
     ordering_passes = 0
 
-    print(f"Running retrieval eval on {len(cases)} cases...")
+    mode = "hybrid"
+    if args.no_hybrid:
+        mode = "dense-only"
+    if args.use_rerank:
+        mode += "+rerank"
+    print(f"Running retrieval eval on {len(cases)} cases ({mode})...")
     for idx, case in enumerate(cases, 1):
         query = str(case.get("query", "")).strip()
         if not query:
@@ -99,6 +109,7 @@ def main() -> None:
             game_id=args.game,
             candidate_k=args.candidate_k,
             use_hybrid=not args.no_hybrid,
+            use_rerank=args.use_rerank,
         )
         sources = nodes_to_sources(nodes[: args.top_k])
         hit, coverage = _score_case(sources, expected_terms)

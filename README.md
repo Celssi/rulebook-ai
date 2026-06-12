@@ -6,7 +6,7 @@ Local rules assistant with selectable game modes:
 
 - **LLM:** Ollama ([Gemma 4](https://ollama.com/library/gemma4))
 - **RAG:** LlamaIndex + ChromaDB
-- **UI:** Streamlit
+- **UI:** React dashboard + FastAPI
 - **OCR:** Tesseract fallback for image-only PDFs
 
 Use your own PDFs in `docs/`.
@@ -103,27 +103,40 @@ MVP ingest indexes only Complete Digital Edition; `--all` adds Birthday of Wonde
 
 ### 7) Run the app
 
-**Quick start (recommended):** one script creates the venv, installs deps, checks Ollama, builds missing indexes, and opens the UI:
+**Quick start (recommended):** one script creates the venv, installs deps, checks Ollama, builds missing indexes, and starts the React UI + API:
 
 ```bash
 chmod +x run.sh   # once
 ./run.sh
 ```
 
-First run may take a while (Ollama model pulls and PDF indexing). To skip slow steps:
+Open **http://127.0.0.1:5173** (React dashboard). The API runs on **http://127.0.0.1:8000**.
+
+First run may take a while (Ollama model pulls, PDF indexing, and `npm install` in `frontend/`). To skip slow steps:
 
 ```bash
-./run.sh --skip-ingest --skip-checks          # dev: Ollama + Streamlit only
+./run.sh --skip-ingest --skip-checks          # dev: skip indexing
 ./run.sh --skip-ollama --skip-ingest          # offline UI, no model checks
-./run.sh -- --server.port 8502                # pass flags to Streamlit
 ```
 
 Bootstrap flags: `--skip-ollama`, `--skip-ingest`, `--skip-checks`, `--ingest-all` (full PDF set when indexing).
 
-**Manual start** (if you prefer separate steps):
+**Manual start** (two terminals):
 
 ```bash
-streamlit run app/streamlit_app.py
+# Terminal 1 — API
+source .venv/bin/activate
+uvicorn api.main:app --reload --port 8000
+
+# Terminal 2 — React UI
+cd frontend && npm install && npm run dev
+```
+
+**Production build** (single server serves API + static frontend):
+
+```bash
+cd frontend && npm run build
+uvicorn api.main:app --host 0.0.0.0 --port 8000
 ```
 
 ## Switching chat model
@@ -132,7 +145,7 @@ Embeddings stay the same (`nomic-embed-text`), so you can switch chat model with
 
 ```bash
 export OLLAMA_CHAT_MODEL=gemma4:26b
-streamlit run app/streamlit_app.py
+uvicorn api.main:app --reload --port 8000
 ```
 
 Apple Silicon MLX build (lower RAM):
@@ -153,20 +166,13 @@ You can use Anthropic Claude for chat answers while keeping local Ollama embeddi
 ANTHROPIC_API_KEY=your-key-here
 ```
 
-**Streamlit secrets** — `.streamlit/secrets.toml` (gitignored):
-
-```toml
-ANTHROPIC_API_KEY = "your-key-here"
-```
-
 **Shell export** (session only):
 
 ```bash
 export ANTHROPIC_API_KEY="your-key-here"
-streamlit run app/streamlit_app.py
 ```
 
-2. In the sidebar, choose **Chat provider → Claude (cloud)**.
+2. In **Settings → RAG**, choose **Chat provider → Claude (cloud)**.
 
 Default Claude model is `claude-sonnet-4-20250514`. Override with:
 
@@ -209,9 +215,9 @@ The assistant can roll dice and draw from a standard 52-card deck (per game mode
 - `draw for my reason for adventure and explain it` (draw + rules lookup)
 - `Shuffle the deck` / `reset deck`
 
-**Sidebar:** deck remaining count, Draw 1, Reset deck, and a quick roll field.
+**Settings panel:** deck remaining count, Draw 1, Reset deck, and a quick roll field.
 
-**Brambletrek shortcuts (sidebar, Brambletrek mode only):** random character, **Journey / Aldwund day** (curated core tables pp. 24–27 + **Today's draws**), **Adventure scene (3 cards)** when an adventure is selected (PDF via RAG only), combat setup, recovery, Legacy, **Reason ending (p. 36)**, and **Active adventure overview**.
+**Brambletrek shortcuts (Play panel, Brambletrek mode only):** random character, **Journey / Aldwund day** (curated core tables pp. 24–27 + **Today's draws**), **Adventure scene (3 cards)** when an adventure is selected (PDF via RAG only), combat setup, recovery, Legacy, **Reason ending (p. 36)**, and **Active adventure overview**.
 
 Deck state persists per character (Brambletrek) or per game (40k) until you reset or switch. Invalid dice notation returns a short error (e.g. use `2d6`, not `2x6`).
 
@@ -224,51 +230,28 @@ python3 scripts/validate_tools.py
 ```
 
 
-- **Game selector (sidebar):** `Warhammer 40,000` or `Brambletrek`
+- **Game selector (header):** `Warhammer 40,000` or `Brambletrek`
 - **RAG mode:** direct retrieval from indexed docs
 - **Agent mode:** tool-routed answers (dice, cards, Leviathan lists, rules) (rules, Leviathan lists on 40k, dice, cards)
-- **40k mode only:** Game State sidebar (army, opponent, round, phase)
+- **40k mode only:** Game State panel (army, opponent, round, phase)
 - **Brambletrek mode:** multi-Gnawborn roster; each character has its own sheet, deck, chat, and **[Lonelog](https://lonelog.readthedocs.io/)** session file under `data/saves/brambletrek/{id}/`
 - **Story mode:** **Player-led** (you write `@` actions; AI explains rules) or **AI narrator** (AI adds `=>` narrative after events)
 - **Card source:** **Physical deck** (report pulls — synced to virtual deck) or **Virtual** (app/AI draws)
 - **Lonelog:** append-only `lonelog.md` per character; `/log …` slash command; sidebar viewer + download
-- **Curated YAML** (`data/curated/brambletrek_*.yaml`): core **journey**, Aldwund depths, recovery, items, legacies, **reason endings** — plus sidebar **Today's draws** for Hyhill journey only. Adventure modules use **metadata only** in YAML; scenes come from the indexed PDF via RAG.
+- **Curated YAML** (`data/curated/brambletrek_*.yaml`): core **journey**, Aldwund depths, recovery, items, legacies, **reason endings** — plus **Today's draws** for Hyhill journey only. Adventure modules use **metadata only** in YAML; scenes come from the indexed PDF via RAG.
 - **Adventures:** set **Active adventure** on the sheet, then use **Adventure scene** or ask for today's scenes (Pumpkin Party, First Frost, World Tree, and Dragonkeep are in Complete Digital Edition; Birthday and Winter Gift need full ingest). Say **Hyhill journey** or use **Journey day** for core tables while an adventure is active.
-- **Table deck (sidebar):** one shuffled 52-card deck per Gnawborn; draw, report physical cards, or reset from the sidebar or chat
-- **Retrieval profile (sidebar):**
+- **Table deck (Play panel):** one shuffled 52-card deck per Gnawborn; draw, report physical cards, or reset from the Play panel or chat
+- **Retrieval profile (Settings):**
   - `Fast`: dense-only, smaller candidate pool
   - `Balanced`: hybrid retrieval (dense + lexical), medium candidate pool
   - `Quality`: hybrid retrieval with larger candidate pool (best recall)
-
-## UI modes
-
-Run retrieval-only checks (no answer judging):
-
-```bash
-# 40k cases
-python3 scripts/eval_retrieval.py --game 40k
-
-# Brambletrek cases
-python3 scripts/eval_retrieval.py --game brambletrek
-```
-
-Useful comparisons:
-
-```bash
-# Dense-only baseline (40k)
-python3 scripts/eval_retrieval.py --game 40k --no-hybrid
-
-# Quality-style wider candidate pool (Brambletrek)
-python3 scripts/eval_retrieval.py --game brambletrek --candidate-k 70 --top-k 8
-```
+  - `Quality+ rerank`: hybrid + local cross-encoder rerank (all games; requires `sentence-transformers`)
 
 ## Common issues
 
-### `streamlit: command not found`
+### npm not found
 
-```bash
-python -m streamlit run app/streamlit_app.py
-```
+Install [Node.js 18+](https://nodejs.org/) and run `./run.sh` again.
 
 ### Gemma 4 pull fails
 
@@ -299,7 +282,8 @@ See **[docs/HOW_IT_WORKS.md](docs/HOW_IT_WORKS.md)** for architecture, data flow
 | `src/rag.py` | Retrieval + response |
 | `src/agent.py` | LangGraph agent |
 | `src/tools.py` | Dice, cards, Leviathan list, RAG search |
-| `app/streamlit_app.py` | Streamlit UI |
+| `api/` | FastAPI REST + SSE chat |
+| `frontend/` | React dashboard |
 | `scripts/validate_tools.py` | Dice/deck checks (no Ollama) |
 
 ## Notes

@@ -66,9 +66,27 @@ def check_deck() -> None:
     clear_deck_store()
 
 
+def check_rerank() -> None:
+    from llama_index.core.schema import NodeWithScore, TextNode
+
+    from src.retrieval_core import rerank_available, rerank_nodes
+
+    nodes = [
+        NodeWithScore(node=TextNode(text="Deep Strike deploys reserves"), score=0.1),
+        NodeWithScore(node=TextNode(text="Morale recovery table"), score=0.2),
+    ]
+    unchanged = rerank_nodes("Deep Strike keyword", nodes, use_rerank=False)
+    assert unchanged is nodes
+    if rerank_available():
+        ranked = rerank_nodes("Deep Strike keyword", list(nodes), use_rerank=True)
+        assert len(ranked) == 2
+        assert all(n.score is not None for n in ranked)
+
+
 def main() -> int:
     check_dice_parser()
     check_deck()
+    check_rerank()
     print("validate_tools: all checks passed")
     return 0
 

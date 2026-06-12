@@ -221,6 +221,45 @@ def lookup_item(card: str) -> dict[str, Any] | None:
     return {**row, "card": parsed["card"]}
 
 
+def event_needs_item_draw(event: dict[str, Any] | None) -> bool:
+    return bool(event and "item" in (event.get("tags") or []))
+
+
+def item_effect_preview(item: dict[str, Any]) -> str:
+    parts: list[str] = []
+    for key, icon in (("health", "Health"), ("morale", "Morale"), ("supplies", "Supplies")):
+        val = item.get(key)
+        if val is not None and val != 0:
+            sign = "+" if int(val) > 0 else ""
+            parts.append(f"{icon} {sign}{val}")
+    note = item.get("note")
+    if note:
+        parts.append(str(note))
+    return ", ".join(parts) if parts else "One-time use — keep until spent"
+
+
+def format_item_draw(card: str) -> str:
+    row = lookup_item(card)
+    if not row:
+        return f"**Item** — {card}: _no curated row_"
+    preview = item_effect_preview(row)
+    return f"**Item** — {card}: **{row.get('label', '?')}** ({preview})"
+
+
+def apply_item_effects(char: BrambletrekCharacter, item: dict[str, Any]) -> str:
+    """Apply immediate stat bonuses from a found item."""
+    before = (char.health, char.morale, char.supplies)
+    apply_event_deltas(char, item)
+    char.clamp_stats()
+    after = (char.health, char.morale, char.supplies)
+    changes = [
+        f"{name} {b}→{a}"
+        for name, b, a in zip(("Health", "Morale", "Supplies"), before, after)
+        if b != a
+    ]
+    return ", ".join(changes) if changes else "No immediate stat change"
+
+
 def legacy_abilities(legacy_id: str) -> list[dict[str, Any]]:
     if not legacy_id:
         return []

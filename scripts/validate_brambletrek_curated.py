@@ -22,11 +22,14 @@ from src.games.brambletrek.curated import (
     legacy_abilities,
     legacy_options,
     lookup_journey_event,
+    lookup_item,
     lookup_reason_ending,
     lookup_recovery,
     parse_playing_card,
     overcome_the_odds,
     recovery_band,
+    apply_item_effects,
+    format_item_draw,
 )
 
 
@@ -40,6 +43,13 @@ def main() -> None:
     assert recovery_band("jack") == "jack-queen"
     rec = lookup_recovery("health", "7 of clubs")
     assert rec and rec.get("band") == "5-7"
+
+    item = lookup_item("7 of hearts")
+    assert item and item.get("label") == "Glowing Mushroom"
+    assert "Glowing Mushroom" in format_item_draw("7 of hearts")
+    char_item = BrambletrekCharacter(health=10, morale=10, supplies=10)
+    apply_item_effects(char_item, item)
+    assert char_item.health == 11 and char_item.morale == 11
 
     opts = legacy_options()
     assert "seer" in opts and opts["seer"]["label"] == "Seer"

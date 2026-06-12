@@ -17,7 +17,7 @@ flowchart LR
   Chroma[data/chroma/collection]
   Retrieve[src/rag.py + game plugin]
   LLM[Ollama chat model]
-  UI[app/streamlit_app.py]
+  UI[React UI + FastAPI]
 
   PDFs --> Ingest
   Ingest --> Chroma
@@ -28,14 +28,14 @@ flowchart LR
 ```
 
 1. **Ingest** — PDF text (or OCR for image pages) is cleaned, chunked, embedded with `nomic-embed-text`, and stored in Chroma with metadata (`source_file`, `page`, `faction`, etc.).
-2. **Query** — User question is optionally enhanced by the active game plugin, then hybrid retrieval (dense + lexical) pulls candidate chunks.
+2. **Query** — User question is optionally enhanced by the active game plugin, then hybrid retrieval (dense + lexical + RRF) pulls candidate chunks. Optional **cross-encoder rerank** reorders candidates (all games). Game plugins may **boost** results last (prepend pinned chunks).
 3. **Answer** — Top chunks plus a system prompt are sent to the chat model; citations come from chunk metadata.
 
 ## Modes
 
 | Mode | Behaviour |
 |------|-----------|
-| **RAG** | Direct retrieval + single LLM call. Faction filters in sidebar apply. |
+| **RAG** | Direct retrieval + single LLM call. Faction filters in Settings apply. |
 | **Agent** | LangGraph router sends dice/card/Leviathan/shortcut requests to tools first, then RAG when needed. |
 | **Slash commands** | `/roll`, `/draw`, `/deck reset` bypass retrieval for instant replies. |
 
@@ -61,9 +61,8 @@ Current games:
 
 | Path | Role |
 |------|------|
-| [`app/streamlit_app.py`](../app/streamlit_app.py) | Main UI orchestrator |
-| [`app/components/shared.py`](../app/components/shared.py) | Shared sidebar: deck, ingest, retrieval settings |
-| [`app/games/`](../app/games/) | Per-game header and sidebar UI |
+| [`api/main.py`](../api/main.py) | FastAPI app (REST + SSE chat) |
+| [`frontend/`](../frontend/) | React dashboard (play mode layout) |
 | [`src/config.py`](../src/config.py) | Paths, models, chunk sizes |
 | [`src/games/registry.py`](../src/games/registry.py) | Game plugin lookup |
 | [`src/ingest.py`](../src/ingest.py) | PDF → Chroma indexing CLI |
@@ -79,13 +78,16 @@ Current games:
 
 ## Retrieval profiles
 
-Configured in the UI sidebar:
+Configured in **Settings** (shared by all games):
 
 - **Fast** — dense-only, smaller candidate pool
-- **Balanced** — hybrid retrieval, medium pool
+- **Balanced** — hybrid retrieval (dense + lexical + RRF), medium pool
 - **Quality** — hybrid with larger pool (best recall)
+- **Quality+ rerank** — hybrid + local cross-encoder rerank (`cross-encoder/ms-marco-MiniLM-L-6-v2` by default; override with `RERANK_MODEL`)
 
-Game plugins may raise `top_k` or inject page-specific nodes (e.g. Brambletrek rulebook tables).
+Pipeline in [`src/rag.py`](../src/rag.py): hybrid → optional rerank ([`src/retrieval_core.py`](../src/retrieval_core.py)) → `GamePlugin.boost_retrieval` → top-k to LLM.
+
+Game plugins may raise `top_k` or inject page-specific nodes (e.g. Brambletrek rulebook tables) **after** rerank.
 
 ## Brambletrek session data
 
@@ -106,9 +108,8 @@ Register a new game by defining a `PlayProfile` and calling `register_play_profi
 3. Add PDFs under `docs/<game_id>/`.
 4. Run `python -m src.ingest --game <game_id>`.
 5. *(Optional)* Add curated YAML in `data/curated/` and a `scripts/validate_<game>_curated.py` smoke script.
-6. *(Optional)* Add `app/games/<game_id>.py` for custom sidebar/header UI.
-7. *(Optional)* Add `data/eval/<game>_retrieval_regression.json` and run `scripts/eval_retrieval.py`.
-8. *(Optional)* For multi-slot play (roster, deck/chat per slot, Lonelog), add `src/games/<game_id>/play.py` with a `PlayProfile` and import it from `registry.py` (see Brambletrek).
+6. *(Optional)* Add `data/eval/<game>_retrieval_regression.json` and run `scripts/eval_retrieval.py`.
+7. *(Optional)* For multi-slot play (roster, deck/chat per slot, Lonelog), add `src/games/<game_id>/play.py` with a `PlayProfile` and import it from `registry.py` (see Brambletrek).
 
 You should **not** need to edit `src/rag.py` or `src/agent.py` for a PDF-only game — only the plugin and UI.
 

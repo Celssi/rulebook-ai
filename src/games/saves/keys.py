@@ -1,4 +1,4 @@
-"""Streamlit session_state key naming for play rosters (per game_id)."""
+"""Play session key naming for save rosters (per game_id)."""
 
 
 def active_slot_key(game_id: str) -> str:

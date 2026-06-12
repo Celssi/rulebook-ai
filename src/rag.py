@@ -20,6 +20,7 @@ from src.retrieval_core import (
     get_collection,
     nodes_to_sources,
     query_terms,
+    rerank_nodes,
     retrieve_hybrid,
 )
 
@@ -60,6 +61,7 @@ def query(
     chat_history: list[dict[str, str]] | None = None,
     candidate_k: int | None = None,
     use_hybrid: bool = True,
+    use_rerank: bool = False,
     brambletrek_character=None,
     chat_provider: ChatProvider = "ollama",
 ) -> RagResult:
@@ -79,6 +81,7 @@ def query(
         game_id=game_id,
         candidate_k=candidate_k,
         use_hybrid=use_hybrid,
+        use_rerank=use_rerank,
         brambletrek_character=brambletrek_character,
     )
 
@@ -129,6 +132,7 @@ def retrieve_nodes(
     game_id: str = DEFAULT_GAME_ID,
     candidate_k: int | None = None,
     use_hybrid: bool = True,
+    use_rerank: bool = False,
     brambletrek_character=None,
 ) -> list[NodeWithScore]:
     plugin = get_game_plugin(game_id)
@@ -174,6 +178,8 @@ def retrieve_nodes(
             use_hybrid=use_hybrid,
         )
         nodes = dedupe_nodes(nodes + fallback_nodes)
+
+    nodes = rerank_nodes(search_q, nodes, use_rerank=use_rerank)
 
     boost_ctx = RetrievalBoostContext(
         game_id=game_id,
