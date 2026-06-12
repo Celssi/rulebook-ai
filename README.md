@@ -103,6 +103,25 @@ MVP ingest indexes only Complete Digital Edition; `--all` adds Birthday of Wonde
 
 ### 7) Run the app
 
+**Quick start (recommended):** one script creates the venv, installs deps, checks Ollama, builds missing indexes, and opens the UI:
+
+```bash
+chmod +x run.sh   # once
+./run.sh
+```
+
+First run may take a while (Ollama model pulls and PDF indexing). To skip slow steps:
+
+```bash
+./run.sh --skip-ingest --skip-checks          # dev: Ollama + Streamlit only
+./run.sh --skip-ollama --skip-ingest          # offline UI, no model checks
+./run.sh -- --server.port 8502                # pass flags to Streamlit
+```
+
+Bootstrap flags: `--skip-ollama`, `--skip-ingest`, `--skip-checks`, `--ingest-all` (full PDF set when indexing).
+
+**Manual start** (if you prefer separate steps):
+
 ```bash
 streamlit run app/streamlit_app.py
 ```
