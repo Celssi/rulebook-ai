@@ -69,6 +69,6 @@ source .venv/bin/activate
 echo "Installing dependencies..."
 python -m pip install -q -e .
 
-python scripts/bootstrap.py "${BOOTSTRAP_ARGS[@]}"
+python scripts/bootstrap.py ${BOOTSTRAP_ARGS[@]+"${BOOTSTRAP_ARGS[@]}"}
 
-exec python -m streamlit run app/streamlit_app.py "${STREAMLIT_ARGS[@]}"
+exec python -m streamlit run app/streamlit_app.py ${STREAMLIT_ARGS[@]+"${STREAMLIT_ARGS[@]}"}
