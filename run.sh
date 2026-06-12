@@ -30,17 +30,45 @@ for arg in "$@"; do
   fi
 done
 
-if [[ ! -d .venv ]]; then
-  echo "Creating virtual environment..."
-  python3 -m venv .venv
-fi
+ensure_venv() {
+  if [[ -d .venv && -f .venv/bin/pip ]]; then
+    pip_interp="$(head -1 .venv/bin/pip | sed 's/^#!//' | tr -d '[:space:]')"
+    if [[ -n "$pip_interp" && ! -x "$pip_interp" ]]; then
+      echo "Removing virtual environment (scripts point at missing Python: $pip_interp)..."
+      rm -rf .venv
+    fi
+  fi
+  if [[ -d .venv && -f .venv/pyvenv.cfg ]]; then
+    venv_cmd="$(grep '^command = ' .venv/pyvenv.cfg 2>/dev/null || true)"
+    venv_dest="${venv_cmd##* venv }"
+    if [[ -n "$venv_dest" && "$venv_dest" != "$ROOT/.venv" ]]; then
+      echo "Removing virtual environment from a previous project path..."
+      rm -rf .venv
+    fi
+  fi
+  if [[ -d .venv ]]; then
+    if ! .venv/bin/python -c 'import sys' >/dev/null 2>&1; then
+      echo "Removing stale virtual environment (project moved or Python missing)..."
+      rm -rf .venv
+    elif ! .venv/bin/python -m pip --version >/dev/null 2>&1; then
+      echo "Removing broken virtual environment (recreate after move or upgrade)..."
+      rm -rf .venv
+    fi
+  fi
+  if [[ ! -d .venv ]]; then
+    echo "Creating virtual environment..."
+    python3 -m venv .venv
+  fi
+}
+
+ensure_venv
 
 # shellcheck disable=SC1091
 source .venv/bin/activate
 
 echo "Installing dependencies..."
-pip install -q -e .
+python -m pip install -q -e .
 
 python scripts/bootstrap.py "${BOOTSTRAP_ARGS[@]}"
 
-exec streamlit run app/streamlit_app.py "${STREAMLIT_ARGS[@]}"
+exec python -m streamlit run app/streamlit_app.py "${STREAMLIT_ARGS[@]}"
