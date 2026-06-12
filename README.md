@@ -122,6 +122,41 @@ Apple Silicon MLX build (lower RAM):
 export OLLAMA_CHAT_MODEL=gemma4:26b-mlx
 ```
 
+## Using Claude (optional)
+
+You can use Anthropic Claude for chat answers while keeping local Ollama embeddings (`nomic-embed-text`). No re-indexing is needed when switching providers.
+
+1. Set your API key in one of these places (do not commit it):
+
+**Project `.env`** (gitignored):
+
+```bash
+ANTHROPIC_API_KEY=your-key-here
+```
+
+**Streamlit secrets** — `.streamlit/secrets.toml` (gitignored):
+
+```toml
+ANTHROPIC_API_KEY = "your-key-here"
+```
+
+**Shell export** (session only):
+
+```bash
+export ANTHROPIC_API_KEY="your-key-here"
+streamlit run app/streamlit_app.py
+```
+
+2. In the sidebar, choose **Chat provider → Claude (cloud)**.
+
+Default Claude model is `claude-sonnet-4-20250514`. Override with:
+
+```bash
+export CLAUDE_CHAT_MODEL=claude-opus-4-20250514
+```
+
+Ollama must still be running for embeddings and indexing.
+
 ## OCR behavior
 
 `Codex - Tyranids (10th Edition).pdf` is image-only; OCR runs automatically.
@@ -138,75 +173,55 @@ python -m src.ingest --all --ocr
 
 ## Dice and card tools
 
+Works in **RAG** and **Agent** mode. Slash commands skip retrieval and return immediately.
+
 The assistant can roll dice and draw from a standard 52-card deck (per game mode in the UI session).
+
+| Command | Example | Behavior |
+|---------|---------|----------|
+| Roll | `/roll 2d6+1` | Roll dice (`d20`, `3d8-2`, etc.) |
+| Draw | `/draw` or `/draw 3` | Draw from the current game's deck |
+| Reset deck | `/deck reset` | New shuffled 52-card deck for this game mode |
 
 **Natural language (Agent mode, or RAG for simple rolls/draws):**
 
-- `roll 2d6+1`
+- `roll 2d6+1` or `Roll 2d6 for my charge`
 - `draw a card`
 - `draw for my reason for adventure and explain it` (draw + rules lookup)
-
-**Explicit commands (bypass retrieval, instant reply):**
-
-- `/roll 2d6+1` or `/roll d20`
-- `/draw` or `/draw 3`
-- `/deck reset`
+- `Shuffle the deck` / `reset deck`
 
 **Sidebar:** deck remaining count, Draw 1, Reset deck, and a quick roll field.
 
-**Brambletrek shortcuts (sidebar, Brambletrek mode only):** random character, **Journey / Aldwund day** (curated core tables pp. 24–27 + **Today's draws**), **Adventure scene (3 cards)** when an adventure is selected (PDF via RAG only — no curated journey rows), combat setup, recovery, Legacy, **Reason ending (p. 36)**, and **Active adventure overview**. Multi-card shortcuts draw from the deck first, then RAG.
+**Brambletrek shortcuts (sidebar, Brambletrek mode only):** random character, **Journey / Aldwund day** (curated core tables pp. 24–27 + **Today's draws**), **Adventure scene (3 cards)** when an adventure is selected (PDF via RAG only), combat setup, recovery, Legacy, **Reason ending (p. 36)**, and **Active adventure overview**.
 
-Deck state persists for the selected game until you reset or switch game mode. Invalid dice notation returns a short error (e.g. use `2d6`, not `2x6`).
+Deck state persists per character (Brambletrek) or per game (40k) until you reset or switch. Invalid dice notation returns a short error (e.g. use `2d6`, not `2x6`).
 
 Validate dice/deck logic without Ollama:
 
 ```bash
 python3 scripts/validate_play_tools.py
+python3 scripts/validate_brambletrek_lonelog.py
+python3 scripts/validate_tools.py
 ```
 
-## UI modes
 
 - **Game selector (sidebar):** `Warhammer 40,000` or `Brambletrek`
 - **RAG mode:** direct retrieval from indexed docs
 - **Agent mode:** tool-routed answers (dice, cards, Leviathan lists, rules) (rules, Leviathan lists on 40k, dice, cards)
 - **40k mode only:** Game State sidebar (army, opponent, round, phase)
-- **Brambletrek mode:** rules/dice helper; **Your Gnawborn** sheet (Reason, Legacy, **Active adventure**, stats) persists in `data/saves/brambletrek_character.json`
+- **Brambletrek mode:** multi-Gnawborn roster; each character has its own sheet, deck, chat, and **[Lonelog](https://lonelog.readthedocs.io/)** session file under `data/saves/brambletrek/{id}/`
+- **Story mode:** **Player-led** (you write `@` actions; AI explains rules) or **AI narrator** (AI adds `=>` narrative after events)
+- **Card source:** **Physical deck** (report pulls — synced to virtual deck) or **Virtual** (app/AI draws)
+- **Lonelog:** append-only `lonelog.md` per character; `/log …` slash command; sidebar viewer + download
 - **Curated YAML** (`data/curated/brambletrek_*.yaml`): core **journey**, Aldwund depths, recovery, items, legacies, **reason endings** — plus sidebar **Today's draws** for Hyhill journey only. Adventure modules use **metadata only** in YAML; scenes come from the indexed PDF via RAG.
 - **Adventures:** set **Active adventure** on the sheet, then use **Adventure scene** or ask for today's scenes (Pumpkin Party, First Frost, World Tree, and Dragonkeep are in Complete Digital Edition; Birthday and Winter Gift need full ingest). Say **Hyhill journey** or use **Journey day** for core tables while an adventure is active.
-- **Table deck (sidebar):** one shuffled 52-card deck per selected game mode; draw and reset from the sidebar or chat
+- **Table deck (sidebar):** one shuffled 52-card deck per Gnawborn; draw, report physical cards, or reset from the sidebar or chat
 - **Retrieval profile (sidebar):**
   - `Fast`: dense-only, smaller candidate pool
   - `Balanced`: hybrid retrieval (dense + lexical), medium candidate pool
   - `Quality`: hybrid retrieval with larger candidate pool (best recall)
 
-## Dice and cards
-
-Works in **RAG** and **Agent** mode. Slash commands skip retrieval and return immediately.
-
-| Command | Example | Behavior |
-|---------|---------|----------|
-| Roll | `/roll 2d6+1` | Roll dice (`d20`, `3d8-2`, etc.) |
-| Draw | `/draw` or `/draw 3` | Draw from the current game’s deck |
-| Reset deck | `/deck reset` | New shuffled 52-card deck for this game mode |
-
-**Natural language (Agent mode):**
-
-- `Roll 2d6 for my charge`
-- `Draw a card`
-- `Shuffle the deck` / `reset deck`
-- Brambletrek: `Draw for reason for adventure` combines a draw with rules lookup when indexed
-
-Deck state is stored in the Streamlit session **per game mode** (40k and Brambletrek each keep their own deck). Switching game in the sidebar does not mix decks.
-
-**Validate tools (no Ollama):**
-
-```bash
-python3 scripts/validate_tools.py
-```
-
-**Invalid notation:** use forms like `2d6` or `2d6+1`. Errors explain the expected format.
-
-## Retrieval regression eval
+## UI modes
 
 Run retrieval-only checks (no answer judging):
 
@@ -252,11 +267,15 @@ tesseract --version
 
 ## Project layout
 
+See **[docs/HOW_IT_WORKS.md](docs/HOW_IT_WORKS.md)** for architecture, data flow, and how to add a new game.
+
 | Path | Purpose |
 |------|---------|
 | `docs/` | Rulebooks and cards |
+| `docs/HOW_IT_WORKS.md` | Architecture and extension guide |
 | `data/chroma/` | Vector index |
 | `data/ocr_cache/` | OCR cache |
+| `src/games/` | Per-game plugins (config, retrieval, UI hooks) |
 | `src/ingest.py` | PDF -> chunks -> Chroma |
 | `src/rag.py` | Retrieval + response |
 | `src/agent.py` | LangGraph agent |

@@ -1,0 +1,1 @@
+"""Brambletrek game plugin."""

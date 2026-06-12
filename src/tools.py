@@ -8,46 +8,56 @@ from typing import Literal
 import yaml
 
 from src.config import DEFAULT_GAME_ID, LEVIATHAN_YAML
-from src.game_state import GameState
+from src.llm import ChatProvider
+from src.games.warhammer_40k.state import GameState
 from src.play_tools import (
     CardToolResult,
     DiceRollResult,
     clear_deck_store,
     deck_remaining,
+    deck_scope_key,
     draw_cards,
     extract_dice_expression,
     format_card_result,
     format_dice_result,
     get_deck_snapshot,
+    is_ai_draw_request,
     is_card_plus_rules_question,
     is_card_question,
     is_dice_question,
+    is_physical_card_report,
+    normalize_card_name,
     parse_dice_expression,
     parse_explicit_command,
+    register_physical_card,
     reset_deck,
     roll_dice,
     run_explicit_command,
     sync_deck_store,
 )
-from src.rag import query as rag_query
 
 __all__ = [
     "CardToolResult",
     "DiceRollResult",
     "clear_deck_store",
     "deck_remaining",
+    "deck_scope_key",
     "draw_cards",
     "extract_dice_expression",
     "format_card_result",
     "format_dice_result",
     "get_deck_snapshot",
+    "is_ai_draw_request",
     "is_card_plus_rules_question",
     "is_card_question",
     "is_dice_question",
+    "is_physical_card_report",
     "is_leviathan_list_question",
     "list_leviathan_units",
+    "normalize_card_name",
     "parse_dice_expression",
     "parse_explicit_command",
+    "register_physical_card",
     "reset_deck",
     "roll_dice",
     "run_explicit_command",
@@ -89,8 +99,11 @@ def search_rules(
     use_hybrid: bool = True,
     chat_history: list[dict[str, str]] | None = None,
     brambletrek_character=None,
+    chat_provider: ChatProvider = "ollama",
 ) -> dict:
     """RAG search over indexed PDFs."""
+    from src.rag import query as rag_query
+
     result = rag_query(
         query,
         top_k=max(top_k, 8),
@@ -101,6 +114,7 @@ def search_rules(
         use_hybrid=use_hybrid,
         chat_history=chat_history,
         brambletrek_character=brambletrek_character,
+        chat_provider=chat_provider,
     )
     return {
         "answer": result.answer,

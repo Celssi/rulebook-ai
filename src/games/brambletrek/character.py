@@ -3,27 +3,26 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from pathlib import Path
 from typing import Any
 
 import yaml
 
-from src.config import CURATED_DIR, DATA_DIR
+from src.settings import CURATED_DIR
 
-SAVE_PATH = DATA_DIR / "saves" / "brambletrek_character.json"
 TABLES_YAML = CURATED_DIR / "brambletrek_character_tables.yaml"
 
 STAT_MAX = 20
 STAT_MIN = 0
 
 def get_legacy_options() -> dict[str, dict[str, str]]:
-    from src.brambletrek_curated import legacy_options
+    from src.games.brambletrek.curated import legacy_options
 
     return legacy_options()
 
 
 @dataclass
 class BrambletrekCharacter:
+    id: str = ""
     name: str = ""
     reason_band: str = ""
     background_band: str = ""
@@ -102,6 +101,7 @@ def character_from_dict(data: dict | None) -> BrambletrekCharacter:
     if not data:
         return default_character()
     return BrambletrekCharacter(
+        id=str(data.get("id", "") or ""),
         name=str(data.get("name", "") or ""),
         reason_band=str(data.get("reason_band", "") or ""),
         background_band=str(data.get("background_band", "") or ""),
@@ -127,6 +127,7 @@ def character_from_dict(data: dict | None) -> BrambletrekCharacter:
 def character_to_dict(char: BrambletrekCharacter) -> dict:
     char.clamp_stats()
     return {
+        "id": char.id,
         "name": char.name,
         "reason_band": char.reason_band,
         "background_band": char.background_band,
@@ -146,24 +147,14 @@ def character_to_dict(char: BrambletrekCharacter) -> dict:
     }
 
 
-def load_saved_character() -> BrambletrekCharacter | None:
-    if not SAVE_PATH.exists():
-        return None
-    try:
-        import json
-
-        data = json.loads(SAVE_PATH.read_text(encoding="utf-8"))
-        return character_from_dict(data)
-    except (OSError, ValueError, TypeError):
-        return None
-
-
 def save_character(char: BrambletrekCharacter) -> None:
-    import json
+    """Save character via play roster (requires char.id)."""
+    from src.games.brambletrek.play import get_brambletrek_store
 
-    char.clamp_stats()
-    SAVE_PATH.parent.mkdir(parents=True, exist_ok=True)
-    SAVE_PATH.write_text(json.dumps(character_to_dict(char), indent=2), encoding="utf-8")
+    if not char.id:
+        char.id = get_brambletrek_store().roster.get_active_slot_id() or ""
+    if char.id:
+        get_brambletrek_store().save_entity(char)
 
 
 def format_summary(char: BrambletrekCharacter | None) -> str:
@@ -184,7 +175,12 @@ def format_summary(char: BrambletrekCharacter | None) -> str:
     return " · ".join(bits)
 
 
-def format_for_prompt(char: BrambletrekCharacter | None) -> str:
+def format_for_prompt(
+    char: BrambletrekCharacter | None,
+    *,
+    story_mode: str = "player",
+    card_source: str = "virtual",
+) -> str:
     if char is None or not char.is_set():
         return ""
     char.clamp_stats()
@@ -204,7 +200,7 @@ def format_for_prompt(char: BrambletrekCharacter | None) -> str:
     if char.trinket_card:
         lines.append(f"- Trinket card drawn: {char.trinket_card}")
     if char.legacy:
-        from src.brambletrek_curated import legacy_abilities, overcome_the_odds
+        from src.games.brambletrek.curated import legacy_abilities, overcome_the_odds
 
         leg = get_legacy_options().get(char.legacy, {})
         lines.append(
@@ -226,7 +222,7 @@ def format_for_prompt(char: BrambletrekCharacter | None) -> str:
     if char.in_aldwund:
         lines.append("- Location: Aldwund (Depths) — use depths journey table (pp. 26–27)")
     if char.active_adventure:
-        from src.brambletrek_curated import adventure_meta
+        from src.games.brambletrek.curated import adventure_meta
 
         adv = adventure_meta(char.active_adventure)
         lines.append(
@@ -235,6 +231,15 @@ def format_for_prompt(char: BrambletrekCharacter | None) -> str:
         )
     if char.notes.strip():
         lines.append(f"- Notes: {char.notes.strip()}")
+    lines.append(f"- Story mode: {story_mode} (player = facilitator only; ai_narrator = add narrative)")
+    lines.append(f"- Card source: {card_source} (physical = user reports cards; virtual = app draws)")
+    if char.id:
+        from src.games.brambletrek.play import get_brambletrek_store
+
+        tail = get_brambletrek_store().recent_log_context(char.id)
+        if tail:
+            lines.append("")
+            lines.append(tail)
     lines.append(
         "When suggesting stat changes from events, apply them to these current values."
     )

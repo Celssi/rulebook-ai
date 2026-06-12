@@ -10,9 +10,9 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.brambletrek_character import BrambletrekCharacter
-from src.brambletrek_actions import match_brambletrek_shortcut
-from src.brambletrek_curated import (
+from src.games.brambletrek.character import BrambletrekCharacter
+from src.games.brambletrek.actions import match_brambletrek_shortcut
+from src.games.brambletrek.curated import (
     adventure_meta,
     adventure_options,
     apply_journey_to_character,

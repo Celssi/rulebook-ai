@@ -8,8 +8,8 @@ from typing import Any
 
 import yaml
 
-from src.brambletrek_character import BrambletrekCharacter, STAT_MAX, STAT_MIN
-from src.config import CURATED_DIR
+from src.games.brambletrek.character import BrambletrekCharacter, STAT_MAX, STAT_MIN
+from src.settings import CURATED_DIR
 
 _RANK_ALIASES = {
     "a": "ace",

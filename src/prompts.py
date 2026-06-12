@@ -7,8 +7,8 @@ from typing import TYPE_CHECKING
 from src.config import DEFAULT_GAME_ID, GAME_BRAMBLETREK
 
 if TYPE_CHECKING:
-    from src.brambletrek_character import BrambletrekCharacter
-    from src.game_state import GameState
+    from src.games.brambletrek.character import BrambletrekCharacter
+    from src.games.warhammer_40k.state import GameState
 
 
 def detect_language(question: str) -> str:
@@ -22,16 +22,36 @@ def build_system_prompt(
     game: "GameState | None" = None,
     game_id: str = DEFAULT_GAME_ID,
     brambletrek_character: "BrambletrekCharacter | None" = None,
+    story_mode: str = "player",
+    card_source: str = "virtual",
 ) -> str:
-    from src.game_state import format_for_prompt
+    from src.games.warhammer_40k.state import format_for_prompt
 
     _ = language
     lang_instruction = "Answer in English."
     if game_id == GAME_BRAMBLETREK:
-        from src.brambletrek_character import format_for_prompt as format_character
+        from src.games.brambletrek.character import format_for_prompt as format_character
 
-        char_block = format_character(brambletrek_character)
+        char_block = format_character(
+            brambletrek_character,
+            story_mode=story_mode,
+            card_source=card_source,
+        )
         char_section = f"\n\n{char_block}" if char_block else ""
+        story_rules = (
+            "- In **player** story mode: act as rules facilitator only. Do not invent story "
+            "outcomes or narrative unless the user explicitly asks. Log mechanics, not fiction.\n"
+            "- In **ai_narrator** story mode: after resolving mechanics, you may add 1–3 sentences "
+            "of in-world consequence grounded in tool output and cited rules.\n"
+            if story_mode == "ai_narrator"
+            else "- In **player** story mode: do not invent story outcomes; explain rules and "
+            "mechanics only unless the user asks for narrative.\n"
+        )
+        card_rules = (
+            "- **Physical deck** mode: do not auto-draw cards. The user reports physical pulls.\n"
+            if card_source == "physical"
+            else "- **Virtual deck** mode: tool draws are authoritative.\n"
+        )
         return f"""You are a Brambletrek rules assistant for personal study and tabletop play.
 
 {lang_instruction}
@@ -43,8 +63,9 @@ Rules:
 - When tool output includes a dice roll or drawn card, treat it as a live table event: state the numbers/cards clearly, then explain rules from context if relevant.
 - When a Gnawborn character sheet is provided, reference their current Health, Morale, and Supplies when explaining event outcomes.
 - Do not invent rules or card/dice outcomes beyond what the tool output and context provide.
-- Keep answers concise and practical for a game facilitator.
+{story_rules}{card_rules}- Keep answers concise and practical for a game facilitator.
 - When citing rules, mention source file and page number from the provided metadata.
+- Session events are recorded in Lonelog notation (@ action, d: draw, -> result, => consequence).
 """
 
     game_block = format_for_prompt(game, "en")

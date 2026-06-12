@@ -13,8 +13,11 @@ if str(ROOT) not in sys.path:
 from src.play_tools import (
     clear_deck_store,
     deck_remaining,
+    deck_scope_key,
     draw_cards,
+    normalize_card_name,
     parse_dice_expression,
+    register_physical_card,
     reset_deck,
     roll_dice,
 )
@@ -39,6 +42,7 @@ def test_roll_dice() -> None:
 def test_deck() -> None:
     clear_deck_store()
     gid = "test_game"
+    scope = deck_scope_key(gid)
     reset_deck(game_id=gid)
     first = draw_cards(count=1, game_id=gid)
     assert first["ok"] is True
@@ -46,14 +50,33 @@ def test_deck() -> None:
     remaining = first["remaining"]
     assert remaining == 51
 
-    # Draw until empty
-    while deck_remaining(gid) > 0:
+    while deck_remaining(scope) > 0:
         draw_cards(count=1, game_id=gid)
     depleted = draw_cards(count=1, game_id=gid)
     assert depleted["ok"] is False
 
     reset_deck(game_id=gid)
-    assert deck_remaining(gid) == 52
+    assert deck_remaining(scope) == 52
+    clear_deck_store()
+
+
+def test_scoped_deck() -> None:
+    clear_deck_store()
+    reset_deck(game_id="brambletrek", char_id="char_a")
+    reset_deck(game_id="brambletrek", char_id="char_b")
+    draw_cards(count=1, game_id="brambletrek", char_id="char_a")
+    assert deck_remaining(deck_scope_key("brambletrek", "char_a")) == 51
+    assert deck_remaining(deck_scope_key("brambletrek", "char_b")) == 52
+    clear_deck_store()
+
+
+def test_physical_card() -> None:
+    clear_deck_store()
+    reset_deck(game_id="brambletrek", char_id="c1")
+    reg = register_physical_card("Queen of Hearts", game_id="brambletrek", char_id="c1")
+    assert reg["ok"] is True
+    assert deck_remaining(deck_scope_key("brambletrek", "c1")) == 51
+    assert normalize_card_name("Q♥") is not None
     clear_deck_store()
 
 
@@ -61,6 +84,8 @@ def main() -> int:
     test_dice_parser()
     test_roll_dice()
     test_deck()
+    test_scoped_deck()
+    test_physical_card()
     print("All play-tool checks passed.")
     return 0
 

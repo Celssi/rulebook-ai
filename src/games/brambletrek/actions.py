@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from typing import Literal, TypedDict
 
-from src.brambletrek_character import label_for_band
-from src.brambletrek_curated import (
+from src.games.brambletrek.character import label_for_band
+from src.games.brambletrek.curated import (
     adventure_meta,
     combat_reference_summary,
     format_adventure_context,
@@ -15,10 +15,22 @@ from src.brambletrek_curated import (
     legacy_by_roll,
     legacy_id_by_roll,
 )
-from src.config import GAME_BRAMBLETREK
+GAME_BRAMBLETREK = "brambletrek"
 from src.play_tools import draw_cards, format_card_result, format_dice_result, roll_dice
 
 ShortcutKind = Literal["card_rag", "multi_draw_rag", "roll_rag", "rag_only"]
+
+MULTI_DRAW_SHORTCUTS = frozenset(
+    {
+        "journey_day",
+        "aldwund_day",
+        "adventure_scene",
+        "combat_setup",
+        "resources",
+        "random_character",
+        "overcome_odds",
+    }
+)
 
 
 class BrambletrekShortcut(TypedDict):
@@ -207,8 +219,25 @@ class ShortcutRun(TypedDict, total=False):
     journey_cards: list[str]
 
 
-def _draw_lines(game_id: str, count: int, labels: list[str] | None = None) -> tuple[list[str], str]:
-    result = draw_cards(count=count, game_id=game_id)
+def _draw_lines(
+    game_id: str,
+    count: int,
+    labels: list[str] | None = None,
+    *,
+    char_id: str | None = None,
+    card_source: str = "virtual",
+) -> tuple[list[str], str]:
+    if card_source == "physical":
+        label_list = labels or [f"Draw {i + 1}" for i in range(count)]
+        lines = "\n".join(f"- **{label}:** _(physical deck)_" for label in label_list)
+        msg = (
+            f"**Physical deck mode** — draw **{count}** card(s) from your real deck, "
+            "report each via sidebar **Record card** or chat (e.g. *Queen of Hearts*), "
+            f"then re-run this shortcut or ask for meanings.\n\n{lines}"
+        )
+        return [], msg
+
+    result = draw_cards(count=count, game_id=game_id, char_id=char_id)
     if not result.get("ok"):
         summary = format_card_result(result)
         return [], summary
@@ -243,8 +272,11 @@ def run_shortcut(
     in_aldwund: bool = False,
     reason_band: str = "",
     active_adventure: str = "",
+    char_id: str | None = None,
+    card_source: str = "virtual",
 ) -> ShortcutRun:
     """Build user-visible text and the prompt for the answer pipeline."""
+    draw_kw = {"char_id": char_id, "card_source": card_source}
     if shortcut_id in _CARD_RAG_PROMPTS:
         prompt = _CARD_RAG_PROMPTS[shortcut_id]
         return {
@@ -255,7 +287,7 @@ def run_shortcut(
 
     if shortcut_id in ("recovery_health", "recovery_morale", "recovery_supplies"):
         stat = shortcut_id.replace("recovery_", "")
-        cards, deck_block = _draw_lines(game_id, 1, [f"{stat.title()} recovery"])
+        cards, deck_block = _draw_lines(game_id, 1, [f"{stat.title()} recovery"], **draw_kw)
         if not cards:
             return {"user_message": deck_block, "prompt": deck_block, "kind": "multi_draw_rag"}
         curated = format_recovery_draw(stat, cards[0])
@@ -303,6 +335,7 @@ def run_shortcut(
             game_id,
             3,
             ["Scene 1", "Scene 2", "Scene 3"],
+            **draw_kw,
         )
         if not cards:
             return {"user_message": deck_block, "prompt": deck_block, "kind": "multi_draw_rag"}
@@ -378,6 +411,7 @@ def run_shortcut(
             game_id,
             6,
             ["Resource 1", "Resource 2", "Resource 3", "Resource 4", "Resource 5", "Resource 6"],
+            **draw_kw,
         )
         if not cards:
             return {"user_message": deck_block, "prompt": deck_block, "kind": "multi_draw_rag"}
@@ -402,6 +436,7 @@ def run_shortcut(
             game_id,
             4,
             ["Event 1", "Event 2", "Event 3", "Event 4"],
+            **draw_kw,
         )
         if not cards:
             return {"user_message": deck_block, "prompt": deck_block, "kind": "multi_draw_rag"}
@@ -435,6 +470,7 @@ def run_shortcut(
                 "Your tactic 3",
                 "Your tactic 4",
             ],
+            **draw_kw,
         )
         if not cards:
             return {"user_message": deck_block, "prompt": deck_block, "kind": "multi_draw_rag"}
@@ -466,7 +502,7 @@ def run_shortcut(
 
     if shortcut_id == "overcome_odds":
         cards, deck_block = _draw_lines(
-            game_id, 2, ["Ability", "Outcome"]
+            game_id, 2, ["Ability", "Outcome"], **draw_kw
         )
         if not cards:
             return {"user_message": deck_block, "prompt": deck_block, "kind": "multi_draw_rag"}
@@ -484,13 +520,20 @@ def run_shortcut(
         return {"user_message": user, "prompt": prompt, "kind": "multi_draw_rag"}
 
     if shortcut_id == "random_character":
-        reason = draw_cards(count=1, game_id=game_id)
+        if card_source == "physical":
+            msg = (
+                "**Physical deck mode** — draw Reason, Background, Trinket, and six Resource "
+                "cards from your real deck, report each, then ask for random Gnawborn "
+                "table meanings."
+            )
+            return {"user_message": msg, "prompt": msg, "kind": "multi_draw_rag"}
+        reason = draw_cards(count=1, game_id=game_id, char_id=char_id)
         if not reason.get("ok"):
             msg = format_card_result(reason)
             return {"user_message": msg, "prompt": msg, "kind": "multi_draw_rag"}
-        bg = draw_cards(count=1, game_id=game_id)
-        trinket = draw_cards(count=1, game_id=game_id)
-        resources = draw_cards(count=6, game_id=game_id)
+        bg = draw_cards(count=1, game_id=game_id, char_id=char_id)
+        trinket = draw_cards(count=1, game_id=game_id, char_id=char_id)
+        resources = draw_cards(count=6, game_id=game_id, char_id=char_id)
         if not bg.get("ok") or not trinket.get("ok") or not resources.get("ok"):
             msg = "Could not complete random character — deck may be low. Reset the deck and try again."
             return {"user_message": msg, "prompt": msg, "kind": "multi_draw_rag"}
