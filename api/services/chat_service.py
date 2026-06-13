@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from api.services import brambletrek_service as bt
 from api.services.session_service import default_factions, get_active_play_context, get_messages, sync_messages_to_context
-from api.utils import RETRIEVAL_PROFILES, recent_chat_history, to_langchain_history
+from api.utils import RETRIEVAL_PROFILES, recent_chat_history, resolve_retrieval_profile, to_langchain_history
 from src.agent import run_agent
 from src.config import GAME_BRAMBLETREK
 from src.games.registry import get_game_plugin
@@ -37,7 +37,7 @@ def answer_user_prompt(
     plugin = get_game_plugin(game_id)
     ctx = get_active_play_context(app)
     char_id = ctx.slot_id if ctx else None
-    retrieval_cfg = RETRIEVAL_PROFILES[app.retrieval_profile]
+    retrieval_cfg = resolve_retrieval_profile(app.retrieval_profile)[1]
     top_k = app.top_k
     selected_factions = default_factions(app)
     chat_provider = app.chat_provider

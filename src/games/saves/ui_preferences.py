@@ -39,17 +39,19 @@ def apply_ui_preferences(app: AppSession) -> None:
     if isinstance(gid, str) and gid:
         app.selected_game_id = gid
     provider = prefs.get("chat_provider")
-    if isinstance(provider, str) and provider:
+    if isinstance(provider, str) and provider in ("ollama", "claude"):
         app.chat_provider = provider  # type: ignore[assignment]
     mode = prefs.get("mode")
-    if isinstance(mode, str) and mode:
+    if isinstance(mode, str) and mode in ("RAG", "Agent"):
         app.mode = mode
     top_k = prefs.get("top_k")
     if isinstance(top_k, int) and 3 <= top_k <= 12:
         app.top_k = top_k
     profile = prefs.get("retrieval_profile")
-    if isinstance(profile, str) and profile:
-        app.retrieval_profile = profile
+    if isinstance(profile, str):
+        from api.utils import resolve_retrieval_profile
+
+        app.retrieval_profile, _ = resolve_retrieval_profile(profile)
     factions = prefs.get("selected_factions")
     if factions is None or isinstance(factions, list):
         app.selected_factions = factions

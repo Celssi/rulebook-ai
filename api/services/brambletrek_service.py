@@ -415,9 +415,9 @@ def execute_shortcut(
     app: AppSession,
     prior_history: list[dict[str, str]] | None = None,
 ) -> tuple[str, str, list[dict], str]:
-    from api.utils import RETRIEVAL_PROFILES
+    from api.utils import resolve_retrieval_profile
 
-    retrieval_cfg = RETRIEVAL_PROFILES[app.retrieval_profile]
+    retrieval_cfg = resolve_retrieval_profile(app.retrieval_profile)[1]
     top_k = app.top_k
     factions = app.selected_factions
     chat_provider = app.chat_provider

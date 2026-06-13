@@ -11,7 +11,14 @@ session_manager = SessionManager()
 
 
 def ensure_app_session(session_id: str | None) -> AppSession:
+    from api.utils import resolve_retrieval_profile
+    from src.games.saves.ui_preferences import save_ui_preferences
+
     app = session_manager.get_or_create(session_id)
+    normalized, _ = resolve_retrieval_profile(app.retrieval_profile)
+    if normalized != app.retrieval_profile:
+        app.retrieval_profile = normalized
+        save_ui_preferences(app)
     _ensure_game_context(app)
     return app
 

@@ -13,6 +13,15 @@ RETRIEVAL_PROFILES = {
     "Quality+ rerank": {"candidate_k": 70, "use_hybrid": True, "use_rerank": True},
 }
 
+DEFAULT_RETRIEVAL_PROFILE = "Fast"
+
+
+def resolve_retrieval_profile(name: str | None) -> tuple[str, dict]:
+    """Return a valid profile name and config, falling back to Fast."""
+    if name in RETRIEVAL_PROFILES:
+        return name, RETRIEVAL_PROFILES[name]
+    return DEFAULT_RETRIEVAL_PROFILE, RETRIEVAL_PROFILES[DEFAULT_RETRIEVAL_PROFILE]
+
 FACTION_LABELS = {
     "core": "Core / Quickstart",
     "space_marines": "Codex: Space Marines",

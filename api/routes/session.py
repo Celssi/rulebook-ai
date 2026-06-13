@@ -8,7 +8,7 @@ from api.deps import SESSION_COOKIE, get_app_session
 from api.models import SessionUpdate
 from api.services.session_service import app_session_payload, get_active_play_context
 from src.games.saves.ui_preferences import save_ui_preferences
-from api.utils import RETRIEVAL_PROFILES
+from api.utils import RETRIEVAL_PROFILES, resolve_retrieval_profile
 from src.config import get_all_factions
 from src.games.registry import get_game_plugin
 from src.games.saves import AppSession, get_play_store
@@ -48,7 +48,7 @@ def update_session(
     if body.top_k is not None:
         app.top_k = body.top_k
     if body.retrieval_profile is not None:
-        app.retrieval_profile = body.retrieval_profile
+        app.retrieval_profile, _ = resolve_retrieval_profile(body.retrieval_profile)
     if body.selected_factions is not None:
         app.selected_factions = body.selected_factions
     ctx = get_active_play_context(app)
