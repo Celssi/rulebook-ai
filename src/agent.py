@@ -281,7 +281,6 @@ def synthesize_node(state: AgentState) -> dict:
         game=state.get("game_state"),
         game_id=state.get("game_id", DEFAULT_GAME_ID),
         play_entity=state.get("play_entity"),
-        play_entity=state.get("play_entity"),
         story_mode=state.get("story_mode", "player"),
         card_source=state.get("card_source", "virtual"),
     )
