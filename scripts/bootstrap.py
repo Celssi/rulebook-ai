@@ -172,6 +172,7 @@ def run_checks(*, skip: bool = False) -> bool:
 
     scripts = [
         ROOT / "scripts" / "validate_play_tools.py",
+        ROOT / "scripts" / "validate_how_to_play.py",
         ROOT / "scripts" / "validate_brambletrek_lonelog.py",
     ]
     ok = True

@@ -1,0 +1,15 @@
+# PDF p.27 — Starting weapons (d6 per type)
+melee:
+  '1': Dagger (Range Melee, Thrown 2) — 1d6 + AGL
+  '2': Short Sword (Range Melee, Light) — 1d6 + AGL
+  '3': Long Sword (Range Melee, Light) — 2d6 + PWR
+  '4': Mace (Range Melee, Light) — 1d6 + PWR
+  '5': Axe (Range Melee, Hand 2) — 2d6 + PWR
+  '6': Spear (Range 3, Light) — 2d6 + AGL
+ranged:
+  '1': Sling (Range 4, Light) — 1d6 + AGL
+  '2': Short Bow (Range 5, Hand 2) — 1d6 + AGL
+  '3': Long Bow (Range 7, Hand 2) — 2d6 + AGL/PWR
+  '4': Crossbow (Range 6, Hand 2) — 1d6 + AGL/PWR
+  '5': Wristbow (Range 2, Light) — 1d6 + AGL
+  '6': Arbalest (Range 4, Magic) — 2d5 + INT

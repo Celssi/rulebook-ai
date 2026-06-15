@@ -49,7 +49,7 @@ def apply_ui_preferences(app: AppSession) -> None:
         app.top_k = top_k
     profile = prefs.get("retrieval_profile")
     if isinstance(profile, str):
-        from api.utils import resolve_retrieval_profile
+        from src.retrieval_profiles import resolve_retrieval_profile
 
         app.retrieval_profile, _ = resolve_retrieval_profile(profile)
     factions = prefs.get("selected_factions")

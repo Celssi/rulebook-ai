@@ -1,0 +1,68 @@
+game_id: whispers
+title: Näin pelaat
+source:
+  pdf: docs/whispers/Whispers In the Walls 2e - Pages.pdf
+  pages: [5, 6, 7, 25]
+sections:
+  - heading: Yleiskuva
+    body: |
+      Whispers in the Walls on yksinpelattava kauhujournalointipeli. Olet yksityisetsivä, joka kuuntelee seinien, katon ja lattian kuiskaamia salaisuuksia pimeässä. Rakennat Whispers-pakan, nostat kortteja ja kirjoitat, mitä luulet niiden tarkoittavan.
+
+      Peli kestää noin 15–60 minuuttia. Tunnelma on tutkiva ja synkkä.
+  - heading: Tarvitset
+    bullets:
+      - kynä
+      - paperi tai päiväkirja
+      - korttipakka jokereilla
+  - heading: Turvallisuus
+    body: |
+      Peli sisältää kauhua, ruumiinmuutoksia, infestaatiota ja väkivallan kuvauksia. Jos jokin tuntuu liian raskaalta, pidä tauko, hylkää nykyinen kortti tai lopeta peli. Turvallisuutesi on tärkeämpää kuin pelin loppuun saattaminen.
+  - heading: Etsivän luonti
+    body: |
+      Ennen pakkanrakennusta kirjoita päiväkirjaan:
+
+      - **Nimi** — yksityisetsiväsi
+      - **Background** — kenen taustaa tutkit ("Whose background is…")
+      - **Belonging** — mihin kuuluvat jäljet johtavat ("Belonging to…")
+
+      Paikan nimi tulee ensimmäisestä Locations-nostosta.
+  - heading: Whispers-pakan rakentaminen
+    body: |
+      Himmennä valot. Ota pakka, erota **jokerit ja padat** omaksi Hollows-pakakseen. Loput kortit ovat Secrets-pakka.
+
+      - Normaali vaikeus: molemmat jokerit Hollows-pakkaan.
+      - Helppo: poista yksi jokeri.
+
+      Sekoita Hollows + padat. Nosta **3 korttia** Hollows-pakasta ja **6 korttia** Secrets-pakasta (katsomatta) ja sekoita ne — saat **9 kortin Whispers-pakan**. Loput pakat pois pelistä. Pidemmälle pelille voit lisätä Secrets-kortteja ennen lopullista sekoitusta.
+
+      Nosta ensimmäinen kortti Whispers-pakasta kuvapuoli ylös. Vertaa arvoa Locations-taulukkoon: saat paikan, avauskuvauksen ja kysymykset. Anna paikalle nimi, vastaa prompteihin ja laita kortti discard-pinoon kuvapuoli alaspäin.
+  - heading: Maataulukot
+    body: |
+      Jokainen Whispers-nosto käyttää kortin **maata**:
+
+      - **Hearts** — The Walls (seinät)
+      - **Diamonds** — The Floors (lattiat)
+      - **Clubs** — The Overhead (katto)
+      - **Spades** — The Hollows (ontelot)
+      - **Jokerit** — The Dead: ensimmäinen ja toinen jokeri antavat eri promptin; toisen jokerin paljastuminen laukaisee Joker's Ending
+  - heading: Pelin kulku
+    body: |
+      Jokaisella vuorolla nosta Whispers-pakan päältä, katso maan taulukko ja vastaa kysymyksiin tai tehtäviin päiväkirjassasi. Laita käytetty kortti discard-pinoon kuvapuoli alaspäin.
+  - heading: Lopetus
+    body: |
+      Tutkimus päättyy kun:
+
+      - Whispers-pakka on tyhjä → viimeisen kortin **Endings**-taulukko (s. 25), tai
+      - Molemmat jokerit on paljastettu → **Joker's Ending** heti.
+
+      Kirjoita päätelmä ja sulje päiväkirjamerkintä.
+  - heading: Oracle (valinnainen)
+    body: |
+      Epävarmoissa tilanteissa heitä **2d6** ja katso Oracle-taulukko (no / yes / and / but).
+  - heading: Sovelluksessa
+    bullets:
+      - Asetukset → **Character**: etsivän nimi, background, belonging; valinnainen extra secrets pidemmälle pelille
+      - Asetukset → **Play**: vaikeus (normal/easy), story mode, physical vs virtual deck
+      - Shortcuts → **Build Whispers deck** → **Draw from Whispers deck**; pakka seurataan Investigation-paneelissa
+      - Virtual-tilassa sovellus rakentaa pakkan; physical-tilassa rakennat itse ja ilmoitat kortin chatissa
+      - "Lonelog tallentaa nostot ja merkinnät"

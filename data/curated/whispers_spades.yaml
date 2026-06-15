@@ -1,0 +1,84 @@
+# whispers_spades.yaml — Whispers in the Walls 2e (ORC); verify against docs/whispers PDF
+ranks:
+  ace:
+    body: "A hissing noise and a vile plume of gasses enters the chamber. It fills your \nnose and lungs\
+      \ with astringent sting before your world is transformed. You \nsee the tethered lines that connect\
+      \ everything as they form and break in the \ndark ether. Their end points’ silhouettes glow when\
+      \ connected. One, \nhowever long you watch it, remains dark. A small, lonely silhouette on the \n\
+      outside. You reach out to make a connection yourself, but are brought back \nforcibly to the room.\n\
+      What was the silhouette? Describe its features. It’s unfortunately \nfamiliar. How?"
+  '2':
+    body: "The sounds of strained, gurgled breaths radiate from the walls before before \nthey split open\
+      \ to reveal a writing mass of flesh, boils and wounds cover its \nshapeless form. It shoots out\
+      \ and consumes you in a nauseating hug and \npulls you into a nightmarish abyss of the unfathomable.\
+      \ Your mind is \ninvaded by a disjointed scene that is difficult to fathom, yet it wasn’t these\
+      \ \nnightmares that performed the act, but peoples.\nWhat disjointed images were shown to you? They\
+      \ don’t quite make sense \non their own."
+  '3':
+    body: "A blackness emerges on the wall before you and consumes the room. \nEverything gives way to\
+      \ the darkness until you too are consumed. Gravity \nsheds away and you float at the edge of a great\
+      \ cosmos. Swirling clouds of \ngasses millions of light years in length paint beautiful colored\
+      \ pictures.\nLike watching clouds float by, the galactic gasses form a soft object. Draw or \ndescribe\
+      \ what you see. What are several things the object can be \ninterpreted as?"
+  '4':
+    body: "Lines etch and burn on the floor. Dirty black smoke of burning lemon peels \nreach your nose\
+      \ and a ragged cellar door appears. You grip and hoist the \ndoor open and as you do a massive translucent\
+      \ hand reaches up, grabs you \nby the head and pulls you into the space. You float in the darkness.\
+      \ The small \nlight of the opening above seems distant. There’s stars in this inky expanse \nall\
+      \ around and on focusing, you notice one constellation is brighter than the \nothers. Once you notice\
+      \ it, you’re spewed back through the small opening.\nDescribe the constellation. What does it mean\
+      \ to the locals? \n\n\nTerror and horrors are tucked away in the between spaces \nlike forgotten\
+      \ toys under the couch. \nNever truly gone.\n\n21"
+  '5':
+    body: "Pushing from the walls are gaping beaks. Suckered tendrils form and \nslither from the floor,\
+      \ wrapping themselves around your legs to hold you \nsteadfast to the floor while cold waters pour\
+      \ in from the abyssal beaked \nopenings. You’re weightless, the room gone, you’re in the darkest\
+      \ of waters \nwith pinpoints of light - a city? A colony? The dark watery abyss shines.\nA many-tentacled\
+      \ creature approaches. It presents a long decayed object \nthat fell from the surface years ago.\
+      \ What is it? You can barely make out \nan inscription. What does it say?"
+  '6':
+    body: "A deafening sound erupts like bones breaking from a long fall. The floor \nsplits and ruptures\
+      \ and you fall into a starry expanse. You continue falling \nthrough fissure, the floor fading to\
+      \ distance, before you land, softly, among \nthe stars. In front you, on a marble pedestal, is a\
+      \ partially burned of book.\nYou open the book and see a disjointed, animated image of memory. What\
+      \ \ncan you make out of the memory? When you touch the image, you are \ntransported back to the\
+      \ room."
+  '7':
+    body: "Water forms and drips from many spots on the ceiling and, like a geological \ntime lapse, stalagmites\
+      \ and stalactites form and devour the room until you \nstand in a large, dark, cavern. Refuse is\
+      \ strewn about, but deep in the darkest, \nrecessed shadows is a lonely, scared, creature.\nWhat\
+      \ is the creature? You can make out an injury. What happened to it?"
+  '8':
+    body: "The walls fall away suddenly and with a splash. Detritus floats by. The floor is \na mere raft,\
+      \ with the open ocean in all directions. A piece of refuse bumps \ninto your raft and you nearly\
+      \ lose balance. As you check on it, you see your \nreflection - no longer yourself.\nDescribe the\
+      \ face that looks back at you. There’s a definite emotion \nchiseled into the face, what is it?\
+      \ What bumped into your raft?"
+  '9':
+    body: "The floor opens, wide and spacious, the rush of air flows past your entire \nbody and your\
+      \ stomach yawns into free fall. The whole of the world is below \nyou and it quickly approaches.\n\
+      The terrain is shaped to spell a word or draw an image. Describe what you \nsee below.\n\n22"
+  '10':
+    body: "Looking in a mirror, you see a foreboding forest. And then movement. A limb \nshoots out from\
+      \ the mirror, scarcely missing your head, and the forest beings \nto consume and take over until\
+      \ you stand squarely in the oppressive weight \nof the bows above. Among the depression, a single,\
+      \ perfectly fall-orange leaf \nglides down to your feet. \nDelicately inscribed on it is a memory\
+      \ of a more pastoral time, right before \nthe calamity. Describe the memory."
+  jack:
+    body: "The wall splits and peels back like its been vivisected and from the dark \nbetween a tendril\
+      \ lashes out and grabs you by the throat, pulling you in \nbefore closing shut. You struggle and\
+      \ writhe, but it forces your head to look \ndown the black alleyway, you relax and reach out.\n\
+      Describe what you feel in the dark hollow. What is the tendril trying to \nshow you? How did you\
+      \ get back out?"
+  queen:
+    body: "The whole of the room begins to fold upon you, closing in tighter. The \nfurnishings folding\
+      \ flat like a paper diorama until you’re closed in tight. The \ndarkness is deep and confining.\
+      \ You hear footsteps above. Muffed voices of \nmourners. Dry dirt scatters on top of the coffin.\
+      \ \nAs you look around, you find a memento someone quietly placed before \nthe lid was sealed. Describe\
+      \ the memento left to the rightful owner of \nthis coffin."
+  king:
+    body: "The ceiling peaks and rises above you, extending the walls with it. The whole \nof the room\
+      \ shapes and morphs into a stone, columned temple. Pale light \nshines in through the open space\
+      \ and cold, constant wind blows. You’re at the \ntop of the world on an unknown peak. At the center\
+      \ is an altar with a \npressings book. \nMost of the pressings have decayed after all these years,\
+      \ but one \npressing remains at the center of the book. What is it?"

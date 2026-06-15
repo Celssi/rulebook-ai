@@ -2,13 +2,11 @@
 
 from __future__ import annotations
 
-from api.services import brambletrek_service as bt
 from api.services.session_service import default_factions, get_active_play_context, get_messages, sync_messages_to_context
 from api.utils import RETRIEVAL_PROFILES, recent_chat_history, resolve_retrieval_profile, to_langchain_history
 from src.agent import run_agent
-from src.config import GAME_BRAMBLETREK
 from src.games.registry import get_game_plugin
-from src.games.saves import AppSession, get_play_store
+from src.games.saves import AppSession, get_play_profile, get_play_store
 from src.games.warhammer_40k.state import game_state_from_dict
 from src.llm import ChatProvider
 from src.rag import query as rag_query
@@ -35,6 +33,7 @@ def answer_user_prompt(
 ) -> tuple[str, list[dict], str]:
     game_id = app.selected_game_id
     plugin = get_game_plugin(game_id)
+    profile = get_play_profile(game_id)
     ctx = get_active_play_context(app)
     char_id = ctx.slot_id if ctx else None
     retrieval_cfg = resolve_retrieval_profile(app.retrieval_profile)[1]
@@ -46,8 +45,8 @@ def answer_user_prompt(
     if ctx:
         ctx.sync_deck()
 
-    if plugin and plugin.has_character_sheet and char_id and ctx:
-        bt.log_user_prompt(ctx, prompt)
+    if plugin and plugin.has_character_sheet and char_id and ctx and profile and profile.log_user_prompt:
+        profile.log_user_prompt(ctx, prompt)
 
     store = get_play_store(game_id)
 
@@ -67,20 +66,24 @@ def answer_user_prompt(
         return cmd.get("answer", ""), cmd.get("sources", []), cmd.get("route", "command")
 
     story_mode, card_source = ("player", "virtual")
-    if ctx:
-        story_mode, card_source = bt.get_play_settings(ctx)
+    if ctx and profile and profile.resolve_play_modes:
+        story_mode, card_source = profile.resolve_play_modes(ctx)
 
-    if plugin and plugin.has_character_sheet and ctx:
-        handled = bt.try_handle_prompt(ctx, prompt, app=app, prior_history=prior_history)
+    if plugin and plugin.has_character_sheet and ctx and profile and profile.try_handle_prompt:
+        handled = profile.try_handle_prompt(ctx, prompt, app=app, prior_history=prior_history)
         if handled is not None:
-            ctx.refresh_deck()
+            if game_id != "whispers":
+                ctx.refresh_deck()
             if store:
                 store.persist_ctx(ctx)
             return handled
 
     game_state = None
     if plugin and plugin.has_game_state:
-        game_state = game_state_from_dict(app.game_state_40k)
+        game_state = game_state_from_dict(app.game_state)
+
+    rag_entity = profile.entity_for_rag(ctx) if profile and profile.entity_for_rag and ctx else None
+    play_entity = ctx.entity if ctx and profile else None
 
     if app.mode == "Agent":
         out = run_agent(
@@ -89,7 +92,7 @@ def answer_user_prompt(
             game_state=game_state,
             game_id=game_id,
             retrieval=retrieval_cfg,
-            brambletrek_character=ctx.entity if ctx else None,
+            play_entity=play_entity,
             chat_provider=chat_provider,
             char_id=char_id,
             story_mode=story_mode,
@@ -108,7 +111,7 @@ def answer_user_prompt(
             game_state=game_state,
             game_id=game_id,
             retrieval=retrieval_cfg,
-            brambletrek_character=ctx.entity if ctx else None,
+            play_entity=play_entity,
             chat_provider=chat_provider,
             char_id=char_id,
             story_mode=story_mode,
@@ -153,7 +156,7 @@ def answer_user_prompt(
         return format_card_result(result), [], "cards"
 
     factions = selected_factions if selected_factions else None
-    bt_char = bt.get_character(ctx) if ctx and plugin and plugin.has_character_sheet else None
+    rag_entity = profile.entity_for_rag(ctx) if profile and profile.entity_for_rag and ctx else None
     result = rag_query(
         prompt,
         top_k=top_k,
@@ -164,7 +167,7 @@ def answer_user_prompt(
         candidate_k=retrieval_cfg["candidate_k"],
         use_hybrid=retrieval_cfg["use_hybrid"],
         use_rerank=retrieval_cfg.get("use_rerank", False),
-        brambletrek_character=bt_char,
+        play_entity=rag_entity,
         chat_provider=chat_provider,
     )
     if ctx and store:

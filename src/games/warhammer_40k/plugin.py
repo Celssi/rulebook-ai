@@ -147,8 +147,9 @@ class Warhammer40kPlugin(GamePlugin):
         self,
         text: str,
         *,
-        brambletrek_character: dict | None = None,
+        play_entity: dict | None = None,
     ) -> dict | None:
+        _ = play_entity
         from src.tools import is_leviathan_list_question
 
         if is_leviathan_list_question(text):

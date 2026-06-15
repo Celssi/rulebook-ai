@@ -1,0 +1,26 @@
+day_one:
+  title: Day 1
+  intro: >-
+    You are a visitor in San Sibilia. Start by writing your character's name, draw a
+    row of four small boxes beneath your name, then title your entry "Day 1".
+  questions:
+    - How did you come to San Sibilia? Did you arrive by train, car, boat, or some other manner? Or did you simply wake up and find yourself here?
+    - How did you learn about San Sibilia? Did you read about it in a book? Did someone whisper in hushed tones about their time here? Or maybe you saw a map to this place tattooed on the back of a lover?
+    - Where are you staying in San Sibilia? Did you find lodging in a run-down hostel run by a nosy widow? Are you renting the penthouse in a lavishly decorated hotel? Or maybe you sweet-talked an aging socialite into letting you sleep in their spare room?
+    - Who have you met in San Sibilia? Did you encounter an old friend? Did you convince a lover you are someone else? Who made you feel welcome and who made you want to leave?
+    - What did you bring to San Sibilia? Did you bring someone with you? Do you come prepared? Or did you arrive with just the clothes on your back?
+
+ending:
+  title: The End of Your Stay
+  intro: >-
+    When you have ticked off all four boxes (default rules) or reached 90 points
+    (alternative rules), write one last journal entry.
+  questions:
+    - How did the city change you? In what ways will your life never be the same? What mark did the city leave on you? Will any other city ever feel as home?
+    - How do you leave? Did you take a wrong turn, and find yourself somewhere else? Do you leave intentionally? What will be your next destination?
+    - What will you take with you? Do you take anyone with you? Which memorabilia did you collect and which memories? What did you leave in San Sibilia?
+    - Will you ever return? How will you find your way back? Who will you tell about the city, and will they believe you? How will the city have changed since you were gone?
+
+days_between: >-
+  You can decide how many fictional days have passed between journal entries, or roll
+  a six-sided die to determine the number of days for you.

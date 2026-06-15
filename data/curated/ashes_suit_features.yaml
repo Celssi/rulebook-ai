@@ -1,0 +1,18 @@
+# PDF p.57 — Secondary room feature by suit
+suits:
+  hearts:
+    feature: Emotional
+    detail: Memories of the past confront you.
+    check: null
+  diamonds:
+    feature: Item
+    detail: Something is hidden in the walls
+    check: INT Check
+  clubs:
+    feature: Traps
+    detail: Adds an extra level of challenge
+    check: Check via Table
+  spades:
+    feature: Hidden Enemy
+    detail: An enemy is hidden in the room.
+    check: Draw enemy

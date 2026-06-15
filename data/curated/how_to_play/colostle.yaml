@@ -1,0 +1,58 @@
+game_id: colostle
+title: Näin pelaat
+source:
+  pdf: docs/colostle/core-rulebook.pdf
+  pages: [9, 14, 15, 16, 22, 28, 29, 30, 33, 47, 52, 55]
+sections:
+  - heading: Yleiskuva
+    body: |
+      Colostle on soloseikkailu-RPG valtavassa Colostle-linnassa, jonka huoneissa on vuoria, kaupunkeja ja jopa meriä. Pidät päiväkirjaa seikkailustasi; korttipakka antaa promptit ja taistelun kehyksen. Sinä päätät, miten tarina etenee ja miltä kohtaukset näyttävät.
+  - heading: Tarvitset
+    bullets:
+      - kynä tai lyijykynä
+      - vihko tai sketchbook päiväkirjaa varten
+      - tavallinen korttipakka
+      - hahmoarkki (s. 59)
+  - heading: Hahmon luonti
+    body: |
+      Seikkailijallasi on oltava:
+
+      - **Calling** — miksi lähdet turvallisesta kylästä (esim. kosto, kadonnut rakas, profetia)
+      - **Nature** — miten reagoit kohtaamiisi (kiihkeä, ovela, herkkä…)
+      - **Class** — Armed, Followed, Helmed, Mounted tai Magic
+      - **Weapon** — ase luokkaasi sopien
+      - **Look** — ulkonäkö
+
+      Valitse **Class** — se antaa **exploration score**- ja **combat score** -arvot (s. 16–22). Voit nostaa kortteja Calling-taulukosta (s. 14) tai keksiä itse.
+  - heading: Exploration-korttien lukeminen
+    body: |
+      Nosta kortteja yhtä monta kuin exploration score.
+
+      - **Punainen (♥/♦)** — orgaaninen kohtaus; katso Roomlands punainen taulukko (maa × arvo, s. 28).
+      - **Musta (♣/♠)** — maisema/rakennelma; musta taulukko (s. 29).
+      - **J / Q / K** — erikoiset: esine (Item), Medium Rook, Massive Rook (s. 30).
+
+      Yhdistä nostot yhdeksi luvuksi / journal-merkinnäksi. Käytetyt kortit discard-pinoon; kun pakka loppuu, sekoita discard ja jatka.
+  - heading: Pelin vaiheet
+    body: |
+      Peli jakautuu kahteen vaiheeseen:
+
+      **Exploration** — Jokainen luku alkaa nostamalla exploration-kortit. Yksi exploration-vaihe voi olla päivä tai pidempi jakso.
+
+      **Combat** — Jos kohtaat taistelun, ratkaise se Combat-osiossa (s. 52–55). Taistelu voi sijoittua explorationin alkuun, keskelle tai loppuun. **Wounds** merkitään hahmolle; **Treasures** ovat vaihtokauppatavaraa. Taistelun jälkeen exploration score voi muuttua.
+
+      Kun kaikki exploration-kortit on käytetty ja taistelut ratkaistu, luku päättyy. Aloita seuraava luku nostamalla exploration-kortit uudelleen. Jos nostat saman kortin kahdesti, voit nostaa uuden tai kohdata saman asian kahdesti.
+  - heading: Lisämoduulit
+    body: |
+      Roomlands on oletus. Meri (**Ocean**), kaupunki (**City**) ja **Battlements** käyttävät omia taulukoitaan (s. 33–47). Käytä vastaavia Shortcuts-oikoteitä — ne eivät korvaa automaattisesti exploration-nostoa.
+  - heading: Maailma
+    body: |
+      Colostlen huoneissa vaeltavat Rookit — kiviset automaatit, joista ei ole kahta samanlaista. Ne ovat maailman ainoa magian lähde ja vaarallisia metsästäjille. Yöllä huoneiden Brazier-valot himmenevät pehmeäksi valoksi.
+  - heading: Sovelluksessa
+    bullets:
+      - Asetukset → **Character**: hahmo, Draw Calling & Nature, tallenna
+      - Asetukset → **Play**: story mode, location module, physical vs virtual deck
+      - Shortcuts → **Exploration phase** aloittaa luvun; Item/Event/Oracle tarvittaessa
+      - "Deck-välilehti: virtual/physical korttinosto"
+      - AI narrator kirjoittaa journal-prosan exploration- ja moduulinostoista
+      - "Lonelog tallentaa nostot ja merkinnät"

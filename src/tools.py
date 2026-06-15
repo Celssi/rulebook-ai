@@ -7,7 +7,8 @@ from typing import Literal
 
 import yaml
 
-from src.config import DEFAULT_GAME_ID, LEVIATHAN_YAML
+from src.settings import LEVIATHAN_YAML
+from src.games.registry import DEFAULT_GAME_ID
 from src.llm import ChatProvider
 from src.games.warhammer_40k.state import GameState
 from src.play_tools import (
@@ -99,7 +100,7 @@ def search_rules(
     use_hybrid: bool = True,
     use_rerank: bool = False,
     chat_history: list[dict[str, str]] | None = None,
-    brambletrek_character=None,
+    play_entity: dict | None = None,
     chat_provider: ChatProvider = "ollama",
 ) -> dict:
     """RAG search over indexed PDFs."""
@@ -115,7 +116,7 @@ def search_rules(
         use_hybrid=use_hybrid,
         use_rerank=use_rerank,
         chat_history=chat_history,
-        brambletrek_character=brambletrek_character,
+        play_entity=play_entity,
         chat_provider=chat_provider,
     )
     return {

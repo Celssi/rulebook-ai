@@ -12,15 +12,15 @@ const GROUPS: { title: string; ids: string[] }[] = [
     ids: [
       "combat_setup",
       "overcome_odds",
-      "health_recovery",
-      "morale_recovery",
-      "supplies_recovery",
+      "recovery_health",
+      "recovery_morale",
+      "recovery_supplies",
     ],
   },
   {
     title: "Reference",
     ids: [
-      "how_to_start",
+      "start_playing",
       "legacy_overview",
       "reason_ending",
       "adventure_overview",

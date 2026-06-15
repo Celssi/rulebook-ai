@@ -9,33 +9,7 @@ import type {
   Source,
 } from "../types";
 
-const API = "/api";
-
-function parseErrorBody(text: string, fallback: string): string {
-  try {
-    const body = JSON.parse(text) as { detail?: string | { msg: string }[] };
-    if (typeof body.detail === "string") return body.detail;
-    if (Array.isArray(body.detail)) {
-      return body.detail.map((d) => d.msg).join("; ");
-    }
-  } catch {
-    /* plain text */
-  }
-  return text || fallback;
-}
-
-async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${API}${path}`, {
-    credentials: "include",
-    headers: { "Content-Type": "application/json", ...(init?.headers || {}) },
-    ...init,
-  });
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(parseErrorBody(text, res.statusText));
-  }
-  return res.json() as Promise<T>;
-}
+import { API, request } from "./core";
 
 export const api = {
   getSession: () => request<SessionState>("/session"),
@@ -43,6 +17,8 @@ export const api = {
     request<SessionState>("/session", { method: "PUT", body: JSON.stringify(body) }),
   getSettingsMeta: () => request<Record<string, unknown>>("/session/settings-meta"),
   getGames: () => request<{ games: { id: string; label: string }[] }>("/games"),
+  getHowToPlay: (gameId: string) =>
+    request<{ game_id: string; title: string; markdown: string }>(`/games/${gameId}/how-to-play`),
   chat: (prompt: string) =>
     request<{
       answer: string;
@@ -111,6 +87,319 @@ export const api = {
       header: CharacterHeader;
     }>(`/brambletrek/shortcuts/${id}`, { method: "POST" }),
   getLonelog: (n = 50) => request<{ lines: string[]; path: string | null }>(`/brambletrek/lonelog?n_lines=${n}`),
+  getVisitHeader: () => request<import("../types").VisitHeader>("/sansibilia/header"),
+  getVisit: () =>
+    request<{
+      entity: Record<string, unknown>;
+      options: Record<string, unknown>;
+      settings: Record<string, string>;
+    }>("/sansibilia/visit"),
+  updateVisit: (entity: Record<string, unknown>) =>
+    request<{ entity: Record<string, unknown>; header: import("../types").VisitHeader }>(
+      "/sansibilia/visit",
+      { method: "PUT", body: JSON.stringify({ entity }) }
+    ),
+  resetVisit: () =>
+    request<{ entity: Record<string, unknown>; header: import("../types").VisitHeader }>(
+      "/sansibilia/visit/reset",
+      { method: "POST" }
+    ),
+  drawVisitCharacter: () =>
+    request<{
+      entity: Record<string, unknown>;
+      header: import("../types").VisitHeader;
+      cards: string[];
+      archetype: string;
+    }>("/sansibilia/visit/draw-character", { method: "POST" }),
+  drawVisitDay: () =>
+    request<{
+      entity: Record<string, unknown>;
+      header: import("../types").VisitHeader;
+      messages: Message[];
+      answer: string;
+    }>("/sansibilia/visit/draw-day", { method: "POST" }),
+  recordCityChange: (note = "") =>
+    request<{ entity: Record<string, unknown>; header: import("../types").VisitHeader }>(
+      "/sansibilia/visit/city-change",
+      { method: "POST", body: JSON.stringify({ note }) }
+    ),
+  advanceVisitDay: (days_between?: number) =>
+    request<{ entity: Record<string, unknown>; header: import("../types").VisitHeader }>(
+      "/sansibilia/visit/advance-day",
+      { method: "POST", body: JSON.stringify({ days_between }) }
+    ),
+  getSansibiliaRoster: () =>
+    request<{ entries: { id: string; name: string }[]; active_id: string }>("/sansibilia/roster"),
+  createVisit: (name: string) =>
+    request<{ entity: Record<string, unknown>; entries: { id: string; name: string }[] }>(
+      "/sansibilia/roster",
+      { method: "POST", body: JSON.stringify({ name }) }
+    ),
+  switchVisit: (id: string) =>
+    request<SessionState>(`/sansibilia/roster/${id}/switch`, { method: "POST" }),
+  deleteVisit: (id: string) =>
+    request<{ entries: { id: string; name: string }[]; session: SessionState }>(
+      `/sansibilia/roster/${id}`,
+      { method: "DELETE" }
+    ),
+  getSansibiliaShortcuts: () => request<{ shortcuts: Shortcut[] }>("/sansibilia/shortcuts"),
+  runSansibiliaShortcut: (id: string) =>
+    request<{
+      answer: string;
+      sources: Source[];
+      route: string;
+      messages: Message[];
+      entity: Record<string, unknown>;
+      header: import("../types").VisitHeader;
+    }>(`/sansibilia/shortcuts/${id}`, { method: "POST" }),
+  getSansibiliaLonelog: (n = 50) =>
+    request<{ lines: string[]; path: string | null }>(`/sansibilia/lonelog?n_lines=${n}`),
+  getLighthouseHeader: () => request<import("../types").WatchHeader>("/lighthouse/header"),
+  getLighthouseWatch: () =>
+    request<{
+      entity: Record<string, unknown>;
+      options: Record<string, unknown>;
+      settings: Record<string, string>;
+    }>("/lighthouse/watch"),
+  updateLighthouseWatch: (entity: Record<string, unknown>) =>
+    request<{ entity: Record<string, unknown>; header: import("../types").WatchHeader }>(
+      "/lighthouse/watch",
+      { method: "PUT", body: JSON.stringify({ entity }) }
+    ),
+  getLighthouseRoster: () =>
+    request<{ entries: { id: string; name: string }[]; active_id: string }>("/lighthouse/roster"),
+  createLighthouseWatch: (name: string) =>
+    request<{ entity: Record<string, unknown>; entries: { id: string; name: string }[] }>(
+      "/lighthouse/roster",
+      { method: "POST", body: JSON.stringify({ name }) }
+    ),
+  switchLighthouseWatch: (id: string) =>
+    request<SessionState>(`/lighthouse/roster/${id}/switch`, { method: "POST" }),
+  deleteLighthouseWatch: (id: string) =>
+    request<{ entries: { id: string; name: string }[]; session: SessionState }>(
+      `/lighthouse/roster/${id}`,
+      { method: "DELETE" }
+    ),
+  getLighthouseShortcuts: () => request<{ shortcuts: Shortcut[] }>("/lighthouse/shortcuts"),
+  runLighthouseShortcut: (id: string) =>
+    request<{
+      answer: string;
+      sources: Source[];
+      route: string;
+      messages: Message[];
+      entity: Record<string, unknown>;
+      header: import("../types").WatchHeader;
+    }>(`/lighthouse/shortcuts/${id}`, { method: "POST" }),
+  getLighthouseLonelog: (n = 50) =>
+    request<{ lines: string[]; path: string | null }>(`/lighthouse/lonelog?n_lines=${n}`),
+  getColostleHeader: () => request<import("../types").ColostleHeader>("/colostle/header"),
+  getColostleCharacter: () =>
+    request<{
+      entity: Record<string, unknown>;
+      options: Record<string, unknown>;
+      settings: Record<string, string>;
+    }>("/colostle/character"),
+  updateColostleCharacter: (entity: Record<string, unknown>) =>
+    request<{ entity: Record<string, unknown>; header: import("../types").ColostleHeader }>(
+      "/colostle/character",
+      { method: "PUT", body: JSON.stringify({ entity }) }
+    ),
+  getColostleRoster: () =>
+    request<{ entries: { id: string; name: string }[]; active_id: string }>("/colostle/roster"),
+  createColostleCharacter: (name: string) =>
+    request<{ entity: Record<string, unknown>; entries: { id: string; name: string }[] }>(
+      "/colostle/roster",
+      { method: "POST", body: JSON.stringify({ name }) }
+    ),
+  switchColostleCharacter: (id: string) =>
+    request<SessionState>(`/colostle/roster/${id}/switch`, { method: "POST" }),
+  deleteColostleCharacter: (id: string) =>
+    request<{ entries: { id: string; name: string }[]; session: SessionState }>(
+      `/colostle/roster/${id}`,
+      { method: "DELETE" }
+    ),
+  getColostleShortcuts: () => request<{ shortcuts: Shortcut[] }>("/colostle/shortcuts"),
+  runColostleShortcut: (id: string) =>
+    request<{
+      answer: string;
+      sources: Source[];
+      route: string;
+      messages: Message[];
+      entity: Record<string, unknown>;
+      header: import("../types").ColostleHeader;
+    }>(`/colostle/shortcuts/${id}`, { method: "POST" }),
+  getColostleLonelog: (n = 50) =>
+    request<{ lines: string[]; path: string | null }>(`/colostle/lonelog?n_lines=${n}`),
+  getApothecariaHeader: () => request<import("../types").CottageHeader>("/apothecaria/header"),
+  getApothecariaCottage: () =>
+    request<{
+      entity: Record<string, unknown>;
+      options: Record<string, unknown>;
+      settings: Record<string, string>;
+    }>("/apothecaria/cottage"),
+  updateApothecariaCottage: (entity: Record<string, unknown>) =>
+    request<{ entity: Record<string, unknown>; header: import("../types").CottageHeader }>(
+      "/apothecaria/cottage",
+      { method: "PUT", body: JSON.stringify({ entity }) }
+    ),
+  getApothecariaRoster: () =>
+    request<{ entries: { id: string; name: string }[]; active_id: string }>("/apothecaria/roster"),
+  createApothecariaCottage: (name: string) =>
+    request<{ entity: Record<string, unknown>; entries: { id: string; name: string }[] }>(
+      "/apothecaria/roster",
+      { method: "POST", body: JSON.stringify({ name }) }
+    ),
+  switchApothecariaCottage: (id: string) =>
+    request<SessionState>(`/apothecaria/roster/${id}/switch`, { method: "POST" }),
+  deleteApothecariaCottage: (id: string) =>
+    request<{ entries: { id: string; name: string }[]; session: SessionState }>(
+      `/apothecaria/roster/${id}`,
+      { method: "DELETE" }
+    ),
+  getApothecariaShortcuts: () => request<{ shortcuts: Shortcut[] }>("/apothecaria/shortcuts"),
+  runApothecariaShortcut: (id: string, params?: Record<string, string>) =>
+    request<{
+      answer: string;
+      sources: Source[];
+      route: string;
+      messages: Message[];
+      entity: Record<string, unknown>;
+      header: import("../types").CottageHeader;
+    }>(`/apothecaria/shortcuts/${id}`, {
+      method: "POST",
+      body: JSON.stringify(params || {}),
+    }),
+  changeApothecariaLocale: (locale_id: string) =>
+    request<{ entity: Record<string, unknown>; header: import("../types").CottageHeader }>(
+      "/apothecaria/cottage/change-locale",
+      { method: "POST", body: JSON.stringify({ locale_id }) }
+    ),
+  huntApothecariaReagent: (reagent_name: string) =>
+    request<{ entity: Record<string, unknown>; header: import("../types").CottageHeader }>(
+      "/apothecaria/cottage/hunt",
+      { method: "POST", body: JSON.stringify({ reagent_name }) }
+    ),
+  completeApothecariaPotion: () =>
+    request<{ entity: Record<string, unknown>; header: import("../types").CottageHeader }>(
+      "/apothecaria/cottage/complete-potion",
+      { method: "POST" }
+    ),
+  advanceApothecariaWeek: () =>
+    request<{ entity: Record<string, unknown>; header: import("../types").CottageHeader }>(
+      "/apothecaria/cottage/advance-week",
+      { method: "POST" }
+    ),
+  advanceApothecariaDowntime: () =>
+    request<{ entity: Record<string, unknown>; header: import("../types").CottageHeader }>(
+      "/apothecaria/cottage/advance-downtime",
+      { method: "POST" }
+    ),
+  buyApothecariaTool: (item_id: string) =>
+    request<{ entity: Record<string, unknown>; header: import("../types").CottageHeader }>(
+      "/apothecaria/cottage/buy-tool",
+      { method: "POST", body: JSON.stringify({ item_id }) }
+    ),
+  buyApothecariaUpgrade: (item_id: string) =>
+    request<{ entity: Record<string, unknown>; header: import("../types").CottageHeader }>(
+      "/apothecaria/cottage/buy-upgrade",
+      { method: "POST", body: JSON.stringify({ item_id }) }
+    ),
+  getApothecariaLonelog: (n = 50) =>
+    request<{ lines: string[]; path: string | null }>(`/apothecaria/lonelog?n_lines=${n}`),
+  getWhispersHeader: () => request<import("../types").InvestigationHeader>("/whispers/header"),
+  getWhispersInvestigation: () =>
+    request<{
+      entity: Record<string, unknown>;
+      settings: Record<string, string>;
+    }>("/whispers/investigation"),
+  updateWhispersInvestigation: (entity: Record<string, unknown>) =>
+    request<{ entity: Record<string, unknown>; header: import("../types").InvestigationHeader }>(
+      "/whispers/investigation",
+      { method: "PUT", body: JSON.stringify({ entity }) }
+    ),
+  getWhispersRoster: () =>
+    request<{ entries: { id: string; name: string }[]; active_id: string }>("/whispers/roster"),
+  createWhispersInvestigation: (name: string) =>
+    request<{ entity: Record<string, unknown>; entries: { id: string; name: string }[] }>(
+      "/whispers/roster",
+      { method: "POST", body: JSON.stringify({ name }) }
+    ),
+  switchWhispersInvestigation: (id: string) =>
+    request<SessionState>(`/whispers/roster/${id}/switch`, { method: "POST" }),
+  deleteWhispersInvestigation: (id: string) =>
+    request<{ entries: { id: string; name: string }[]; session: SessionState }>(
+      `/whispers/roster/${id}`,
+      { method: "DELETE" }
+    ),
+  getWhispersShortcuts: () => request<{ shortcuts: Shortcut[] }>("/whispers/shortcuts"),
+  runWhispersShortcut: (id: string) =>
+    request<{
+      answer: string;
+      sources: Source[];
+      route: string;
+      messages: Message[];
+      entity: Record<string, unknown>;
+      header: import("../types").InvestigationHeader;
+    }>(`/whispers/shortcuts/${id}`, { method: "POST" }),
+  drawWhisper: () =>
+    request<{
+      entity: Record<string, unknown>;
+      header: import("../types").InvestigationHeader;
+      messages: Message[];
+      answer: string;
+    }>("/whispers/investigation/draw", { method: "POST" }),
+  buildWhispersDeck: () =>
+    request<{
+      entity: Record<string, unknown>;
+      header: import("../types").InvestigationHeader;
+      messages: Message[];
+      answer: string;
+    }>("/whispers/investigation/build-deck", { method: "POST" }),
+  getWhispersLonelog: (n = 50) =>
+    request<{ lines: string[]; path: string | null }>(`/whispers/lonelog?n_lines=${n}`),
+  getAshesHeader: () => request<import("../types").ScionHeader>("/ashes/header"),
+  getAshesScion: () =>
+    request<{
+      entity: Record<string, unknown>;
+      options: { classes: { id: string; label: string }[] };
+      settings: Record<string, string>;
+    }>("/ashes/scion"),
+  updateAshesScion: (entity: Record<string, unknown>) =>
+    request<{ entity: Record<string, unknown>; header: import("../types").ScionHeader }>(
+      "/ashes/scion",
+      { method: "PUT", body: JSON.stringify({ entity }) }
+    ),
+  getAshesRoster: () =>
+    request<{ entries: { id: string; name: string }[]; active_id: string }>("/ashes/roster"),
+  createAshesScion: (name: string) =>
+    request<{ entity: Record<string, unknown>; entries: { id: string; name: string }[] }>(
+      "/ashes/roster",
+      { method: "POST", body: JSON.stringify({ name }) }
+    ),
+  switchAshesScion: (id: string) =>
+    request<SessionState>(`/ashes/roster/${id}/switch`, { method: "POST" }),
+  deleteAshesScion: (id: string) =>
+    request<{ entries: { id: string; name: string }[]; session: SessionState }>(
+      `/ashes/roster/${id}`,
+      { method: "DELETE" }
+    ),
+  getAshesShortcuts: () => request<{ shortcuts: Shortcut[] }>("/ashes/shortcuts"),
+  runAshesShortcut: (id: string) =>
+    request<{
+      answer: string;
+      sources: Source[];
+      route: string;
+      messages: Message[];
+      entity: Record<string, unknown>;
+      header: import("../types").ScionHeader;
+    }>(`/ashes/shortcuts/${id}`, { method: "POST" }),
+  drawAshesGift: () =>
+    request<{ entity: Record<string, unknown>; header: import("../types").ScionHeader; cards: string[]; gift: string }>(
+      "/ashes/scion/draw-gift",
+      { method: "POST" }
+    ),
+  getAshesLonelog: (n = 50) =>
+    request<{ lines: string[] }>(`/ashes/lonelog?n_lines=${n}`),
   reasonEndingPreview: (reason_band: string) =>
     request<{ preview: string }>(
       `/brambletrek/reason-ending?reason_band=${encodeURIComponent(reason_band)}`

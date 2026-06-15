@@ -1,0 +1,100 @@
+# whispers_locations.yaml — Whispers in the Walls 2e (ORC); verify against docs/whispers PDF
+ranks:
+  ace:
+    body: "The dark interior draws you in, cold like a morgue. Its hard\nwalls are partially hidden with\
+      \ broken display cases, outlines where old \npaintings used to hang give the walls a mottled look\
+      \ and webs cling from the \ncorners. Everything here echoes in the chambers - even your heartbeat.\n\
+      What was it most well known for holding? What stone are the walls \nmade from?"
+    title: Museum
+  '2':
+    body: "The room hangs in tatters. Once a centerpiece of\nlearning, now abandoned. Children’s laughter,\
+      \ tears, and realizations hang \nin the air, silent. A dirty chalkboard marks the front, a beaten\
+      \ metal desk \nsits to the side. The old windows are blackened with age and abandonment. \nWhat\
+      \ was taught here? What decorations are still up? What was left on \nthe chalkboard?"
+    title: Classroom
+  '3':
+    body: "The old spire is wind worn and hollow. The floorboards creek\nunderfoot. Tapestries are torn\
+      \ and hang crooked by on their posts. The smell \nof damp, old paper fills the air and wisps of\
+      \ light push through the \ntarnished stained glass and cast needle thin rays through the air. \n\
+      What religion was practiced? What is on the altar? What musical \ninstruments are still here?"
+    title: Church
+  '4':
+    body: "The apartment hasn’t been occupied for some time, its\nyellowing wallpaper is peeling, all\
+      \ surfaces covered in a thick layer of dust \nand grime. The vent hood glistens with old grease.\
+      \ A broken sliding glass \ndoor has been tarped over but a slight breeze still flutters the edges.\n\
+      What floor is the apartment on? The final tenant had a vice that’s \neasily discerned - what was\
+      \ it? Describe the smell."
+    title: Apartment
+  '5':
+    body: "The exterior stonework is worn smooth and\nstained with decades of rain. Inside the long, narrow\
+      \ floorboards creak and \nmoan as the house breathes. Exquisite carvings and staircases lead into\
+      \ dark \nhallways and the cellar door is bolted but its hinges are rusted. Dust motes \nhang motionless\
+      \ in the air.\nDescribe the state of furnishings - are they fresh, dusty, covered? The \nlast meal\
+      \ is still half prepared in the kitchen - what is it?\n\n\nand foundation with their unbearable\
+      \ weight. They yearn \nto surrender the burden to another \nso that they may sleep."
+    title: Victorian Mansion
+  '6':
+    body: "The old farmhouse whistles in the\nconstant wind, its pine shelter trees long since dead. Inside,\
+      \ the linoleum is \nstreaked and stained and window panes are cracked and ill fitting with gaps\
+      \ \nof light seeping in through the edges. The furniture is old, beaten and \nbattered, but built\
+      \ to last another hundred years.\nWhat did the fields once grow? What hidden room is inside? What\
+      \ is \nstored there?"
+    title: Midwestern Farmhouse
+  '7':
+    body: "The wooden structure leans uncomfortably. Once\nwhite paint is faded and peeling. The floor\
+      \ is broken revealing gaping holes \nto a basement below. Blown  lights hang from wires and hooks\
+      \ and medical \nequipment is strewn about rusted and abandoned in every hall and room. \nThe structure\
+      \ groans.\nWhat was the last patient's illness? What was the hospital’s specialty? \nWhat did the\
+      \ doctors do in secret?"
+    title: Rural Hospital
+  '8':
+    body: "The Freemasons abandoned this lodge decades\nago. Its beautiful stonework decaying and fading\
+      \ with time. Gold leaf trim \nis still bright but flutters on delicate air currents. The darkness\
+      \ has taken \nthis place.\nThere’s odd symbolism here that departs from traditional Freemasons.\
+      \ \nWhat is that symbolism?"
+    title: Masonic Lodge
+  '9':
+    body: "The old opera house, once the center of\nentertainment and intrigue of the wealthy is abandoned\
+      \ and dark. Its \nglorious halls are being consumed by nature. Vines grow thick, twisting in \n\
+      and out of the columns rising tall to the ceiling - seeking the small light from \nthe cracked stonework.\
+      \ The hall is uncannily still and silent.\nWhat is the ghost’s name that resides here according\
+      \ to legend? \nSomething was left on the stage - what is it?"
+    title: Old Opera House
+  '10':
+    body: "The old train car sits uneven on its rusted wheels, the once\nshiny shell pitted and dented.\
+      \ The interior was stately appointed in rich \nburgundy velvet and carved woods, now giving way\
+      \ to opulent decay. \nThe train car isn’t where it belongs. Where is it? What unexpected \nobject\
+      \ is sitting in front of the entry door?"
+    title: Train Car
+  jack:
+    body: "The ship creaks and groans. The interior seems to constrict\nand expand like deep, ragged breaths.\
+      \ The deck is sun-worn and frayed, old \nlines are long since rotted. Unsecured sails flap their\
+      \ tattered edges. Below \ndeck is filled with dark, musky air, its furnishings scattered about the\
+      \ hull \nlike long abandoned toys.\nIs this boat in the water or land? Describe its location and,\
+      \ if necessary, \nhow you got to it."
+    title: Sailboat
+  queen:
+    body: "The horse stalls look just as they did the day this\nplace was abandoned. Even the last horse’s\
+      \ skeleton still lay in its stall. The \nstall doors are now rotten and broken. The poor thing could\
+      \ have escaped if \nonly it could have waited the necessary decades. The flat above the stalls is\
+      \ \nransacked and destroyed. Whatever the last day was like here, it was chaotic. \nWhat natural\
+      \ feature is this carriage house built next to? A famous \nnoble was known to own or frequent this\
+      \ place. Who were they?"
+    title: Carriage House
+  king:
+    body: "Still and silent does not describe this mausoleum. That\nwould be more comforting. Whipping\
+      \ winds and coarse grit grind their way \nthrough the chambers. Water drips incessantly on the tombs.\
+      \ The one thing \nthis mausoleum is doing correctly is staying dark. The stairs from the foyer \n\
+      lead to the inky abyss.\nA sculpture symbolizes this place. What is it? How many dead are \nrecorded\
+      \ to be buried here? How many are actually buried here?\n\nSunken Leviathan | In the old marsh lies\
+      \ the hidden entrance to a \ndesiccated corpse of a massive creature, the inside of which was used\
+      \ for for \nthe meeting of an old, forgotten cult. Bones protrude against leathery linings \nand\
+      \ rotting growths still pulse.\nWhat was the cult known for? What massive animal found itself \n\
+      sunken here? (can be any creature, scaled to large proportions)"
+    title: Mausoleum
+  joker:
+    title: Sunken Leviathan
+    body: "In the old marsh lies the hidden entrance to a \ndesiccated corpse of a massive creature, the\
+      \ inside of which was used for for \nthe meeting of an old, forgotten cult. Bones protrude against\
+      \ leathery linings \nand rotting growths still pulse.\nWhat was the cult known for? What massive\
+      \ animal found itself \nsunken here? (can be any creature, scaled to large proportions)"

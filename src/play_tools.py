@@ -79,9 +79,9 @@ class CardToolResult(TypedDict, total=False):
 
 
 def deck_scope_key(game_id: str, char_id: str | None = None) -> str:
-    """Scope deck storage; Brambletrek uses per-character decks."""
-    if char_id and game_id == "brambletrek":
-        return f"brambletrek:{char_id}"
+    """Scope deck storage per game and optional character slot."""
+    if char_id:
+        return f"{game_id}:{char_id}"
     return game_id
 
 

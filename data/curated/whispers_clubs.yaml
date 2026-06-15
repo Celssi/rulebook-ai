@@ -1,0 +1,76 @@
+# whispers_clubs.yaml — Whispers in the Walls 2e (ORC); verify against docs/whispers PDF
+ranks:
+  ace:
+    body: "The ceiling shifts, molds itself, and rumbles like crashing waves against the \nwalls. Dust\
+      \ falls in great clouds around you and darken your vision even \nmore. There’s shapes in the dust,\
+      \ being made by the rhythmic undulation \nabove. They move and float around you like a zoetrope\
+      \ animation.\nWhat shapes are you being shown? It moves about the space replaying a \nfragment of\
+      \ some lost memory.  What is it?"
+  '2':
+    body: "Droplets of blood condense on the ceiling. It flows and gathers to a singular \nlocation and,\
+      \ as a gallon-sized mass, falls to the floor in a sickening splash. \nIron and decay fills your\
+      \ nostrils.\nThe blood fell on something. What is it? The splash coated three other \nrelated objects.\
+      \ What are they? How do they relate to each other?"
+  '3':
+    body: "The wind starts small, a breeze form a crack, but grows to an inverted \nvortex, the small\
+      \ of it a point above you.  In its frenzy it throws and whips \nother objects about you, but it\
+      \ is hunting for something. In a small gap \nabove you, something is being pulled, squeezed from\
+      \ a hidden crevice until \nfinally it is free and is gingerly placed on the ground in front of you\
+      \ before \nthe vortex subsides.\nWhat was pulled from the hidden compartment? You pick it up. \n\
+      Describe how it feels odd in your hands."
+  '4':
+    body: "Spines push from the ceiling and roll across the space. Searching. It stops \ndirectly over\
+      \ you and the stressed portion splits and crack open, first \nreleasing a torrent of putrid water.\
+      \ You feel something heavy slam against \nyour back and tumble to the ground as you cover from the\
+      \ onslaught. \nThe object is heavy, but no larger than your own head. What is it? And why \nwas\
+      \ it stored in that foul smelling water?"
+  '5':
+    body: "The ceiling’s texture above you gyrates, turns and twists until you notice it is \nforming\
+      \ a static, low fidelity animation, like an unfocused projector. The \nimages dance in a loop for\
+      \ several moments before the ceiling returns to \nnormal.\nThe memory was hard to make out. What\
+      \ did you see in it? Because of the \nblurriness it was hard to understand. What was confusing about\
+      \ it?\n\n\nuntil the weight of their burdens come crashing down.\n\n17"
+  '6':
+    body: "Critters. Bugs and spiders and dust motes. You aren’t sure if they’re alive, but \nthere’s\
+      \ hundreds of them. They scurry out of the corners of the ceiling and \nflow down around you. A\
+      \ scene sets up. The majority of the critters encircle a \nsmaller number who seem to be acting\
+      \ out a play. Others take turns as \nnecessary. It’s enchanting if not grotesque.\nDo you recognize\
+      \ the play? If so, what play or scene was acted out? If \nyou don’t, describe the scene."
+  '7':
+    body: "A great eye - fully formed with lid, lashes and brow - opens above you, \nstaring down at you.\
+      \ It runs through a series of emotions, ending with a large \ntear forming and dropping. Staining\
+      \ the floor.\nWhat were the series of emotions the eye portrayed? Describe the eye - \ncolor, shape,\
+      \ iris, lashes, and brow.  Did the tear leave a distinct pattern \non the floor? What was it?"
+  '8':
+    body: "Above you, a opening forms. Light from a single star bleeds in and as it does, \nit is intensified\
+      \ thousands of times and singes a mark on the floor. The \nopening moves about the space, each time\
+      \ adding another mark until the \nroom is full of the charred smell.\nThe opening drew something\
+      \ for you in a dot matrix. What is it? A word? \nConstellation? A symbol or drawing?"
+  '9':
+    body: "A single crumbling section falls from the ceiling. When it lands, it sprouts \nlegs and skitters\
+      \ up and over to a table, and consumes something on it before \nfolding itself inside out and revealing\
+      \ a stained letter.\nWhat did the creature eat from the table? It doesn’t have to be an edible \n\
+      object. The letter relates to what it ate, what does the letter say?\n\n18"
+  '10':
+    body: "You are lifted by an unknown force and plastered to the ceiling above, \nlooking directly down\
+      \ below. You hadn’t noticed before, but the layout of the \nroom spells a single, short, word. Once\
+      \ the ceiling thinks you’ve grasped \nwhat it wants to show, you are released unceremoniously to\
+      \ the ground.\nWhat was the word spelled out in the layout of the room? Perhaps it is a \njumble\
+      \ of 4 letters to make an anagram. If so, what are the 4 letters? What \nis the solution?"
+  jack:
+    body: "A scraping sound pierces your ears and you feel taller for some reason. No, \nthe ceiling is\
+      \ falling towards you, it consumes the walls until you lay flat on \nthe ground. Shattered pieces\
+      \ of furniture poke at your skin. The ceiling stops \nat the tip of your nose. You look around for\
+      \ what it wants you to see from this \nvantage point. And you spot something hidden along the floor,\
+      \ out of sight. \nWhat is it? The ceiling rises back. Describe the unexpected state of \nthe room."
+  queen:
+    body: "The ceiling opens and pours in great tides of water, filling the room. You find \na floating\
+      \ table to rest on before the ceiling closes again. A creature swims \npast and you get a good look\
+      \ as it deposits something on the table with you. \nThen all recedes and returns to normal. \nWhat\
+      \ was the creature? What object did it give you? The two are \nconnected somehow. Are you able to\
+      \ make the connection or does it \nelude you currently?"
+  king:
+    body: "The ceiling stretches downward, forming a fist. It taps you in the shoulder \nand waits for\
+      \ you to hold out your own hand. The sounds coming from the \ninside the fist are unsettling.\n\
+      Do you hold out your own hand and accept what’s inside? What was \nheld in the fist? It is unexpected.\
+      \ If not, how did the hand react instead?"

@@ -6,10 +6,10 @@ from dataclasses import dataclass
 
 from llama_index.core.schema import NodeWithScore
 
-from src.config import DEFAULT_GAME_ID, TOP_K_DEFAULT
+from src.settings import TOP_K_DEFAULT
 from src.llm import ChatProvider, get_llamaindex_chat_llm
 from src.games.base import RagContext, RetrievalBoostContext
-from src.games.registry import get_game_plugin
+from src.games.registry import DEFAULT_GAME_ID, get_game_plugin
 from src.games.warhammer_40k import retrieval as r40k
 from src.games.warhammer_40k.state import GameState
 from src.prompts import build_system_prompt, format_context_block
@@ -62,14 +62,14 @@ def query(
     candidate_k: int | None = None,
     use_hybrid: bool = True,
     use_rerank: bool = False,
-    brambletrek_character=None,
+    play_entity: dict | None = None,
     chat_provider: ChatProvider = "ollama",
 ) -> RagResult:
     language = "en"
     plugin = get_game_plugin(game_id)
     context = RagContext(
         game_state=game_state,
-        brambletrek_character=brambletrek_character,
+        play_entity=play_entity,
     )
     effective_question = plugin.preprocess_question(question, context)
 
@@ -82,7 +82,7 @@ def query(
         candidate_k=candidate_k,
         use_hybrid=use_hybrid,
         use_rerank=use_rerank,
-        brambletrek_character=brambletrek_character,
+        play_entity=play_entity,
     )
 
     if not nodes:
@@ -96,7 +96,7 @@ def query(
         language,
         game=game_state,
         game_id=game_id,
-        brambletrek_character=brambletrek_character,
+        play_entity=play_entity,
     )
     history_block = _format_recent_history(chat_history)
     history_section = (
@@ -133,12 +133,12 @@ def retrieve_nodes(
     candidate_k: int | None = None,
     use_hybrid: bool = True,
     use_rerank: bool = False,
-    brambletrek_character=None,
+    play_entity: dict | None = None,
 ) -> list[NodeWithScore]:
     plugin = get_game_plugin(game_id)
     context = RagContext(
         game_state=game_state,
-        brambletrek_character=brambletrek_character,
+        play_entity=play_entity,
     )
     search_q = plugin.enhance_query(question, context)
     keyword_definition = r40k.is_keyword_definition_question(question)

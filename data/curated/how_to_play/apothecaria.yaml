@@ -1,0 +1,66 @@
+game_id: apothecaria
+title: Näin pelaat
+source:
+  pdf: docs/apothecaria/apothecaria-pages.pdf
+  pages: [3, 4, 5, 6, 7, 8, 12, 13, 33, 34, 52, 53]
+sections:
+  - heading: Yleiskuva
+    body: |
+      Apothecaria on solojournalointi-RPG, jossa olet High Rannocin kylänoita. Diagnosoit potilaita, keräät reagenssit luonnosta ja valmistat taikajuomia. Tavoite ei ole "voitto" vaan matka — voit tulkita sääntöjä luovasti ja kirjoittaa omia tarinoita.
+
+      Peli on inspiroitunut studio Ghibli -henkisistä tarinoista ja cozy-peleistä. Älä käytä vapaita valintoja salaa hankkiaksesi työkaluja tai päivityksiä, joita muuten ostaisit hopealla.
+  - heading: Tarvitset
+    bullets:
+      - päiväkirja tai muistiinpanot
+      - tavallinen korttipakka
+      - seuranta reseptejä, mainetta ja kalenteria varten
+  - heading: Aloitus
+    body: |
+      Olet High Rannocin uusi kylänoita edellisen noidan tilalla. Aloita kevään viikosta 1. Maineesi on 5 (Novice). Kirjoita päiväkirjaan kuka olet ja miten otat mökin haltuun.
+  - heading: Perusloop
+    body: |
+      1. **Diagnoosi** — nosta kortti ja katso tauti (Ailments-lista). Päätä potilas (sydän=kyläläinen, ruutu=seikkailija, risti=hirviö, pata=toistuva potilas) tai keksi itse.
+      2. **Reagenssit** — valitse reagenssit, joiden tagit vastaavat tautia ([CURSE], [HAIR] jne.).
+      3. **Foraging** — kerää reagenssit luonnosta (alla).
+      4. **Taikajuoma** — murskaa, keitä ja tislaa reagenssit työkaluilla; myy tai anna potilaalle.
+  - heading: Diagnoosi
+    bullets:
+      - Kirjaa potilaan nimi, ammatti ja tauti
+      - Merkitse [TAGIT] ja ajastin (jos on)
+      - Valitse vähintään 2 sopivaa reagenssia ennen keräilyä
+      - Reagenssityypit: PLANT, ANIMAL, MAGIC
+  - heading: Foraging
+    bullets:
+      - Aloita 0 foraging-pisteellä kullekin alueelle.
+      - Nosta kortti ja ratkaise alueen tapahtuma (Locales, s. 35–52).
+      - Jos kortin arvo ≥ reagenssin Foraging Value, löysit sen (yksi kerrallaan).
+      - Jos alempi, saat 1 foraging-pisteen (2 sirpillä).
+      - Kun pisteet ≥ reagenssin arvo, löydät reagenssin automaattisesti.
+      - Jos taudilla on ajastin, vähennä sitä 1 jokaisen tapahtuman tai aluevaihdon jälkeen.
+      - Locale-vaihto vähentää ajastinta 1 ja nollaa kyseisen alueen foraging-pisteet.
+  - heading: Reagenssit ja juoma
+    body: |
+      Valmistus: CRUSH (Mortar and Pestle), BOIL (Cauldron), DISTIL (Alembic). Kirjaa juoman nimi ja resepti.
+
+      Maksu sovelluksessa: hopea per mainetaso (Novice 15, Intermediate 25, Advanced 35, Expert 50) + makeus −4/piste, myrkky +4/piste; 5+ myrkkyä = hylätty juoma ja seuraus.
+  - heading: Maine ja kalenteri
+    body: |
+      Mainetasot: Novice 0–10 → Intermediate 11–21 → Advanced 22–32 → Expert 33+. Oikea juoma +1 maine; ajastimen loppuminen tai huono juoma voi laskea mainetta. Voit nostaa helpompia tauteja, mutta et saa mainetta.
+
+      Kalenteri alkaa kevään ensimmäisestä viikosta. Jokainen tauti ja downtime = 1 viikko. Ilman ajastinta voit tutkia vapaasti, mutta yli 13 kierrosta voi maksaa 1 mainetta.
+  - heading: Downtime ja kalenteri
+    body: |
+      Juoman jälkeen alkaa **6 segmentin downtime** — jokainen toiminto kuluttaa 1. Kauden lopussa (13. viikko) on **festivaali**: ei potilaita eikä ajastinta, vastaa journalointikysymyksiin.
+  - heading: Kylä ja matkustus
+    body: |
+      Kyläpalvelut (Tavern, Lunar Tower, Bits & Bobs, Ritual Circle) maksavat 1 ajastinsegmentin. Erikoisalueet: Coracle (Blastfire Bog), Broom (Cloud Isles), Bàs Bàta (Dreamwater), portaali (The Strange).
+  - heading: Tuttu ja mysteeri
+    body: |
+      Hanki tuttu (The Calling tai nostot) — taidot auttavat keräilyssä ja juomissa. Jokeri tai kauden loppu voi paljastaa vihjeen edellisestä noidasta (Witch mystery -taulukot).
+  - heading: Sovelluksessa
+    bullets:
+      - Asetukset → **Character**: mökki, maine, hopea, viikko ja kausi
+      - "**New patient** aloittaa hoidon; Play-välilehdeltä voit matkustaa, kerätä ja valmistaa juoman"
+      - Shortcuts: kauppa, festivaalit, tuttu, mysteeri — vaiheen mukaan (idle / ailment / downtime / festival)
+      - "**Potion preview** näyttää myrkyn/makeuden ja maksun"
+      - "**Lonelog** tallentaa nostot ja merkinnät"

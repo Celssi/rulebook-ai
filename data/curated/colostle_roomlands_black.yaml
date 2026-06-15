@@ -1,0 +1,32 @@
+# PDF: rules-reference.pdf p.1 / core-rulebook.pdf p.29 — black cards (scenic)
+ranks:
+  ace:
+    spades: "Untouched — LARGE TREASURE"
+    clubs: "Evidence of raids — LARGE TREASURE"
+  "2":
+    spades: "Intact/Locked — MASSIVE DOOR"
+    clubs: "Ruined — MASSIVE DOOR"
+  "3":
+    spades: "Intact — STAIRCASE"
+    clubs: "Ruined — STAIRCASE"
+  "4":
+    spades: "Somewhat intact — ANCIENT RUINS"
+    clubs: "Mostly rubble — ANCIENT RUINS"
+  "5":
+    spades: "Functional — STRANGE MECHANISM"
+    clubs: "Damaged — STRANGE MECHANISM"
+  "6":
+    spades: "You avoid it! — TRAP!"
+    clubs: "You are caught in it! — TRAP!"
+  "7":
+    spades: "Easily navigable — CAVE"
+    clubs: "Difficult and deep — CAVE"
+  "8":
+    spades: "Calm — THE SEA"
+    clubs: "Stormy — THE SEA"
+  "9":
+    spades: "Something you were looking for — CALLING"
+    clubs: "A clue to the next step on your quest — CALLING"
+  "10":
+    spades: "Thriving — CITY"
+    clubs: "Abandoned — CITY"

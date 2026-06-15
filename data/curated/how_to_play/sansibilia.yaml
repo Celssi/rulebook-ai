@@ -1,0 +1,50 @@
+game_id: sansibilia
+title: Näin pelaat
+source:
+  pdf: docs/sansibilia/Visit to San Sibilia-pages.pdf
+  pages: [3, 5, 6, 8, 9, 11, 12, 13]
+sections:
+  - heading: Yleiskuva
+    body: |
+      A Visit to San Sibilia on solojournalointipeli, jossa pelaat hahmoa, joka kirjoittaa päiväkirjaa käynnistään San Sibiliassa. Kaupunki ei löydy kartoilta — se on sekä osa maailmaamme että erillinen siitä, ja se näyttäytyy jokaiselle vierailijalle eri tavalla.
+
+      Peli kestää noin 1–2 tuntia riippuen nostamistasi korteista ja siitä, kuinka paljon aikaa käytät jokaiseen merkintään. Journalointi voi käsitellä yksinäisyyden, vieraantumisen ja epäonnistumisen teemoja. Jos kirjoittaminen tuntuu liian raskaalta, voit hylätä kortit ja nostaa uudet tai laittaa päiväkirjan sivuun ja palata myöhemmin.
+  - heading: Tarvitset
+    bullets:
+      - päiväkirja, digitaalinen dokumentti tai muu kirjoituspinta
+      - kirjoitusväline tai tekstieditori
+      - tavallinen korttipakka (jokerit pois)
+      - kuusisivuinen noppa (valinnainen)
+  - heading: Hahmon luonti
+    body: |
+      Sekoita pakka ja keksi hahmo itse tai nosta kaksi korttia hahmotaulukosta (sivu 5). Jos kortit eivät tunnu sopivilta, nosta uudet tai valitse yhdistelmä vapaasti. Palauta kortit pakan pohjalle.
+
+      Kirjoita hahmon nimi ja neljä pientä ruutua nimen alle — rastitat ne myöhemmin. Aloita ensimmäinen merkintä otsikolla "Day 1" ja vastaa kaikkiin tai joihinkin aloitus­kysymyksiin (sivu 6–7): miten saavuit kaupunkiin, miten kuulit San Sibiliasta, missä asut, ketä tapasit ja mitä toit mukana.
+  - heading: Päivien kulku
+    body: |
+      Päivien välillä voit päättää itse, montako päivää on kulunut, tai heittää d6.
+
+      Otsikoi seuraava merkintä "Day __" ja nosta kaksi korttia. Ensimmäinen kortti antaa adjektiivin, toinen paikan tai tapahtuman. **Kumpikin kortti käyttää omaa väriään** (hertta/ruutu = punainen rivi, risti/pata = musta rivi). Yhdistä adjektiivi ja paikka/tapahtuma merkinnän aiheeksi. Kun merkintä on valmis, laita molemmat kortit pakan pohjalle.
+  - heading: Kaupungin muutokset
+    body: |
+      Kun nostat kaksi korttia **samaa maata** tai **samaa arvoa**, kaupunki muuttuu. Rastita yksi neljästä ruudusta nimesi alla. Muutos voi olla odotettu (vuodenaika, politiikka) tai todellisuuden siirtymä.
+
+      - Kaksi herttaa — sydämenmuutos
+      - Kaksi ruutua — uusi tuuli (sää, valta, taide, muoti)
+      - Kaksi ristiä — todellisuuden aalto
+      - Kaksi pataa — kaupunki kääntyy sinua vastaan
+      - Sama arvo (eri maat) — sinä muutat kaupunkia
+  - heading: Lopetus
+    body: |
+      Kun kaikki neljä ruutua on rastittu, oleskelusi päättyy. Kirjoita viimeinen merkintä vastaten kaikkiin tai joihinkin lopetuskysymyksiin (sivu 13): miten kaupunki muutti sinua, miten lähdet, mitä otat mukaan ja palaatko koskaan.
+
+      Vaihtoehtoisessa pisteytyspelissä (erillinen PDF) lopetat, kun korttien korkeimman arvon summa saavuttaa 90. Jokaisella päivällä lasketaan kahden kortin korkeampi arvo (ässä 1 tai 11 — valitse alussa).
+  - heading: Sovelluksessa
+    bullets:
+      - Asetukset → **Character**: vierailijan nimi, Draw (2 cards) tai valitse piirre + rooli, ending mode, ässän arvo; **Save visit**
+      - Asetukset → **Play**: story mode (kirjoitat itse vs. AI narrator), physical vs virtual deck
+      - Play → **Day**: Draw day's cards (2), Check off city change, Advance to next day
+      - Play → **Deck**: manuaalinen nosto / pakka nollaus; fyysisessä tilassa ilmoita kortit tähän tai chattiin
+      - Shortcuts → Day 1 journal prompts, Ending journal prompts, Roll days between entries (d6)
+      - Sivupalkki **Visit**: päivä, kaupungin muutokset (4 ruutua), score-tilanne
+      - "Lonelog tallentaa nostot ja merkinnät"

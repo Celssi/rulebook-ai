@@ -1,0 +1,31 @@
+# Static play text from zine
+task_routing:
+  - night: unsettling
+    section: observation
+  - night: wild
+    section: maintenance
+  - night: calm
+    section: observation
+  - night: uncertain
+    section: event
+  - night: strange
+    section: maintenance
+  - night: quiet
+    section: event
+  - night: loud or chaotic
+    section: event
+  - night: cold
+    section: maintenance
+  - night: stifling hot
+    section: maintenance
+  - night: unsure
+    section: observation
+ending_shuffles:
+  - label: Quiet, calm night
+    shuffles: 1
+  - label: Steady night
+    shuffles: 2
+  - label: Busy night
+    shuffles: 3
+  - label: Crazy, wild, scary night
+    shuffles: 4

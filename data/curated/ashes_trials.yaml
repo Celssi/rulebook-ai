@@ -1,0 +1,29 @@
+# PDF pp.34-35 — Trials (red = hearts/diamonds, black = clubs/spades)
+red:
+  ace: Give up a consumable item when making a sacrifice.
+  '2': Defeat an enemy while at less than 25% of your maximum health without healing.
+  '3': Avoid all attacks in a combat encounter with three or more enemies.
+  '4': Collect at least 4 pieces of new lore within a dungeon.
+  '5': Successfully navigate through a Labyrinth room without taking any damage.
+  '6': Get to a sanctuary without healing once.
+  '7': Kill 2 enemies in a single turn without using area-of-effect spells or abilities.
+  '8': Block or absorb damage meant for an ally or summoned creature.
+  '9': Get to 3 Sanctuaries without dying once.
+  '10': Complete a room while under Haunted or Disoriented without curing it.
+  jack: Deal at least 10 Damage in a single turn.
+  queen: Complete a room without taking damage.
+  king: Beat an enemy who is behind cover.
+black:
+  ace: Defeat an enemy by pushing them into a Hazard.
+  '2': Counter an enemy's spell or magical attack.
+  '3': Inflict 10 or more Damage in a single action or turn using a spell.
+  '4': Clear a complex challenge room or defeat an enemy without taking damage.
+  '5': Destroy a hazard/pillar to reveal an enemy.
+  '6': Be afflicted with at least 3 different conditions and survive a combat encounter.
+  '7': Defeat an enemy using a counter-attack.
+  '8': Pass at least 3 puzzle/labyrinth rooms without re-rolling or failing.
+  '9': Pass through a trap-infested corridor without triggering traps or harm.
+  '10': Reach a Sanctuary without using healing items or spells after your last rest.
+  jack: Eliminate 3 enemies in a single turn.
+  queen: Defeat an enemy using an item.
+  king: Visit 5 sanctuaries in a single run without death or major defeat.

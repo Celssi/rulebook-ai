@@ -1,0 +1,18 @@
+# Beachcombing mini-game — rank + color source, p.20–21
+source:
+  red: Item comes from a known source.
+  black: Item comes from an unknown source.
+ranks:
+  "2": Bodies — skeletons, limbs, teeth, fur, scales, horns, entrails, etc.
+  "3": Animals — birds, fish, reptiles, galaxy rays, space whales, etc.
+  "4": Spaceship debris — panels, hatches, engines, pipes, tubes, furniture, screens, wings, etc.
+  "5": Traveller — human, alien, robot, unknown being, creature, etc.
+  "6": Technology — wires, chips, circuit boards, antennas, hard drives, etc.
+  "7": Devices — screwdrivers, clocks, telescopes, recording devices, thermometers, communicators, etc.
+  "8": Message — in a bottle, in a chest, in a jar, written on paper, recorded onto a chip, etc.
+  "9": Flora — wood, vines, seeds, roots, flowers, etc.
+  "10": Space rocks — meteors, gemstones, glowing rocks, pieces of stars, etc.
+  jack: Weapons — lasers, blades, explosives, poison, etc.
+  queen: Fabric — clothing, spacesuits, rags, sails, scraps, nets, bags, etc.
+  king: Records — journals, books, data discs, letters, flash drives, maps, etc.
+  ace: Riches — jewellery, coins, credit cards, gemstones, notes, etc.

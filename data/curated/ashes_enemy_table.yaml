@@ -1,0 +1,15 @@
+# PDF p.57 — Enemy encounter by card rank
+ranks:
+  ace: Titan of Kald
+  '2': Ashen Soldier
+  '3': Banshee of Mire
+  '4': Sunlit Serpent
+  '5': Rogue of Crimson
+  '6': Arctic Phantasm
+  '7': Inferno Sprite
+  '8': Unearthed Golem
+  '9': Aetha's Sage
+  '10': Gilded Guardian
+  jack: Silent Trickster
+  queen: Seductress of Roa
+  king: Eclipsed Lich

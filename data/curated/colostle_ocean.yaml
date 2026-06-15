@@ -1,0 +1,35 @@
+# PDF: rules-reference.pdf p.1 / core-rulebook.pdf p.33
+ranks:
+  ace:
+    black: "Uninhabited — underwater tower with doorway (check WEATHER)"
+    red: "You hear voices deep within... — underwater tower with doorway (check WEATHER)"
+  "2":
+    black: "Friendly — another seagoing adventurer (check WEATHER)"
+    red: "Not friendly — another seagoing adventurer (check WEATHER)"
+  "3":
+    black: "Intact — shipwreck (2 ITEMS if intact)"
+    red: "Wrecked — shipwreck (1 ITEM if wrecked)"
+  "4":
+    black: "Dead — island with castle crenellations (Rook below the waves?)"
+    red: "The Rook's traps are still active! — island with castle crenellations"
+  "5":
+    black: "Swims past your vessel — huge seagoing creature (check WEATHER)"
+    red: "Hits your vessel as it passes! — huge seagoing creature (check WEATHER)"
+  "6":
+    black: "Uninhabited — sea cave (check ITEM if uninhabited)"
+    red: "Inhabited — sea cave (non-human creatures)"
+  "7":
+    black: "TREASURE to find — pirate ship (sneak and escape)"
+    red: "A WEAPON to find — pirate ship (sneak and escape)"
+  "8":
+    black: "TREASURE to find — shallow waters and underwater ruins"
+    red: "ROOK PARTS to find — shallow waters and underwater ruins"
+  "9":
+    black: "Uninhabited — small island (one base EXPLORATION phase, then return to SEA)"
+    red: "Inhabited — small island (one base EXPLORATION phase, then return to SEA)"
+  "10":
+    black: "Unguarded — coastline (return to base EXPLORATION; check WEATHER)"
+    red: "Guarded — coastline (return to base EXPLORATION; check WEATHER)"
+  jack: "Small island with an Item (check ITEM table)"
+  queen: "Medium Rook"
+  king: "Massive Rook"

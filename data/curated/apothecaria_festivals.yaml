@@ -1,0 +1,33 @@
+# Season festivals — Apothecaria p.32–33
+festivals:
+  spring:
+    id: flower_festival
+    name: Flower Festival
+    prompts:
+    - Flower Festival Dance — who do you go with?
+    - Market finds — anything catch your eye?
+    - 'Baking contest (blackjack vs 3 face-down cards). Win: Sun Sugar (+3 Sweet).'
+  summer:
+    id: sunrise_celebration
+    name: Sunrise Celebration
+    prompts:
+    - Rowboat race — draw 2+2+2 cards; highest single card wins Bata's Oar.
+    - Ash Mother ritual with druids?
+    - Lowland merchants — what catches your eye?
+  autumn:
+    id: bogles_night
+    name: Bogle's Night
+    prompts:
+    - Welcome the departed souls.
+    - Spooky Soiree — costume and companion?
+    - Lonely older spirits — do you talk to them?
+    - Village thanks you — 100 Silver and kind words.
+    - Bonfire shape — what did you add?
+  winter:
+    id: frostfall_festival
+    name: Frostfall Festival
+    prompts:
+    - Feast dish — what do you bring?
+    - Snowball fight — 5 cards vs 4.
+    - Sled race down Breakneck — 10+ wins 20 Silver.
+    - Someone gives you a present.

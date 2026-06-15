@@ -1,0 +1,45 @@
+{
+  "game_id": "sansibilia",
+  "cases": [
+    {
+      "id": "city_change_rules",
+      "question": "When does the city change in A Visit to San Sibilia?",
+      "expected_terms": ["same suit", "same value", "four boxes"]
+    },
+    {
+      "id": "adjective_table",
+      "question": "How does the adjective table work for red and black suits?",
+      "expected_terms": ["red", "black", "adjective"]
+    },
+    {
+      "id": "character_creation",
+      "question": "How do you create a character in San Sibilia?",
+      "expected_terms": ["two cards", "character table"]
+    },
+    {
+      "id": "ending_default",
+      "question": "When does the visit end with the default rules?",
+      "expected_terms": ["four", "boxes", "city change"]
+    },
+    {
+      "id": "alternative_endgame",
+      "question": "What are the alternative ending rules with score 90?",
+      "expected_terms": ["90", "highest", "face"]
+    },
+    {
+      "id": "day_one",
+      "question": "What questions should I answer on Day 1?",
+      "expected_terms": ["Day 1", "San Sibilia", "staying"]
+    },
+    {
+      "id": "days_between",
+      "question": "How many days pass between journal entries?",
+      "expected_terms": ["d6", "six-sided"]
+    },
+    {
+      "id": "components",
+      "question": "What do I need to play A Visit to San Sibilia?",
+      "expected_terms": ["deck", "journal", "jokers"]
+    }
+  ]
+}

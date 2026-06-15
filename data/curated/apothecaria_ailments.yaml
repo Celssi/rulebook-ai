@@ -1,0 +1,624 @@
+# Ailments by reputation tier — Apothecaria p.12–19
+tiers:
+  novice:
+    '1':
+      name: Wounded
+      tags:
+      - WOUND
+      - PAIN
+      timer: 6
+      potency: 2
+      description: 'Wounded - [WOUND ] [PAIN ] - Timer: 6 An extremely common occurrence. Whether it be by accident or from
+        a duel, bandit ambush, or beast attack, the afflicted has a serious wound. Consequence: They are rushed to the village
+        doctor. Lose 1 Reputation.'
+      consequence: They are rushed to the village doctor. Lose 1 Reputation.
+    '2':
+      name: Phodothropy
+      tags:
+      - CURSE
+      - HAIR
+      timer: 6
+      potency: 2
+      description: 'Phodothropy – [CURSE ] [HAIR ] – Timer: 6 During the full moon, the afflicted turns into a monstrous hamster
+        and scurries around their home and village, nibbling on carts and walls. Consequence: They go on another rampage.
+        Lose 1 Reputation. Describe the aftermath.'
+      consequence: They go on another rampage. Lose 1 Reputation. Describe the aftermath.
+    '3':
+      name: Druidic Madness
+      tags:
+      - SENSES
+      - MAGIC
+      timer: null
+      potency: 2
+      description: Druidic Madness - [SENSES ] [MAGIC ] After spending too much time near active stone circles, the afflicted
+        has become obsessed with creating standing circles everywhere, obstructing traffic and annoying family.
+      consequence: ''
+    '4':
+      name: Dragon Sickness
+      tags:
+      - SENSES
+      - WOUND
+      timer: 4
+      potency: 2
+      description: 'Dragon Sickness - [SENSES ] [WOUND ] - Timer: 4 Named after the champion hoarders themselves, the afflicted
+        becomes obsessed with a type of object and tries to accrue the greatest hoard of it. Gold, cups, trading cards, etc.
+        Consequence: The afflicted steals 10 Silver and runs away.'
+      consequence: The afflicted steals 10 Silver and runs away.
+    '5':
+      name: Yeti Chest
+      tags:
+      - HAIR
+      - LUNGS
+      timer: null
+      potency: 2
+      description: Yeti Chest - [HAIR ] [LUNGS ] The afflicted’s chest hair grows longer and thicker until it becomes a fur-like
+        coating. They also speak with a much lower voice for some reason. Good in Winter though.
+      consequence: ''
+    '6':
+      name: Frogified
+      tags:
+      - WART
+      - POISON
+      timer: 6
+      potency: 2
+      description: 'Frogified - [WART ] [POISON ] - Timer: 6 After some clever clog wrote a story about kissing a frog and
+        getting a prince, witches have had to deal with a flood of hopeless romantics getting warty lips and poisoned. Consequence:
+        They’re rushed to the village doctor. Lose 1 Reputation.'
+      consequence: They’re rushed to the village doctor. Lose 1 Reputation.
+    '7':
+      name: Baker’s Blisters
+      tags:
+      - BURN
+      - PAIN
+      timer: null
+      potency: 2
+      description: Baker’s Blisters - [BURN ] [PAIN ] Scalding hot sugar, time sensitive cakes, no oven gloves in sight, there’s
+        a reason bakers say their blood, sweat, and tears went into their pastries.
+      consequence: ''
+    '8':
+      name: Drunk
+      tags:
+      - BLOOD
+      - COLD
+      - SENSES
+      timer: 8
+      potency: 3
+      description: 'Drunk - [BLOOD ] [COLD ] [SENSES ] - Timer: 8 Struck by a vampire, the afflicted has been drunk down to
+        quite dangerous levels. On top of that, they keep leaving their window open at night now and have caught a cold. Consequence:
+        They run off with their vampiric lover. Write about how it goes for them and for you. 13'
+      consequence: They run off with their vampiric lover. Write about how it goes for them and for you. 13
+    '9':
+      name: Magnetic Thumb
+      tags:
+      - PAIN
+      - BLOOD
+      timer: null
+      potency: 2
+      description: Magnetic Thumb - [PAIN ] [BLOOD ] Caused by having too much iron in one’s diet, the afflicted’s hands attract
+        metal. Not so bad for painters, a death sentence for builders and bakers.
+      consequence: ''
+    '10':
+      name: Cludgie Mouth
+      tags:
+      - CURSE
+      - INFECTION
+      timer: 6
+      potency: 2
+      description: 'Cludgie Mouth - [CURSE ] [INFECTION ] - Timer: 6 A curse from a bog goblin, this poor soul’s mouth reeks
+        like a tavern privy. A single breath of theirs can empty a busy room. Consequence: They go to the village doctor instead.
+        Lose 1 Reputation.'
+      consequence: They go to the village doctor instead. Lose 1 Reputation.
+    jack:
+      name: Hangover
+      tags:
+      - POISON
+      - STOMACH
+      timer: 4
+      potency: 2
+      description: 'Hangover - [POISON ] [STOMACH ] - Timer: 4 After a rowdy night of reckless abandon, the afflicted has
+        crawled to you with a stomach full of poison, a mouth like a desert, and a head as fragile as a sparrow’s egg. Consequence:
+        They get better and go off grumbling. Lose 1 Reputation.'
+      consequence: They get better and go off grumbling. Lose 1 Reputation.
+    queen:
+      name: Toad Nose
+      tags:
+      - WARTS
+      - MOOD
+      timer: null
+      potency: 2
+      description: Toad Nose - [WARTS ] [MOOD ] Used to be that they called it Witch’s Nose. Thankfully enough people got
+        turned into pigs for them to change it. Essentially just a wart, the afflicted might have more if unlucky.
+      consequence: ''
+    king:
+      name: Pollen Pox
+      tags:
+      - RASH
+      - COUGH
+      timer: null
+      potency: 2
+      description: Pollen Pox - [RASH ] [COUGH ] Travellers from the cities often find that after spending a day in Glimmerwood
+        Grove they’re suddenly itchy and sneezing. It’s always allergies. At this stage, you’ll get a lot of patients who
+        aren’t in danger but who need a witch’s help to ease their discomfort. While there’s no rush, it does look good on
+        you if cure them quickly. 14
+      consequence: ''
+  intermediate:
+    '1':
+      name: Spore Breath
+      tags:
+      - PARASITE
+      - LUNGS
+      - MOUTH
+      timer: 6
+      potency: 3
+      description: 'Spore Breath - [PARASITE ] [LUNGS ] [MOUTH ] - Timer: 6 The afflicted has eaten a mushroom that they really
+        shouldn’t have. Now, when they breathe, the spores are released in a noxious cloud. Consequence: They’ve infected
+        everyone else in the village forcing other witches to get involved. What do the witches do? Lose 3 Reputation.'
+      consequence: They’ve infected everyone else in the village forcing other witches to get involved. What do the witches
+        do? Lose 3 Reputation.
+    '2':
+      name: Giver’s Disease
+      tags:
+      - SENSES
+      - HOT
+      - BURN
+      timer: 6
+      potency: 3
+      description: 'Giver’s Disease - [SENSES ] [HOT ] [BURN ] - Timer: 6 The afflicted has become allergic to material possessions
+        and has started giving away all of their worldly goods. If left untreated, leads to hypothermia, starvation, and boredom.
+        Consequence: You took too long and they gave away everything. Lose 2 Reputation.'
+      consequence: You took too long and they gave away everything. Lose 2 Reputation.
+    '3':
+      name: Candlesick
+      tags:
+      - EAR
+      - BURN
+      - HOT
+      timer: 6
+      potency: 3
+      description: 'Candlesick - [EAR ] [BURN ] [HOT ] - Timer: 6 A nasty disease that causes the afflicted to produce half
+        their weight in earwax each day. Burns go hand in hand with this affliction. Consequence: One of their earwax piles
+        catches fire and burns something. What was it? Lose 2 Reputation.'
+      consequence: One of their earwax piles catches fire and burns something. What was it? Lose 2 Reputation.
+    '4':
+      name: Shattered Tooth
+      tags:
+      - PAIN
+      - TEETH
+      - INFECTION
+      timer: 6
+      potency: 3
+      description: 'Shattered Tooth - [PAIN ] [TEETH ] [INFECTION ] - Timer: 6 A fall, a punch, trying to open a tin with
+        their teeth, the people of High Rannoc seem to be researching all the possible ways to break one’s teeth. The afflicted
+        is just the latest. Consequence: They go to the village doctor instead. Lose 2 Reputation.'
+      consequence: They go to the village doctor instead. Lose 2 Reputation.
+    '5':
+      name: Thunder Struck
+      tags:
+      - PAIN
+      - NERVES
+      - BURN
+      timer: 6
+      potency: 3
+      description: 'Thunder Struck - [PAIN ] [NERVES ] [BURN ] - Timer: 6 Sometimes the gods get angry at certain people.
+        Other times they were foolish enough to wear plate mail in a thunderstorm atop a mountain. Either way they’re in agony.
+        Consequence: They pass on from their injuries. What were their last words? Lose 4 Reputation.'
+      consequence: They pass on from their injuries. What were their last words? Lose 4 Reputation.
+    '6':
+      name: Partial Petrification
+      tags:
+      - MAGIC
+      - SKIN
+      - NERVES
+      timer: 6
+      potency: 3
+      description: 'Partial Petrification - [MAGIC ] [SKIN ] [NERVES ] - Timer: 6 Cursed object, gorgon’s gaze, or a spell
+        gone wrong, whatever the cause, a portion of the afflicted is uncomfortably petrified. Consequence: The petrified
+        portion breaks off. What do they do with it? How does this affect them? Lose 2 Reputation.'
+      consequence: The petrified portion breaks off. What do they do with it? How does this affect them? Lose 2 Reputation.
+    '7':
+      name: Phantom Limb
+      tags:
+      - SPIRIT
+      - SLEEP
+      timer: 6
+      potency: 2
+      description: 'Phantom Limb - [SPIRIT ] [SLEEP ] - Timer: 6 A genetic disorder that affects those with The Gift. The
+        afflicted sprouts the ghostly limb of a deceased relative that they have no control over. Consequence: They learn
+        to live with it, as much as it annoys other people. Lose 3 Reputation.'
+      consequence: They learn to live with it, as much as it annoys other people. Lose 3 Reputation.
+    '8':
+      name: Hover Hives
+      tags:
+      - SKIN
+      - PAIN
+      timer: 6
+      potency: 2
+      description: 'Hover Hives - [SKIN ] [PAIN ] - Timer: 6 A dangerous ailment to those with less than solid roofs, tiny
+        hives have appeared all over the afflicted that causes them to float. The more hives, the stronger the lift. Consequence:
+        They float off into the sky and the Balloonist has to go fetch them. Lose 1 Reputation.'
+      consequence: They float off into the sky and the Balloonist has to go fetch them. Lose 1 Reputation.
+    '9':
+      name: Ventriloquist Cough
+      tags:
+      - MAGIC
+      - COUGH
+      timer: 4
+      potency: 2
+      description: 'Ventriloquist Cough - [MAGIC ] [COUGH ] - Timer: 4 A rare ailment that sees the poor afflicted coughing
+        someone else’s cough. They make the motions, ending up with a sore throat and dry mouth. Worst though is the thrown
+        sound. Consequence: The puppet master gets over their cold and the afflicted goes home to lie down. Lose 2 Reputation.'
+      consequence: The puppet master gets over their cold and the afflicted goes home to lie down. Lose 2 Reputation.
+    '10':
+      name: A Terrible Fright
+      tags:
+      - HAIR
+      - PAIN
+      - MOOD
+      timer: 6
+      potency: 3
+      description: 'A Terrible Fright - [HAIR ] [PAIN ] [MOOD ] - Timer: 6 The afflicted has seen something so horrifying,
+        so terrifying, so unbelievably scary that their hair has turned white and they’ve torn their throat from screaming.
+        Consequence: They run off screaming. Are they ever found? Lose 1 Reputation.'
+      consequence: They run off screaming. Are they ever found? Lose 1 Reputation.
+    jack:
+      name: Silver Burn
+      tags:
+      - CURSE
+      - BURN
+      timer: null
+      potency: 2
+      description: Silver Burn - [CURSE ] [BURN ] Silver is an irritant to more than just the stereotypical werewolf. The
+        afflicted may have a form of lycanthropy, vampirism, or even a form of Giver’s Disease.
+      consequence: ''
+    queen:
+      name: Tongue Stung
+      tags:
+      - MOUTH
+      - BOILS
+      - PAIN
+      timer: null
+      potency: 3
+      description: Tongue Stung - [MOUTH ] [BOILS ] [PAIN ] The recent trend in ‘organic’ foods has led some clever clogs,
+        the afflicted included, to try get their honey straight from the hive.
+      consequence: ''
+    king:
+      name: Bard Boils
+      tags:
+      - BOILS
+      - PAIN
+      timer: 4
+      potency: 2
+      description: 'Bard Boils - [BOILS ] [PAIN ] - Timer: 4 Look, you have a duty of care to all who come to you, even if
+        the affliction is… unseemly. Witch Elders also recommend smacking the bard responsible with an oak spoon. Consequence:
+        They get embarrased and run off home to pretend this never happened. Lose 1 Reputation. Extra: If you make an extra
+        potion and visit The Village within the Timer you may gain an extra 20 Silver from the bard. 16'
+      consequence: They get embarrased and run off home to pretend this never happened. Lose 1 Reputation.
+      extra: If you make an extra potion and visit The Village within the Timer you may gain an extra 20 Silver from the bard.
+        16
+  advanced:
+    '8':
+      name: Reader’s Digestion
+      tags:
+      - STOMACH
+      - DEHYDRATION
+      timer: 6
+      potency: 2
+      description: 'Reader’s Digestion - [STOMACH ] [DEHYDRATION ] - Timer: 6 Primarily the bane of student scholars using
+        a ‘digest knowledge’ spell incorrectly, this ailment is characterised by word vomit, indigestion, and dehydration.
+        Consequence: They write and publish a report on why you suck. Write an excerpt from that report in your journal. Lose
+        2 Reputation.'
+      consequence: They write and publish a report on why you suck. Write an excerpt from that report in your journal. Lose
+        2 Reputation.
+    '9':
+      name: Fairy Fever [SENSES ] [COLD ] [BONES ] [SWEET 3+]
+      tags:
+      - SENSES
+      - COLD
+      - BONES
+      timer: 8
+      potency: 4
+      description: 'Fairy Fever [SENSES ] [COLD ] [BONES ] [SWEET 3+] – Timer: 8 Makes the afflicted believe they are a fairy.
+        Usually accompanied by hypothermia and broken legs from the scant clothing and belief they can fly. Consequence: They
+        escape from the village doctor and run off with the fairies. Are they happy? What is life like for them now? Lose
+        2 Reputation.'
+      consequence: They escape from the village doctor and run off with the fairies. Are they happy? What is life like for
+        them now? Lose 2 Reputation.
+    '10':
+      name: Ashy Foot
+      tags:
+      - CURSE
+      - RASH
+      - BURN
+      timer: 4
+      potency: 4
+      description: 'Ashy Foot - [CURSE ] [RASH ] [BURN ] [POISON 2+] - Timer: 4 Thanks to a partial demonic possession, the
+        afflicted’s feet take on an ashy texture, becoming very dry and sore, especially when they walk on hallowed ground.
+        Consequence: Their foot draws a sigil and summons the demon to our world. How does the demon get on? What does it
+        have planned? Lose 1 Reputation.'
+      consequence: Their foot draws a sigil and summons the demon to our world. How does the demon get on? What does it have
+        planned? Lose 1 Reputation.
+    jack:
+      name: Liar’s Lips
+      tags:
+      - PAIN
+      - MOUTH
+      - CURSE
+      timer: 4
+      potency: 3
+      description: 'Liar’s Lips - [PAIN ] [MOUTH ] [CURSE ] - Timer: 4 A fae curse, the afflicted is either unable to tell
+        the truth or only able to tell the truth, often with hilarious results… at least for those watching. Consequence:
+        An unfortunate lie or a harsh truth – what did they say to cause such a commotion? Lose 2 Reputation.'
+      consequence: An unfortunate lie or a harsh truth – what did they say to cause such a commotion? Lose 2 Reputation.
+    queen:
+      name: Diver’s Fee
+      tags:
+      - PAIN
+      - BLOOD
+      - NERVES
+      - STOMACH
+      timer: null
+      potency: 4
+      description: Diver’s Fee - [PAIN ] [BLOOD ] [NERVES ] [STOMACH ] A common ailment among divers who have come up too
+        quickly. Bubbles of gas form in the blood and play all sorts of havoc with the body. Take your time when diving.
+      consequence: ''
+    king:
+      name: Grumbly Tums
+      tags:
+      - SPIRIT
+      - STOMACH
+      - SLEEP
+      timer: 8
+      potency: 3
+      description: 'Grumbly Tums - [SPIRIT ] [STOMACH ] [SLEEP ] - Timer: 8 A side-effect of accidentally eating a ghost is
+        that the dearly departed sits in the afflicted’s stomach and complains, causing stomach irritation and insomnia. Doubly
+        so if its a poultry-geist. Consequence: They manage to get the ghost out… in your bathroom. Describe the ghost. What
+        do they do to haunt you? Lose 2 Reputation. 18'
+      consequence: They manage to get the ghost out in your bathroom. Describe the ghost. Lose 2 Reputation.
+    '1':
+      name: Spore Breath
+      tags:
+      - PARASITE
+      - LUNGS
+      - MOUTH
+      timer: 6
+      description: The afflicted has eaten a mushroom they really shouldn't have. Now, when they breathe, spores are released
+        in a noxious cloud.
+      consequence: They've infected everyone else in the village forcing other witches to get involved. Lose 3 Reputation.
+      potency: 3
+    '2':
+      name: Giver's Disease
+      tags:
+      - SENSES
+      - HOT
+      - BURN
+      timer: 6
+      description: The afflicted has become allergic to material possessions and has started giving away all of their worldly
+        goods.
+      consequence: You took too long and they gave away everything. Lose 2 Reputation.
+      potency: 3
+    '3':
+      name: Candlesick
+      tags:
+      - EAR
+      - BURN
+      - HOT
+      timer: 6
+      description: A nasty disease that causes the afflicted to produce half their weight in earwax each day.
+      consequence: One of their earwax piles catches fire and burns something. Lose 2 Reputation.
+      potency: 3
+    '4':
+      name: Shattered Tooth
+      tags:
+      - PAIN
+      - TEETH
+      - INFECTION
+      timer: 6
+      description: A fall, a punch, or trying to open a tin with their teeth — the afflicted has broken a tooth.
+      consequence: They go to the village doctor instead. Lose 2 Reputation.
+      potency: 3
+    '5':
+      name: Thunder Struck
+      tags:
+      - PAIN
+      - NERVES
+      - BURN
+      timer: 6
+      description: Struck by lightning or divine wrath atop a mountain in plate mail.
+      consequence: They pass on from their injuries. Lose 4 Reputation.
+      potency: 3
+    '6':
+      name: Partial Petrification
+      tags:
+      - MAGIC
+      - SKIN
+      - NERVES
+      timer: 6
+      description: A portion of the afflicted is uncomfortably petrified.
+      consequence: The petrified portion breaks off. Lose 2 Reputation.
+      potency: 3
+    '7':
+      name: Phantom Limb
+      tags:
+      - SPIRIT
+      - SLEEP
+      timer: 6
+      description: The afflicted sprouts the ghostly limb of a deceased relative they have no control over.
+      consequence: They learn to live with it. Lose 3 Reputation.
+      potency: 2
+  expert:
+    '1':
+      name: Wrong Form [MAGIC ] [MOOD ] [HAIR ] [SKIN ] A spell gone wrong, a curse, or even just a general feeling of dysphoria,
+        the afflicted wants to change their body to reflect their true self.
+      tags:
+      - MAGIC
+      - MOOD
+      - HAIR
+      - SKIN
+      timer: null
+      potency: 4
+      description: Wrong Form [MAGIC ] [MOOD ] [HAIR ] [SKIN ] A spell gone wrong, a curse, or even just a general feeling
+        of dysphoria, the afflicted wants to change their body to reflect their true self.
+      consequence: ''
+    '2':
+      name: Botched Resurrection [GHOUL ] [CURSE ] [WOUND ] [COLD ]
+      tags:
+      - GHOUL
+      - CURSE
+      - WOUND
+      - COLD
+      timer: 6
+      potency: 4
+      description: 'Botched Resurrection [GHOUL ] [CURSE ] [WOUND ] [COLD ] - Timer: 6 The afflicted recently passed on, only
+        to have their soul brought back from the great beyond. However, as is usually the case, they’re more of an animated
+        corpse than them. Consequence: You aren’t able to bring them back properly and have to put the corpse down. Write
+        something about this experience. Lose 3 Reputation.'
+      consequence: You aren’t able to bring them back properly and have to put the corpse down. Write something about this
+        experience. Lose 3 Reputation.
+    '3':
+      name: Hearth Heart [SENSES ] [HOT ] [DEHYDRATION ]
+      tags:
+      - SENSES
+      - HOT
+      - DEHYDRATION
+      timer: 6
+      potency: 3
+      description: 'Hearth Heart [SENSES ] [HOT ] [DEHYDRATION ] - Timer: 6 The afflicted has such a tremendous fever its
+        as if a fire’s burning in their chest. Annoyingly it also makes them want to hug friends, family, and strangers. Consequences:
+        Everyone gets sick. You can’t visit the Village during the next Ailment. Lose 4 Reputation.'
+      consequence: ''
+    '4':
+      name: Dragon Mouth [MOUTH ] [HOT ] [DEHYDRATION ] [MAGIC ]
+      tags:
+      - MOUTH
+      - HOT
+      - DEHYDRATION
+      - MAGIC
+      timer: 6
+      potency: 4
+      description: 'Dragon Mouth [MOUTH ] [HOT ] [DEHYDRATION ] [MAGIC ] - Timer: 6 Scaly lips and a burning hot tongue that
+        evaporates almost everything they drink, this ailment tends to come from curses or the mucus of a sick dragon. Consequence:
+        This one’s fatal. Left too long they passed on. Write something about this moment and lose 4 Reputation.'
+      consequence: This one’s fatal. Left too long they passed on. Write something about this moment and lose 4 Reputation.
+    '5':
+      name: Clock Shock [TIME ] [MAGIC ] [MOOD ] [SWEET 3+]
+      tags:
+      - TIME
+      - MAGIC
+      - MOOD
+      timer: 6
+      potency: 4
+      description: 'Clock Shock [TIME ] [MAGIC ] [MOOD ] [SWEET 3+] - Timer: 6 A side-effect to an anti-ageing cream, a dip
+        in the Fountain of Youth, or a spell gone wrong. Whatever the cause, the afflicted is ageing in reverse. Serves the
+        big babies right. Consequence: They de-age past their birth and disappear. Write something about this experience and
+        lose 8 Reputation.'
+      consequence: They de-age past their birth and disappear. Write something about this experience and lose 8 Reputation.
+    '6':
+      name: Banshee’s Blessing [EAR ] [BLOOD ] [MOOD ] [MAGIC ]
+      tags:
+      - EAR
+      - BLOOD
+      - MOOD
+      - MAGIC
+      timer: 6
+      potency: 4
+      description: 'Banshee’s Blessing [EAR ] [BLOOD ] [MOOD ] [MAGIC ] - Timer: 6 A wrong number situation, the afflicted
+        has heard a banshee’s wail. Their blood is running cold and they are sick with fright…they may also have a bit of
+        hearing loss. Consequence: The link wasn’t severed in time and they shared the fate of the banshee’s target. Lose
+        8 Reputation. 19'
+      consequence: The link wasn’t severed in time and they shared the fate of the banshee’s target. Lose 8 Reputation. 19
+    '7':
+      name: Temporal Hiccups [MAGIC ] [PAIN ] [TIME ] [STOMACH ]
+      tags:
+      - MAGIC
+      - PAIN
+      - TIME
+      - STOMACH
+      timer: 6
+      potency: 4
+      description: 'Temporal Hiccups [MAGIC ] [PAIN ] [TIME ] [STOMACH ] - Timer: 6 A very frustrating ailment that causes
+        the afflicted to randomly jump backwards or forwards in time, leading to a collection of bruises. Consequence: They
+        hiccup away to some other period of history. You find mention of them in a history book, what does it say? Lose 4
+        Reputation.'
+      consequence: They hiccup away to some other period of history. You find mention of them in a history book, what does
+        it say? Lose 4 Reputation.
+    '8':
+      name: Saturday Night Fever [FEET ] [PAIN ] [NERVES ] [HOT ]
+      tags:
+      - FEET
+      - PAIN
+      - NERVES
+      - HOT
+      timer: 6
+      potency: 4
+      description: 'Saturday Night Fever [FEET ] [PAIN ] [NERVES ] [HOT ] - Timer: 6 A full body nerve dysfunction that makes
+        it look like the afflicted is dancing… albeit terribly. Exhaustion, embarrassment, and aching feet are common. Consequence:
+        A passing bard notices their moves and gives them a future in show business. What happens to them? Lose 4 Reputation.'
+      consequence: A passing bard notices their moves and gives them a future in show business. What happens to them? Lose
+        4 Reputation.
+    '9':
+      name: Vampirism [BURN ] [BLOOD ] [CURSE ]
+      tags:
+      - BURN
+      - BLOOD
+      - CURSE
+      timer: 6
+      potency: 3
+      description: 'Vampirism [BURN ] [BLOOD ] [CURSE ] - Timer: 6 While quite content with the immortality and unholy powers,
+        the afflicted has work in the morning and can’t afford a good cape anyway. Consequence: They warm up to the idea,
+        so to speak and decide to stay as a vampire. What do they get up to that gets you in bother? Lose 4 Reputation.'
+      consequence: They warm up to the idea, so to speak and decide to stay as a vampire. What do they get up to that gets
+        you in bother? Lose 4 Reputation.
+    '10':
+      name: Astral Rejection [SPIRIT ] [MAGIC ] [SENSES ] [BLOOD ]
+      tags:
+      - SPIRIT
+      - MAGIC
+      - SENSES
+      - BLOOD
+      timer: 6
+      potency: 4
+      description: 'Astral Rejection [SPIRIT ] [MAGIC ] [SENSES ] [BLOOD ] - Timer: 6 Leaving one’s body to travel through
+        the astral plane is quite the feat of magic and spirituality. Sadly, the spirit can change so much that the body rejects
+        it. Consequence: Their spirit cannot rejoin their body so they stick around. What are they like? Is this a haunting
+        or a house-mate scenario? Lose 2 Reputation.'
+      consequence: Their spirit cannot rejoin their body so they stick around. What are they like? Is this a haunting or a
+        house-mate scenario? Lose 2 Reputation.
+    jack:
+      name: Portal Pinch [WOUND ] [INFECTION ] [MAGIC ] [PAIN ]
+      tags:
+      - WOUND
+      - INFECTION
+      - MAGIC
+      - PAIN
+      timer: 6
+      potency: 4
+      description: 'Portal Pinch [WOUND ] [INFECTION ] [MAGIC ] [PAIN ] - Timer: 6 The afflicted has been thinking with portals
+        and thanks to a bit of botched math they’ve gotten a limb stuck in one realm while the rest of them is here. Consequence:
+        Something gets the limb. For a brief moment you got to see a whole new realm. Describe it. Lose 2 Reputation. Extra:
+        If you have a WAND you can keep the tiny portal open as a Decoration.'
+      consequence: Something gets the limb. For a brief moment you got to see a whole new realm. Describe it. Lose 2 Reputation.
+      extra: If you have a WAND you can keep the tiny portal open as a Decoration.
+    queen:
+      name: Ghoul Gnawed [WOUND ] [GHOUL ] [BLOOD ]
+      tags:
+      - WOUND
+      - GHOUL
+      - BLOOD
+      timer: 6
+      potency: 3
+      description: 'Ghoul Gnawed [WOUND ] [GHOUL ] [BLOOD ] - Timer: 6 Common among adventurers, tomb raiders, and grave diggers,
+        the afflicted has been bitten by a ghoul and will, if not treated, turn into one once the disease reaches the brain.
+        Consequence: They bite someone. Start another Ghoul Gnawed potion. If you fail it again, the whole village gets bitten.
+        Describe how you escape the localised ghoul apocalypse and how it all gets sorted out. Lose 15 Reputation. If you
+        succeed on the second Ghoul Gnawed potion, only lose 4 Reputation.'
+      consequence: They bite someone. Start another Ghoul Gnawed potion. If you fail it again, the whole village gets bitten.
+        Describe how you escape the localised ghoul apocalypse and how it all gets sorted out. Lose 15 Reputation. If you
+        succeed on the second Ghoul Gnawed potion, only lose 4 Reputation.
+    king:
+      name: Double Trouble The afflicted has had the unfortunate luck of catching two things at once. Draw two
+      tags: []
+      timer: null
+      potency: 1
+      description: Double Trouble The afflicted has had the unfortunate luck of catching two things at once. Draw two
+      consequence: ''
+      special: draw_two_advanced

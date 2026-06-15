@@ -1,0 +1,17 @@
+# whispers_jokers.yaml — Whispers in the Walls 2e (ORC); verify against docs/whispers PDF
+first:
+  body: "A chattering, moaning sound - muffled by the walls. It bangs and clatters upon the \ninside.\
+    \ It screams, a sad litany of noises that you can just barely resolve int words, \nbroken and wretched.\
+    \ A baseboard knocks loose and, behind it, a hole. A single bone \nrolls outwards and silence reappears.\n\
+    What did the voice say? Describe its characteristics. Can you see into the hole it \nleft behind?\
+    \ What was the bone it revealed to you? What is odd about it?"
+second:
+  body: "A deep, rumbled harump and the floor bulges. Something large - much too large - \npushes against\
+    \ the boards and they creek upwards. You stumble out of the center of the \nroom towards the edges\
+    \ as the boards rise towards the ceiling before the center begins \nto crack, then shatter. A bloated\
+    \ mottled hand pushes the hole wider and A flurry of \nmotion erupts from the gaping wound before\
+    \ the floor slams back into place. A rotten \nfinger severed, the broken boards resealed.\nWhat was\
+    \ the flurry of motion that came out of the hole? Is it still in the room or \ndid it also vanish?\
+    \ You inspect the massive severed finger - what is carved into \nthe nail?"
+all_revealed:
+  body: Resolve the second Joker. Immediately go to the Joker’s Ending. Good luck.

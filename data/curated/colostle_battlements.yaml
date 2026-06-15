@@ -1,0 +1,35 @@
+# PDF: core-rulebook.pdf p.46
+ranks:
+  ace:
+    black: "STEALTHY — nomad camp in outbuilding (rest heals one WOUND)"
+    red: "EXPOSED! — nomad camp in outbuilding"
+  "2":
+    black: "STEALTHY — barren prairie plain (little cover)"
+    red: "EXPOSED! — barren prairie plain"
+  "3":
+    black: "STEALTHY — battlement edge overlooking rooftops below"
+    red: "EXPOSED! — battlement edge overlooking rooftops below"
+  "4":
+    black: "STEALTHY — small castle tower outbuilding (draw again: black=ITEM, red=person)"
+    red: "EXPOSED! — small castle tower outbuilding"
+  "5":
+    black: "STEALTHY — crashed Astrolithic Rook (Helm/Arm/Mounted materials, no Rookling)"
+    red: "EXPOSED! — crashed Astrolithic Rook"
+  "6":
+    black: "STEALTHY — rooftop forest (cover from Astrolithics)"
+    red: "EXPOSED! — rooftop forest"
+  "7":
+    black: "STEALTHY — ice wastes tundra rooftop"
+    red: "EXPOSED! — ice wastes tundra rooftop"
+  "8":
+    black: "STEALTHY — lone nomad fleeing an Astrolithic Rook"
+    red: "EXPOSED! — lone nomad fleeing an Astrolithic Rook"
+  "9":
+    black: "STEALTHY — hole in the roof (climb down to Rafters?)"
+    red: "EXPOSED! — hole in the roof"
+  "10":
+    black: "STEALTHY — friendly adventurer (helps vs Astrolithic or heals one WOUND)"
+    red: "EXPOSED! — friendly adventurer"
+  jack: "A way back down — return to base Roomlands encounters."
+  queen: "Counts as one RED card, no matter which colour you drew."
+  king: "Counts as two RED cards, no matter which colour you drew."

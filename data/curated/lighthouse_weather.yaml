@@ -1,0 +1,39 @@
+# Weather moods — p.8
+moods:
+  tired:
+    label: Tired / Drained
+    description: >-
+      A vicious storm is swirling up from the edge of the universe and causing all sorts of havoc.
+  pained:
+    label: Pained / Uncomfortable
+    description: >-
+      A brisk solar wind is blowing around the lighthouse. You can hear the wind
+      whistling, singing, shouting, or whispering around you.
+  happy:
+    label: Happy
+    description: >-
+      It is a cold, clear night. Something like snow is falling around the lighthouse
+      and covering the ground — possibly space dust.
+  angry:
+    label: Angry
+    description: >-
+      Strange lights dance across the sky. The lights are intense and comparable to daytime.
+  excited:
+    label: Excited
+    description: >-
+      It's rather warm. You see more creatures and ships around enjoying the nice weather.
+  calm:
+    label: Relaxed / Calm
+    description: >-
+      It's raining softly, heavily, torrentially, or in an off-beat rhythm.
+      Visibility is quite limited; it will be quite hard to see anything.
+  anxious:
+    label: Anxious
+    description: >-
+      A calm night and clear skies. There is an eerie quiet, comfortable silence,
+      or foreboding hush.
+  sad:
+    label: Sad / Down
+    description: >-
+      A meteor shower. Some may pass close to the tower. You see flashes of lights
+      all through the night along with sounds of impact around you.

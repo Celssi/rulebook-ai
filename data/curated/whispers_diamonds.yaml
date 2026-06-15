@@ -1,0 +1,76 @@
+# whispers_diamonds.yaml — Whispers in the Walls 2e (ORC); verify against docs/whispers PDF
+ranks:
+  ace:
+    body: "The floor melts and swirls, a great whirlpool of wood and stone. The \nfurniture collides,\
+      \ breaks and migrates around you until, at last, calm. The \nfloor is still swirled and at the center,\
+      \ an object has been half swallowed.\nWhat is the object? You inspect it and notice something glows.\
+      \ What is it?"
+  '2':
+    body: "Air vents seep and pulse a pungent air into the room. It is intoxicating then \nsuffocating\
+      \ with how overpowering the scent is, it permeates your entire \nbeing and pushes all other air\
+      \ from your lungs. Just as you run to open a \nwindow to pull in some sweet, fresh oxygen, the pressure\
+      \ subsides and you \ncan breathe once more.\nWhat smell has the floor shown you? You peer into the\
+      \ vent and \nsomething is at the bottom. What do you see?"
+  '3':
+    body: "A table is ripped from its place and screeches across the floor.  Its legs begin \nto smoke\
+      \ from the friction, it repeats a pattern, over and over, the room \nscarring itself to make you\
+      \ understand. The floor itself becomes charred, \nthe table legs ignite. Then the table is ripped\
+      \ into the air and smashed down \nto splinters.\nWhat was drawn into the floor? As you inspect the\
+      \ charred splinters of \nthe table, something glints and catches your eye. What is it?"
+  '4':
+    body: "Water bubbles up from the seams of the floor, pushing its way through. \nGurgling, bellowing,\
+      \ crying, and it resolves into a tune you recognize, the \npressure of the water through the gaps\
+      \ thrumming a lost song. The interior \nnow smells of wet dust and mold.\nWhat tune does the floor\
+      \ hum to you? How do you know it?"
+  '5':
+    body: "Vines and tendrils push and slither, expanding then breaking the floor. They \ngrab and pull\
+      \ you across the room, thorns piercing your skin, to where they \nare constructing a writhing archway.\
+      \ Cradled on an inky capped mushroom \nlays a splotchy, torn page from a journal that had long ago\
+      \ slipped into the \ncrevices.\nThe page is mostly illegible, the black inky slime from the mushroom\
+      \ not \nhelping, but a sentence is still legible, though perhaps out of context. What \nis the sentence?\n\
+      \n\nabuse underfoot of every moment. They collect and hold \nthe blood and tears of generations.\n\
+      \n13"
+  '6':
+    body: "A subtle movement, the groan underneath your feet and the floor twists and \nturns, molding\
+      \ itself into a single, small object. After forming, it pinches off \nfrom the rest of the floor\
+      \ and clatters to the floor. It holds a hollow sound.\nWhat did the floor make? Describe the object.\
+      \ The walls of the object are \nthin and brittle. Remembering the hollow sound, you break it open\
+      \ and a \npungent smell wafts outward. Describe the smell."
+  '7':
+    body: "A piano melts before your eyes, its wood turning to a viscous black liquid \nuntil it puddles\
+      \ on the ground. The white and black keys form a horrific \nopening of a mouth. It sings in a tune\
+      \ you know ,off-key, before it gurgles and \neven the piano keys melt and swirl into the puddle.\n\
+      What tune did the keys play for you? What is the general emotion of the \ntune or when is it commonly\
+      \ played?  Are there lyrics to it? If so, what \nis the common verse?"
+  '8':
+    body: "A wood burning stove begins to glow red hot then white hot until the outer \nsurface liquefies\
+      \ and melts away. You can feel the heat radiate outwards. The \ninterior grate is exposed, still\
+      \ black-cool. On it sits a half burned object \nsomeone clearly wanted to be rid of.\nIt is sad\
+      \ to think this object would ever see fire instead of love. Describe the \nobject thrown into the\
+      \ stove."
+  '9':
+    body: "Twenty thousand if you could count them. The small, dead gnats that have \ncollected in the\
+      \ unseen places of the ground jitter and shake out of their \nburials. They twist and writhe to\
+      \ spell a single, necrotic… palindrome?\nWhat palindrome do the gnats show you? Can be a word or\
+      \ phrase.\n\n14"
+  '10':
+    body: "Lightning strikes outside, then again and again. It feels like its trying to \nbatter its way\
+      \ in. The room rumbles and shakes before the ceiling above \nexplodes downwards and the lightning\
+      \ embeds itself on the floor, tracing \nintricate designs. \nThe lightning has drawn a symbol on\
+      \ the ground. Describe or draw it. It is \nfamiliar to you in some way. How?"
+  jack:
+    body: "A lamp flickers. No, you notice the regularity of it. You focus more and yes - it \nis Morse\
+      \ Code. The lamp is flickering its sequence over and over. It strobes \nfaster and the bulb sputters\
+      \ to keep up, beginning to miss ignitions until it \nshatters.\nWrite down the Morse Code the lamp\
+      \ gave. It can be a word, phrase \nor sentence."
+  queen:
+    body: "The floor weeps. Droplets of water gather, bead, and fall skyward. You can \nsmell their salt,\
+      \ the floor reddens like your own eyes during painful, racking \nsobs. You pat the floor in comfort,\
+      \ lay down on it and stare upwards at the \ntears. They glisten to a low fidelity scene.\nDescribe\
+      \ the still life moment the floor has shed tears for, that \nprovided it so much grief."
+  king:
+    body: "Anger and malice. A punching rhythm from the floor beats against your \nchest. Your eardrums\
+      \ pop as it bounces you slightly into the air. You walk \naround the room. Sometimes it slows, other\
+      \ times it speeds up until finely, it \nis a rapid, hectic drone of pounding. You place your hand\
+      \ in front of you, \ntouching something, and the floor falls silent.\nWhat did the floor direct\
+      \ you to in the room? It has damage, its own scar \nof sorts. How is it marred?"

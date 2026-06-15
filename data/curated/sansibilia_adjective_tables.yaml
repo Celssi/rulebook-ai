@@ -1,0 +1,29 @@
+# Adjective table — red suits (hearts/diamonds) vs black suits (clubs/spades), p.8
+red:
+  ace: serendipitous
+  "2": first time
+  "3": mysterious
+  "4": long overdue
+  "5": calculated
+  "6": planned
+  "7": queer
+  "8": illuminating
+  "9": much-needed
+  "10": inventive
+  jack: hopeful
+  queen: joyous
+  king: jubilant
+black:
+  ace: illicit
+  "2": fraught
+  "3": sinister
+  "4": intriguing
+  "5": isolated
+  "6": unexpected
+  "7": harrowing
+  "8": erratic
+  "9": shocking
+  "10": distant
+  jack: dangerous
+  queen: poetic
+  king: inspired

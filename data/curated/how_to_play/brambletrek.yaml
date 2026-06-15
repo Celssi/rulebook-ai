@@ -1,0 +1,56 @@
+game_id: brambletrek
+title: Näin pelaat
+source:
+  pdf: docs/brambletrek/Brambletrek_-_Complete_Digital_Edition.pdf
+  pages: [6, 7, 8, 12, 13, 14, 16, 24, 26, 27, 30, 36]
+sections:
+  - heading: Yleiskuva
+    body: |
+      Brambletrek on narratiivinen solojournalointi-RPG Hyhillin metsässä. Pelaat Gnawborn-hahmoa Brambletrekin kylästä, joka lähtee matkalle. Tavoite ei ole "voittaa" vaan kirjoittaa oma tarinasi merkintä kerrallaan — tempo, syvyys ja tulkinta ovat sinun käsissäsi.
+
+      Taistelukohtaukset ovat ohjeita mielikuvitukselle; intensiteetti riippuu sinusta.
+  - heading: Tarvitset
+    bullets:
+      - päiväkirja tai tekstieditori
+      - tavallinen 52 kortin pakka (ei jokereita)
+      - kuusisivuinen noppa (taisteluun ja satunnaisiin heittoihin)
+  - heading: Hahmon luonti
+    body: |
+      Luo Gnawborn, jolla on:
+
+      - **Reason** — miksi lähdet matkalle (voit nostaa kortin taulukosta, s. 12)
+      - **Background** — miten muut suhtautuvat sinuun (taulukko, s. 13)
+      - **Trinket** — sentimentaalinen esine (s. 14)
+      - **Legacy** — yksi kuudesta luokasta (Seer, Scrapper, Storyteller, Seeker, Sneaker, Soother)
+      - **Resurssit** — Health, Morale ja Supplies
+  - heading: Hahmon luonti — tarkemmin
+    body: |
+      **Resurssit:** nosta 6 korttia ja jaa kahteen per stat (ässä 11, J/Q/K 10, max 20). Jos parin summa on 6 tai vähemmän, saat nostaa yhden ylimääräisen kortin kyseiseen statiin.
+
+      **Legacy:** valitse luokka tai heitä d6. Jokaisella Legacylla on boost ja flaw, jotka vaikuttavat statteihin valinnan yhteydessä.
+
+      **Pika-luonti:** nosta Reason, Background, Trinket ja kuusi resurssikorttia kerralla.
+  - heading: Matkan perussäännöt
+    body: |
+      Jokaisena pelipäivänä nosta **4 korttia** päivän tapahtumille. **Väri** määrää kategorian (punainen = suotuisa, musta = epäsuotuisa), **arvo** kertoo tapahtuman sisällön — katso Exploration Tables (s. 24). Käytetyt kortit discard-pinoon; sekoita uudelleen jokaisen uuden päivän alussa.
+
+      Ratkaise neljä tapahtumaa ja päätä päivä lepoon. Kolme resurssia muuttuvat tapahtumien mukana. Jos jokin resurssi putoaa nollaan, Gnawborn on hengenvaarassa — heitä recovery-taulukko (s. 16).
+  - heading: Taistelu
+    body: |
+      Taistelussa nosta aloituskortti itsellesi ja vastustajalle — korkeampi arvo aloittaa. Sen jälkeen nosta 4 taktiikkakorttia ja ratkaise kohtaus sääntökirjan taisteluosion mukaan (s. 30–31). Legacy voi tarjota erityisiä taktiikoita.
+  - heading: Aldwund ja seikkailumoduulit
+    body: |
+      **Aldwund (Depths)** käyttää omia taulukoitaan (s. 26–27). Valitse **Active adventure** moduulille (esim. Birthday of Wonders, Winter Gift) — käytä silloin Adventure scene -nostoa (3 korttia) ydinmetsän sijaan.
+  - heading: Tarinan lopetus
+    body: |
+      **Reason ending** (s. 36) kertoo kaksi vaihtoehtoa: todellinen lopetus tai paluu Hyhilliin myöhemmin.
+  - heading: Sovelluksessa
+    bullets:
+      - Asetukset → **Character**: nimi, Reason / Background / Trinket, Legacy, resurssit, valinnainen Active adventure; **Save character**
+      - Asetukset → **Play**: story mode, physical vs virtual deck
+      - Shortcuts → **Journey day (4 cards)**; **Aldwund day** syvyystaulukoille; **Adventure scene** jos moduuli valittu
+      - Play → **Journey**: ratkaise kortit järjestyksessä, **Apply to sheet**, **Finish day** kun päivä valmis
+      - Nollasta resurssista: Health / Morale / Supplies recovery -shortcutit
+      - "Combat setup ja Overcome the odds -shortcutit taistelu- ja taitotarkistuksiin"
+      - Sivupalkki **Gnawborn**: statit, In Aldwund, päivittäiset Legacy-kyvyt
+      - "Lonelog tallentaa nostot ja merkinnät"

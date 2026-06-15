@@ -48,11 +48,19 @@ class BrambletrekPlugin(GamePlugin):
             has_character_sheet=True,
         )
 
+    @staticmethod
+    def _character(context: RagContext):
+        from src.games.brambletrek.character import character_from_dict
+
+        if context.play_entity:
+            return character_from_dict(context.play_entity)
+        return None
+
     def enhance_query(self, question: str, context: RagContext) -> str:
-        return bt_rag.enhance_query(question, context.brambletrek_character)
+        return bt_rag.enhance_query(question, self._character(context))
 
     def preprocess_question(self, question: str, context: RagContext) -> str:
-        return bt_rag.preprocess_question(question, context.brambletrek_character)
+        return bt_rag.preprocess_question(question, self._character(context))
 
     def boost_retrieval(
         self,
@@ -68,14 +76,14 @@ class BrambletrekPlugin(GamePlugin):
             index=boost_ctx.index,
             retrieval_k=boost_ctx.retrieval_k,
             use_hybrid=boost_ctx.use_hybrid,
-            brambletrek_character=boost_ctx.rag_context.brambletrek_character,
+            brambletrek_character=self._character(boost_ctx.rag_context),
         )
 
     def prompt_top_k(self, question: str, top_k: int, context: RagContext) -> int:
-        return bt_rag.prompt_top_k(question, top_k, context.brambletrek_character)
+        return bt_rag.prompt_top_k(question, top_k, self._character(context))
 
     def result_cap(self, question: str, top_k: int, context: RagContext) -> int:
-        return bt_rag.result_cap(question, top_k, context.brambletrek_character)
+        return bt_rag.result_cap(question, top_k, self._character(context))
 
     def chat_greeting(self) -> str:
         return (
@@ -88,18 +96,18 @@ class BrambletrekPlugin(GamePlugin):
         self,
         text: str,
         *,
-        brambletrek_character: dict | None = None,
+        play_entity: dict | None = None,
     ) -> dict | None:
         from src.games.brambletrek.character import character_from_dict
 
-        bt = character_from_dict(brambletrek_character) if brambletrek_character else None
+        bt = character_from_dict(play_entity) if play_entity else None
         shortcut_id = match_brambletrek_shortcut(
             text,
             active_adventure=bt.active_adventure if bt else "",
         )
         if shortcut_id in MULTI_DRAW_SHORTCUTS:
             return {
-                "route": "brambletrek_multi",
+                "route": "play_multi",
                 "shortcut_id": shortcut_id,
                 "language": "en",
             }
@@ -108,7 +116,7 @@ class BrambletrekPlugin(GamePlugin):
         return None
 
     def agent_direct_routes(self) -> frozenset[str]:
-        return frozenset({"brambletrek_multi"})
+        return frozenset({"play_multi"})
 
     def ingest_all_label(self) -> str:
         return "Full ingest (include separate adventure PDFs)"

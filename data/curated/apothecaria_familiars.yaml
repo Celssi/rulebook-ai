@@ -1,0 +1,30 @@
+# Familiar type + skill — Apothecaria p.10–11
+types:
+  ace: Rodent - Rat, Mouse, Beaver
+  seven: Feline - Wild Cat, Lynx, Leopard
+  two: Raptor - Hawk, Owl, Falcon
+  eight: Insect - Spider, Beetle, Moth
+  three: Amphibian - Frog, Toad, Newt
+  nine: Reptile - Gecko, Turtle, Chameleon
+  four: Canid - Dog, Wolf, Fox
+  ten: Mount - Horse, Deer, Donkey
+  five: Corvid - Raven, Crow, Magpie
+  jack: Magic - Wisp, Homunculus, Spirit
+  six: Snake - Adder, Cobra, Ball Python
+  queen: Mythical — Dragon, Gryphon, Chimera
+  king: Mythical — Dragon, Gryphon, Chimera
+skills:
+  ace: Forager — Reduce the Foraging Value of all [PLANT] reagents by 2. Minimum 1.
+  seven: Independent — Once per Foraging, send your Familiar to another locale. Draw a card to see what they find. They do
+    not trigger events.
+  two: Scout — Increase all Ailment Timers by 2.
+  eight: Hunter — Reduce the Foraging Value of all [ANIMAL] reagents by 3. Minimum 1.
+  three: Helpful — Add a point of Sweet or remove a point of Poison from a finished potion.
+  nine: Prepared — Start each Foraging with 2 Foraging Points.
+  four: Cute — Whenever someone would give you a reagent, draw twice and take the higher card.
+  ten: Transport — Do not Decrease Timer when changing locale.
+  five: Shrewd — Whenever you gain Silver, get an extra 50%.
+  jack: Magic Eye — Reduce the Foraging Value of all [MAGIC] reagents by 3. Minimum 1.
+  six: Ways — Choose a reagent of value 7 or less; your Familiar can obtain it whenever you need it.
+  queen: Useful — Choose a Tool; your Familiar somehow provides that purpose.
+  king: Useful — Choose a Tool; your Familiar somehow provides that purpose.

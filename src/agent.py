@@ -8,11 +8,7 @@ from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, System
 from langgraph.graph import END, StateGraph
 from langgraph.graph.message import add_messages
 
-from src.config import DEFAULT_GAME_ID
-from src.llm import ChatProvider, get_langchain_chat_llm
-from src.games.brambletrek.agent import brambletrek_multi_node
-from src.games.brambletrek.character import character_from_dict
-from src.games.registry import get_game_plugin
+from src.games.registry import DEFAULT_GAME_ID, get_game_plugin
 from src.games.warhammer_40k import retrieval as r40k
 from src.games.warhammer_40k.state import GameState
 from src.prompts import build_system_prompt, detect_language, tool_output_instructions
@@ -45,7 +41,7 @@ class AgentState(TypedDict, total=False):
     retrieval: dict
     game_id: str
     shortcut_id: str
-    brambletrek_character: dict | None
+    play_entity: dict | None
     chat_provider: ChatProvider
     char_id: str | None
     story_mode: str
@@ -57,11 +53,6 @@ def _last_user_text(state: AgentState) -> str:
         if isinstance(msg, HumanMessage):
             return msg.content if isinstance(msg.content, str) else str(msg.content)
     return ""
-
-
-def _bt_character(state: AgentState):
-    data = state.get("brambletrek_character")
-    return character_from_dict(data) if data else None
 
 
 def _format_sources(sources: list[dict], limit: int = 5) -> str:
@@ -78,7 +69,7 @@ def router_node(state: AgentState) -> dict:
     plugin = get_game_plugin(game_id)
     game_route = plugin.route_before_generic(
         text,
-        brambletrek_character=state.get("brambletrek_character"),
+        play_entity=state.get("play_entity"),
     )
     if game_route:
         return game_route
@@ -195,7 +186,7 @@ def card_rag_node(state: AgentState) -> dict:
         candidate_k=retrieval_cfg.get("candidate_k"),
         use_hybrid=bool(retrieval_cfg.get("use_hybrid", True)),
         use_rerank=bool(retrieval_cfg.get("use_rerank", False)),
-        brambletrek_character=_bt_character(state),
+        play_entity=state.get("play_entity"),
         chat_provider=state.get("chat_provider", "ollama"),
     )
     tool_output = (
@@ -234,7 +225,7 @@ def rag_node(state: AgentState) -> dict:
         candidate_k=retrieval_cfg.get("candidate_k"),
         use_hybrid=bool(retrieval_cfg.get("use_hybrid", True)),
         use_rerank=bool(retrieval_cfg.get("use_rerank", False)),
-        brambletrek_character=_bt_character(state),
+        play_entity=state.get("play_entity"),
         chat_provider=state.get("chat_provider", "ollama"),
     )
     tool_output = f"{result['answer']}\n\nSources:\n{_format_sources(result['sources'])}"
@@ -251,6 +242,19 @@ def chat_node(state: AgentState) -> dict:
     return {"tool_output": out, "sources": []}
 
 
+def play_multi_node(state: AgentState) -> dict:
+    """Dispatch play shortcuts via registered PlayProfile.agent_multi_node."""
+    game_id = state.get("game_id", DEFAULT_GAME_ID)
+    profile = get_play_profile(game_id)
+    if profile and profile.agent_multi_node:
+        return profile.agent_multi_node(state)
+    return {
+        "tool_output": "Play shortcut unavailable for this game.",
+        "sources": [],
+        "language": "en",
+    }
+
+
 _DIRECT_ROUTES = frozenset(
     {
         "rag",
@@ -260,7 +264,7 @@ _DIRECT_ROUTES = frozenset(
         "cards",
         "physical_card",
         "card_rag",
-        "brambletrek_multi",
+        "play_multi",
     }
 )
 
@@ -276,7 +280,8 @@ def synthesize_node(state: AgentState) -> dict:
         lang,
         game=state.get("game_state"),
         game_id=state.get("game_id", DEFAULT_GAME_ID),
-        brambletrek_character=_bt_character(state),
+        play_entity=state.get("play_entity"),
+        play_entity=state.get("play_entity"),
         story_mode=state.get("story_mode", "player"),
         card_source=state.get("card_source", "virtual"),
     )
@@ -314,7 +319,7 @@ def build_agent():
     graph.add_node("dice", dice_node)
     graph.add_node("cards", cards_node)
     graph.add_node("physical_card", physical_card_node)
-    graph.add_node("brambletrek_multi", brambletrek_multi_node)
+    graph.add_node("play_multi", play_multi_node)
     graph.add_node("card_rag", card_rag_node)
     graph.add_node("rag", rag_node)
     graph.add_node("chat", chat_node)
@@ -330,7 +335,7 @@ def build_agent():
             "cards": "cards",
             "physical_card": "physical_card",
             "card_rag": "card_rag",
-            "brambletrek_multi": "brambletrek_multi",
+            "play_multi": "play_multi",
             "rag": "rag",
             "chat": "chat",
         },
@@ -339,7 +344,7 @@ def build_agent():
     graph.add_edge("dice", "synthesize")
     graph.add_edge("cards", "synthesize")
     graph.add_edge("physical_card", "synthesize")
-    graph.add_edge("brambletrek_multi", "synthesize")
+    graph.add_edge("play_multi", "synthesize")
     graph.add_edge("card_rag", "synthesize")
     graph.add_edge("rag", "synthesize")
     graph.add_edge("chat", "synthesize")
@@ -354,7 +359,7 @@ def run_agent(
     game_state: GameState | None = None,
     game_id: str = DEFAULT_GAME_ID,
     retrieval: dict | None = None,
-    brambletrek_character: dict | None = None,
+    play_entity: dict | None = None,
     chat_provider: ChatProvider = "ollama",
     char_id: str | None = None,
     story_mode: str = "player",
@@ -375,7 +380,7 @@ def run_agent(
             "game_id": game_id,
             "retrieval": retrieval or {},
             "shortcut_id": "",
-            "brambletrek_character": brambletrek_character,
+            "play_entity": play_entity,
             "chat_provider": chat_provider,
             "char_id": char_id,
             "story_mode": story_mode,

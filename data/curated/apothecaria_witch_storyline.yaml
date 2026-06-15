@@ -1,0 +1,30 @@
+# Witch mystery clues — Apothecaria p.52–54
+tables:
+  first_steps:
+    ace: Learn the old witch's name (or true name).
+    '2': Someone reminisces about the witch's personality.
+    '3': Find what the witch looked like.
+    '4': Find something the witch decorated.
+    '5': Learn their preferred branch of magic.
+    '6': Learn their hobby outside magic.
+    '7': Hear the witch's favourite song.
+    '8': Find their favourite novel.
+    '9': Learn their magic sports team.
+    '10': Find or learn about an old pet.
+    jack: Mistaken for the witch — favourite dish.
+    queen: Broken wand or staff to repair.
+    king: Base camps in different locales.
+  about_the_witch:
+    ace: Who was the witch's familiar?
+    '2': Evidence of a strange quirk.
+    '3': The witch's deep fear.
+    '4': Extra time in a particular locale.
+    '5': Someone who disliked the witch.
+    '6': The witch's education.
+    '7': Something they were hopelessly bad at.
+    '8': Strange background discovery.
+    '9': Someone who misses them deeply.
+    '10': Something they failed to cure in time.
+    jack: Something the witch improved in the village.
+    queen: A golden opportunity they passed up.
+    king: Details of a family member.

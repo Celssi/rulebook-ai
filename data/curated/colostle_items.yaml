@@ -1,0 +1,15 @@
+# PDF: rules-reference.pdf p.1 / core-rulebook.pdf p.30
+ranks:
+  ace: "TREASURE (FOR TRADING)"
+  "2": "SUPPLIES"
+  "3": "KNOWLEDGE"
+  "4": "HERBS/INGREDIENTS to heal one WOUND"
+  "5": "KEY"
+  "6": "VEHICLE"
+  "7": "A TAME ANIMAL"
+  "8": "POTION"
+  "9": "MACHINE PART"
+  "10": "MAP"
+  jack: "WEAPON"
+  queen: "ARTEFACT/IDOL"
+  king: "2 TREASURES (FOR TRADING)"

@@ -1,12 +1,21 @@
 import { useCallback, useEffect, useState } from "react";
+import { flushSync } from "react-dom";
 import { MessageSquare, ScrollText, User } from "lucide-react";
 import { api } from "../api/client";
 import CharacterPanel from "../components/brambletrek/CharacterPanel";
-import LonelogBar from "../components/brambletrek/LonelogBar";
+import LonelogBar from "../components/shared/LonelogBar";
+import VisitPanel from "../components/sansibilia/VisitPanel";
+import WatchPanel from "../components/lighthouse/WatchPanel";
+import CottagePanel from "../components/apothecaria/CottagePanel";
+import InvestigationPanel from "../components/whispers/InvestigationPanel";
+import ColostlePanel from "../components/colostle/ColostlePanel";
+import ScionPanel from "../components/ashes/ScionPanel";
 import ChatPanel from "../components/chat/ChatPanel";
 import PlayPanel from "../components/layout/PlayPanel";
 import StatsBar from "../components/layout/StatsBar";
 import SettingsDialog from "../components/settings/SettingsDialog";
+import HowToPlayDialog from "../components/shared/HowToPlayDialog";
+import { shouldReloadSession } from "../games/registry";
 import type {
   CharacterHeader,
   JourneyActionResult,
@@ -16,6 +25,12 @@ import type {
   SessionState,
   Shortcut,
   Source,
+  VisitHeader,
+  WatchHeader,
+  ColostleHeader,
+  CottageHeader,
+  InvestigationHeader,
+  ScionHeader,
 } from "../types";
 
 type MobileTab = "character" | "chat" | "play";
@@ -23,7 +38,16 @@ type MobileTab = "character" | "chat" | "play";
 export default function PlayPage() {
   const [session, setSession] = useState<SessionState | null>(null);
   const [games, setGames] = useState<Record<string, string>>({});
-  const [header, setHeader] = useState<CharacterHeader | null>(null);
+  const [btHeader, setBtHeader] = useState<CharacterHeader | null>(null);
+  const [ssHeader, setSsHeader] = useState<VisitHeader | null>(null);
+  const [lhHeader, setLhHeader] = useState<WatchHeader | null>(null);
+  const [apoHeader, setApoHeader] = useState<CottageHeader | null>(null);
+  const [apoOptions, setApoOptions] = useState<{ locales?: { id: string; label: string }[] } | null>(
+    null,
+  );
+  const [wHeader, setWHeader] = useState<InvestigationHeader | null>(null);
+  const [colHeader, setColHeader] = useState<ColostleHeader | null>(null);
+  const [ashHeader, setAshHeader] = useState<ScionHeader | null>(null);
   const [abilities, setAbilities] = useState<LegacyAbility[]>([]);
   const [roster, setRoster] = useState<{ id: string; name: string }[]>([]);
   const [journey, setJourney] = useState<PendingJourney | null>(null);
@@ -37,6 +61,7 @@ export default function PlayPage() {
   const [loading, setLoading] = useState(false);
   const [shortcutLoading, setShortcutLoading] = useState<string | null>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [howToPlayOpen, setHowToPlayOpen] = useState(false);
   const [mobileTab, setMobileTab] = useState<MobileTab>("chat");
   const [state40k, setState40k] = useState<{
     game_state: Record<string, unknown>;
@@ -56,7 +81,12 @@ export default function PlayPage() {
         api.getLonelog(),
         api.deckStatus(),
       ]);
-    setHeader(h);
+    setBtHeader(h);
+    setSsHeader(null);
+    setLhHeader(null);
+    setApoHeader(null);
+    setWHeader(null);
+    setColHeader(null);
     setAbilities(char.abilities);
     setRoster(rosterRes.entries);
     setJourney(journeyRes.pending_journey);
@@ -66,11 +96,186 @@ export default function PlayPage() {
     setCardSource(deckRes.card_source);
   }, []);
 
+  const loadSansibilia = useCallback(async () => {
+    const [h, visit, rosterRes, shortcutsRes, lonelogRes, deckRes] = await Promise.all([
+      api.getVisitHeader(),
+      api.getVisit(),
+      api.getSansibiliaRoster(),
+      api.getSansibiliaShortcuts(),
+      api.getSansibiliaLonelog(),
+      api.deckStatus(),
+    ]);
+    setSsHeader(h);
+    setLhHeader(null);
+    setApoHeader(null);
+    setWHeader(null);
+    setColHeader(null);
+    setBtHeader(null);
+    setAbilities([]);
+    setRoster(rosterRes.entries);
+    setJourney(null);
+    setShortcuts(shortcutsRes.shortcuts);
+    setLonelog(lonelogRes.lines);
+    setDeckRemaining(deckRes.remaining);
+    setCardSource(deckRes.card_source);
+    setSession((s) => (s ? { ...s, entity: visit.entity, settings: visit.settings } : s));
+  }, []);
+
+  const loadLighthouse = useCallback(async () => {
+    const [h, watch, rosterRes, shortcutsRes, lonelogRes, deckRes] = await Promise.all([
+      api.getLighthouseHeader(),
+      api.getLighthouseWatch(),
+      api.getLighthouseRoster(),
+      api.getLighthouseShortcuts(),
+      api.getLighthouseLonelog(),
+      api.deckStatus(),
+    ]);
+    setLhHeader(h);
+    setBtHeader(null);
+    setSsHeader(null);
+    setApoHeader(null);
+    setWHeader(null);
+    setColHeader(null);
+    setAbilities([]);
+    setRoster(rosterRes.entries);
+    setJourney(null);
+    setShortcuts(shortcutsRes.shortcuts);
+    setLonelog(lonelogRes.lines);
+    setDeckRemaining(deckRes.remaining);
+    setCardSource(deckRes.card_source);
+    setSession((s) => (s ? { ...s, entity: watch.entity, settings: watch.settings } : s));
+  }, []);
+
+  const loadApothecaria = useCallback(async () => {
+    const [h, cottage, rosterRes, shortcutsRes, lonelogRes, deckRes] = await Promise.all([
+      api.getApothecariaHeader(),
+      api.getApothecariaCottage(),
+      api.getApothecariaRoster(),
+      api.getApothecariaShortcuts(),
+      api.getApothecariaLonelog(),
+      api.deckStatus(),
+    ]);
+    setApoHeader(h);
+    setApoOptions((cottage.options as { locales?: { id: string; label: string }[] }) || null);
+    setBtHeader(null);
+    setSsHeader(null);
+    setLhHeader(null);
+    setWHeader(null);
+    setColHeader(null);
+    setAbilities([]);
+    setRoster(rosterRes.entries);
+    setJourney(null);
+    setShortcuts(shortcutsRes.shortcuts);
+    setLonelog(lonelogRes.lines);
+    setDeckRemaining(deckRes.remaining);
+    setCardSource(deckRes.card_source);
+    setSession((s) => (s ? { ...s, entity: cottage.entity, settings: cottage.settings } : s));
+  }, []);
+
+  const loadWhispers = useCallback(async () => {
+    const [h, inv, rosterRes, shortcutsRes, lonelogRes] = await Promise.all([
+      api.getWhispersHeader(),
+      api.getWhispersInvestigation(),
+      api.getWhispersRoster(),
+      api.getWhispersShortcuts(),
+      api.getWhispersLonelog(),
+    ]);
+    setWHeader(h);
+    setBtHeader(null);
+    setSsHeader(null);
+    setLhHeader(null);
+    setApoHeader(null);
+    setAbilities([]);
+    setRoster(rosterRes.entries);
+    setJourney(null);
+    setShortcuts(shortcutsRes.shortcuts);
+    setLonelog(lonelogRes.lines);
+    setDeckRemaining(h.cards_remaining ?? 0);
+    setCardSource(inv.settings?.card_source || "virtual");
+    setSession((s) => (s ? { ...s, entity: inv.entity, settings: inv.settings } : s));
+  }, []);
+
+  const loadColostle = useCallback(async () => {
+    const [h, character, rosterRes, shortcutsRes, lonelogRes, deckRes] = await Promise.all([
+      api.getColostleHeader(),
+      api.getColostleCharacter(),
+      api.getColostleRoster(),
+      api.getColostleShortcuts(),
+      api.getColostleLonelog(),
+      api.deckStatus(),
+    ]);
+    setColHeader(h);
+    setBtHeader(null);
+    setSsHeader(null);
+    setLhHeader(null);
+    setApoHeader(null);
+    setWHeader(null);
+    setAshHeader(null);
+    setAbilities([]);
+    setRoster(rosterRes.entries);
+    setJourney(null);
+    setShortcuts(shortcutsRes.shortcuts);
+    setLonelog(lonelogRes.lines);
+    setDeckRemaining(deckRes.remaining);
+    setCardSource(deckRes.card_source);
+    setSession((s) => (s ? { ...s, entity: character.entity, settings: character.settings } : s));
+  }, []);
+
+  const loadAshes = useCallback(async () => {
+    const [h, scion, rosterRes, shortcutsRes, lonelogRes, deckRes] = await Promise.all([
+      api.getAshesHeader(),
+      api.getAshesScion(),
+      api.getAshesRoster(),
+      api.getAshesShortcuts(),
+      api.getAshesLonelog(),
+      api.deckStatus(),
+    ]);
+    setAshHeader(h);
+    setBtHeader(null);
+    setSsHeader(null);
+    setLhHeader(null);
+    setApoHeader(null);
+    setWHeader(null);
+    setColHeader(null);
+    setAbilities([]);
+    setRoster(rosterRes.entries);
+    setJourney(null);
+    setShortcuts(shortcutsRes.shortcuts);
+    setLonelog(lonelogRes.lines);
+    setDeckRemaining(deckRes.remaining);
+    setCardSource(deckRes.card_source);
+    setSession((s) => (s ? { ...s, entity: scion.entity, settings: scion.settings } : s));
+  }, []);
+
   const load40k = useCallback(async () => {
     const res = await api.get40kState();
     setState40k(res);
-    setHeader(null);
+    setBtHeader(null);
+    setSsHeader(null);
   }, []);
+
+  const loadPlayData = useCallback(
+    async (gameId: string, hasCharacterSheet: boolean, hasGameState: boolean) => {
+      if (gameId === "brambletrek" && hasCharacterSheet) {
+        await loadBrambletrek();
+      } else if (gameId === "sansibilia" && hasCharacterSheet) {
+        await loadSansibilia();
+      } else if (gameId === "lighthouse" && hasCharacterSheet) {
+        await loadLighthouse();
+      } else if (gameId === "apothecaria" && hasCharacterSheet) {
+        await loadApothecaria();
+      } else if (gameId === "whispers" && hasCharacterSheet) {
+        await loadWhispers();
+      } else if (gameId === "colostle" && hasCharacterSheet) {
+        await loadColostle();
+      } else if (gameId === "ashes" && hasCharacterSheet) {
+        await loadAshes();
+      } else if (hasGameState) {
+        await load40k();
+      }
+    },
+    [loadBrambletrek, loadSansibilia, loadLighthouse, loadApothecaria, loadWhispers, loadColostle, loadAshes, load40k]
+  );
 
   const refresh = useCallback(async () => {
     try {
@@ -81,15 +286,11 @@ export default function PlayPage() {
       setSources(s.last_sources || []);
       const g = await api.getGames();
       setGames(Object.fromEntries(g.games.map((x) => [x.id, x.label])));
-      if (s.has_character_sheet) {
-        await loadBrambletrek();
-      } else if (s.has_game_state) {
-        await load40k();
-      }
+      await loadPlayData(s.selected_game_id, s.has_character_sheet, s.has_game_state);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Failed to load session");
     }
-  }, [loadBrambletrek, load40k]);
+  }, [loadPlayData]);
 
   useEffect(() => {
     refresh();
@@ -99,6 +300,17 @@ export default function PlayPage() {
     if (journey?.events?.length) setMobileTab("play");
   }, [journey?.events?.length]);
 
+  const reloadCurrentGame = useCallback(async () => {
+    if (!session) return;
+    const gameId = session.selected_game_id;
+    await loadPlayData(gameId, session.has_character_sheet, session.has_game_state);
+    if (shouldReloadSession(gameId)) {
+      const s = await api.getSession();
+      setMessages(s.messages || []);
+      setSession(s);
+    }
+  }, [session, loadPlayData]);
+
   const handleSend = async (prompt: string) => {
     setLoading(true);
     try {
@@ -106,7 +318,7 @@ export default function PlayPage() {
       setMessages(res.messages);
       setSources(res.sources);
       setLastRoute(res.route);
-      if (session?.has_character_sheet) await loadBrambletrek();
+      if (session?.has_character_sheet) await reloadCurrentGame();
     } finally {
       setLoading(false);
     }
@@ -114,20 +326,50 @@ export default function PlayPage() {
 
   const handleShortcut = async (id: string) => {
     const label = shortcuts.find((s) => s.id === id)?.label || id;
+    const gameId = session?.selected_game_id;
     setShortcutLoading(id);
     setMobileTab("chat");
+    setLastRoute(`${gameId}:${id}`);
+    flushSync(() => {
+      setMessages((m) => [...m, { role: "user", content: `**${label}**` }]);
+    });
     setLoading(true);
-    setLastRoute(`brambletrek:${id}`);
-    setMessages((m) => [...m, { role: "user", content: `**${label}**` }]);
     try {
-      const res = await api.runShortcut(id);
+      const res =
+        gameId === "sansibilia"
+          ? await api.runSansibiliaShortcut(id)
+          : gameId === "lighthouse"
+            ? await api.runLighthouseShortcut(id)
+            : gameId === "apothecaria"
+              ? await api.runApothecariaShortcut(id)
+              : gameId === "whispers"
+                ? await api.runWhispersShortcut(id)
+                : gameId === "ashes"
+                  ? await api.runAshesShortcut(id)
+                  : gameId === "colostle"
+                    ? await api.runColostleShortcut(id)
+                : await api.runShortcut(id);
       setMessages(res.messages);
       setSources(res.sources);
       setLastRoute(res.route);
-      setHeader(res.header);
-      setJourney(res.pending_journey);
+      if (gameId === "sansibilia") {
+        setSsHeader(res.header as VisitHeader);
+      } else if (gameId === "lighthouse") {
+        setLhHeader(res.header as WatchHeader);
+      } else if (gameId === "apothecaria") {
+        setApoHeader(res.header as CottageHeader);
+      } else if (gameId === "whispers") {
+        setWHeader(res.header as InvestigationHeader);
+      } else if (gameId === "ashes") {
+        setAshHeader(res.header as ScionHeader);
+      } else if (gameId === "colostle") {
+        setColHeader(res.header as ColostleHeader);
+      } else if (gameId === "brambletrek") {
+        setBtHeader(res.header as CharacterHeader);
+        setJourney("pending_journey" in res ? res.pending_journey : null);
+      }
       if (res.entity) setSession((s) => (s ? { ...s, entity: res.entity } : s));
-      await loadBrambletrek();
+      await reloadCurrentGame();
     } catch (e) {
       const msg = e instanceof Error ? e.message : "Shortcut failed";
       setMessages((m) => [
@@ -141,7 +383,7 @@ export default function PlayPage() {
   };
 
   const applyJourneyResult = useCallback((res: JourneyActionResult) => {
-    if (res.header) setHeader(res.header);
+    if (res.header) setBtHeader(res.header);
     if (res.pending_journey !== undefined) setJourney(res.pending_journey);
     if (res.entity) setSession((s) => (s ? { ...s, entity: res.entity } : s));
   }, []);
@@ -174,7 +416,80 @@ export default function PlayPage() {
 
   const handleDeckAction = (formatted: string) => {
     setMessages((m) => [...m, { role: "assistant", content: formatted }]);
-    loadBrambletrek();
+    reloadCurrentGame();
+  };
+
+  const handleDayDraw = async () => {
+    setMobileTab("chat");
+    setLastRoute("sansibilia:draw_day");
+    flushSync(() => {
+      setMessages((m) => [...m, { role: "user", content: "**Draw day's cards**" }]);
+    });
+    setLoading(true);
+    try {
+      const res = await api.drawVisitDay();
+      setMessages(res.messages);
+      setSession((s) =>
+        s ? { ...s, entity: res.entity, messages: res.messages } : s,
+      );
+      setSsHeader(res.header);
+      const lonelogRes = await api.getSansibiliaLonelog();
+      setLonelog(lonelogRes.lines);
+      const deckRes = await api.deckStatus();
+      setDeckRemaining(deckRes.remaining);
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : "Draw failed";
+      setMessages((m) => [
+        ...m,
+        { role: "assistant", content: `**Draw error:** ${msg}` },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleVisitUpdate = (
+    entity: Record<string, unknown>,
+    header: VisitHeader,
+  ) => {
+    setSession((s) => (s ? { ...s, entity } : s));
+    setSsHeader(header);
+    reloadCurrentGame();
+  };
+
+  const handleCottageUpdate = (
+    entity: Record<string, unknown>,
+    header: CottageHeader,
+  ) => {
+    setSession((s) => (s ? { ...s, entity } : s));
+    setApoHeader(header);
+    reloadCurrentGame();
+  };
+
+  const handleApothecariaForage = async () => {
+    setMobileTab("chat");
+    setLastRoute("apothecaria:forage_event");
+    flushSync(() => {
+      setMessages((m) => [...m, { role: "user", content: "**Forage / draw event**" }]);
+    });
+    setLoading(true);
+    try {
+      const res = await api.runApothecariaShortcut("forage_event");
+      setMessages(res.messages);
+      setSources(res.sources);
+      setLastRoute(res.route);
+      setApoHeader(res.header);
+      if (res.entity) setSession((s) => (s ? { ...s, entity: res.entity } : s));
+      await reloadCurrentGame();
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : "Forage failed";
+      setMessages((m) => [
+        ...m,
+        { role: "assistant", content: `**Forage error:** ${msg}` },
+      ]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (error) {
@@ -199,10 +514,42 @@ export default function PlayPage() {
     );
   }
 
-  const gameLabel = games[session.selected_game_id] || session.selected_game_id;
+  const gameId = session.selected_game_id;
+  const gameLabel = games[gameId] || gameId;
   const showCharacter = session.has_character_sheet && session.entity;
   const showPlay = session.has_character_sheet || session.has_game_state;
   const hasJourney = Boolean(journey?.events?.length);
+  const statsHeader =
+    gameId === "sansibilia"
+      ? ssHeader
+      : gameId === "lighthouse"
+        ? lhHeader
+        : gameId === "apothecaria"
+          ? apoHeader
+          : gameId === "whispers"
+            ? wHeader
+            : gameId === "colostle"
+              ? colHeader
+            : gameId === "ashes"
+              ? ashHeader
+            : btHeader;
+
+  const chatPlaceholder =
+    gameId === "sansibilia"
+      ? "Journal prompts, city changes, rules… or /roll d6, /draw 1"
+      : gameId === "lighthouse"
+        ? "Light the lamp, maintenance, observation… or /roll d6"
+        : gameId === "apothecaria"
+          ? "Draw ailments, forage locales, reagents… or /roll d6"
+          : gameId === "whispers"
+            ? "Build Whispers deck, draw prompts, oracle… or /roll 2d6"
+            : gameId === "colostle"
+              ? "Exploration phase, combat setup, oracle… or /draw 1"
+            : gameId === "ashes"
+              ? "Draw rooms, journal prompts, enemies… or /roll 3d6, /draw 1"
+            : session.has_character_sheet
+        ? "Journey, @ action, rules… or /day, /roll d20"
+        : "Ask about rules… or /roll 2d6+1, /draw 1";
 
   const desktopGridClass = showCharacter
     ? "lg:grid-cols-[minmax(220px,16rem)_minmax(0,1fr)_minmax(18rem,24rem)]"
@@ -212,6 +559,7 @@ export default function PlayPage() {
 
   const playPanel = (
     <PlayPanel
+      gameId={gameId}
       hasCharacterSheet={session.has_character_sheet}
       hasGameState={session.has_game_state}
       journey={journey}
@@ -219,6 +567,11 @@ export default function PlayPage() {
       shortcutLoading={shortcutLoading}
       deckRemaining={deckRemaining}
       cardSource={cardSource}
+      visitEntity={session.entity}
+      visitHeader={ssHeader}
+      cottageEntity={session.entity}
+      cottageHeader={apoHeader}
+      cottageOptions={apoOptions}
       state40k={state40k}
       onJourneyApply={handleJourneyApply}
       onJourneyDrawItem={handleJourneyDrawItem}
@@ -226,18 +579,88 @@ export default function PlayPage() {
       onJourneyDiscard={handleJourneyDiscard}
       onDeckAction={handleDeckAction}
       onShortcut={handleShortcut}
+      onDayDraw={handleDayDraw}
+      onVisitUpdate={handleVisitUpdate}
+      onCottageUpdate={handleCottageUpdate}
+      onApothecariaForage={handleApothecariaForage}
       on40kUpdate={(game_state, summary) =>
         setState40k((s) => (s ? { ...s, game_state, summary } : s))
       }
     />
   );
 
+  const sidebar =
+    gameId === "sansibilia" && showCharacter ? (
+      <VisitPanel
+        entity={session.entity!}
+        roster={roster}
+        activeId={session.slot_id || ""}
+        header={ssHeader}
+        onUpdate={handleVisitUpdate}
+        onSwitch={refresh}
+      />
+    ) : gameId === "lighthouse" && showCharacter ? (
+      <WatchPanel
+        entity={session.entity!}
+        roster={roster}
+        activeId={session.slot_id || ""}
+        header={lhHeader}
+        onSwitch={refresh}
+      />
+    ) : gameId === "apothecaria" && showCharacter ? (
+      <CottagePanel
+        entity={session.entity!}
+        roster={roster}
+        activeId={session.slot_id || ""}
+        header={apoHeader}
+        onSwitch={refresh}
+      />
+    ) : gameId === "colostle" && showCharacter ? (
+      <ColostlePanel
+        entity={session.entity!}
+        roster={roster}
+        activeId={session.slot_id || ""}
+        header={colHeader}
+        onSwitch={refresh}
+      />
+    ) : gameId === "whispers" && showCharacter ? (
+      <InvestigationPanel
+        entity={session.entity!}
+        roster={roster}
+        activeId={session.slot_id || ""}
+        header={wHeader}
+        onSwitch={refresh}
+      />
+    ) : gameId === "ashes" && showCharacter ? (
+      <ScionPanel
+        entity={session.entity!}
+        roster={roster}
+        activeId={session.slot_id || ""}
+        header={ashHeader}
+        onSwitch={refresh}
+      />
+    ) : gameId === "brambletrek" && showCharacter ? (
+      <CharacterPanel
+        entity={session.entity!}
+        abilities={abilities}
+        roster={roster}
+        activeId={session.slot_id || ""}
+        onUpdate={(entity, h) => {
+          setSession({ ...session, entity });
+          setBtHeader(h);
+        }}
+        onSwitch={refresh}
+      />
+    ) : null;
+
   return (
     <div className="h-screen flex flex-col bg-surface">
       <StatsBar
-        header={session.has_character_sheet ? header : null}
+        gameId={gameId}
+        header={statsHeader}
         gameLabel={gameLabel}
         onOpenSettings={() => setSettingsOpen(true)}
+        onOpenHowToPlay={gameId !== "40k" ? () => setHowToPlayOpen(true) : undefined}
       />
 
       {session.has_game_state && state40k?.summary && (
@@ -246,25 +669,10 @@ export default function PlayPage() {
         </div>
       )}
 
-      {/* Desktop layout */}
       <div
         className={`hidden lg:grid flex-1 w-full gap-2 p-2 min-h-0 overflow-hidden ${desktopGridClass}`}
       >
-        {showCharacter && (
-          <div className="min-h-0">
-            <CharacterPanel
-              entity={session.entity!}
-              abilities={abilities}
-              roster={roster}
-              activeId={session.slot_id || ""}
-              onUpdate={(entity, h) => {
-                setSession({ ...session, entity });
-                setHeader(h);
-              }}
-              onSwitch={refresh}
-            />
-          </div>
-        )}
+        {sidebar && <div className="min-h-0">{sidebar}</div>}
 
         <div className="min-h-0 flex flex-col">
           <ChatPanel
@@ -278,33 +686,16 @@ export default function PlayPage() {
               setSources(s);
               setLastRoute(r);
             }}
-            placeholder={
-              session.has_character_sheet
-                ? "Journey, @ action, rules… or /day, /roll d20"
-                : "Ask about rules… or /roll 2d6+1, /draw 1"
-            }
+            placeholder={chatPlaceholder}
           />
         </div>
 
         {showPlay && <div className="min-h-0">{playPanel}</div>}
       </div>
 
-      {/* Mobile layout */}
       <div className="lg:hidden flex-1 flex flex-col min-h-0 overflow-hidden pb-14">
-        {mobileTab === "character" && showCharacter && (
-          <div className="flex-1 min-h-0 p-2">
-            <CharacterPanel
-              entity={session.entity!}
-              abilities={abilities}
-              roster={roster}
-              activeId={session.slot_id || ""}
-              onUpdate={(entity, h) => {
-                setSession({ ...session, entity });
-                setHeader(h);
-              }}
-              onSwitch={refresh}
-            />
-          </div>
+        {mobileTab === "character" && sidebar && (
+          <div className="flex-1 min-h-0 p-2">{sidebar}</div>
         )}
 
         {mobileTab === "chat" && (
@@ -320,11 +711,7 @@ export default function PlayPage() {
                 setSources(s);
                 setLastRoute(r);
               }}
-              placeholder={
-                session.has_character_sheet
-                  ? "Journey, @ action, rules… or /day, /roll d20"
-                  : "Ask about rules… or /roll 2d6+1, /draw 1"
-              }
+              placeholder={chatPlaceholder}
             />
           </div>
         )}
@@ -340,7 +727,6 @@ export default function PlayPage() {
         </div>
       )}
 
-      {/* Mobile bottom tabs */}
       <nav className="lg:hidden fixed bottom-0 inset-x-0 flex border-t border-border bg-panel z-40 safe-area-pb">
         {showCharacter && (
           <button
@@ -351,7 +737,15 @@ export default function PlayPage() {
             onClick={() => setMobileTab("character")}
           >
             <User className="w-5 h-5" />
-            Character
+            {gameId === "sansibilia"
+              ? "Visit"
+              : gameId === "lighthouse"
+                ? "Watch"
+                : gameId === "apothecaria"
+                  ? "Cottage"
+                  : gameId === "whispers"
+                    ? "Case"
+                    : "Character"}
           </button>
         )}
         <button
@@ -389,9 +783,24 @@ export default function PlayPage() {
         onRosterSwitch={refresh}
         onSaved={(s, header) => {
           setSession(s);
-          if (header) setHeader(header);
-          loadBrambletrek();
+          if (header) {
+            if (gameId === "sansibilia") setSsHeader(header as VisitHeader);
+            else if (gameId === "lighthouse") setLhHeader(header as WatchHeader);
+            else if (gameId === "apothecaria") setApoHeader(header as CottageHeader);
+            else if (gameId === "whispers") setWHeader(header as InvestigationHeader);
+            else if (gameId === "ashes") setAshHeader(header as ScionHeader);
+            else if (gameId === "colostle") setColHeader(header as ColostleHeader);
+            else setBtHeader(header as CharacterHeader);
+          }
+          reloadCurrentGame();
         }}
+      />
+
+      <HowToPlayDialog
+        open={howToPlayOpen}
+        gameId={gameId}
+        gameLabel={gameLabel}
+        onClose={() => setHowToPlayOpen(false)}
       />
     </div>
   );

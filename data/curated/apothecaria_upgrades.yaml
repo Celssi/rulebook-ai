@@ -1,0 +1,55 @@
+# Upgrades — Apothecaria p.8–9
+upgrades:
+- id: garden_plot
+  name: Garden Plot
+  cost: 100
+  effect: Grow 1 PLANT FV ≤8
+- id: hive
+  name: Hive
+  cost: 50
+  effect: +1 SWEET to 4 potions per season
+- id: fish_tank
+  name: Fish Tank
+  cost: 150
+  effect: 2 fish types FV ≤8
+- id: paddock
+  name: Paddock
+  cost: 300
+  effect: 2 ANIMAL reagents FV ≤8
+- id: basement_hollow
+  name: Basement Hollow
+  cost: 500
+  effect: Up to 5 Dungeon reagents free access
+- id: greenhouse
+  name: Glimmerwood Greenhouse
+  cost: 500
+  effect: Up to 5 Forest reagents
+- id: meltwater_pond
+  name: Meltwater Pond
+  cost: 500
+  effect: Up to 5 Loch reagents
+- id: mini_mountain
+  name: Mini Mountain
+  cost: 500
+  effect: Up to 5 Mountain reagents
+- id: treatment_room
+  name: Treatment Room
+  cost: 300
+  effect: All Timers +3; +10 Silver per success
+- id: spare_room
+  name: Spare Room
+  cost: 500
+  rep_min: 30
+  effect: Gain Apprentice
+- id: spirit_seal
+  name: Spirit Seal
+  cost: 300
+  effect: Banish hauntings
+- id: travel_stone
+  name: Travel Stone
+  cost: 200
+  effect: Link 2 locales — no timer cost between
+- id: raven_loft
+  name: Raven Loft
+  cost: 150
+  effect: Remote patients — double Silver if both cured

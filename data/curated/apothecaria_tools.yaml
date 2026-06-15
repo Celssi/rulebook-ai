@@ -1,0 +1,54 @@
+# Tools — Apothecaria p.6–7
+starter:
+- id: mortar
+  name: Mortar and Pestle
+  cost: 0
+  prep: CRUSH
+- id: cauldron
+  name: Cauldron
+  cost: 0
+  prep: BOIL
+- id: alembic
+  name: Alembic
+  cost: 0
+  prep: DISTIL
+purchasable:
+- id: sickle
+  name: Sickle
+  cost: 50
+  effect: Foraging points +2 per miss instead of +1
+- id: wand
+  name: Wand
+  cost: 100
+  effect: Collect certain MAGIC reagents
+- id: athame
+  name: Athame
+  cost: 80
+  effect: Use Ritual Circle in village
+- id: broom
+  name: Broom
+  cost: 100
+  effect: Fly to Cloud Isles
+  unlocks: cloud_isles
+- id: coracle
+  name: Coracle
+  cost: 70
+  effect: Navigate Blastfire Bog
+  unlocks: blastfire_bog
+special:
+- id: golem
+  name: Golem Helper
+  cost: null
+  effect: TEND / MAKE / SEARCH tasks per season
+- id: moonstone
+  name: Moonstone
+  cost: null
+  effect: PURIFY potion (4 uses)
+- id: mimic
+  name: Mimic
+  cost: null
+  effect: Activate village services remotely
+- id: tourist_map
+  name: Tourist Map
+  cost: null
+  effect: Navigate The Strange

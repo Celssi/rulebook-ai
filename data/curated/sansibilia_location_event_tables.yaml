@@ -1,0 +1,29 @@
+# Location/Event table — red vs black suits, p.9
+red:
+  ace: visit to a small museum
+  "2": incident at the bookstore
+  "3": poetry reading
+  "4": gallery opening
+  "5": coffee in an open air cafe
+  "6": night at the theater
+  "7": news in the broadsheets
+  "8": parade through the neighbourhood
+  "9": music in a bandstand
+  "10": week-long festival
+  jack: funeral procession at dawn
+  queen: find in the antique store
+  king: show of a street performer
+black:
+  ace: excursion to a ruin
+  "2": rendezvous with new friends
+  "3": stroll along the river banks
+  "4": trip to the market
+  "5": walk in the park
+  "6": message from a long lost friend
+  "7": meeting with ruffians
+  "8": encounter at midnight
+  "9": trip to the countryside
+  "10": package in the mail
+  jack: day in court
+  queen: letter from a city official
+  king: memory from times long past

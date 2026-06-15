@@ -1,0 +1,32 @@
+# PDF pp.16-24 — Scion classes
+classes:
+  warrior:
+    label: Warrior
+    modifiers:
+      pwr: 1
+      agl: -1
+    skill: Oathbound Defence
+  ordained:
+    label: Ordained
+    modifiers:
+      int: 1
+      pwr: -1
+    skill: Court's Blessings
+  pioneer:
+    label: Pioneer
+    modifiers:
+      int: 1
+      agl: -1
+    skill: Crafting Eye
+  hallowed:
+    label: Hallowed
+    modifiers:
+      agl: 1
+      pwr: -1
+    skill: Shadowed Strike
+  deadeyed:
+    label: Deadeyed
+    modifiers:
+      agl: 1
+      int: -1
+    skill: Gift of the Dead

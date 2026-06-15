@@ -1,0 +1,5 @@
+# PDF: rules-reference.pdf p.1 / core-rulebook.pdf p.30 — J/Q/K during exploration
+faces:
+  jack: "You find an item! Consult the ITEM table to discover what you find."
+  queen: "Medium Rook"
+  king: "Massive Rook"

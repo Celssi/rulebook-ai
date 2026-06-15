@@ -56,6 +56,12 @@ Current games:
 |----|-------|----------------|
 | `40k` | Warhammer 40,000 | Battle game state, Leviathan unit list, codex/datasheet retrieval |
 | `brambletrek` | Brambletrek | Gnawborn roster, Lonelog, story/card modes, curated YAML, journey/adventure shortcuts |
+| `sansibilia` | A Visit To San Sibilia | Visit roster, Lonelog, card-oracle journaling, city-change tracker, curated YAML |
+| `lighthouse` | The Lighthouse at the Edge of the Universe | Keeper roster, Lonelog, lamp/maintenance/observation/events, beachcombing, curated YAML |
+| `apothecaria` | Apothecaria | Witch cottage roster, Lonelog, ailments/reagents/locales, foraging shortcuts, curated YAML |
+| `colostle` | Colostle | Adventurer roster, Lonelog, exploration/combat card tables, ocean/city/battlements modules, curated YAML |
+| `whispers` | Whispers in the Walls | Investigation roster, Lonelog, Whispers deck builder, suit tables, oracle 2d6, curated YAML |
+| `ashes` | Ashes (Mayfalls) | Scion roster, Lonelog, dungeon card draws, trials/Ember, journal prompt sets, curated YAML |
 
 ## Key files
 
@@ -127,6 +133,20 @@ You should **not** need to edit `src/rag.py` or `src/agent.py` for a PDF-only ga
 python3 scripts/validate_play_tools.py
 python3 scripts/validate_brambletrek_curated.py   # Brambletrek only
 python3 scripts/validate_brambletrek_lonelog.py   # roster + Lonelog
+python3 scripts/validate_sansibilia_curated.py    # San Sibilia tables
+python3 scripts/validate_sansibilia_lonelog.py    # San Sibilia roster + Lonelog
+python3 scripts/validate_lighthouse_curated.py    # Lighthouse tables
+python3 scripts/validate_lighthouse_lonelog.py    # Lighthouse roster + Lonelog
+python3 scripts/validate_apothecaria_curated.py    # Apothecaria tables
+python3 scripts/validate_apothecaria_lonelog.py    # Apothecaria roster + Lonelog
+python3 scripts/validate_whispers_curated.py    # Whispers tables
+python3 scripts/validate_whispers_lonelog.py    # Whispers roster + Lonelog
+python3 scripts/validate_ashes_curated.py    # Ashes tables
+python3 scripts/validate_ashes_lonelog.py    # Ashes roster + Lonelog
 python3 scripts/eval_retrieval.py --game 40k
 python3 scripts/eval_retrieval.py --game brambletrek
+python3 scripts/eval_retrieval.py --game sansibilia
+python3 scripts/eval_retrieval.py --game lighthouse
+python3 scripts/eval_retrieval.py --game apothecaria
+python3 scripts/eval_retrieval.py --game ashes
 ```

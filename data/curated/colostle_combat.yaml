@@ -1,0 +1,37 @@
+# PDF: rules-reference.pdf p.2 / core-rulebook.pdf p.53–55
+attack_by_suit:
+  spades: "Unarmed Attack"
+  clubs: "Weapon Attack"
+  hearts: "Magic Attack"
+  diamonds: "Creative Attack"
+person_intention:
+  spades: "Kill you"
+  clubs: "Steal from you"
+  hearts: "Flee from you"
+  diamonds: "Hide something from you"
+weapon_by_rank:
+  low: "Ranged"   # 1-6
+  high: "Melee"   # 7-K
+rook_body:
+  low: "Attack"   # 1-7
+  high: "Defence" # 8-K
+rook_magic:
+  spades: "None"
+  clubs: "Electric"
+  hearts: "Rumble"
+  diamonds: "Ice"
+rook_reward:
+  spades: "Helm"
+  clubs: "Arm"
+  hearts: "Rookling"
+  diamonds: "Weapon"
+astrolithic_attack:
+  spades: "LASER ATTACK"
+  clubs: "FLYING ATTACK"
+  hearts: "GRAB ATTACK"
+  diamonds: "ROCKET ATTACK"
+opponent_combat_score:
+  person: 1
+  medium_rook: 3
+  massive_rook: 5
+  astrolithic_rook: 6

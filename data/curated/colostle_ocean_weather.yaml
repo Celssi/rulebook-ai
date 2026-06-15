@@ -1,0 +1,15 @@
+# PDF: rules-reference.pdf p.1 / core-rulebook.pdf p.33
+ranks:
+  ace: "SUNSHINE — Add one to your EXPLORATION or COMBAT score."
+  "2": "STRONG WINDS — a good wind takes your boat where you want to go, quickly."
+  "3": "FOG — Visibility is reduced to 2 feet in front of you. It is unnervingly quiet."
+  "4": "HEAVY RAIN — No shelter, it pelts against your skin. You'll just have to sail on."
+  "5": "CALM — no winds, baking heat. Stuck in the middle of the sea with no way to move for 24 hours."
+  "6": "CROSSWIND — Blown off course and lost at sea for 24 hours."
+  "7": "SNOW — Small flakes settle on your boat, this is going to get cold..."
+  "8": "WATERSPOUT — A column of water twirling with wind, it's heading toward you!"
+  "9": "STORM — Your boat is tossed by huge waves and heavy winds."
+  "10": "LIGHTNING — Forks of lightning light up the sky, the sea churns with malice."
+  jack: "ICE — The ocean freezes instantly around your boat. Stuck for 24 hours."
+  queen: "TSUNAMI — A huge wave looms above your boat. Ride it out or be smashed."
+  king: "MAELSTROM — Boat damaged; wake stranded on a new island. Return to base Encounter tables."

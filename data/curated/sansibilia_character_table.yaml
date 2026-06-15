@@ -1,0 +1,41 @@
+# Character table — first card → trait (left column), second card → role (right column), p.5
+ranks:
+  ace:
+    trait: failed
+    role: missionary
+  "2":
+    trait: lonely
+    role: journalist
+  "3":
+    trait: intrepid
+    role: explorer
+  "4":
+    trait: callous
+    role: poet
+  "5":
+    trait: curious
+    role: scholar
+  "6":
+    trait: blasphemous
+    role: cartographer
+  "7":
+    trait: forgetful
+    role: merchant
+  "8":
+    trait: cantankerous
+    role: sailor
+  "9":
+    trait: boisterous
+    role: alchemist
+  "10":
+    trait: introvert
+    role: engineer
+  jack:
+    trait: incredulous
+    role: artist
+  queen:
+    trait: inquisitive
+    role: noble
+  king:
+    trait: brooding
+    role: critic

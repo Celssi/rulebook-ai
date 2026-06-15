@@ -1,0 +1,11 @@
+# PDF: rules-reference.pdf p.3
+bands:
+  ace_4:
+    red: "No, and it's worse than expected"
+    black: "Yes, with a complication"
+  "5_9":
+    red: "No"
+    black: "Yes"
+  "10_k":
+    red: "No, but there is an upside"
+    black: "Yes, with a bonus"

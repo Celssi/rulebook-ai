@@ -1,0 +1,23 @@
+modes:
+  four_changes:
+    id: four_changes
+    label: Default — four city changes
+    description: >-
+      End your visit after you check off all four city-change boxes beneath your name.
+      Most games last 7–15 journal turns (average ~11); can be as short as 4 or as long as 26.
+    end_when: city_changes >= 4
+  score_90:
+    id: score_90
+    label: Alternative — score to 90
+    description: >-
+      Each turn add the value of the highest of the two cards you drew to a running tally.
+      Face cards count as 10. An ace can be counted as either 1 or 11. End when the tally
+      reaches 90 (typically 9–15 turns).
+    end_when: score_total >= 90
+    ace_value: 11
+
+scoring:
+  face_value: 10
+  ace_low: 1
+  ace_high: 11
+  target: 90

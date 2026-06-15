@@ -1,0 +1,35 @@
+# PDF p.58 — Room failure consequences
+rooms:
+  Ambush!:
+    consequence: Ethereal chains bind you momentarily.
+    outcome: Lose your first turn of combat.
+  Altar:
+    consequence: The altar demands a sacrifice.
+    outcome: Choose an item to sacrifice from your inventory
+  Broken Door:
+    consequence: As it cracks, a mechanism stabs you.
+    outcome: 2 Damage + Weakened 1
+  Labyrinth:
+    consequence: The strain muddles your thoughts.
+    outcome: Disoriented 1
+  Memory:
+    consequence: A dark memory overwhelms you.
+    outcome: -1 to all Checks for next 2 rooms
+  Merchant:
+    consequence: '-'
+    outcome: '-'
+  Puzzle:
+    consequence: A flurry of arrows shoots from wall slots.
+    outcome: 3 Damage
+  Royal Hall:
+    consequence: A psychic scream assaults your mind.
+    outcome: Disoriented 2
+  Sanctuaries:
+    consequence: '-'
+    outcome: '-'
+  Trap:
+    consequence: A trap goes off.
+    outcome: Roll on the trap table
+  Treasury:
+    consequence: Noise from an actions alerts an enemy.
+    outcome: Immediate combat

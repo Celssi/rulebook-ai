@@ -1,0 +1,11 @@
+# PDF: core-rulebook.pdf p.37
+ranks:
+  ace: "Palace Grounds — city palace and ruler; offering may grant audience."
+  "2": "Lapidarist — Rookstone specialist (1 treasure: helm magic; 2: arm/rookling/mount; 3: unique Rookstone)."
+  "3": "Rooksmith — Mount Garages (3 treasures: custom mount with weapon attack)."
+  "4": "Cartographer — pays 2 treasures for a map of a new area (Hunter's Guild quest)."
+  "5": "Weapon Smith — 1 treasure: upgrade weapon (+1 COMBAT); 2 treasures: new weapon (+1 COMBAT)."
+  "6": "Arms Dealer — 2 treasures: new Rook arm and attunement ritual."
+  "7": "Rookling Crèche — see rookling table."
+  "8": "Gourmet District — 1 treasure for wild beast; 1 treasure meal (+1 EXPLORATION)."
+  "9": "House for sale — 20 treasures to buy a house in this city."

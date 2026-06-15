@@ -1,0 +1,2037 @@
+# Ashes journaling prompts by dungeon theme (PDF pp.86-179)
+default_set: crypt
+labels:
+  spirit: Path of the Spirit
+  earth: Path of the Earth
+  ocean: Path of the Ocean
+  flame: Path of the Flame
+  storm: Path of the Storm
+  crypt: Path of the Dead
+  living: Path of the Living
+  moon: Path of the Moon
+  sun: Path of the Sun
+  balance: Path of Balance
+sets:
+  spirit:
+    hearts:
+      ace:
+        event: A spirit appears and points to strange symbols carved in the stone.
+        check: INT Check
+      '2':
+        event: Misty faces whisper warnings. One asks for your blood in return.
+        check: AGL Check
+      '3':
+        event: Carved faces watch from the walls. Warm light falls over you.
+        check: Sanctuary (No Check)
+      '4':
+        event: An old door pulses with symbols. It wants to be opened.
+        check: PWR Check
+      '5':
+        event: Shadows attack, their eyes pleading as they strike.
+        check: PWR Check
+      '6':
+        event: A vision of the past fills your mind. Old allies lend their strength. INT Check
+          (Gain 1 Lore on pass)
+        check: No Check
+      '7':
+        event: A shifting maze opens ahead. Whispers offer to guide you through.
+        check: INT Check
+      '8':
+        event: An altar glows. Unseen hands tend to your wounds.
+        check: No Check
+      '9':
+        event: A spectral guardian stands over a treasure, measuring your worth.
+        check: PWR Check
+      '10':
+        event: Thorik steps from the gloom, nodding as if he knew you would come.
+        check: No Check
+      jack:
+        event: Darkness falls. Shapes rise from it, bound to guard this place.
+        check: AGL Check
+      queen:
+        event: A blood-stained altar promises favour in exchange for an offering.
+        check: Choose or Roll Item
+      king:
+        event: A ghostly figure sits on a throne in a faded hall, speaking of lost power.
+          INT Check Hearts Prompts
+        check: No Check
+    diamonds:
+      ace:
+        event: A puzzle lock blocks your way. The answer lies in the constellations carved
+          above.
+        check: INT Check
+      '2':
+        event: Golden glyphs flare along the walls, ready to release their magic.
+        check: AGL Check
+      '3':
+        event: A hidden alcove holds abandoned supplies, still humming with faint magic. Sanctuary
+          (No
+        check: Check)
+      '4':
+        event: A gem-encrusted door stands in your path. Force it open without shattering
+          the stones.
+        check: PWR Check
+      '5':
+        event: Treasure glitters ahead, but it is only illusion. Shadows stir to defend it.
+        check: PWR Check
+      '6':
+        event: You touch a relic and memories not your own come flooding in. INT Check (Gain
+          1 Lore on pass)
+        check: No Check
+      '7':
+        event: The labyrinth walls are lined with gold, leading you deeper toward greater
+          wealth.
+        check: INT Check
+      '8':
+        event: A vault-like chamber offers rest, ringed by the treasures of fallen empires.
+        check: No Check
+      '9':
+        event: Vault doors swing open, revealing untouched coins and artifacts. Pry loose
+          what you can.
+        check: PWR Check
+      '10':
+        event: Thorik sets up his shop, his wares sitting beside the ancient wealth of this
+          place.
+        check: No Check
+      jack:
+        event: Golden spectral guardians rise to attack, weighing your worth as they strike.
+        check: AGL Check
+      queen:
+        event: An altar pulses with gemstones, calling for an offering.
+        check: Choose or Roll Item
+      king:
+        event: A hall of ancient regalia stands before you, each piece telling of past glory
+          and ruin. INT Check When Drawing Diamonds, Roll INT IF YOU PASS, ROLL FOR LOOT
+        check: No Check
+    clubs:
+      ace:
+        event: Animated statues draw their swords. Their movements follow a pattern you must
+          read.
+        check: INT Check
+      '2':
+        event: Pressure plates shift beneath your feet, loosing spectral spears from the walls.
+        check: AGL Check
+      '3':
+        event: Stone warriors stand watch over a quiet sanctuary, ready to defend it. Sanctuary
+          (No
+        check: Check)
+      '4':
+        event: A barricaded door blocks your path. Spirits gather behind it, readying for
+          war.
+        check: PWR Check
+      '5':
+        event: Undead soldiers rise from the ground, weapons already drawn.
+        check: PWR Check
+      '6':
+        event: A battle-worn banner hangs ahead. Touching it, you feel the weight of old wars.
+          INT Check (Gain 1 Lore on pass)
+        check: No Check
+      '7':
+        event: The labyrinth forces a fight at every turn. Find a way through without being
+          cornered.
+        check: INT Check
+      '8':
+        event: Ancient runes hum along the walls, keeping the battles of this place at bay.
+        check: No Check
+      '9':
+        event: Spectral knights guard a treasure, and will only yield it to one who proves
+          worthy.
+        check: PWR Check
+      '10':
+        event: Thorik has set up shop among the remnants of old battlefields, selling to survivors.
+        check: No Check
+      jack:
+        event: Shadows ambush you with the precision of soldiers. Fall back before they close
+          in.
+        check: AGL Check
+      queen:
+        event: An altar to war-gods stands ready to bless your weapon with spectral fire.
+        check: Choose or Roll Item
+      king:
+        event: A grand arena opens before you. Spectral champions wait in the sand.
+        check: INT Check
+    spades:
+      ace:
+        event: Shadowy glyphs drift out of order. Guardians watch as you try to align them.
+        check: INT Check
+      '2':
+        event: Ethereal traps flicker to life along the walls. Disarm them before they strike.
+        check: AGL Check
+      '3':
+        event: Rune-etched walls offer a place to rest, though something still watches. Sanctuary
+          (No
+        check: Check)
+      '4':
+        event: A door sealed with dark magic bars your way. Its guardian waits on the other
+          side.
+        check: PWR Check
+      '5':
+        event: The floor shifts beneath you. Hidden assailants move in the gloom.
+        check: PWR Check
+      '6':
+        event: The cold stone brushes against your hand, showing you flashes of old conflicts.
+          INT Check (Gain 1 Lore on pass)
+        check: No Check
+      '7':
+        event: The maze walls hide watchers. Find a path through without catching their eye.
+        check: INT Check
+      '8':
+        event: A silent room lies ahead, its floor polished like a mirror. The reflections
+          do not match.
+        check: No Check
+      '9':
+        event: Treasures sit within a nest of traps. Take what you can without rousing the
+          defenders.
+        check: PWR Check
+      '10':
+        event: Thorik steps forward and thanks you for carrying on through this place.
+        check: No Check
+      jack:
+        event: Whispers rise on all sides, swelling into a spectral ambush.
+        check: AGL Check
+      queen:
+        event: An altar stands before you, demanding a price. Give up an item or suffer for
+          it. Choose or Take Damage
+        check: No Check
+      king:
+        event: An ornate hall stretches ahead. Its beauty hides traps at every step.
+        check: INT Check
+  earth:
+    hearts:
+      ace:
+        event: A stag spirit gestures toward etched runes in the moss.
+        check: INT Check
+      '2':
+        event: A fox darts past. A thorny path opens behind it, lined with faint tracks.
+        check: AGL Check
+      '3':
+        event: Vines part to reveal a sunlit glade. Peace surrounds you, as if the forest
+          breathes. Sanctuary (No
+        check: Check)
+      '4':
+        event: A bark door resists your strength, ancient roots coiled tightly around it.
+        check: PWR Check
+      '5':
+        event: Earthbound spirits burst from the ferns, claws extended. They wear the forms
+          of guardians.
+        check: PWR Check
+      '6':
+        event: A moment of stillness reveals a memory of a time when beasts and kin spoke
+          as one. INT Check (Gain 1 Lore on pass)
+        check: No Check
+      '7':
+        event: A living maze of brambles writhes, reshaping with each step. A voice offers
+          to guide you.
+        check: INT Check
+      '8':
+        event: A healing spring emerges from cracked stone. The air carries the scent of crushed
+          herbs.
+        check: No Check
+      '9':
+        event: A badger-like spirit lounges atop a cache, watching you with tired but intelligent
+          eyes.
+        check: PWR Check
+      '10':
+        event: Thorik lounges in a hammock made of woven reeds, offering trinkets and meat-pies.
+        check: No Check
+      jack:
+        event: Hissing grows from the canopy above, serpent spirits descend in coordinated
+          attack.
+        check: AGL Check
+      queen:
+        event: A shrine formed of antlers and stone demands a sacrifice. You feel unseen eyes
+          watching.
+        check: Choose or Roll Item
+      king:
+        event: A moss-choked longhall rises from the mire. Inside, a beast-headed throne sits
+          empty. INT Check Hearts Prompts
+        check: No Check
+    diamonds:
+      ace:
+        event: A vine-entwined puzzle lock reveals a bestial constellation. The stars shift
+          unnaturally as you observe.
+        check: AGL Check
+      '2':
+        event: Glowing roots twist across the ground, reacting to movement. One wrong step
+          and they strike.
+        check: INT Check
+      '3':
+        event: Beneath a thick rootbed, you discover dried fruit, water, and a worn hide blanket.
+          Sanctuary (No
+        check: Check)
+      '4':
+        event: A stone vault blocked by carved tusks groans with age. It may crack if handled
+          with force.
+        check: PWR Check
+      '5':
+        event: As you approach a glimmering mound of feathers and bones, a spirit of the hunt
+          erupts in fury.
+        check: AGL Check
+      '6':
+        event: A sacred horn embedded in a petrified tree pulses with visions of the hunt.
+          INT Check (Gain 1 Lore on pass)
+        check: No Check
+      '7':
+        event: Narrow tunnels coil beneath the moss, an ancient burrow of treasure and trial.
+        check: PWR Check
+      '8':
+        event: A hallowed den glows with buried moonstone and predator bones. Peace fills
+          the air.
+        check: No Check
+      '9':
+        event: You uncover a cache inside a cracked bear idol. Taking it may anger what watches
+          from the trees.
+        check: INT Check
+      '10':
+        event: Thorik squats beside a firepit, trading beastbone trinkets and moss-wrapped
+          bundles.
+        check: No Check
+      jack:
+        event: Leaf-covered beasts phase through the thickets, leaping for you in silence.
+        check: PWR Check
+      queen:
+        event: A circle of carved stones demands a personal tribute, something primal, something
+          earned.
+        check: Choose or Roll Item
+      king:
+        event: Within a buried longhouse lie furs and amulets. The room stinks of challenge
+          and legacy. AGL Check When Drawing Diamonds, Roll INT IF YOU PASS, ROLL FOR LOOT
+        check: No Check
+    clubs:
+      ace:
+        event: Stone guardians carved with beast heads come to life. Their movements mimic
+          the hunt.
+        check: AGL Check
+      '2':
+        event: Bone spears shoot from the brush as your foot snaps a vine-spring trap.
+        check: PWR Check
+      '3':
+        event: A forest glade marked by blood totems offers rest beneath the watchful gaze
+          of stag statues. Sanctuary (No
+        check: Check)
+      '4':
+        event: A gate of twisted roots bars your path. It groans, threatening to collapse
+          if forced.
+        check: INT Check
+      '5':
+        event: Crooked antlered shades rise from burial pits, wielding primal weapons.
+        check: PWR Check
+      '6':
+        event: A ritual drum reverberates from a distant battle. Visions of the last great
+          hunt flood your senses. INT Check (Gain 1 Lore on pass)
+        check: No Check
+      '7':
+        event: The path winds into a clearing surrounded by predator markings. Something watches.
+        check: AGL Check
+      '8':
+        event: In the stillness of this open glade, the spirits of warriors and beasts grant
+          temporary reprieve.
+        check: No Check
+      '9':
+        event: Armoured creatures block the path to a mossy cache. They challenge you to prove
+          your strength.
+        check: PWR Check
+      '10':
+        event: Thorik tends a small forge in the clearing, selling spears, talismans, and
+          sun-dried meat.
+        check: No Check
+      jack:
+        event: Canopy shades fall, wild shapes leap from above with deadly precision.
+        check: INT Check
+      queen:
+        event: A stone altar is engraved with claw marks and war chants. It pulses with power,
+          awaiting tribute.
+        check: Choose or Roll Item
+      king:
+        event: An open battlefield reveals primal champions wearing bones and bark. You must
+          outmatch them.
+        check: PWR Check
+    spades:
+      ace:
+        event: Thorn runes carved into a stone arc pulse faintly. Each one must be aligned
+          before moving forward.
+        check: INT Check
+      '2':
+        event: Moss-covered snare sigils flicker beneath your step, disarm them before they
+          entangle you.
+        check: PWR Check
+      '3':
+        event: A circle of antler-carved stones offers stillness… if you dare to trust it.
+          Sanctuary (No
+        check: Check)
+      '4':
+        event: A living root-wall pulses with sealed magic. Breaking through will awaken its
+          guardian spirit.
+        check: AGL Check
+      '5':
+        event: A soft click underfoot, too late. Something stirs in the shadows, ready to
+          strike.
+        check: INT Check
+      '6':
+        event: A carved tusk emits low vibrations. When touched, you see flashes of a long-forgotten
+          beast war. INT Check (Gain 1 Lore on pass)
+        check: No Check
+      '7':
+        event: You must pass through a thicket maze stalked by unseen creatures. Move quickly,
+          or be hunted.
+        check: PWR Check
+      '8':
+        event: Pools of water reflect strange, duplicated versions of you. Something is watching.
+        check: No Check
+      '9':
+        event: You glimpse a glittering relic through brambles, but reaching it undetected
+          is another challenge.
+        check: AGL Check
+      '10':
+        event: Thorik sits on a hanging root, whittling bones, nodding knowingly as you approach.
+        check: No Check
+      jack:
+        event: The wind shifts, and beast-shades strike with precise, silent speed.
+        check: PWR Check
+      queen:
+        event: A shrine of bones demands balance. Offer an item or suffer a gash that cuts
+          far deeper. Choose or Take 5 Damage
+        check: No Check
+      king:
+        event: An ancient hunting hall, its floor rigged with collapsing earth and pressure
+          vines.
+        check: AGL Check
+  ocean:
+    hearts:
+      ace:
+        event: A kelp-draped figure of water gestures toward a mural of constellations carved
+          in stone.
+        check: INT Check
+      '2':
+        event: A silver-scaled eel coils ahead, darting through coral spires. You must follow
+          without touching them.
+        check: PWR Check
+      '3':
+        event: An underwater chamber shimmers with stillness. Music echoes from no source.
+          You feel completely safe. Sanctuary (No
+        check: Check)
+      '4':
+        event: A barnacle-covered door groans under your hand, resisting all but brute strength.
+        check: AGL Check
+      '5':
+        event: Shapes of drowned poets rise from submerged silt, mouthing silent verses as
+          they reach for you.
+        check: INT Check
+      '6':
+        event: A seashell hums with a forgotten memory. A voice once known begins to speak.
+          INT Check (Gain 1 Lore on pass)
+        check: No Check
+      '7':
+        event: A spiraling kelp forest opens before you, but its pattern changes with each
+          step.
+        check: PWR Check
+      '8':
+        event: A glowing coral cradle pulses with restorative magic. The waters around it
+          calm your spirit.
+        check: No Check
+      '9':
+        event: A curious seal spirit blocks your way, resting atop something valuable. It
+          seems to be judging you.
+        check: AGL Check
+      '10':
+        event: Thorik has set up shop in a bubble of air beneath an arch of shells, humming
+          an old sailor’s tune.
+        check: No Check
+      jack:
+        event: Shadows ripple above, razorfish dive in formation, their scales like blades.
+        check: AGL Check
+      queen:
+        event: A statue of a whale offers a riddle. It expects tribute, something lost or
+          deeply treasured.
+        check: Choose or Roll Item
+      king:
+        event: You enter a sunken throne room filled with faded scrolls and tide-worn instruments.
+          PWR Check Hearts Prompts
+        check: No Check
+    diamonds:
+      ace:
+        event: A puzzle sphere is traced as it’s polished pearl displays a shifting star map.
+        check: INT Check
+      '2':
+        event: Glimmering glyphs appear along the walls. They hum with old magic as you step
+          forward.
+        check: PWR Check
+      '3':
+        event: A sealed alcove opens, revealing a small, dry pocket of air filled with old
+          supplies. Sanctuary (No
+        check: Check)
+      '4':
+        event: A pressure-locked vault groans with age. A mistake could flood the chamber.
+        check: AGL Check
+      '5':
+        event: Coral treasures lure your eye, but as you near, tendrils of ink snake toward
+          you.
+        check: INT Check
+      '6':
+        event: A music box formed of shell and glass plays a memory. The vision feels like
+          your own. INT Check (Gain 1 Lore on pass)
+        check: No Check
+      '7':
+        event: Cracked obsidian tiles mark a trail through a treasure vault, but the wrong
+          step triggers the seal.
+        check: AGL Check
+      '8':
+        event: A sunken chamber lined with coral relics offers a breath of air and peace.
+        check: No Check
+      '9':
+        event: You find a coiled serpent idol with emerald eyes. It watches as you reach for
+          the trinkets below.
+        check: PWR Check
+      '10':
+        event: Thorik sells glimmering bottles and scale-bound scrolls under a suspended whale
+          rib.
+        check: No Check
+      jack:
+        event: A trap-laden hoard is guarded by glistening crustacean spirits with spears
+          of pearl.
+        check: PWR Check
+      queen:
+        event: A spiraled altar of coral and songstone demands a gift of beauty or memory.
+          Choose or Roll Item
+        check: No Check
+      king:
+        event: A gallery of ancient wreckage holds trinkets of powerful names. One must be
+          earned, not stolen. AGL Check When Drawing Diamonds, Roll INT IF YOU PASS, ROLL
+          FOR LOOT
+        check: No Check
+    clubs:
+      ace:
+        event: A duel of mirrored guardians begins, their watery forms mimicking your every
+          move.
+        check: INT Check
+      '2':
+        event: Coral-tipped javelins erupt from the walls, only strength can hold them back.
+        check: PWR Check
+      '3':
+        event: A meditation chamber rests beneath the bones of an old leviathan. The air tastes
+          like stillness. Sanctuary (No
+        check: Check)
+      '4':
+        event: A riddle etched into the floor unlocks the path ahead, but to speak the wrong
+          word invites ruin.
+        check: AGL Check
+      '5':
+        event: Shell-armoured spirits rise from silt, eyes blank and weapons drawn.
+        check: PWR Check
+      '6':
+        event: A rhythmic pulse echoes through the water, each beat drawing forth images of
+          ancient battles. INT Check (Gain 1 Lore on pass)
+        check: No Check
+      '7':
+        event: Your path crosses a trench marked with shark teeth and warrior bones. It demands
+          quiet movement.
+        check: AGL Check
+      '8':
+        event: A still battlefield lies before you, the coral blades at rest. For now.
+        check: No Check
+      '9':
+        event: Spear-bearers of the deep block your path with crossed arms and silent stares.
+        check: INT Check
+      '10':
+        event: Thorik’s forge burns inside a shipwreck hull, where he crafts blades and bargains.
+        check: No Check
+      jack:
+        event: Crabs the size of men crash down from above in formation, aiming for your flank.
+        check: PWR Check
+      queen:
+        event: An altar of obsidian coral resonates with battle hymns, demanding a sacrifice
+          of steel or story.
+        check: Choose or Roll Item
+      king:
+        event: A coliseum of wreckage stirs. Coral champions assemble for one final test.
+        check: AGL Check
+    spades:
+      ace:
+        event: Runes carved into pearl-stone flicker as you near. The pattern must be aligned
+          before the current shifts again.
+        check: AGL Check
+      '2':
+        event: Kelp sigils light up beneath your feet, tugging your limbs with unseen force.
+          Resist the pull.
+        check: PWR Check
+      '3':
+        event: A bubble-ringed shrine offers calm, though the shadows around it ripple with
+          suspicion. Sanctuary (No
+        check: Check)
+      '4':
+        event: A mirrored wall of water blocks the way. Stepping through invites an illusion,
+          or a guardian.
+        check: INT Check
+      '5':
+        event: A glint beneath your foot. The click echoes. From above, water and steel descend.
+        check: AGL Check
+      '6':
+        event: A carved spine hums with song. When you touch it, memories not your own pour
+          into your mind. INT Check (Gain 1 Lore on pass)
+        check: No Check
+      '7':
+        event: Navigate a ruin filled with shifting currents and echoing footsteps, real or
+          not.
+        check: INT Check
+      '8':
+        event: A reflection pool shows nothing beneath the surface. Then, suddenly, it shows
+          only you.
+        check: No Check
+      '9':
+        event: You spot a relic across a thin coral bridge. Crossing it unseen is another
+          matter.
+        check: PWR Check
+      '10':
+        event: Thorik carves a whale-bone flute in silence, eyes closed, lips mouthing a forgotten
+          song.
+        check: No Check
+      jack:
+        event: A silent rush of water, a pack of spectral hunters charges from behind.
+        check: PWR Check
+      queen:
+        event: 'A tide-bleached altar demands you choose: an item given freely, or blood drawn
+          deep. Choose or Take 5 Damage'
+        check: No Check
+      king:
+        event: A vault door opens onto an arena of mirrored sea-glass. Your every move is
+          watched.
+        check: INT Check
+  flame:
+    hearts:
+      ace:
+        event: An ember-forged idol whispers a forgotten oath as glowing script forms across
+          its chest.
+        check: PWR Check
+      '2':
+        event: A molten hound bounds across your path, leaving scorched prints that veer into
+          smoke-veiled passageways.
+        check: INT Check
+      '3':
+        event: A circle of warm stone surrounds an old forge, its fire long dead, but the
+          space is calm and safe. Sanctuary (No
+        check: Check)
+      '4':
+        event: A gate of fused iron bars blocks the hall. It groans under your hand, resisting
+          all but raw power.
+        check: AGL Check
+      '5':
+        event: Armored spirits emerge from cracks in the wall, brandishing half-melted weapons
+          and burning eyes.
+        check: PWR Check
+      '6':
+        event: A furnace flickers to life. Through its flames, you see a battle once fought,
+          its fury branded into memory. INT Check (Gain 1 Lore on pass)
+        check: No Check
+      '7':
+        event: An ever-shifting corridor of slag and ash reshapes behind you. Each step must
+          be chosen with care.
+        check: INT Check
+      '8':
+        event: A trickle of lava flows through a peaceful shrine, its glow warm and healing.
+          You feel Kalios watching.
+        check: No Check
+      '9':
+        event: A brass-wrapped golem slumbers atop a cache. It shifts as you approach, testing
+          your resolve.
+        check: AGL Check
+      '10':
+        event: Thorik polishes a blade near a lava vent, trading relics pulled from the deep
+          forge-halls.
+        check: No Check
+      jack:
+        event: A crack in the ceiling showers sparks, and forged wraiths descend in tandem.
+          You must act before they form.
+        check: PWR Check
+      queen:
+        event: A bloodstained anvil demands an offering. Something forged. Something fought
+          for. Something broken.
+        check: Choose or Roll Item
+      king:
+        event: A war-chamber lined with melted armor glows dimly. At its center, a throne
+          of iron pulses with memory. INT Check Hearts Prompts
+        check: No Check
+    diamonds:
+      ace:
+        event: A puzzle lock engraved with ember-veins reshapes itself as you reach for it.
+        check: INT Check
+      '2':
+        event: Molten glyphs flare across the chamber floor. Step wrong, and they explode
+          upward.
+        check: AGL Check
+      '3':
+        event: A collapsed smelter conceals an old camp. Cool coals, food packs, and a charred
+          war journal. Sanctuary (No
+        check: Check)
+      '4':
+        event: An iron vault sealed by a melted sigil groans as you approach. It may shatter
+          with force.
+        check: PWR Check
+      '5':
+        event: Golden armor shards litter the floor. A blazing sentinel rises from them, roaring
+          with fire.
+        check: PWR Check
+      '6':
+        event: A hammer floats in place, striking a phantom anvil. Sparks dance around you,
+          forming visions of battles past. INT Check (Gain 1 Lore on pass)
+        check: No Check
+      '7':
+        event: A narrow crawlspace winds behind shattered pillars. The deeper you go, the
+          hotter it gets.
+        check: INT Check
+      '8':
+        event: A forge glows faintly behind fire-glass. The air here is still, and the warmth
+          is soothing.
+        check: No Check
+      '9':
+        event: You find a cache hidden beneath a forge altar. As you reach for it, something
+          stirs in the ash.
+        check: AGL Check
+      '10':
+        event: Thorik leans against an anvil, peddling war-forged relics and scrolls etched
+          in soot.
+        check: No Check
+      jack:
+        event: Cinders erupt from the walls as a burning construct lunges forward, blades
+          glowing with residual forge magic.
+        check: AGL Check
+      queen:
+        event: A brazier of coal and bone offers warmth but it requires a piece of you in
+          return.
+        check: Choose or Roll Item
+      king:
+        event: Within a scorched vault lies a throne of melted iron. Surrounding it are tokens
+          of conquest, humming with old magic. PWR Check When Drawing Diamonds, Roll INT IF
+          YOU PASS, ROLL FOR LOOT
+        check: No Check
+    clubs:
+      ace:
+        event: Iron-forged guardians awaken and mirror your every move with violent grace.
+        check: INT Check
+      '2':
+        event: Flame-barbed spears launch from hidden wall vents as pressure plates snap underfoot.
+        check: AGL Check
+      '3':
+        event: A glade of scorched statues offers quiet, around you, the ash is undisturbed.
+          Something watches, but does not stir. Sanctuary (No
+        check: Check)
+      '4':
+        event: A barricade of war-scarred shields blocks your advance. Its structure creaks,
+          held by a clever mechanism.
+        check: INT Check
+      '5':
+        event: Burned-out spirits burst from cracked floor tiles, wielding rusted blades and
+          molten rage.
+        check: PWR Check
+      '6':
+        event: A drum of obsidian rings out. With each beat, a memory of a duel plays out
+          before you, yours or another’s. INT Check (Gain 1 Lore on pass)
+        check: No Check
+      '7':
+        event: Soot-streaked columns encircle the arena. Something stalks between them, fast,
+          silent, deliberate.
+        check: AGL Check
+      '8':
+        event: In the still of a molten grove, the fires seem to sleep. For now, they do not
+          test you.
+        check: No Check
+      '9':
+        event: 'Twin sentinels of iron and bone guard a cache of scorched relics. Their test
+          is simple: survive.'
+        check: PWR Check
+      '10':
+        event: Thorik sharpens a jagged glaive, smoke curling from his shoulders. “Heat makes
+          trade honest,” he says.
+        check: No Check
+      jack:
+        event: Chunks of the ceiling crash down, among them, forged beasts with molten jaws.
+          Move quickly or burn.
+        check: AGL Check
+      queen:
+        event: A brazier of branded helms and shattered weapons asks for something broken.
+          Something once yours.
+        check: Choose or Roll Item
+      king:
+        event: A dueling pit carved from obsidian calls to you. Across it stands a silent
+          champion, fists clenched.
+        check: PWR Check
+    spades:
+      ace:
+        event: Runes flicker across a scorched archway. Align them or risk triggering the
+          trap beneath.
+        check: AGL Check
+      '2':
+        event: Snare-sigils crackle underfoot, glowing with emberlight. Act fast before they
+          coil around your limbs.
+        check: PWR Check
+      '3':
+        event: A ring of charred statues kneels in silence. Their stillness offers uneasy
+          peace—for now. Sanctuary (No
+        check: Check)
+      '4':
+        event: A sealed gate throbs with lingering heat. Break through, and face what waits
+          beyond.
+        check: PWR Check
+      '5':
+        event: A click echoes beneath your step. From the cracks in the floor, something begins
+          to rise.
+        check: INT Check
+      '6':
+        event: A carved brazier hums with low resonance. When touched, visions of a firestorm
+          war flare before your eyes. INT Check (Gain 1 Lore on pass)
+        check: No Check
+      '7':
+        event: Jagged stone corridors twist ahead. Something stalks just beyond the torchlight,
+          always at your back.
+        check: AGL Check
+      '8':
+        event: A molten mirror pool reflects you perfectly—until it blinks. You do not.
+        check: No Check
+      '9':
+        event: Through ash-choked brambles, a faint glint beckons. Reaching it requires delicate
+          steps and iron will.
+        check: INT Check
+      '10':
+        event: Thorik sits in a pillar of smoke, whittling a spear from dragonbone. He does
+          not speak, but gestures to his wares.
+        check: No Check
+      jack:
+        event: The air thickens. Then—strike! Forged shadows descend with brutal accuracy.
+        check: PWR Check
+      queen:
+        event: A broken altar of bone and flame demands sacrifice. Deny it, and the pain will
+          follow. Choose or Take 10 Damage
+        check: No Check
+      king:
+        event: An arena of molten channels and broken earth yawns before you. Each wrong step
+          triggers calamity.
+        check: AGL Check
+  storm:
+    hearts:
+      ace:
+        event: A glowing coral cradle pulses with restorative magic. The waters around it
+          calm your spirit.
+        check: No Check
+      '2':
+        event: Shadows ripple above, razorfish dive in formation, their scales like blades.
+        check: AGL Check
+      '3':
+        event: A kelp-draped figure of water gestures toward a mural of constellations carved
+          in stone.
+        check: INT Check
+      '4':
+        event: A curious seal spirit blocks your way, resting atop something valuable. It
+          seems to be judging you.
+        check: AGL Check
+      '5':
+        event: An underwater chamber shimmers with stillness. Music echoes from no source.
+          You feel completely safe.
+        check: Sanctuary (No Check)
+      '6':
+        event: A spiraling kelp forest opens before you, but its pattern changes with each
+          step.
+        check: PWR Check
+      '7':
+        event: A seashell hums with a forgotten memory. A voice once known begins to speak.
+          INT Check (Gain 1 Lore on pass)
+        check: No Check
+      '8':
+        event: You enter a sunken throne room filled with faded scrolls and tide-worn instruments.
+        check: PWR Check
+      '9':
+        event: A barnacle-covered door groans under your hand, resisting all but brute strength.
+        check: AGL Check
+      '10':
+        event: Thorik has set up shop in a bubble of air beneath an arch of shells, humming
+          an old sailor’s tune.
+        check: No Check
+      jack:
+        event: A silver-scaled eel coils ahead, darting through coral spires. You must follow
+          without touching them.
+        check: PWR Check
+      queen:
+        event: A statue of a whale offers a riddle. It expects tribute, something lost or
+          deeply treasured.
+        check: Choose or Roll Item
+      king:
+        event: Shapes of drowned poets rise from submerged silt, mouthing silent verses as
+          they reach for you. INT Check Hearts Prompts
+        check: No Check
+    diamonds:
+      ace:
+        event: A stormglass orb floats between three spires, its surface showing distant landscapes
+          that change with each thunderclap. To claim it, you must decipher the pattern.
+        check: INT Check
+      '2':
+        event: A sudden gust lifts loose tiles from the path, turning them into spinning hazards.
+          You must push forward before the wind claims the rest.
+        check: PWR Check
+      '3':
+        event: A hollow beneath a leaning cliff shields you from the rain. Old offerings to
+          Emdros remain untouched, and the air is warm. Sanctuary (No
+        check: Check)
+      '4':
+        event: A lightning-warped archway hums with unstable energy. Passing through safely
+          will take speed and precision.
+        check: AGL Check
+      '5':
+        event: Murals of Emdros’s past trials flicker with living stormlight. The moving images
+          pose a riddle in symbols of wind and wave.
+        check: INT Check
+      '6':
+        event: A spiral of wind traps you in place. For a heartbeat, you see memories not
+          your own—flashes of journeys across impossible skies. INT Check (Gain 1 Lore on
+          pass)
+        check: No Check
+      '7':
+        event: A ledge crumbles under the pounding rain. You must leap to a wind-battered
+          platform before it collapses entirely.
+        check: AGL Check
+      '8':
+        event: A shrine of woven banners offers a place to rest. The wind hums low, as if
+          guarding your pause.
+        check: No Check
+      '9':
+        event: A colossal stormbird lands ahead, wings crackling with static. Its gaze tests
+          your strength before allowing passage.
+        check: PWR Check
+      '10':
+        event: Thorik waits in a pocket of still air, selling storm-forged trinkets and maps
+          drawn by lightning’s path.
+        check: No Check
+      jack:
+        event: A ring of thunder spirits spins around a locked chest, each bolt they throw
+          daring you to step closer.
+        check: PWR Check
+      queen:
+        event: 'A stone plinth topped with cloudsteel demands tribute: something that has
+          traveled farther than you have. Choose or Roll Item'
+        check: No Check
+      king:
+        event: A causeway of floating stones shifts with the wind’s mood. Cross before the
+          sky changes its mind. AGL Check When Drawing Diamonds, Roll INT IF YOU PASS, ROLL
+          FOR LOOT
+        check: No Check
+    clubs:
+      ace:
+        event: Two storm-wrought guardians of cloudsteel emerge, mirroring your every stance.
+          Their movements grow faster with each strike of lightning.
+        check: INT Check
+      '2':
+        event: Spears of condensed lightning erupt from the ground. Only raw force can shatter
+          their charge before they pierce the path.
+        check: PWR Check
+      '3':
+        event: A meditation alcove carved into the cliffside hums with wind-chimes. Here,
+          the air is warm, dry, and free from the storm’s reach.
+        check: Sanctuary (No Check)
+      '4':
+        event: Runes etched into the floor flash in rhythm with thunder. One phrase will open
+          the way; the wrong word invites the storm’s wrath.
+        check: AGL Check
+      '5':
+        event: Gale-armoured warriors step from the mist, their forms blurring with every
+          gust. They advance without a word.
+        check: PWR Check
+      '6':
+        event: A distant peal of thunder syncs with the beat of your heart. Images of ancient
+          duels fought upon the clouds flood your mind. INT Check (Gain 1 Lore on pass)
+        check: No Check
+      '7':
+        event: Your path cuts across a narrow ridge marked with shattered spears and torn
+          banners. Step too loudly, and the wind will betray you.
+        check: AGL Check
+      '8':
+        event: A plateau lies still beneath the roiling sky. Fallen weapons rest untouched,
+          as if awaiting the next call to arms.
+        check: No Check
+      '9':
+        event: Wing-helmed sentinels block your passage, their halberds sparking faintly in
+          the rain. They do not speak, but their challenge is clear.
+        check: INT Check
+      '10':
+        event: Thorik hammers at an anvil of cloudstone, each strike ringing like thunder.
+          He offers wares between beats.
+        check: No Check
+      jack:
+        event: Hawk-sized storm drakes dive from the clouds in perfect formation, their talons
+          aimed to drive you from the ledge.
+        check: PWR Check
+      queen:
+        event: An altar of wind-polished marble sings with battle hymns, demanding a sacrifice
+          of steel or of a tale hard- won.
+        check: Choose or Roll Item
+      king:
+        event: A skybound arena of floating stones shifts beneath your feet as thunder echoes.
+          Storm-forged champions gather for one last test.
+        check: AGL Check
+    spades:
+      ace:
+        event: Runes etched into stormglass flash in jagged patterns. They must be aligned
+          before the wind scatters their light.
+        check: AGL Check
+      '2':
+        event: Bands of charged air twist around you, pulling at your limbs with invisible
+          force. Only raw strength can break free.
+        check: PWR Check
+      '3':
+        event: A cliffside shrine sheltered by a ring of standing stones offers still air
+          and a reprieve from the storm’s howl.
+        check: Sanctuary (No Check)
+      '4':
+        event: A wall of lightning dances in place, reflecting a dozen false paths ahead.
+          Stepping through invites either truth or a waiting sentinel.
+        check: INT Check
+      '5':
+        event: A stone beneath your foot shifts. The sound echoes up the mountain—and from
+          above, a hail of broken rock and steel descends.
+        check: AGL Check
+      '6':
+        event: A weathered obelisk hums with an ancient chant. When you touch it, visions
+          of skyward journeys not your own fill your mind. INT Check (Gain 1 Lore on pass)
+        check: No Check
+      '7':
+        event: You weave through a ruin where the wind mimics footsteps all around you—some
+          your own, some not.
+        check: INT Check
+      '8':
+        event: A pool formed in a rock hollow reflects only clear sky— until a lightning flash
+          shows you standing in another place entirely.
+        check: No Check
+      '9':
+        event: Across a swaying rope span rests a relic on a pedestal of cloudstone. Crossing
+          without being cast off by the wind will be no small feat.
+        check: PWR Check
+      '10':
+        event: Thorik chips at a shard of sky-iron, each strike ringing like distant thunder.
+          He works without speaking.
+        check: No Check
+      jack:
+        event: A sudden downdraft slams into you, heralding the dive of spectral hawk-riders
+          aiming for your flank.
+        check: PWR Check
+      queen:
+        event: 'An altar carved from stormglass demands your choice: an offering given freely,
+          or a wound taken in defiance. Choose or Take 5 Damage'
+        check: No Check
+      king:
+        event: A floating platform drifts into place, ringed by storm- forged guardians. Every
+          motion you make is mirrored in their advance.
+        check: INT Check
+  crypt:
+    hearts:
+      ace:
+        event: A row of chained lanterns flares as you pass, casting shadows that struggle
+          to pull free from the walls.
+        check: PWR Check
+      '2':
+        event: A cloaked figure gestures toward a cracked stone arch. Within its frame, you
+          see a place you swore you’d never return to.
+        check: INT Check
+      '3':
+        event: A hollow alcove lit by a single black candle offers stillness. The flame never
+          flickers, even when you breathe upon it.
+        check: Sanctuary (No Check)
+      '4':
+        event: An iron-bound door rattles violently in its frame, as though something within
+          is desperate to get out. The hinges resist your every effort.
+        check: PWR Check
+      '5':
+        event: Gaunt spirits drift across the corridor, their hands pressed over their ears
+          to block some sound you cannot hear.
+        check: AGL Check
+      '6':
+        event: A mural shifts before your eyes, showing the exact moment someone close to
+          you met their end. The image waits for you to understand. INT Check (Gain 1 Lore
+          on pass)
+        check: No Check
+      '7':
+        event: A hallway lined with urns tilts and warps, forcing you to step with unnatural
+          care or risk shattering their contents.
+        check: AGL Check
+      '8':
+        event: A shrine of bone and glass hums faintly, its presence both soothing and cold.
+          You feel Mordred’s gaze upon you.
+        check: No Check
+      '9':
+        event: A black-armored sentinel kneels in your path, offering you the hilt of a broken
+          sword. To pass, you must take it.
+        check: INT Check
+      '10':
+        event: Thorik stands in the dim light, silently arranging tokens of the dead on a
+          velvet cloth. He glances up only once.
+        check: No Check
+      jack:
+        event: From the ceiling, bone hooks descend in silence, each one reaching for your
+          shoulders.
+        check: PWR Check
+      queen:
+        event: 'A stone altar carved with weeping faces demands tribute: something that would
+          wound you to part with.'
+        check: Choose or Roll Item
+      king:
+        event: An abandoned throne room sits in perfect stillness. At its center lies a crown
+          of tarnished silver, waiting for its final bearer. INT Check Hearts Prompts
+        check: No Check
+    diamonds:
+      ace:
+        event: A lock of bone and rust shifts as you touch it, rearranging its shape into
+          something almost familiar.
+        check: INT Check
+      '2':
+        event: Thin cracks in the floor begin to weep black mist. Step wrong, and the ground
+          will give way to the dark below.
+        check: AGL Check
+      '3':
+        event: A forgotten resting place sits beneath a sagging arch, the dust undisturbed
+          for centuries. A faded bedroll still holds its shape.
+        check: Sanctuary (No Check)
+      '4':
+        event: A sealed crypt door rattles faintly from within. It might yield to brute force,
+          though you are not certain you should.
+        check: PWR Check
+      '5':
+        event: Shattered grave markers knit together into a towering wraith, its form shaking
+          with fury.
+        check: PWR Check
+      '6':
+        event: A cracked obelisk glows with a pale light. When you touch it, memories not
+          your own flood your mind, heavy with grief. INT Check (Gain 1 Lore on pass)
+        check: No Check
+      '7':
+        event: A tight, low passage winds beneath leaning tombs. The air grows colder the
+          further you crawl.
+        check: INT Check
+      '8':
+        event: A small shrine rests in a hollowed column, lit by a single candle that has
+          never melted.
+        check: No Check
+      '9':
+        event: A stone chest lies buried beneath broken statuary. As you reach for it, skeletal
+          hands scrape free of the rubble.
+        check: AGL Check
+      '10':
+        event: Thorik sits in the shadows, arranging bone talismans and iron rings on a black
+          cloth. He looks up only when you approach.
+        check: No Check
+      jack:
+        event: Chains whip from hidden recesses, each tipped with hooks carved from spine.
+          They strike without sound.
+        check: AGL Check
+      queen:
+        event: A basin carved from skulls holds a single drop of dark water. To take from
+          it, you must give something you cannot replace.
+        check: Choose or Roll Item
+      king:
+        event: In the center of a vault of unmarked graves rests a sarcophagus bound in silver
+          chains. Its hum shakes the air. PWR Check When Drawing Diamonds, Roll INT IF YOU
+          PASS, ROLL FOR LOOT
+        check: No Check
+    clubs:
+      ace:
+        event: Hollow-eyed guardians of bone and chain awaken, mirroring your movements with
+          uncanny precision.
+        check: INT Check
+      '2':
+        event: Rusted blades swing from the shadows, loosed by a tripwire of braided hair.
+        check: AGL Check
+      '3':
+        event: A ring of weathered statues kneels in eternal prayer. The ground between them
+          is undisturbed, yet you feel watched.
+        check: Sanctuary (No Check)
+      '4':
+        event: A barricade of cracked coffins blocks the way, its weight held by a careful
+          balance that could collapse at any touch.
+        check: INT Check
+      '5':
+        event: Gaunt wraiths burst from the floor, their limbs bound with burial cloth that
+          drips black ichor.
+        check: PWR Check
+      '6':
+        event: A funeral gong carved from obsidian rings in your mind. Each sound brings flashes
+          of deaths you have never seen. INT Check (Gain 1 Lore on pass)
+        check: No Check
+      '7':
+        event: Leaning mausoleums form a narrow gauntlet. Something moves between them with
+          impossible speed.
+        check: AGL Check
+      '8':
+        event: A silent courtyard of gravestones holds an unlit brazier. No wind, no movement,
+          only a stillness that accepts your presence.
+        check: No Check
+      '9':
+        event: Twin spectral sentinels stand before a sealed vault, their pale hands resting
+          on the pommels of rusted swords.
+        check: PWR Check
+      '10':
+        event: Thorik sits on a tomb lid, turning a small hourglass over in his hands. He
+          does not speak until you approach.
+        check: No Check
+      jack:
+        event: Sections of the ceiling collapse without warning. Among the rubble, skeletal
+          beasts claw their way toward you.
+        check: AGL Check
+      queen:
+        event: A pillar carved with screaming faces demands an offering. Something once yours,
+          now willingly surrendered.
+        check: Choose or Roll Item
+      king:
+        event: A dueling circle marked in blood calls to you. Across it stands a warrior draped
+          in funeral shrouds, ready to test you.
+        check: PWR Check
+    spades:
+      ace:
+        event: Runes etched into a crumbling arch fade and flare as you approach. Align them,
+          or the stones will collapse.
+        check: INT Check
+      '2':
+        event: Chains coiled on the floor spring to life, snapping toward your legs with bone
+          hooks.
+        check: AGL Check
+      '3':
+        event: A ring of weathered grave markers tilts in the silent wind. The stillness here
+          offers uneasy calm.
+        check: Sanctuary (No Check)
+      '4':
+        event: A sealed mausoleum door rattles faintly, each impact sending dust from the
+          hinges. Force it open to see what remains inside.
+        check: PWR Check
+      '5':
+        event: The tile beneath your foot clicks. From the surrounding walls, skeletal arms
+          push their way into the corridor.
+        check: AGL Check
+      '6':
+        event: A cracked funerary mask hums with a low tone. When touched, visions of countless
+          unmarked graves fill your sight. INT Check (Gain 1 Lore on pass)
+        check: No Check
+      '7':
+        event: Narrow corridors bend in on themselves, walls shifting just out of sight. You
+          hear steady footsteps behind you that never draw closer.
+        check: PWR Check
+      '8':
+        event: A black pool reflects your image perfectly… until it tilts its head at you.
+        check: No Check
+      '9':
+        event: Through thorned brambles of bone and rust, a pale glint beckons. The way forward
+          requires careful precision.
+        check: AGL Check
+      '10':
+        event: Thorik sits atop a pile of broken headstones, slowly turning a silver coin
+          between his fingers. He gestures toward his wares.
+        check: No Check
+      jack:
+        event: The air drops cold in an instant. Then, without warning, shadow-clad warriors
+          strike from both sides.
+        check: INT Check
+      queen:
+        event: A cracked altar of skulls demands an offering. Refuse, and you feel the weight
+          of countless eyes pressing in. Choose or Take 10 Damage
+        check: No Check
+      king:
+        event: An arena of fractured tomb slabs stretches ahead. Each misstep threatens to
+          send you tumbling into the dark.
+        check: PWR Check
+  living:
+    hearts:
+      ace:
+        event: A grove of luminous flowers blooms at your approach, each one pulsing with
+          heartbeats. To pass, you must choose one to silence.
+        check: INT Check
+      '2':
+        event: A stag of green crystal lowers its head, daring you to meet its charge.
+        check: PWR Check
+      '3':
+        event: A cradle of roots shelters a sleeping child of bark and moss. Peace surrounds
+          the place.
+        check: Sanctuary (No Check)
+      '4':
+        event: A bridge of woven vines trembles under your weight. The roots test whether
+          you will fall or be carried.
+        check: AGL Check
+      '5':
+        event: Spirits of healers past gather, whispering prayers that brush against your
+          skin. Their touch grows heavier until you resist.
+        check: PWR Check
+      '6':
+        event: A mural of Yala’s earliest gifts glows with light. When you touch it, memories
+          of a thousand births fill your mind.
+        check: INT Check (Gain 1 Lore)
+      '7':
+        event: Vines coil into a spiral path that twists endlessly. To move forward, you must
+          learn its rhythm.
+        check: INT Check
+      '8':
+        event: A spring of clear water bubbles up, cool and steady. Its peace seeps into your
+          bones.
+        check: No Check
+      '9':
+        event: A thorned guardian kneels in your path, offering its blade. If you accept,
+          its roots dig into your skin.
+        check: PWR Check
+      '10':
+        event: Thorik tends a flowerbed of steel blossoms, their petals sharper than knives.
+          He hums quietly as he trades.
+        check: No Check
+      jack:
+        event: A sudden bloom of carnivorous plants snaps shut around the path, their roots
+          writhing.
+        check: AGL Check
+      queen:
+        event: A stone altar cradles an ancient seed. To take it, you must give something
+          of equal value.
+        check: Choose or Roll Item
+      king:
+        event: A cathedral of trees rises ahead, its branches forming an endless canopy. In
+          its heart waits a knight of vines, unmoving. INT Check Hearts Prompts
+        check: No Check
+    diamonds:
+      ace:
+        event: A puzzle of roots twists into knots that tighten as you pull. Only wisdom can
+          untangle them.
+        check: INT Check
+      '2':
+        event: A floor of shifting leaves hides hollows beneath. Step wrong, and the ground
+          collapses.
+        check: AGL Check
+      '3':
+        event: A grove of tall grass bends in perfect stillness. A hollow stone within offers
+          food and water long left behind. Sanctuary (No
+        check: Check)
+      '4':
+        event: A sealed cairn of moss-covered stones resists your strength, humming faintly
+          with Yala’s presence.
+        check: PWR Check
+      '5':
+        event: From a shattered cocoon, a massive moth of silver wings rises, brushing the
+          path with powder that blinds.
+        check: AGL Check
+      '6':
+        event: A carved tablet of bone glows faintly. Touching it floods your mind with the
+          last rites of ancient healers. INT Check (Gain 1 Lore)
+        check: No Check
+      '7':
+        event: A tunnel lined with roots twists so tightly that every breath feels stolen.
+          To move forward requires control of thought.
+        check: INT Check
+      '8':
+        event: A circle of mushrooms glows softly, their light soothing. You feel safe for
+          a time.
+        check: No Check
+      '9':
+        event: A living statue of vines shifts aside, offering you the hilt of a weapon grown
+          of thorn. Its weight tests you.
+        check: PWR Check
+      '10':
+        event: Thorik sharpens a sickle of bone while feeding birds from his free hand. He
+          greets you with a nod.
+        check: No Check
+      jack:
+        event: The roots above shake violently, releasing a shower of stones and thorned branches.
+        check: AGL Check
+      queen:
+        event: A tree split by lightning reveals a hollow heart, inside which lies a relic
+          of immense value. It demands a trade. Choose or Roll Item
+        check: No Check
+      king:
+        event: In a chamber of endless vines rests a throne of living bark. It beats faintly,
+          as if waiting for its bearer. PWR Check When Drawing Diamonds, Roll INT IF YOU PASS,
+          ROLL FOR LOOT
+        check: No Check
+    clubs:
+      ace:
+        event: Two guardians of ivy rise, mimicking your movements with silent precision.
+        check: INT Check
+      '2':
+        event: Thorns whip across the path like living chains, snapping at your feet.
+        check: AGL Check
+      '3':
+        event: A glade of untouched blossoms glimmers softly in moonlight. The air is still,
+          peaceful.
+        check: Sanctuary (No Check)
+      '4':
+        event: A lattice of thorned shields blocks the way, each one bound with old roots.
+        check: INT Check
+      '5':
+        event: Bark-armored warriors rise from the soil, their limbs creaking like old wood.
+        check: PWR Check
+      '6':
+        event: A single stone drum carved with Yala’s symbol beats faintly. When touched,
+          it sings of forgotten births and funerals.
+        check: INT Check (Gain 1 Lore)
+      '7':
+        event: A grove of shifting vines sways with unnatural rhythm. Something large moves
+          through them, fast.
+        check: AGL Check
+      '8':
+        event: A quiet garden of herbs stretches out, rich with scent and color. Here you
+          may rest.
+        check: No Check
+      '9':
+        event: Twin wardens of living oak stand before a chest bound in green fire.
+        check: PWR Check
+      '10':
+        event: Thorik waters a potted plant carved from stone, shaking his head as if in quiet
+          amusement.
+        check: No Check
+      jack:
+        event: A shower of roots bursts from above, dragging skeletal remains to block your
+          path.
+        check: AGL Check
+      queen:
+        event: A vine-wrapped altar bears a seed of gold. It whispers for sacrifice.
+        check: Choose or Roll Item
+      king:
+        event: A dueling ground marked by petals waits. Across it, a knight of ivy tightens
+          its grip on a blade of sapwood.
+        check: PWR Check
+    spades:
+      ace:
+        event: A wall of runes carved into bark flickers with faint light. They must be aligned
+          before the wood splinters shut.
+        check: INT Check
+      '2':
+        event: A patch of strangler-vines lunges for your limbs, tightening with startling
+          speed.
+        check: PWR Check
+      '3':
+        event: A circle of standing stones hums faintly. Their alignment seems to hold the
+          forest’s balance still.
+        check: Sanctuary (No Check)
+      '4':
+        event: A massive trunk bars your path. It is alive and resists all attempts to move
+          past.
+        check: PWR Check
+      '5':
+        event: A root beneath your foot shifts. From it, a tangle of briars erupts, blocking
+          the passage.
+        check: AGL Check
+      '6':
+        event: A carved mask of wood vibrates softly. When held, it floods your thoughts with
+          births and deaths long forgotten.
+        check: INT Check (Gain 1 Lore)
+      '7':
+        event: The path splits and curls back on itself. Whichever route you choose, unseen
+          figures move just out of sight.
+        check: INT Check
+      '8':
+        event: A reflective pond glimmers, showing your face adorned with a wreath of flowers.
+          The image does not move when you do.
+        check: No Check
+      '9':
+        event: In a grove of nettles rests a weapon forged of bone and vine. Its grasp challenges
+          your resolve.
+        check: PWR Check
+      '10':
+        event: Thorik sits upon a fallen log, carving living runes into the wood. He pauses
+          only to look up at you.
+        check: No Check
+      jack:
+        event: A sudden burst of spore-cloud erupts from the floor, filling the air with choking
+          pollen.
+        check: AGL Check
+      queen:
+        event: A hollow altar beats like a heart. It demands something alive to feed it.
+        check: Choose or Roll Item
+      king:
+        event: A chamber of shifting roots forms into a dueling ring. At its center, a knight
+          of bark waits with patient silence.
+        check: AGL Check
+  moon:
+    hearts:
+      ace:
+        event: A mirror of polished obsidian shows you a life you could have lived. It beckons.
+        check: INT Check
+      '2':
+        event: A figure of moonlight offers their hand. If you take it, the corridor dissolves
+          into shifting stars.
+        check: AGL Check
+      '3':
+        event: A circle of candles burns with pale blue flame. Their warmth is steady and
+          safe.
+        check: Sanctuary (No Check)
+      '4':
+        event: A silver mask lies in the dust. It whispers a secret each time you blink.
+        check: INT Check
+      '5':
+        event: Pale spirits sing a wordless hymn that draws you closer, step by step.
+        check: PWR Check
+      '6':
+        event: A carved mural glimmers with hidden symbols. When touched, your vision floods
+          with riddles that feel like memories.
+        check: INT Check (Gain 1 Lore)
+      '7':
+        event: A hallway stretches endlessly, the same doorway repeating until you find the
+          right rhythm to pass.
+        check: INT Check
+      '8':
+        event: A pool of still water reflects the moon, though no light shines above. Its
+          surface calms your spirit.
+        check: No Check
+      '9':
+        event: A pale knight kneels, holding a blade of silver light. To pass, you must accept
+          its test.
+        check: PWR Check
+      '10':
+        event: Thorik tends a lantern of moonstone, bartering trinkets he swears are touched
+          by starlight.
+        check: No Check
+      jack:
+        event: A sudden eclipse plunges the path into shadow. Shapes lunge at you from the
+          dark.
+        check: AGL Check
+      queen:
+        event: A silver altar glows faintly, demanding something that reflects truth.
+        check: Choose or Roll Item
+      king:
+        event: A cathedral chamber shimmers with false constellations. One star pulses faintly,
+          guiding you forward. INT Check Hearts Prompts
+        check: No Check
+    diamonds:
+      ace:
+        event: A puzzle lock of crescent shapes rearranges itself each time you blink.
+        check: INT Check
+      '2':
+        event: The floor glitters with shards of crystal. Step wrong, and the path vanishes
+          beneath your feet.
+        check: AGL Check
+      '3':
+        event: A silver alcove holds a forgotten scholar’s satchel. Within are scraps of parchment
+          and dried ink.
+        check: Sanctuary (No Check)
+      '4':
+        event: A sealed chest glows faintly. Its lock resists all but sheer strength.
+        check: PWR Check
+      '5':
+        event: A pale wolf spirit pads across your path, its eyes like twin moons. It lowers
+          its head in challenge.
+        check: PWR Check
+      '6':
+        event: A constellation carved into the ceiling shifts when you look away, revealing
+          fragments of forgotten lore.
+        check: INT Check (Gain 1 Lore)
+      '7':
+        event: A hallway of mirrors bends and twists, hiding the exit among endless reflections.
+        check: INT Check
+      '8':
+        event: A soft glow illuminates a moonlit shrine. For a moment, the silence feels whole.
+        check: No Check
+      '9':
+        event: A coffer bound in silver roots trembles. As you touch it, a spirit stirs within.
+        check: AGL Check
+      '10':
+        event: Thorik polishes a blade carved from pale glass, his stall surrounded by floating
+          motes of light.
+        check: No Check
+      jack:
+        event: A false moon rises overhead, flooding the hall with dangerous brilliance. Figures
+          step from the glare.
+        check: AGL Check
+      queen:
+        event: A star-carved altar hums faintly, demanding something once precious and still
+          remembered.
+        check: Choose or Roll Item
+      king:
+        event: In a vault of moonstone pillars rests a throne of pale crystal. It hums softly
+          with lost power. PWR Check When Drawing Diamonds, Roll INT IF YOU PASS, ROLL FOR
+          LOOT
+        check: No Check
+    clubs:
+      ace:
+        event: Two knights of silver rise, mirroring your stance. Their strikes fall with
+          unnatural precision.
+        check: INT Check
+      '2':
+        event: Arrows of moonlight rain down from the ceiling, forcing you to dodge or burn
+          beneath their touch.
+        check: AGL Check
+      '3':
+        event: A courtyard of pale lilies stretches outward. The flowers glow faintly, but
+          remain undisturbed.
+        check: Sanctuary (No Check)
+      '4':
+        event: A gate of shifting constellations blocks the way, forming patterns that resist
+          your grasp.
+        check: INT Check
+      '5':
+        event: Phantoms in broken armor charge with weapons of pale flame. Their silence is
+          deafening.
+        check: PWR Check
+      '6':
+        event: A drum carved of silver bone beats softly. When you touch it, you hear echoes
+          of battles fought under moonlight.
+        check: INT Check (Gain 1 Lore)
+      '7':
+        event: Shapes move between columns of crystal. They dart at the edge of your sight,
+          too quick to follow.
+        check: AGL Check
+      '8':
+        event: A circle of lanterns flickers gently, their glow steadying your heart.
+        check: No Check
+      '9':
+        event: Twin guardians of silver and shadow guard a chest filled with pale relics.
+        check: PWR Check
+      '10':
+        event: Thorik sits beneath a broken arch, arranging silver trinkets with unusual care.
+        check: No Check
+      jack:
+        event: The ground splits beneath you, illusions collapsing into an endless pit. From
+          it, pale claws reach upward.
+        check: AGL Check
+      queen:
+        event: An altar of mirrored stone demands an offering. Its reflection shows what you
+          fear to lose.
+        check: Choose or Roll Item
+      king:
+        event: A dueling pit carved of moonstone glows faintly. At its far end, a knight draped
+          in silver waits.
+        check: PWR Check
+    spades:
+      ace:
+        event: Runes carved into silver slabs shift as you touch them. One wrong step seals
+          the way behind you.
+        check: INT Check
+      '2':
+        event: Chains of pale light lash from the walls, wrapping around your arms and dragging
+          you back.
+        check: PWR Check
+      '3':
+        event: A circle of shattered mirrors lies across the path. Their shards reflect stars
+          that no longer shine.
+        check: Sanctuary (No Check)
+      '4':
+        event: A silver door resists, its surface bending like water. Breaking through is
+          the only way.
+        check: PWR Check
+      '5':
+        event: The floor hums faintly before collapsing into a pit of illusory darkness.
+        check: AGL Check
+      '6':
+        event: A carved mask of moonstone glimmers faintly. When held, it shows glimpses of
+          lives that never happened.
+        check: INT Check (Gain 1 Lore)
+      '7':
+        event: The hall shifts left, then right. You realize the path is not moving — you
+          are.
+        check: AGL Check
+      '8':
+        event: A pool of quicksilver reflects a stranger’s face in your place. It smiles faintly.
+        check: No Check
+      '9':
+        event: A sealed chest breathes faintly, as if alive. It resists your hand.
+        check: PWR Check
+      '10':
+        event: Thorik tends to a cracked mirror, polishing it as if it could reveal the truth.
+        check: No Check
+      jack:
+        event: From the ceiling, silver chains fall in silence, dragging spectral figures
+          with them.
+        check: PWR Check
+      queen:
+        event: An altar of pale stone hums with a faint resonance. It demands something remembered
+          only by you.
+        check: Choose or Roll Item
+      king:
+        event: A chamber of broken statues stands in ruin. Each one watches with hollow eyes
+          as you pass.
+        check: AGL Check
+  sun:
+    hearts:
+      ace:
+        event: A blazing idol of Sifor fixes its gaze upon you. Its eyes burn hotter the longer
+          you stand.
+        check: PWR Check
+      '2':
+        event: A child of light offers you a torch. When you take it, the flame begins to
+          consume the handle.
+        check: INT Check
+      '3':
+        event: A circle of radiant braziers warms the chamber, their glow steady and safe.
+        check: Sanctuary (No Check)
+      '4':
+        event: A bridge of glass stretches forward, glowing white-hot beneath your feet.
+        check: AGL Check
+      '5':
+        event: Golden warriors march in silence across the hall, stepping in unison. Their
+          attention snaps toward you.
+        check: PWR Check
+      '6':
+        event: A mural shows Sifor locked in battle with Emdros. Touching it fills your vision
+          with thunder and fire.
+        check: INT Check (Gain 1 Lore)
+      '7':
+        event: The path is bathed in blinding light, leaving only a single line to follow.
+          Stray, and the light sears your flesh.
+        check: AGL Check
+      '8':
+        event: A fountain of molten light glimmers in the center of the chamber. Its radiance
+          soothes your spirit.
+        check: No Check
+      '9':
+        event: A knight clad in sun-forged plate kneels before you, offering a blazing sword.
+          Its weight tests your will.
+        check: PWR Check
+      '10':
+        event: Thorik polishes a helm of gold and iron, trading relics under a canopy of light.
+        check: No Check
+      jack:
+        event: A sudden burst of solar fire erupts, filling the corridor with roaring heat.
+        check: AGL Check
+      queen:
+        event: A shrine of searing gold demands an offering that will scar you to part with.
+        check: Choose or Roll Item
+      king:
+        event: A cathedral of fire rises before you, its windows glowing with molten radiance.
+          In its center waits a sentinel unmoving. INT Check Hearts Prompts
+        check: No Check
+    diamonds:
+      ace:
+        event: A puzzle of solar glyphs rearranges themselves into patterns of law and flame.
+        check: INT Check
+      '2':
+        event: The floor fractures into glowing tiles, shifting as if alive with heat.
+        check: AGL Check
+      '3':
+        event: A ruined alcove contains charred scrolls and burnt bread. The stillness feels
+          safe. Sanctuary (No
+        check: Check)
+      '4':
+        event: A sealed chest glows faintly, resisting with the strength of molten hinges.
+        check: PWR Check
+      '5':
+        event: A lion of fire roars as it stalks into the path, its mane searing the air.
+        check: PWR Check
+      '6':
+        event: A golden obelisk hums with forgotten verses. When touched, it floods your mind
+          with commandments long erased. INT Check (Gain 1 Lore)
+        check: No Check
+      '7':
+        event: A hallway of light shifts and bends, leading you astray with mirrored flame.
+        check: INT Check
+      '8':
+        event: A calm alcove holds a brazier that burns without heat. You may rest here.
+        check: No Check
+      '9':
+        event: A gilded sarcophagus trembles. As you touch it, a spirit clad in flame stirs
+          within.
+        check: AGL Check
+      '10':
+        event: Thorik haggles beneath a pillar of fire, trading relics he swears survived
+          the dawn.
+        check: No Check
+      jack:
+        event: A false sun blazes overhead, scorching the hall as armored phantoms rise.
+        check: AGL Check
+      queen:
+        event: An altar carved of gold and ash demands something you swore never to give.
+          Choose or Roll Item
+        check: No Check
+      king:
+        event: A radiant throne of light towers in the vault. Its brilliance hums with divine
+          judgment. PWR Check When Drawing Diamonds, Roll INT IF YOU PASS, ROLL FOR LOOT
+        check: No Check
+    clubs:
+      ace:
+        event: Two radiant guardians step forward, their strikes echoing each other perfectly.
+        check: INT Check
+      '2':
+        event: Spears of flame streak from hidden slits in the wall, piercing the air.
+        check: AGL Check
+      '3':
+        event: A hall lined with glowing pillars offers stillness. Their heat does not harm
+          you.
+        check: Sanctuary (No Check)
+      '4':
+        event: A golden lattice of shields blocks the passage, each one engraved with laws
+          long forgotten.
+        check: INT Check
+      '5':
+        event: Flame-clad sentinels march in rhythm, blades raised high.
+        check: PWR Check
+      '6':
+        event: A bronze gong resonates with solar song. When touched, you see visions of cities
+          judged and burned.
+        check: INT Check (Gain 1 Lore)
+      '7':
+        event: Columns of flame surge between you and the exit, weaving unpredictably.
+        check: AGL Check
+      '8':
+        event: A shrine of sunlight steadies your breath, filling your chest with warmth.
+        check: No Check
+      '9':
+        event: Twin wardens of fire step aside, testing your strength before revealing a hidden
+          cache.
+        check: PWR Check
+      '10':
+        event: Thorik shades his stall with a scorched cloak, offering relics blackened by
+          fire.
+        check: No Check
+      jack:
+        event: Shards of molten stone fall from the ceiling as fiery beasts take shape from
+          the rubble.
+        check: AGL Check
+      queen:
+        event: A burning altar hums faintly, demanding a sacrifice of something once sacred
+          to you.
+        check: Choose or Roll Item
+      king:
+        event: A dueling ground carved of obsidian waits. Across it stands a knight blazing
+          with solar fire.
+        check: PWR Check
+    spades:
+      ace:
+        event: Golden runes flare along the floor, rearranging into traps if not aligned correctly.
+        check: INT Check
+      '2':
+        event: Chains of molten brass snap from the walls, binding you with scorching heat.
+        check: PWR Check
+      '3':
+        event: A courtyard of statues glows faintly in the dawn. For now, they remain still.
+        check: Sanctuary (No Check)
+      '4':
+        event: A sealed gate of solid gold resists you, its hinges burning to the touch.
+        check: PWR Check
+      '5':
+        event: The ground flashes white, collapsing into a pit of searing ash.
+        check: AGL Check
+      '6':
+        event: A sun-disc mask hums with energy. When worn, it shows flashes of punishments
+          past.
+        check: INT Check (Gain 1 Lore)
+      '7':
+        event: The corridor fills with shifting beams of light, cutting across your path unpredictably.
+        check: AGL Check
+      '8':
+        event: A golden pool reflects your face bathed in sunlight. It smiles without you.
+        check: No Check
+      '9':
+        event: A chest bound in iron glows faintly, as if something alive writhes inside.
+        check: PWR Check
+      '10':
+        event: Thorik sits beneath a canopy of fire, counting coins that glow faintly with
+          heat.
+        check: No Check
+      jack:
+        event: Spears of burning light descend from the ceiling, striking the floor in rapid
+          succession.
+        check: AGL Check
+      queen:
+        event: A radiant altar demands a memory surrendered, or its light will consume you.
+        check: Choose or Roll Item
+      king:
+        event: A vast hall opens, its floor blazing with cracks of fire. Each step brings
+          judgment closer.
+        check: INT Check
+  balance:
+    hearts:
+      ace:
+        event: A pulse of light divides you into two shadows on the floor, one moving with
+          you, one resisting. You must decide which to follow.
+        check: INT Check
+      '2':
+        event: A corridor folds inward like a closing book. Pages of your own memories scatter
+          into the air like ash.
+        check: AGL Check
+      '3':
+        event: A chamber of soft white hum offers a rare moment where nothing shifts, bends,
+          or whispers. Rest finds you gently.
+        check: Sanctuary (No Check)
+      '4':
+        event: A floating prism spins before you, chanting in two voices that disagree about
+          who you are.
+        check: PWR Check
+      '5':
+        event: An emotional echo of someone you once trusted appears, glitching between comfort
+          and threat.
+        check: INT Check
+      '6':
+        event: A mural of swirling fractals stabilizes for a moment. Touching it fills you
+          with a strange dual memory, half belonging to you and half to someone you never
+          were.
+        check: INT Check (Gain 1 Lore)
+      '7':
+        event: The hallway stretches into infinity, then compresses into a single step. Your
+          heartbeat determines which reality is true.
+        check: AGL Check
+      '8':
+        event: A quiet garden of crystalline flowers remains untouched by shifting space.
+          Their glow eases your mind.
+        check: No Check
+      '9':
+        event: A spirit knight composed of mirrored shards steps forth. Each strike it makes
+          imitates your posture before you move.
+        check: PWR Check
+      '10':
+        event: Thorik sits watching twin hourglasses that flow in opposite directions. He
+          invites you to trade as if nothing is strange.
+        check: No Check
+      jack:
+        event: A pulse of chaotic resonance flips your emotions inside out. Joy becomes dread,
+          anger becomes stillness, fear becomes laughter.
+        check: INT Check
+      queen:
+        event: A pedestal holds an object that is both broken and whole. It asks for something
+          equally contradictory in return.
+        check: Choose or Roll Item
+      king:
+        event: A cathedral of suspended cubes and spirals hums softly. Only focusing on the
+          right shape leads you forward. The others loop you back. INT Check Hearts Prompts
+        check: No Check
+    diamonds:
+      ace:
+        event: A vault appears then unappears, flickering like a heartbeat. Each time it shifts,
+          parts of the lock rearrange themselves into new equations.
+        check: INT Check
+      '2':
+        event: The ground ripples as if liquid, solidifying only in small pockets. You must
+          sprint across before it melts again.
+        check: AGL Check
+      '3':
+        event: A fractured oasis sits here, where time refuses to move. Items lie untouched,
+          preserved in stillness.
+        check: Sanctuary (No Check)
+      '4':
+        event: A monolith of perfect symmetry hums with rigid order. It permits no imperfection
+          and pushes back against your presence.
+        check: PWR Check
+      '5':
+        event: A spiral beast made of shifting polygons prowls the hall. Its pattern changes
+          faster than thought.
+        check: PWR Check
+      '6':
+        event: A constellation rearranges itself to spell a question only the brave would
+          touch. The answer pricks your mind like ice.
+        check: INT Check (Gain 1 Lore)
+      '7':
+        event: Mirrors descend from the ceiling, each showing a future where you made a different
+          choice. Only one leads forward.
+        check: INT Check
+      '8':
+        event: A white flame burns inside a floating ring of stone. It offers warmth without
+          consuming.
+        check: No Check
+      '9':
+        event: A crystalline chest circles you while floating in erratic geometry. You must
+          anticipate its next impossible angle.
+        check: AGL Check
+      '10':
+        event: Thorik catalogues items that rewrite their own shapes. He assures you they
+          settle down once bonded to an owner.
+        check: No Check
+      jack:
+        event: A false horizon rolls toward you, folding the corridor into a flat sheet before
+          snapping it back. Hostile entities spill out.
+        check: AGL Check
+      queen:
+        event: An altar of perfect crystal fractures when you approach, revealing two relics
+          that insist on taking one of your memories in return.
+        check: Choose or Roll Item
+      king:
+        event: A throne of shifting rings rotates above the floor. It radiates the authority
+          of pure order, yet trails sparks of hungry chaos. PWR Check When Drawing Diamonds,
+          Roll INT IF YOU PASS, ROLL FOR LOOT
+        check: No Check
+    clubs:
+      ace:
+        event: A warrior made of shifting geometric plates assembles itself before you, each
+          piece snapping into place with unnatural order.
+        check: INT Check
+      '2':
+        event: A volley of crackling motes shoots sideways across the hall, ignoring gravity
+          entirely. They twist toward you with erratic momentum.
+        check: AGL Check
+      '3':
+        event: A garden of stone cubes hovers weightlessly, orbiting a quiet central pillar.
+          Their hum brings peace.
+        check: Sanctuary (No Check)
+      '4':
+        event: A doorway unfolds like origami, locking into an impossible shape unless you
+          solve its pattern mid- motion.
+        check: INT Check
+      '5':
+        event: A creature woven from threads of golden law and red chaos charges. Each step
+          shifts its form.
+        check: PWR Check
+      '6':
+        event: A marble pillar fractures to reveal a swirling sphere. Touching it fills your
+          mind with two opposing histories.
+        check: INT Check (Gain 1 Lore)
+      '7':
+        event: Figures flicker in and out of existence, rushing past you in reversed time.
+          One breaks from the loop and lunges.
+        check: AGL Check
+      '8':
+        event: A ring of floating sigils remains fixed in absolute symmetry. Their calm, steady
+          rhythm allows you to rest.
+        check: No Check
+      '9':
+        event: Two guardians fused at the spine rotate in perfect counterbalance, blocking
+          all but the strongest push.
+        check: PWR Check
+      '10':
+        event: Thorik reshapes a blade that keeps bending into new forms. He barely looks
+          up as reality warps around him.
+        check: No Check
+      jack:
+        event: The floor splits into mirrored halves. Each half shows a different version
+          of your next action, and one leaps from the reflection to strike.
+        check: AGL Check
+      queen:
+        event: An altar composed of two incompatible materials, one melting and one crystallizing,
+          demands something equally contradictory.
+        check: Choose or Roll Item
+      king:
+        event: A dueling arena forms around you, made from spiraling rings that shift alignment
+          with every heartbeat. A spectral challenger waits.
+        check: PWR Check
+    spades:
+      ace:
+        event: A line of runes breaks apart into floating shards, spinning around you in chaotic
+          orbit. If they align, they strike.
+        check: AGL Check
+      '2':
+        event: A sudden gravitational spike drags you to the floor as invisible force lashes
+          outward, scraping at your armor.
+        check: PWR Check
+      '3':
+        event: A quiet chamber hangs frozen in a single second. Neither sound nor motion disrupts
+          the stillness.
+        check: Sanctuary (No Check)
+      '4':
+        event: A wall splits into vertical layers, sliding in alternating directions. Only
+          strength can hold them apart long enough to pass.
+        check: PWR Check
+      '5':
+        event: The ground becomes transparent, revealing an endless abyss beneath. A single
+          misstep sends the illusion rippling violently.
+        check: AGL Check
+      '6':
+        event: A mask carved of fractured glass hovers before you. Touching it reveals memories
+          of what reality wanted to be instead.
+        check: INT Check (Gain 1 Lore)
+      '7':
+        event: The hall tilts by ninety degrees without warning. Gravity follows a moment
+          later.
+        check: AGL Check
+      '8':
+        event: A pool of black and white liquid spirals in perfect motion. It reflects the
+          world as if nothing is wrong.
+        check: No Check
+      '9':
+        event: A chest phases between solidity and static. When grabbed, it pulls against
+          your strength as if resisting existence itself.
+        check: PWR Check
+      '10':
+        event: Thorik sits at a split table, one half pristine and the other crumbling. He
+          casually trades as both halves try to overwrite each other.
+        check: No Check
+      jack:
+        event: Part of the ceiling de-synchronizes from time, dropping debris that flickers
+          in and out of mass as it falls.
+        check: AGL Check
+      queen:
+        event: An altar of shifting runes wants something you once lost and something you
+          never had. It will accept either.
+        check: Choose or Roll Item
+      king:
+        event: Statues split down the center begin to rotate independently, their eyes tracking
+          you with alternating calm and rage.
+        check: PWR Check

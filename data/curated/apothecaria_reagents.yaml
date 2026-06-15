@@ -1,0 +1,499 @@
+# Reagents — Apothecaria p.20–29
+reagents:
+- name: Scramble Bramble
+  type: PLANT
+  locales:
+    forest: 3
+    loch: 5
+  tags:
+  - MOOD
+  - SENSES
+  preparations: []
+- name: Shieldcap
+  type: PLANT
+  locales:
+    forest: 2
+    bog: 1
+  tags:
+  - TEETH
+  - BONES
+  - TEETH
+  preparations: []
+- name: Fairy Dust
+  type: MAGIC
+  locales:
+    forest: 6
+    bog: 3
+  tags:
+  - MOOD
+  - CURSE
+  preparations: []
+- name: Foot Fungus
+  type: PLANT
+  locales:
+    forest: 10
+    mountain: 10
+    dungeon: 10
+  tags:
+  - BURN
+  - BOILS
+  - RASH
+  preparations: []
+- name: Wild Rose
+  type: PLANT
+  locales:
+    forest: 5
+    village: 4
+  tags:
+  - BONES
+  - SKIN
+  preparations: []
+- name: Surgeon Sap
+  type: PLANT
+  locales:
+    forest: 8
+    bog: 3
+  tags:
+  - WOUND
+  - BURN
+  preparations: []
+- name: Princess Toad
+  type: ANIMAL
+  locales:
+    forest: 10
+    bog: 5
+  tags:
+  - WART
+  - RASH
+  - MOOD
+  preparations: []
+- name: Songberries
+  type: PLANT
+  locales:
+    forest: 2
+  tags:
+  - MOOD
+  preparations: []
+- name: Glittersnow
+  type: MAGIC
+  locales:
+    forest: 9
+    mountain: 4
+    strange: 11
+  tags:
+  - CURSE
+  - MAGIC
+  preparations: []
+- name: Coffee Cap
+  type: PLANT
+  locales:
+    forest: 4
+    bog: 2
+  tags:
+  - SENSES
+  preparations: []
+- name: Hair of Boar
+  type: ANIMAL
+  locales:
+    forest: 5
+    loch: 8
+  tags:
+  - COUGH
+  - LUNGS
+  preparations: []
+- name: A Snake’s Promise
+  type: MAGIC
+  locales:
+    forest: 13
+    bog: 5
+    dungeon: 10
+  tags:
+  - SPIRIT
+  - GHOUL
+  preparations: []
+  requires_wand: true
+- name: Whisper of a Cat
+  type: MAGIC
+  locales:
+    forest: 6
+    village: 2
+  tags:
+  - PARASITE
+  - SLEEP
+  preparations: []
+  requires_wand: true
+- name: Amethyst Antlers
+  type: ANIMAL
+  locales:
+    forest: 11
+    bog: 8
+  tags:
+  - MAGIC
+  - CURSE
+  - MOOD
+  preparations: []
+- name: Rat Spit
+  type: ANIMAL
+  locales:
+    forest: 4
+    dungeon: 2
+    isles: 5
+  tags:
+  - TEETH
+  preparations: []
+- name: Golden Scale Guppy
+  type: ANIMAL
+  locales:
+    loch: 5
+    depths: 5
+  tags:
+  - BLOOD
+  preparations: []
+- name: Driftwood Memories
+  type: MAGIC
+  locales:
+    loch: 1
+  tags:
+  - MOOD
+  - SENSES
+  - TIME
+  preparations: []
+  requires_wand: true
+- name: Shock Fish
+  type: ANIMAL
+  locales:
+    loch: 7
+    depths: 3
+    dungeon: 11
+  tags:
+  - NERVES
+  - PAIN
+  - BOILS
+  preparations: []
+- name: Gas Weed
+  type: PLANT
+  locales:
+    loch: 3
+    depths: 2
+  tags:
+  - LUNGS
+  preparations: []
+- name: Shadow Shark
+  type: ANIMAL
+  locales:
+    loch: 8
+    depths: 6
+  tags:
+  - RASH
+  - BURN
+  - PAIN
+  preparations: []
+- name: Slime Shell
+  type: ANIMAL
+  locales:
+    loch: 4
+    depths: 9
+  tags:
+  - PARASITE
+  - INFECTION
+  - BLOOD
+  preparations: []
+- name: Deep Reed
+  type: PLANT
+  locales:
+    loch: 4
+    depths: 4
+    bog: 6
+  tags:
+  - EAR
+  - BLOOD
+  - STOMACH
+  preparations: []
+- name: Smooth-Croak
+  type: ANIMAL
+  locales:
+    loch: 2
+  tags:
+  - WARTS
+  - SKIN
+  preparations: []
+- name: Dentist Crab
+  type: ANIMAL
+  locales:
+    loch: 8
+    depths: 2
+  tags:
+  - TEETH
+  - MOUTH
+  - LUNGS
+  - INFECTION
+  preparations: []
+- name: Wigfish
+  type: ANIMAL
+  locales:
+    loch: 3
+    depths: 1
+  tags:
+  - MOOD
+  - SLEEP
+  - HAIR
+  preparations: []
+- name: Fossil Fish
+  type: MAGIC
+  locales:
+    loch: 12
+    depths: 9
+  tags:
+  - TIME
+  - MAGIC
+  preparations: []
+- name: Siren Song
+  type: MAGIC
+  locales:
+    loch: 6
+    depths: 8
+  tags:
+  - CURSE
+  - EAR
+  preparations: []
+  requires_wand: true
+- name: Sea Beast’s Saliva
+  type: ANIMAL
+  locales:
+    loch: 13
+    depths: 4
+  tags:
+  - WOUND
+  - PAIN
+  - BLOOD
+  - NERVES
+  - SENSES
+  preparations: []
+- name: Mermaid’s Gift
+  type: PLANT
+  locales:
+    loch: 5
+  tags:
+  - HAIR
+  preparations: []
+- name: Milkstone
+  type: MAGIC
+  locales:
+    mountain: 1
+    village: 2
+    forest: 4
+  tags:
+  - TEETH
+  - PAIN
+  preparations: []
+  requires_wand: true
+- name: Cynic Ivy
+  type: PLANT
+  locales:
+    mountain: 9
+    forest: 13
+    bog: 10
+  tags:
+  - SENSES
+  - MAGIC
+  preparations: []
+- name: Gull-Drake Guano
+  type: ANIMAL
+  locales:
+    mountain: 4
+    loch: 7
+  tags:
+  - COUGH
+  - LUNGS
+  preparations: []
+- name: Moon Lotus
+  type: PLANT
+  locales:
+    mountain: 7
+    isles: 2
+  tags:
+  - BURN
+  - HOT
+  - SKIN
+  - RASH
+  preparations: []
+- name: Jumpkin
+  type: PLANT
+  locales:
+    mountain: 8
+    village: 11
+  tags:
+  - STOMACH
+  - COLD
+  preparations: []
+- name: Nimbus Fish
+  type: ANIMAL
+  locales:
+    isles: 3
+  tags:
+  - MOUTH
+  - FEET
+  - INFECTION
+  preparations: []
+- name: Ambergris
+  type: ANIMAL
+  locales:
+    isles: 9
+    loch: 13
+  tags:
+  - SENSES
+  - COLD
+  - PAIN
+  preparations: []
+- name: Star Shard
+  type: MAGIC
+  locales:
+    isles: 5
+  tags:
+  - MAGIC
+  - CURSE
+  preparations: []
+- name: Pixie Fur
+  type: MAGIC
+  locales:
+    mountain: 6
+    bog: 9
+  tags:
+  - RASH
+  preparations: []
+- name: A Goat’s Echo
+  type: MAGIC
+  locales:
+    mountain: 3
+  tags:
+  - LUNGS
+  - MOOD
+  preparations: []
+  requires_wand: true
+- name: An Innocent’s Suffering
+  type: MAGIC
+  locales:
+    mountain: 9
+    bog: 9
+    dungeon: 11
+  tags:
+  - PAIN
+  - SLEEP
+  - NERVES
+  - WOUND
+  preparations: []
+  requires_wand: true
+- name: Glacier Moss
+  type: PLANT
+  locales:
+    mountain: 9
+    isles: 6
+  tags:
+  - DEHYDRATION
+  - LUNGS
+  preparations: []
+- name: Moon Moss
+  type: PLANT
+  locales:
+    mountain: 13
+    isles: 6
+  tags:
+  - BLOOD
+  - CURSE
+  preparations: []
+- name: Nest Scraps
+  type: ANIMAL
+  locales:
+    mountain: 4
+    forest: 4
+  tags:
+  - COLD
+  - HOT
+  preparations: []
+- name: Hiker’s Helper
+  type: PLANT
+  locales:
+    village: 3
+    mountain: 4
+    isles: 7
+  tags:
+  - PAIN
+  preparations: []
+- name: Crow Coal
+  type: MAGIC
+  locales:
+    dungeon: 7
+    bog: 4
+  tags:
+  - DEHYDRATION
+  - STOMACH
+  - POISON
+  preparations: []
+- name: Liquid Fire
+  type: MAGIC
+  locales:
+    dungeon: 6
+    strange: 3
+  tags:
+  - PARASITES
+  - INFECTION
+  preparations: []
+- name: Skeleton Dust
+  type: MAGIC
+  locales:
+    dungeon: 5
+  tags:
+  - BONES
+  - HAIR
+  preparations: []
+- name: Old Blood
+  type: MAGIC
+  locales:
+    dungeon: 5
+    strange: 2
+    mountain: 9
+  tags:
+  - CURSE
+  - RASH
+  preparations: []
+- name: Salamander Urine
+  type: ANIMAL
+  locales:
+    dungeon: 8
+    strange: 5
+  tags:
+  - HOT
+  - COLD
+  preparations: []
+- name: Basilisk’s Gaze
+  type: MAGIC
+  locales:
+    dungeon: 9
+    strange: 5
+  tags:
+  - WARTS
+  - BOILS
+  - TIME
+  preparations: []
+  requires_wand: true
+- name: Skullcap
+  type: PLANT
+  locales:
+    dungeon: 2
+    bog: 4
+  tags:
+  - POISON
+  - PAIN
+  preparations: []
+- name: Darkwater
+  type: MAGIC
+  locales:
+    dungeon: 7
+    strange: 1
+    village: 13
+  tags:
+  - COUGH
+  - HOT
+  - MAGIC
+  - SLEEP
+  preparations: []

@@ -3,19 +3,61 @@
 from __future__ import annotations
 
 from src.games.base import GamePlugin
-from src.games.brambletrek import play as _brambletrek_play  # noqa: F401 — registers play profile
+from src.games.apothecaria.plugin import PLUGIN as APOTHECARIA_PLUGIN
+from src.games.ashes.plugin import PLUGIN as ASHES_PLUGIN
 from src.games.brambletrek.plugin import PLUGIN as BRAMBLETREK_PLUGIN
+from src.games.colostle.plugin import PLUGIN as COLOSTLE_PLUGIN
+from src.games.lighthouse.plugin import PLUGIN as LIGHTHOUSE_PLUGIN
+from src.games.sansibilia.plugin import PLUGIN as SANSIBILIA_PLUGIN
+from src.games.whispers.plugin import PLUGIN as WHISPERS_PLUGIN
 from src.games.saves import has_play_roster
 from src.games.warhammer_40k.plugin import PLUGIN as WARHAMMER_40K_PLUGIN
 
 _PLUGINS: dict[str, GamePlugin] = {
     WARHAMMER_40K_PLUGIN.game_id: WARHAMMER_40K_PLUGIN,
     BRAMBLETREK_PLUGIN.game_id: BRAMBLETREK_PLUGIN,
+    SANSIBILIA_PLUGIN.game_id: SANSIBILIA_PLUGIN,
+    LIGHTHOUSE_PLUGIN.game_id: LIGHTHOUSE_PLUGIN,
+    APOTHECARIA_PLUGIN.game_id: APOTHECARIA_PLUGIN,
+    WHISPERS_PLUGIN.game_id: WHISPERS_PLUGIN,
+    COLOSTLE_PLUGIN.game_id: COLOSTLE_PLUGIN,
+    ASHES_PLUGIN.game_id: ASHES_PLUGIN,
 }
 
 GAME_40K = WARHAMMER_40K_PLUGIN.game_id
 GAME_BRAMBLETREK = BRAMBLETREK_PLUGIN.game_id
+GAME_SANSIBILIA = SANSIBILIA_PLUGIN.game_id
+GAME_LIGHTHOUSE = LIGHTHOUSE_PLUGIN.game_id
+GAME_APOTHECARIA = APOTHECARIA_PLUGIN.game_id
+GAME_WHISPERS = WHISPERS_PLUGIN.game_id
+GAME_COLOSTLE = COLOSTLE_PLUGIN.game_id
+GAME_ASHES = ASHES_PLUGIN.game_id
 DEFAULT_GAME_ID = GAME_40K
+
+
+def get_game_plugin(game_id: str) -> GamePlugin:
+    return _PLUGINS.get(game_id, _PLUGINS[DEFAULT_GAME_ID])
+
+
+def _register_play_profiles() -> None:
+    from src.games.apothecaria.play import _register as register_apothecaria
+    from src.games.ashes.play import _register as register_ashes
+    from src.games.brambletrek.play import _register as register_brambletrek
+    from src.games.colostle.play import _register as register_colostle
+    from src.games.lighthouse.play import _register as register_lighthouse
+    from src.games.sansibilia.play import _register as register_sansibilia
+    from src.games.whispers.play import _register as register_whispers
+
+    register_brambletrek()
+    register_sansibilia()
+    register_lighthouse()
+    register_apothecaria()
+    register_whispers()
+    register_colostle()
+    register_ashes()
+
+
+_register_play_profiles()
 
 GAME_CATALOG: dict[str, dict] = {
     pid: {
@@ -31,10 +73,6 @@ GAME_CATALOG: dict[str, dict] = {
     }
     for pid, p in _PLUGINS.items()
 }
-
-
-def get_game_plugin(game_id: str) -> GamePlugin:
-    return _PLUGINS.get(game_id, _PLUGINS[DEFAULT_GAME_ID])
 
 
 def get_game_config(game_id: str) -> dict:

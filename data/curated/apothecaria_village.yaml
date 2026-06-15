@@ -1,0 +1,19 @@
+# Village services — Apothecaria p.32
+services:
+- id: tavern
+  name: The Copper Fox Tavern
+  cost: 0
+  effect: Socialise during Downtime
+- id: lunar_tower
+  name: Lunar Tower
+  cost: 0
+  effect: Start next forage with 6 points
+- id: bits_bobs
+  name: Bits & Bobs
+  cost: 0
+  effect: Buy tools and upgrades
+- id: ritual_circle
+  name: Ritual Circle
+  cost: 0
+  requires: athame
+  effect: The Calling — gain familiar

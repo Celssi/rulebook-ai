@@ -8,7 +8,22 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from api.routes import brambletrek, chat, deck, games, index, session, warhammer_40k
+from api.routes import (
+    apothecaria,
+    ashes,
+    brambletrek,
+    chat,
+    colostle,
+    deck,
+    games,
+    index,
+    lighthouse,
+    play,
+    sansibilia,
+    session,
+    warhammer_40k,
+    whispers,
+)
 
 app = FastAPI(title="rulebook-ai", version="0.2.0")
 
@@ -23,7 +38,14 @@ app.add_middleware(
 app.include_router(games.router)
 app.include_router(session.router)
 app.include_router(chat.router)
+app.include_router(play.router)
 app.include_router(brambletrek.router)
+app.include_router(lighthouse.router)
+app.include_router(sansibilia.router)
+app.include_router(apothecaria.router)
+app.include_router(colostle.router)
+app.include_router(whispers.router)
+app.include_router(ashes.router)
 app.include_router(deck.router)
 app.include_router(index.router)
 app.include_router(warhammer_40k.router)

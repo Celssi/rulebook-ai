@@ -1,0 +1,76 @@
+game_id: ashes
+title: Näin pelaat
+source:
+  pdf: docs/ashes/Ashes_-_Core_Rulebook_(v1_2_0).pdf
+  pages: [6, 7, 9, 11, 12, 26, 27, 34, 35, 55, 56, 57, 58, 59, 69, 84]
+sections:
+  - heading: Yleiskuva
+    body: |
+      Ashes on solodungeon-crawler Mayfallsin raunioilla. Olet Scion — profetian mukaan valittu, joka kulkee vaarallisia teitä kohti Eilir Lords -pomoja ja selvittää, miksi sinut on valittu. Jokainen valinta, huone ja taistelu kirjataan päiväkirjaan.
+  - heading: Tarvitset
+    bullets:
+      - päiväkirja
+      - tavallinen korttipakka (huoneiden generointiin)
+      - kolme kuusisivuista noppaa (3d6)
+      - hahmoarkki
+  - heading: Ydinmekaniikat
+    body: |
+      - **3d6** — toimintojen, vihollisten ja heittojen ratkaisuun (ei kriittisiä paitsi loitsussa).
+      - **Kortit** — määräävät dungeon-layoutin, kohtaamiset ja viholliset.
+      - **Elämä** — HP ja stamina; 0 HP:llä et kuole lopullisesti vaan palaat viimeiseen Sanctuaryyn.
+      - **Journalointi** — muistaa valinnat, kohtaamiset ja oivallukset.
+  - heading: Hahmon luonti
+    body: |
+      Valitse **Scion-luokka** (Warrior, Ordained, Pioneer, Hallowed, Deadeyed). Kolme statia:
+
+      - **PWR** — voima ja kestävyys
+      - **INT** — ongelmanratkaisu ja magia
+      - **AGL** — nopeus ja väistö
+
+      Heitä statit tai jaa 10 pistettä (max 6 per stat). Heittovaikeus = 18 − stat. HP = 10 + 2×PWR. Stamina = 3 + 2×AGL. Luokan kykyjä voi käyttää kerran taistelua kohden.
+  - heading: Hahmon viimeistely
+    body: |
+      Luokan ja statien jälkeen:
+
+      1. **Fate's Gift** — nosta kortti (s. 26)
+      2. **Armour** — heitä d6 (s. 26)
+      3. **Aseet** — heitä d6 melee ja ranged (s. 27)
+      4. **Starting Trials** — nosta 4 korttia (max 10 aktiivista; s. 34–35)
+  - heading: Journal-promptit
+    body: |
+      Jokaisessa huoneessa voit nostaa journal-kortin ennen pääpiirrettä. Valitse **Path**-sarja (esim. Crypt, Spirit, Flame…) ja käytä sitä koko dungeonin ajan.
+  - heading: Dungeon ja liikkuminen
+    body: |
+      **Huoneen generointi:** Kortin **arvo** määrää huonetyypin ja vaaditun Checkin (Room Table, s. 57). **Maa** antaa toissijaisen piirteen:
+
+      - Hearts — emotionaalinen muisto
+      - Diamonds — piilotettu esine (INT)
+      - Clubs — lisäansa/trap (2d6-taulukko)
+      - Spades — piilotettu vihollinen (taisteluhuoneessa +1 vihollinen)
+
+      Epäonnistunut Check → seuraamustaulukko (s. 58).
+
+      **Suunta:** Kun huone on selvitetty, heitä d6: 1–2 vasemmalle, 3–4 suoraan, 5–6 oikealle. Piirrä kartta.
+
+      **Sanctuary:** Huoneen jälkeen heitä d6 — 5–6 tekee huoneesta Sanctuaryn (taisteluhuoneissa tarvitaan 4–6). Sanctuary täyttää HP:n ja staminan, poistaa conditionit ja palauttaa potion-/lahjakäytöt.
+
+      **Kuolema:** Heräät viimeisessä Sanctuaryssa. Voit palata kuolemaan johtaneisiin huoneisiin tai nostaa uuden kortin ja heittää d6 avoimeen suuntaan.
+
+      **Boss:** Vähintään 10 huoneen jälkeen, huoneessa jossa 3 avointa suuntaa, voit yrittää boss-huonetta (d6 5–6).
+  - heading: Trials ja Ember
+    body: |
+      ♥/♦ = punainen trial-taulukko, ♣/♠ = musta. Täytetty trial = +1 Ember. Sanctuaryssa voit käyttää Emberin tasoon nousuun (kustannus: 1 + 2×nykyinen taso).
+  - heading: Taistelu
+    body: |
+      Taistelu ratkaistaan **3d6**-heitolla. Stamina rajoittaa toimintoja; luokan kyky kerran taistelua kohden. Boss alle 50 % HP → uusi toimintataulukko (s. 84).
+  - heading: Taulukot
+    bullets:
+      - Ansa/epäonnistuminen → Trap table 2d6 (s. 59)
+      - Aarre → Loot table 2d6 (s. 69)
+  - heading: Sovelluksessa
+    bullets:
+      - Asetukset → **Character**: Scion-setup (lahja, aseet, panssari, journal prompt set)
+      - Asetukset → **Play**: story mode, physical vs virtual deck
+      - Shortcuts → Draw room + journal; Sanctuary/Navigation/Boss d6; Trials & Ember -ryhmä
+      - "Scion-paneeli seuraa HP:tä, Emberiä ja trial-listaa"
+      - "Lonelog tallentaa nostot ja merkinnät"

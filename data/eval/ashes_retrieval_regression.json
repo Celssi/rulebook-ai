@@ -1,0 +1,45 @@
+{
+  "game_id": "ashes",
+  "cases": [
+    {
+      "id": "dungeon_layout",
+      "question": "How does room generation work in Ashes?",
+      "expected_terms": ["card", "room", "suit"]
+    },
+    {
+      "id": "checks",
+      "question": "How do ability checks work in Ashes?",
+      "expected_terms": ["3d6", "PWR", "INT", "AGL"]
+    },
+    {
+      "id": "sanctuary",
+      "question": "When do you roll for a sanctuary in Ashes?",
+      "expected_terms": ["d6", "sanctuary", "heal"]
+    },
+    {
+      "id": "trials",
+      "question": "What are Trials in Ashes and how do you get Ember?",
+      "expected_terms": ["trial", "Ember", "complete"]
+    },
+    {
+      "id": "level_up",
+      "question": "How much Ember do you need to level up in Ashes?",
+      "expected_terms": ["Ember", "level", "Sanctuary"]
+    },
+    {
+      "id": "boss_entry",
+      "question": "When can you enter the boss room in Ashes?",
+      "expected_terms": ["10", "rooms", "d6"]
+    },
+    {
+      "id": "fates_gift",
+      "question": "How do you choose Fate's Gift in Ashes?",
+      "expected_terms": ["card", "gift", "Fate"]
+    },
+    {
+      "id": "enemy_table",
+      "question": "How does the enemy encounter table work in Ashes?",
+      "expected_terms": ["card", "enemy", "rank"]
+    }
+  ]
+}

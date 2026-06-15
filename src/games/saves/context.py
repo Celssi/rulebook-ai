@@ -81,8 +81,16 @@ class AppSession:
     selected_factions: list[str] | None = None
     last_sources: list[dict] = field(default_factory=list)
     messages: list[dict[str, str]] = field(default_factory=list)
-    game_state_40k: dict = field(default_factory=dict)
+    game_state: dict = field(default_factory=dict)
     play: dict[str, PlayContext] = field(default_factory=dict)
+
+    @property
+    def game_state_40k(self) -> dict:
+        return self.game_state
+
+    @game_state_40k.setter
+    def game_state_40k(self, value: dict) -> None:
+        self.game_state = value
 
     def play_context(self, game_id: str | None = None) -> PlayContext:
         gid = game_id or self.selected_game_id

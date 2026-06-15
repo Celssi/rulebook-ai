@@ -1,0 +1,13 @@
+# PDF p.59 — Generic trap table (2d6)
+rolls:
+  '2': 6 Damage + Disoriented 2 (Arcane Explosion Trap)
+  '3': 3 Damage + Bleeding 2 (Razor Wire Tripwire)
+  '4': 2 Damage + Weakened 1 + Slowed 1 (Poison Dart Trap)
+  '5': Haunted 2 (Haunting Whispers Device)
+  '6': Slowed 2 (Slippery Oil Slick)
+  '7': 1 Damage + Disoriented 1 + Haunted 1 (Thunderous Trap)
+  '8': 4 Damage + Cursed 2 (Necrotic Fog Emitter)
+  '9': 5 Damage + Weakened 2 (Crushing Wall Mechanism)
+  '10': 3 Damage + Pained 1 (Electrified Floor Panels)
+  '11': 4 Damage + Pained 2 (Searing Steam Vents)
+  '12': Enemy + Disoriented 2 (Dimensional Rift)

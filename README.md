@@ -49,6 +49,17 @@ Do not keep separate Core Rulebook, Pumpkin Party, or First Frost PDFs — they 
 
 After changing sources, re-ingest: `python -m src.ingest --game brambletrek --all`
 
+For **A Visit To San Sibilia** (place PDFs under `docs/sansibilia/`):
+
+| File | Indexed? | Notes |
+|------|----------|--------|
+| `Visit to San Sibilia-pages.pdf` | **Yes** (default) | Core 14-page zine |
+| `Visit to San Sibilia - Alternative Endgame.pdf` | Full ingest only | Score-to-90 ending rules |
+
+Game by Peter Eijk ([@Jimmy Shelter](https://jimmyshelter.itch.io)) — [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+After adding PDFs: `python -m src.ingest --game sansibilia` (use `--ocr` if text extraction is poor).
+
 ### 3) Create virtual environment and install dependencies
 
 ```bash
@@ -100,6 +111,12 @@ python -m src.ingest --game brambletrek --all
 ```
 
 MVP ingest indexes only Complete Digital Edition; `--all` adds Birthday of Wonders and Winter Gift.
+
+San Sibilia (core zine + optional alternative endgame PDF):
+
+```bash
+python -m src.ingest --game sansibilia --all
+```
 
 ### 7) Run the app
 
@@ -226,15 +243,18 @@ Validate dice/deck logic without Ollama:
 ```bash
 python3 scripts/validate_play_tools.py
 python3 scripts/validate_brambletrek_lonelog.py
+python3 scripts/validate_sansibilia_curated.py
+python3 scripts/validate_sansibilia_lonelog.py
 python3 scripts/validate_tools.py
 ```
 
 
-- **Game selector (header):** `Warhammer 40,000` or `Brambletrek`
+- **Game selector (Settings):** `Warhammer 40,000`, `Brambletrek`, or **A Visit To San Sibilia**
 - **RAG mode:** direct retrieval from indexed docs
 - **Agent mode:** tool-routed answers (dice, cards, Leviathan lists, rules) (rules, Leviathan lists on 40k, dice, cards)
 - **40k mode only:** Game State panel (army, opponent, round, phase)
 - **Brambletrek mode:** multi-Gnawborn roster; each character has its own sheet, deck, chat, and **[Lonelog](https://lonelog.readthedocs.io/)** session file under `data/saves/brambletrek/{id}/`
+- **San Sibilia mode:** solo journaling — visit roster, card draws (character + daily adjective/location), city-change tracker (4 boxes), optional score-to-90 ending; curated tables in `data/curated/sansibilia_*.yaml`; saves under `data/saves/sansibilia/{id}/`
 - **Story mode:** **Player-led** (you write `@` actions; AI explains rules) or **AI narrator** (AI adds `=>` narrative after events)
 - **Card source:** **Physical deck** (report pulls — synced to virtual deck) or **Virtual** (app/AI draws)
 - **Lonelog:** append-only `lonelog.md` per character; `/log …` slash command; sidebar viewer + download

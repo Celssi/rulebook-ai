@@ -2,7 +2,14 @@ import { useEffect, useState } from "react";
 import { BookOpen, Database, Play, User, X } from "lucide-react";
 import { api } from "../../api/client";
 import CharacterSetupPanel from "../brambletrek/CharacterSetupPanel";
-import type { CharacterHeader, SessionState } from "../../types";
+import VisitSetupPanel from "../sansibilia/VisitSetupPanel";
+import WatchSetupPanel from "../lighthouse/WatchSetupPanel";
+import CottageSetupPanel from "../apothecaria/CottageSetupPanel";
+import InvestigationSetupPanel from "../whispers/InvestigationSetupPanel";
+import AdventurerSetupPanel from "../colostle/AdventurerSetupPanel";
+import ScionSetupPanel from "../ashes/ScionSetupPanel";
+import type { PlayHeader, SessionState } from "../../types";
+import { ASHES_PROMPT_SETS } from "../ashes/promptSets";
 
 type Tab = "play" | "rag" | "character" | "index";
 
@@ -11,7 +18,7 @@ interface Props {
   session: SessionState;
   roster?: { id: string; name: string }[];
   onClose: () => void;
-  onSaved: (session: SessionState, header?: CharacterHeader) => void;
+  onSaved: (session: SessionState, header?: PlayHeader) => void;
   onRosterSwitch?: () => void;
 }
 
@@ -54,7 +61,10 @@ export default function SettingsDialog({
   const providers = (meta?.chat_providers as { id: string; label: string }[]) || [];
   const profiles = (meta?.retrieval_profiles as string[]) || [];
 
-  const handleCharacterSaved = (updated: Record<string, unknown>, header: CharacterHeader) => {
+  const handleCharacterSaved = (
+    updated: Record<string, unknown>,
+    header: PlayHeader
+  ) => {
     setEntity(updated);
     onSaved({ ...session, entity: updated }, header);
     onClose();
@@ -135,21 +145,198 @@ export default function SettingsDialog({
 
                 {session.has_character_sheet && session.settings && (
                   <section className="grid sm:grid-cols-2 gap-4 pt-4 border-t border-border">
-                    <div>
-                      <div className="label mb-2">Story mode</div>
-                      <select
-                        className="select"
-                        value={session.settings.story_mode || "player"}
-                        onChange={(e) =>
-                          saveSession({
-                            settings: { ...session.settings, story_mode: e.target.value },
-                          })
-                        }
-                      >
-                        <option value="player">Player-led</option>
-                        <option value="ai_narrator">AI narrator</option>
-                      </select>
-                    </div>
+                    {session.selected_game_id === "brambletrek" && (
+                      <div>
+                        <div className="label mb-2">Story mode</div>
+                        <select
+                          className="select"
+                          value={session.settings.story_mode || "player"}
+                          onChange={(e) =>
+                            saveSession({
+                              settings: { ...session.settings, story_mode: e.target.value },
+                            })
+                          }
+                        >
+                          <option value="player">Player-led</option>
+                          <option value="ai_narrator">AI narrator</option>
+                        </select>
+                      </div>
+                    )}
+                    {session.selected_game_id === "apothecaria" && (
+                      <div>
+                        <div className="label mb-2">Story mode</div>
+                        <select
+                          className="select"
+                          value={session.settings.story_mode || "player"}
+                          onChange={(e) =>
+                            saveSession({
+                              settings: { ...session.settings, story_mode: e.target.value },
+                            })
+                          }
+                        >
+                          <option value="player">Player-led journal</option>
+                          <option value="ai_narrator">AI narrator</option>
+                        </select>
+                      </div>
+                    )}
+                    {session.selected_game_id === "lighthouse" && (
+                      <div>
+                        <div className="label mb-2">Story mode</div>
+                        <select
+                          className="select"
+                          value={session.settings.story_mode || "player"}
+                          onChange={(e) =>
+                            saveSession({
+                              settings: { ...session.settings, story_mode: e.target.value },
+                            })
+                          }
+                        >
+                          <option value="player">Player-led logbook</option>
+                          <option value="ai_narrator">AI narrator</option>
+                        </select>
+                      </div>
+                    )}
+                    {session.selected_game_id === "colostle" && (
+                      <>
+                        <div>
+                          <div className="label mb-2">Story mode</div>
+                          <select
+                            className="select"
+                            value={session.settings.story_mode || "player"}
+                            onChange={(e) =>
+                              saveSession({
+                                settings: { ...session.settings, story_mode: e.target.value },
+                              })
+                            }
+                          >
+                            <option value="player">Player-led journal</option>
+                            <option value="ai_narrator">AI narrator</option>
+                          </select>
+                        </div>
+                        <div>
+                          <div className="label mb-2">Location module</div>
+                          <select
+                            className="select"
+                            value={session.settings.location_mode || "roomlands"}
+                            onChange={(e) =>
+                              saveSession({
+                                settings: { ...session.settings, location_mode: e.target.value },
+                              })
+                            }
+                          >
+                            <option value="roomlands">Roomlands</option>
+                            <option value="ocean">Ocean</option>
+                            <option value="city">City</option>
+                            <option value="battlements">Battlements</option>
+                          </select>
+                        </div>
+                      </>
+                    )}
+                    {session.selected_game_id === "whispers" && (
+                      <>
+                        <div>
+                          <div className="label mb-2">Story mode</div>
+                          <select
+                            className="select"
+                            value={session.settings.story_mode || "player"}
+                            onChange={(e) =>
+                              saveSession({
+                                settings: { ...session.settings, story_mode: e.target.value },
+                              })
+                            }
+                          >
+                            <option value="player">Player-led journal</option>
+                            <option value="ai_narrator">AI narrator</option>
+                          </select>
+                        </div>
+                        <div>
+                          <div className="label mb-2">Difficulty</div>
+                          <select
+                            className="select"
+                            value={session.settings.difficulty || "normal"}
+                            onChange={(e) =>
+                              saveSession({
+                                settings: { ...session.settings, difficulty: e.target.value },
+                              })
+                            }
+                          >
+                            <option value="normal">Normal (2 jokers)</option>
+                            <option value="easy">Easy (1 joker)</option>
+                          </select>
+                        </div>
+                      </>
+                    )}
+                    {session.selected_game_id === "ashes" && (
+                      <>
+                        <div>
+                          <div className="label mb-2">Story mode</div>
+                          <select
+                            className="select"
+                            value={session.settings.story_mode || "player"}
+                            onChange={(e) =>
+                              saveSession({
+                                settings: { ...session.settings, story_mode: e.target.value },
+                              })
+                            }
+                          >
+                            <option value="player">Player-led journal</option>
+                            <option value="ai_narrator">AI narrator</option>
+                          </select>
+                        </div>
+                        <div>
+                          <div className="label mb-2">Journal prompt set</div>
+                          <select
+                            className="select"
+                            value={session.settings.prompt_set || "crypt"}
+                            onChange={(e) =>
+                              saveSession({
+                                settings: { ...session.settings, prompt_set: e.target.value },
+                              })
+                            }
+                          >
+                            {ASHES_PROMPT_SETS.map((s) => (
+                              <option key={s.id} value={s.id}>
+                                {s.label}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </>
+                    )}
+                    {session.selected_game_id === "sansibilia" && (
+                      <>
+                        <div>
+                          <div className="label mb-2">Story mode</div>
+                          <select
+                            className="select"
+                            value={session.settings.story_mode || "player"}
+                            onChange={(e) =>
+                              saveSession({
+                                settings: { ...session.settings, story_mode: e.target.value },
+                              })
+                            }
+                          >
+                            <option value="player">Player-led journal</option>
+                            <option value="ai_narrator">AI narrator</option>
+                          </select>
+                        </div>
+                        <div>
+                          <div className="label mb-2">Ending mode</div>
+                          <select
+                            className="select"
+                            value={session.settings.ending_mode || "four_changes"}
+                            onChange={(e) =>
+                              saveSession({
+                                settings: { ...session.settings, ending_mode: e.target.value },
+                              })
+                            }
+                          >
+                            <option value="four_changes">Four city changes</option>
+                            <option value="score_90">Score to 90</option>
+                          </select>
+                        </div>
+                      </>
+                    )}
                     <div>
                       <div className="label mb-2">Card source</div>
                       <select
@@ -231,7 +418,7 @@ export default function SettingsDialog({
               </div>
             )}
 
-            {tab === "character" && session.has_character_sheet && (
+            {tab === "character" && session.has_character_sheet && session.selected_game_id === "brambletrek" && (
               <CharacterSetupPanel
                 entity={entity}
                 onChange={setEntity}
@@ -242,8 +429,67 @@ export default function SettingsDialog({
               />
             )}
 
+            {tab === "character" && session.has_character_sheet && session.selected_game_id === "sansibilia" && (
+              <VisitSetupPanel
+                entity={entity}
+                onChange={setEntity}
+                onSaved={handleCharacterSaved}
+                roster={roster}
+                activeId={session.slot_id}
+                onSwitchRoster={onRosterSwitch}
+              />
+            )}
+
+            {tab === "character" && session.has_character_sheet && session.selected_game_id === "lighthouse" && (
+              <WatchSetupPanel
+                entity={entity}
+                onChange={setEntity}
+                onSaved={handleCharacterSaved}
+                roster={roster}
+                activeId={session.slot_id}
+                onSwitchRoster={onRosterSwitch}
+              />
+            )}
+
+            {tab === "character" && session.has_character_sheet && session.selected_game_id === "apothecaria" && (
+              <CottageSetupPanel
+                entity={entity}
+                onChange={setEntity}
+                onSaved={handleCharacterSaved}
+                roster={roster}
+                activeId={session.slot_id}
+                onSwitchRoster={onRosterSwitch}
+              />
+            )}
+
+            {tab === "character" && session.has_character_sheet && session.selected_game_id === "colostle" && (
+              <AdventurerSetupPanel
+                entity={entity}
+                onChange={setEntity}
+                onSaved={handleCharacterSaved}
+                roster={roster}
+                activeId={session.slot_id}
+                onSwitchRoster={onRosterSwitch}
+              />
+            )}
+
+            {tab === "character" && session.has_character_sheet && session.selected_game_id === "whispers" && (
+              <InvestigationSetupPanel
+                entity={entity}
+                onChange={setEntity}
+                onSaved={handleCharacterSaved}
+                roster={roster}
+                activeId={session.slot_id}
+                onSwitchRoster={onRosterSwitch}
+              />
+            )}
+
+            {tab === "character" && session.has_character_sheet && session.selected_game_id === "ashes" && (
+              <ScionSetupPanel session={session} onSaved={onSaved} />
+            )}
+
             {tab === "character" && !session.has_character_sheet && (
-              <p className="text-muted">Character setup is available in Brambletrek mode.</p>
+              <p className="text-muted">Character setup is available in supported play games.</p>
             )}
 
             {tab === "index" && (

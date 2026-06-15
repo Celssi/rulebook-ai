@@ -1,0 +1,54 @@
+# PDF: rules-reference.pdf p.3
+ranks:
+  ace:
+    name: "Nelia"
+    look: "Beautiful"
+    trait: "A joker, always quipping"
+  "2":
+    name: "Thorug"
+    look: "Rugged"
+    trait: "Suspicious"
+  "3":
+    name: "Berek"
+    look: "Scarred"
+    trait: "Weary"
+  "4":
+    name: "Fen-Reley"
+    look: "Old"
+    trait: "Timid/Quiet"
+  "5":
+    name: "Soriq"
+    look: "Muscle-bound"
+    trait: "Dominating/Intimidating"
+  "6":
+    name: "Alis"
+    look: "Delicate"
+    trait: "Firey/Passionate"
+  "7":
+    name: "Dreya"
+    look: "Wild and Feral"
+    trait: "Arrogant and over-confident"
+  "8":
+    name: "Yeleris"
+    look: "Posh and fancy"
+    trait: "Tough and reliable"
+  "9":
+    name: "Perelli"
+    look: "Cute and small"
+    trait: "Stoic"
+  "10":
+    name: "Quen"
+    look: "Big"
+    trait: "Intelligent and strategic"
+  jack:
+    name: "Taura"
+    look: "Wiry and thin"
+    trait: "Shrewd, quiet and brooding"
+  queen:
+    name: "Reneen"
+    look: "Injured"
+    trait: "Wise and experienced"
+  king:
+    name: "Mirriq"
+    look: "A child"
+    trait: "Desperate for adventure"

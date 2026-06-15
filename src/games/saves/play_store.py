@@ -14,6 +14,13 @@ from src.games.saves.session import load_session, save_session
 
 PlaySettingSpec = dict[str, Any]  # {"default": str, "choices": list[str]}
 
+# (story_mode, card_source)
+PlayModesFn = Callable[["PlayContext"], tuple[str, str]]
+LogPromptFn = Callable[["PlayContext", str], None]
+TryHandlePromptFn = Callable[..., tuple[str, list[dict], str] | None]
+EntityForRagFn = Callable[["PlayContext"], Any]
+AgentMultiNodeFn = Callable[[dict], dict]
+
 
 @dataclass
 class PlayProfile:
@@ -33,6 +40,11 @@ class PlayProfile:
     has_lonelog: bool = True
     play_settings: dict[str, PlaySettingSpec] = field(default_factory=dict)
     session_extra_keys: list[str] = field(default_factory=list)
+    resolve_play_modes: PlayModesFn | None = None
+    log_user_prompt: LogPromptFn | None = None
+    try_handle_prompt: TryHandlePromptFn | None = None
+    entity_for_rag: EntityForRagFn | None = None
+    agent_multi_node: AgentMultiNodeFn | None = None
 
 
 _PROFILES: dict[str, PlayProfile] = {}
@@ -44,6 +56,10 @@ def register_play_profile(profile: PlayProfile) -> None:
 
 def get_play_profile(game_id: str) -> PlayProfile | None:
     return _PROFILES.get(game_id)
+
+
+def all_play_profiles() -> dict[str, PlayProfile]:
+    return dict(_PROFILES)
 
 
 def has_play_roster(game_id: str) -> bool:

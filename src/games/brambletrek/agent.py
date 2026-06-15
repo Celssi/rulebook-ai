@@ -29,7 +29,7 @@ def brambletrek_multi_node(state: dict) -> dict:
             text = msg.content if isinstance(msg.content, str) else str(msg.content)
             break
 
-    data = state.get("brambletrek_character")
+    data = state.get("play_entity")
     bt = character_from_dict(data) if data else None
 
     run = run_shortcut(
@@ -55,7 +55,7 @@ def brambletrek_multi_node(state: dict) -> dict:
         candidate_k=retrieval_cfg.get("candidate_k"),
         use_hybrid=bool(retrieval_cfg.get("use_hybrid", True)),
         use_rerank=bool(retrieval_cfg.get("use_rerank", False)),
-        brambletrek_character=bt,
+        play_entity=data,
         chat_provider=state.get("chat_provider", "ollama"),
     )
     source_summary = _format_sources(result["sources"])

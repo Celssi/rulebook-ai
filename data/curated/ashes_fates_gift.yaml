@@ -1,0 +1,24 @@
+# PDF p.26 — Fate's Gift starting item by card rank
+ranks:
+  '2': Torches (3 Uses) - Reveal extra details in a room, draw 1 extra card and add
+    its prompt to the room.
+  '3': Iron-bound Lantern (3 Uses) - Immunity to one fear effect.
+  '4': Flint and Tinder (1 Use) - Turn any Room into a Sanctuary, use resets at next
+    rolled Sanctuary.
+  '5': Firecrackers (2 Uses) - Distract and avoid one non-boss encounter.
+  '6': Healer's Kit (1 Use) - Cure any single Condition.
+  '7': Thief's Tools (3 Uses) - Allows for a single guaranteed success when opening
+    a chest.
+  '8': Talisman (3 Uses) - Nullify the next magical effect or attack.
+  '9': Rune Stones (3 Uses) - Form a 2x2 protective circle that prevents enemy entry
+    for 2 turns.
+  '10': Spirit Binds (2 Uses) - Bind a non-boss enemy & take an extra turn at the
+    start of combat.
+  jack: Silver Mirror (2 Uses) - Reflect any single spell or ranged attack back at
+    the attacker.
+  queen: Bracer of Time (1 Use) - Undo 1 action or outcome in a room and reattempt
+    it.
+  king: Guardian Chime (1 Use) - Summon 1 enemy to fight for you for 2 turns. (draw
+    a card to determine enemy)
+  ace: Twin Scroll (1 Use per Spell) - At each sanctuary roll for 2 Minor spells,
+    stored for future use.

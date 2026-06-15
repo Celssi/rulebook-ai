@@ -1,0 +1,15 @@
+# PDF: rules-reference.pdf p.1 / core-rulebook.pdf p.30
+ranks:
+  ace: "YOU MEET A FRIEND"
+  "2": "A STORM"
+  "3": "SOMETHING FALLS FROM THE 'CEILING'"
+  "4": "YOU FALL"
+  "5": "A LOUD NOISE"
+  "6": "A STRANGE FEELING"
+  "7": "SUN SETS OR RISES"
+  "8": "A FIRE STARTS"
+  "9": "SOMETHING BREAKS"
+  "10": "YOUR WAY IS BLOCKED"
+  jack: "YOU ARE SURROUNDED"
+  queen: "HUNGER SETS IN"
+  king: "CREATE/REPAIR SOMETHING"

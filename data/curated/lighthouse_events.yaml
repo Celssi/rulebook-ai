@@ -1,0 +1,21 @@
+# Event — card rank + red/black severity, p.16–17
+severity:
+  red: >-
+    Lasting consequence — damage to the lighthouse or island, a lasting effect to you
+    (mentally, physically), harm to others, etc.
+  black: >-
+    Small consequence — a tiny interruption, an inconvenience, etc.
+ranks:
+  "2": A collision — space whales into the lighthouse, your head against a hard surface, a spaceship onto the island, small animals into the glass, etc.
+  "3": A total blackout — stars go out, your lantern goes out, space fog obscures your view, etc.
+  "4": The light in the lighthouse goes out
+  "5": Everything suddenly falls silent
+  "6": You receive a letter/message from loved ones
+  "7": You receive a mysterious signal/message from the depths of the universe
+  "8": Gravity stops working
+  "9": Time warps forward (end the night early)
+  "10": You see a ship/vessel/craft in distress
+  jack: You realise you are not alone
+  queen: You hear an explosion
+  king: Time warps backward (begin the night again)
+  ace: A traveller visits the lighthouse — animal, alien, human, etc.

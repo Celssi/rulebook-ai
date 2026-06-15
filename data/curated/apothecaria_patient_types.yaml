@@ -1,0 +1,6 @@
+# Patient type by suit — Apothecaria p.5
+suits:
+  hearts: Villager
+  diamonds: Adventurer
+  clubs: Monster
+  spades: Repeat patient

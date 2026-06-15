@@ -1,0 +1,10 @@
+# PDF p.26 — Starting armour (d6)
+rolls:
+  '1': 'No armour: You are completely vulnerable, clothed in mere tatters.'
+  '2': 'Ragged Leathers: Offers minimal protection, reduces Damage by -1.'
+  '3': 'Patched Mail: Moderately protects, reduces Damage by -2.'
+  '4': 'Forged Breastplate: Good protection, reduces Damage by -3 but reduces agility
+    by 1.'
+  '5': 'Enchanted Robes: Offers magical resistance, reduces spell Damage by -2 and
+    physical by -1.'
+  '6': 'Ancient Full Armour: Best protection, reduces Damage by -4, move 1 less square.'

@@ -1,0 +1,13 @@
+# Observation — d6 subject + suit distance, p.14–15
+subjects:
+  "1": Animals — space whales, galaxy rays, winged creatures, a lone creature, insects, etc.
+  "2": Space vessels, ships, crafts — battleships, luxury cruises, reconnaissance ships, trade caravans, personal spacecrafts, etc.
+  "3": Something in the sky — auroras, meteor showers, bioluminescence, fog, lightning, comets, dying stars, planets, mirages, etc.
+  "4": Structures — floating cities, mobile space stations, escape pods, trading ports, etc.
+  "5": Aliens — unknown creatures, unmarked space crafts, undocumented animals, UFOs, etc.
+  "6": Beings — space walkers, pirates, robots, etc.
+suit_distance:
+  spades: Simply a speck in the distance, a flash of lights, a distant smudge against the stars
+  clubs: At a safe distance, just beyond the beam of the lighthouse
+  hearts: Within an arm's length of the island
+  diamonds: Overhead

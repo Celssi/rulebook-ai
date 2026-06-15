@@ -1,0 +1,1 @@
+"""Colostle solo RPG."""

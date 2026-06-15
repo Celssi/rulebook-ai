@@ -1,0 +1,18 @@
+# PDF: core-rulebook.pdf p.16–22 (filled squares on class pages)
+classes:
+  armed:
+    label: The Armed
+    exploration: 3
+    combat: 4
+  followed:
+    label: The Followed
+    exploration: 5
+    combat: 3
+  helmed:
+    label: The Helmed
+    exploration: 2
+    combat: 5
+  mounted:
+    label: The Mounted
+    exploration: 5
+    combat: 2

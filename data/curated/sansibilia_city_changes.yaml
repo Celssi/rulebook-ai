@@ -1,0 +1,30 @@
+# City change prompts when two drawn cards share suit or value (p.11–12)
+same_suit:
+  hearts:
+    title: Two Hearts in a Row
+    prompt: >-
+      A change of heart. Who had the change of heart? Was it a spurned lover,
+      a rival, your patron, or yourself?
+  clubs:
+    title: Two Clubs in a Row
+    prompt: >-
+      A new wind is blowing. This could be as simple as a change in weather, or it
+      could also be a new political power rising, a new artistic movement, or a new
+      fad sweeping the city.
+  diamonds:
+    title: Two Diamonds in a Row
+    prompt: >-
+      A ripple moves through the city. Reality is shifting. Streets may have moved,
+      new buildings are sprouting up, a generation may have been skipped. Are you
+      the only one noticing the difference?
+  spades:
+    title: Two Spades in a Row
+    prompt: >-
+      The city moves against you. Are hostile forces acting from the shadows or is
+      something openly antagonizing you? Did you make a mistake or did you know this
+      would be coming?
+same_value:
+  title: Two of the Same Value in a Row
+  prompt: >-
+    You change the city. Do you leave a mark or will no one know it was you?
+    Did you instigate a minor change or will the city never be the same?

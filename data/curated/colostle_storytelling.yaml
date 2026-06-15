@@ -1,0 +1,54 @@
+# PDF: rules-reference.pdf p.3
+ranks:
+  ace:
+    incite: "Protect..."
+    subject: "Rookling or Rooklings"
+    twist: "Betrayal"
+  "2":
+    incite: "Assist..."
+    subject: "Archaeological dig at ancient ruins"
+    twist: "Love"
+  "3":
+    incite: "Destroy..."
+    subject: "Rook fighting arena"
+    twist: "A murder"
+  "4":
+    incite: "Investigate..."
+    subject: "A massive Rook husk"
+    twist: "Explosion!"
+  "5":
+    incite: "Escort..."
+    subject: "Someone experimenting with Rookstones"
+    twist: "Treasure"
+  "6":
+    incite: "Rescue someone from..."
+    subject: "A powerful artefact"
+    twist: "Key item found"
+  "7":
+    incite: "Find or locate..."
+    subject: "A castle hold manned by soldiers"
+    twist: "Dark secret"
+  "8":
+    incite: "Escape from..."
+    subject: "Shady dealings"
+    twist: "Clue to an ancient mystery"
+  "9":
+    incite: "Smuggle..."
+    subject: "Meeting of cultists"
+    twist: "A kidnapping"
+  "10":
+    incite: "Deceive..."
+    subject: "A strange and complicated machine"
+    twist: "Someone reveals their true identity"
+  jack:
+    incite: "Defeat..."
+    subject: "A locked door to another Room"
+    twist: "A Rook appears — but something's strange..."
+  queen:
+    incite: "Stop..."
+    subject: "A unique Rookstone"
+    twist: "A chase!"
+  king:
+    incite: "Capture..."
+    subject: "A Royal formal event"
+    twist: "An injury"

@@ -1,0 +1,99 @@
+# whispers_endings.yaml — Whispers in the Walls 2e (ORC); verify against docs/whispers PDF
+ranks:
+  ace:
+    body: "The room has fallen silent for some time now, but all the exits remain \nlocked. You feel a\
+      \ cold hatred towards you. Did you upset it? You look over \nyour notes and attempt to make a conclusion\
+      \ if nothing else.\nStudy your notes and make a conclusion as to what the room was \ntrying to tell\
+      \ you. Describe your conclusions and then attempt to make \na peace offering - an object, an explanation,\
+      \ anything. Does it accept \nand let you free?"
+  '2':
+    body: "The whole room sighs in mournful reproach. You sense it has given all it \nhas and is exhausted\
+      \ itself. You give your thanks, and walk out, studying \nyour notes.\nHow do you give thanks to\
+      \ the room? Study over all that has happened \nand come to a conclusion of what secrets the walls\
+      \ were trying to tell. \nDescribe your conclusions."
+  '3':
+    body: "The whole space contracts and, with a violent exhalation, ejects you from its \ninterior. It\
+      \ has tired of you and your presence, it will give no more. As you \nland hard outside the structure,\
+      \ you think on what you’ve learned.\nStudy your notes about what the room has shown you. What does\
+      \ it all \nmean? Describe your conclusions. After you were ejected, something \nstrange happened\
+      \ to the structure. What happened?"
+  '4':
+    body: "A breathy, anguished cry whispers out: “Tell me why.” You look at your notes, \nthen back up.\
+      \ You have a lot to think about first. But in your silence the walls \nbegin to seep, the smell\
+      \ of old kerosene. It ignites. “Tell me why.” the voice \ncries out again, and again and again.\
+      \ The doors are locked, the knobs hot. \nThe heat is intense. “Tell me why” it continues.\nLook\
+      \ over your notes and come to a conclusion of what secrets the \nwalls were trying to tell. Describe\
+      \ your conclusion and tell the room \nwhy it occurred. Does it accept the answer and let you free?\
+      \ \n\n\nShared Found Remembered\n\n27"
+  '5':
+    body: "A sigh of relief, the space is glad to be freed of its burdens. But it has one \nlast bit of\
+      \ information to tell: From the keyhole of the main door, sprouts \nof a flower. What kind of flower\
+      \ is it? The door knob remains locked. It \nwants to hear your conclusion. \nLook over your notes\
+      \ and come to a conclusion of what secrets the \nwalls were trying to tell. Tell your conclusion\
+      \ to the room and why it \noccurred. How does the room react after your answer?"
+  '6':
+    body: "Dead gnats and flies. Millions fall from the ceiling, their corpses filling your \nnostrils\
+      \ with a unique smell of carapace decay.  They pile at your feet and \nraise higher. “You’ll entomb\
+      \ here with us.” comes a hiss from inside your \nmind. “Stay with us”. You must calm the troubled\
+      \ space. It is wounded and \nhurt and wants your company.\nLook over your notes and come to a conclusion\
+      \ of what happened. \nExplain it to the room and then attempt to reassure, placate or calm the \n\
+      room from the horrors it has seen.  Did you succeed in calming it? Does \nit let you go?"
+  '7':
+    body: "The answer to the secret is horrid. The walls sag, the weight of their \ndisrepair; too much\
+      \ for them to hold their own weight any longer. The ceiling \nbegins to collapse and crumble. Secrets\
+      \ can be painful to remember. As you \nexit the place, it collapses upon itself. You feel a sense\
+      \ of gratitude from it - \nbeing allowed to tell its secret before the end.\nLook over your notes\
+      \ and come to a conclusion of what happened. You \nfeel the need to leave an epitaph for the self-destructed\
+      \ space. Write \nabout what happened and do your best to explain why. Speak of the \nroom that could\
+      \ no longer bear the weight of it."
+  '8':
+    body: "On one end of the room, a massive mouth appears and opens. Its tongue lulls \nout and you can\
+      \ see a landscape beyond. On the other, the door you originally \nentered reopens. The room is giving\
+      \ you a final option.\nLook over your notes and come to a conclusion about what happened \nand why.\
+      \ Consider what the room is offering you with these two \nchoices. Do you take the door or the mouth?\
+      \ Was it the right choice? \nWhat happened?"
+  '9':
+    body: "Normally the walls are horrified by what they know, but this one is joyous \nand revels in\
+      \ the crime committed. After a long silence, you feel it is done \nand waits anxiously to hear your\
+      \ take on such a wonderful event.\nLook over your notes and come to a conclusion about what happened\
+      \ \nand why. Explain it to the room in your own view. Is it happy with the \nway you told its story?\
+      \ Does it let you go? What happens?\n\n28"
+  '10':
+    body: "The room is hot, unbearably so. But it has been silent for a long time. As you \ngo to leave,\
+      \  a tendril of flame lashes out at your notes and ignites them. You \nquickly put it out but your\
+      \ notebook is damaged and you sense the room \nwants your view before it lets you go. The temperature\
+      \ continues to rise.\nRemove two written notes from your notebook. Then make a \nconclusion from\
+      \ the rest and tell the room. Next, review the two notes \nyou removed. If you would have made a\
+      \ different conclusion with the \ntwo extra pieces of information, the room does not let you go.\
+      \ Describe \nwhat happens in either case."
+  jack:
+    body: "Laughter erupts from the walls. The kind only felt when a great stress is lifted \nand the\
+      \ adrenaline can finally leave the system. And as it always is with this \nlaughter, it turns to\
+      \ sobs. The tears flow down the walls and begin to fill the \nroom. You try the door, but it is\
+      \ still locked.\nLook over your notes and come to a conclusion about what happened \nand why. Explain\
+      \ it to the room, then attempt to comfort its crying \nbefore the water gets too high. Does the\
+      \ crying stop? Are you released?"
+  queen:
+    body: "A figure appears in a chair. You recognize them as the victim. They’re clearly \nstill distraught.\
+      \ “I don’t remember what happened - why it happened? It was \nmy fault wasn’t it? I deserved what\
+      \ I got.”\nLook over your notes and come to a conclusion about what happened \nand why. Explain\
+      \ it to the figure and answer their questions. Are they \nsatisfied? What happens afterwards?"
+  king:
+    body: "The wall shutters, tears and a disfigured creature pushes itself into the room, \nthe hatred\
+      \ apparent on its face. “I will destroy them. All of them. I never \ndeserved this and for that\
+      \ they will pay.” it says before it locks eyes with you. \n“You were there, weren’t you?”\nLook\
+      \ over your notes and come to a conclusion about what happened \nand why. Explain it to the creature\
+      \ and answer its question. Are they \nsatisfied? What happens afterwards?\n\nYou aren’t afraid of\
+      \ the walls. They want their story told. But the Dead hold \ngrudges and fear and shame. You need\
+      \ out. The Dead isn’t done with you, \nthough. It protrudes and becomes real, the heinous form a\
+      \ bloated version of \nits former self. It speaks.\nDescribe the Dead. What does it say? Look over\
+      \ your notes and come to \na conclusion the best you can about what happened here and why. Then,\
+      \ \ndescribe how you attempt to appease the Dead so it allows you to leave. \nDoes it accept your\
+      \ appeasement? What happens?"
+  joker:
+    body: "You aren’t afraid of the walls. They want their story told. But the Dead hold \ngrudges and\
+      \ fear and shame. You need out. The Dead isn’t done with you, \nthough. It protrudes and becomes\
+      \ real, the heinous form a bloated version of \nits former self. It speaks.\nDescribe the Dead.\
+      \ What does it say? Look over your notes and come to \na conclusion the best you can about what\
+      \ happened here and why. Then, \ndescribe how you attempt to appease the Dead so it allows you to\
+      \ leave. \nDoes it accept your appeasement? What happens?"

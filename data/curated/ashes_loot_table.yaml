@@ -1,0 +1,18 @@
+# PDF p.69 — Standard loot (2d6, reroll 1s for d6 shortcut)
+rolls:
+  '3': Rare Artefact - Discover a unique item with powerful effects.
+  '4': Light Weapon - Roll on the Light Weapon Table
+  '5': Dravik Pouch - Contains 20 Draviks (Dv).
+  '6': Healing Potion - Recovers 10 HP upon use.
+  '7': Mana Potion - Completely restores mana.
+  '8': Heavy Weapon - Roll on the Heavy Weapon Table
+  '9': Find Mythic - Find a Mythic Light Weapon. Roll on the Mythic Table
+  '10': Ranged Weapon - Roll on the Ranged Weapon Table
+  '11': Herbal Mix - Cures any Condition by 1 level
+  '12': Draviks - Find 2d6 Draviks (Dv).
+  '13': Antidote - Cures poisoning or similar conditions.
+  '14': Bandage - Stops bleeding and heals for 5 HP.
+  '15': Elixir of Stone - Increase Armour by +1 for one combat encounter.
+  '16': Major Scroll - Single-use scroll, roll on the Major Scroll table upon discovery.
+  '17': Golden Charm - Offers a +1d6 bonus to the next magic Damage you deal.
+  '18': Enchanted Weapon - Find a Mythic Heavy Weapon. Roll on the Mythic Table.

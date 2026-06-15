@@ -1,0 +1,81 @@
+# whispers_hearts.yaml — Whispers in the Walls 2e (ORC); verify against docs/whispers PDF
+ranks:
+  ace:
+    body: "Pin pricks of blood seep from the walls until it gushes forth, filling the room \nwith the\
+      \ warm, sickly iron-smelling liquid. It fills your nostrils and throat \nlike chewing on metal shavings.\
+      \ Then, just as suddenly, it stops and drains \naway, leaving a bathtub ring of thick red around\
+      \ the room. \nHow high does it get before it ends? The blood ring stops at the edge of \nsomething\
+      \ specific. What is it?"
+  '2':
+    body: "A rumble sounds throughout the room and the walls ungulate until it \nfocuses on a single hanging\
+      \ frame. The frame is thrown from the wall and \ncracks on the floor. You pick it up. \nWhat is\
+      \ in the frame? What note is scrawled on the back?"
+  '3':
+    body: "Hands press against the walls, pushing it outwards like taught fabric. Their \ndetails in sharp\
+      \ relief like well carved marble. They’re reaching, begging, \nyearning for something in the room.\
+      \ All the walls’ hands reach for it. \nWhat age were all the hands? What were they pointing to in\
+      \ the room? \nLook it over. What did you discover odd about the object?"
+  '4':
+    body: "An eye blooms on the wall. Then another. Another. More. Dozens cover the \nwalls in different\
+      \ shapes and sizes. They focus directly on you and you can \nread their emotions and they’re all\
+      \ the same. You hold your breath a second \nlonger before exhaling. The eyes close and become the\
+      \ walls once more.\nWhat emotion were the eyes trying to portray? It can be a single word, or \n\
+      a description. Were the eyes old, young or different ages? You felt they \nwere looking at a specific\
+      \ part of you. What was it?"
+  '5':
+    body: "The windows frown and squint into the room, focusing what little light \nthere is into thin,\
+      \ tight beams, they scrape their scorching rays along the \nfloors and ceiling, searching - or drawing?\
+      \ The smell of burning dust fills \nyour nose. After their dance, they all land on a singular point\
+      \ and it erupts \nin flames before the windows’ gaze dissipates.\nDo the scorch marks draw anything\
+      \ meaningful? If so, what? What did \nthe windows ignite? Were you able to save it?\n\n\nThe walls\
+      \ are alive and breathe. They look inward and \nprotect their occupants from the elements. But are\
+      \ \nhelpless to protect them \nfrom themselves."
+  '6':
+    body: "A wall flutters like paper, thin and wet. The edges peel away and behind are \nglowing embers\
+      \ of raw memory floating in an expanse. Some sob, others \nlaugh, but one glows brighter than the\
+      \ rest. A tight, controlled sigh of \nfrustration emanates from it and it’s pushed towards you.\
+      \ You reach out and \ntouch it, and a pain burns through your fingers as it enters your mind. An\
+      \ \nold, half burned movie reel plays a faded memory of an unhappy time.\nDescribe the person who\
+      \ sighed. What were they doing in the scene that \ncaused them to sigh in frustration?"
+  '7':
+    body: "A painting on the wall swirls and shifts into an ungainly, ugly visage of a \nmonstrous creature.\
+      \ Its head twists like an owl, and mottled feathers sprout \nfrom an otherwise human head. It speaks\
+      \ in a raspy, papery voice. “No savior \never entered these halls. No one ever heeded our calls.\
+      \ Find your solace in \nanother place. We were not forgotten but misplaced.”\nThe picture stops\
+      \ moving and falls to the ground, its glass shattering. There’s \nsomething written on the back\
+      \ of the painting in a hurried script. What does \nit say? What do you think the painting was speaking\
+      \ about?"
+  '8':
+    body: "A wall hook rattles loose and speeds around the room. You dodge and \nweave, but it was only\
+      \ a matter of time before it slammed into your head, \nknocking you unconscious. When you awake,\
+      \ you’ve been sealed into a \nsmall, dark space.\nIn what manner were you sealed into this space?\
+      \ How do you escape?"
+  '9':
+    body: "Precious few objects belong to you, but the walls seem interested in one of \nthem. An enigmatic\
+      \ pull on the object tugs at you before it is ripped from you \nand slams into the old walls. Black,\
+      \ leathery tendrils sprout and pull the \nobject into its split maw, consuming it.\nWhat object\
+      \ did it take from you? It held sentimental value, why?"
+  '10':
+    body: "You look into a mirror, tarnished and cloudy, but still intact. Behind you are \nthe remnants\
+      \ of a gruesome scene. The empty, shattered setting of languid, \nhorrific acts. After a moment\
+      \ the mirror cracks, then shatters and its pieces \nfall to the floor.\nThe scene was difficult\
+      \ to make out in the dirty mirror, and turning around \nshows nothing. Describe the fleeting images\
+      \ you could make out."
+  jack:
+    body: "Your stomach rumbles and echos - you’re beginning to get hungry. The walls \nfluctuate and\
+      \ roll to the sound of your own rumblings. You stare and wait till \nyour stomach announces itself\
+      \ once more, and again the walls burble and \ncontort. A split bursts and tears in the walls and\
+      \ food begins to pour out.\nDescribe what food the walls give. Something is wrong about the food,\
+      \ \nwhat is it?"
+  queen:
+    body: "The shape of a face pushes through the wall, the details of bone and sinew \ngrotesquely defined.\
+      \ The mouth opens and clamps down on the wall’s \nsurface, tearing it away and leaving a dark, ragged\
+      \ entry. Bone-white teeth \nshow at the edges and a piece of parchment hangs just beyond the surface.\n\
+      You carefully, but quickly grab the parchment and the face recedes and the \nragged hole mends itself.\
+      \ There are three words written in a dark ichor. \nWhat are they?"
+  king:
+    body: "The walls shake like a wolf clearing water from its back. The beetles, insects, \nand spiders\
+      \ hidden in crevices scatter in all directions. Thousands of them. \nThick dust hangs in the air,\
+      \ creating  a dense, choking fog. All the creatures \nare herded by the shaking walls, and form\
+      \ a hazy shape opposite you, the \ndust giving the moving mass soft edges.\nWhat shape do the walls\
+      \ show you? It ungulates and moves in a pattern, \ndescribe its action."

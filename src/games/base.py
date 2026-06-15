@@ -17,7 +17,7 @@ class RagContext:
     """Optional per-query context passed to game retrieval hooks."""
 
     game_state: GameState | None = None
-    brambletrek_character: Any | None = None
+    play_entity: dict | None = None
 
 
 @dataclass
@@ -96,7 +96,7 @@ class GamePlugin:
         self,
         text: str,
         *,
-        brambletrek_character: dict | None = None,
+        play_entity: dict | None = None,
     ) -> dict | None:
         """Return router state overrides, or None to continue generic routing."""
         return None

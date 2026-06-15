@@ -1,0 +1,41 @@
+# PDF p.57 — Room generation by card rank
+ranks:
+  ace:
+    room: Puzzle
+    check: INT
+  '2':
+    room: Trap
+    check: INT or AGL
+  '3':
+    room: Sanctuary
+    check: NO CHECK
+  '4':
+    room: Broken Door
+    check: PWR
+  '5':
+    room: Ambush
+    check: COMBAT
+  '6':
+    room: Memory
+    check: INT
+  '7':
+    room: Labyrinth
+    check: INT
+  '8':
+    room: Sanctuary
+    check: NO CHECK
+  '9':
+    room: Treasury
+    check: AGL
+  '10':
+    room: Sanctuary & Merchant
+    check: NO CHECK
+  jack:
+    room: Ambush
+    check: INT & COMBAT
+  queen:
+    room: Altar
+    check: INT
+  king:
+    room: Royal Hall
+    check: COMBAT

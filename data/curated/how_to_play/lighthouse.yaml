@@ -1,0 +1,57 @@
+game_id: lighthouse
+title: Näin pelaat
+source:
+  pdf: docs/lighthouse/Lighthouse_digital_spread_AccessibleVersion.pdf
+  pages: [4, 5, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21]
+sections:
+  - heading: Yleiskuva
+    body: |
+      The Lighthouse at the Edge of the Universe on yöllinen, meditatiivinen solojournalointipeli. Olet majakanvartija universumin reunalla: pidät valon palamassa ja hoidat tehtäviä, kirjoittaen havainnot ja tunteet logbookiin.
+
+      Peli sopii parhaiten iltaan ennen nukkumaanmenoa tai valvomaan aikaan. Yksi yö voi kestää 15 minuuttia tai pidempään — kirjoitat niin paljon tai vähän kuin haluat. Peli on tarkoitettu toistettavaksi; sinä ja majakka muututte ajan myötä.
+  - heading: Tarvitset
+    bullets:
+      - kuusisivuinen noppa
+      - tavallinen korttipakka
+      - kolikko
+      - päiväkirja (logbook) tehtävien kirjaamiseen
+  - heading: Hahmo
+    body: |
+      Voit keksiä fiktiivisen vartijan tai pelata ikään kuin itse olisit vartijassa. Kaikki promptit ovat tulkinnanvaraisia — kirjoita reaktiot, yksityiskohdat ja tunteet logbookiin.
+  - heading: Aloitusmerkintä
+    body: |
+      Kiipeä majakan yläkertaan logbook mukana. Aloita jokainen merkintä **ajalla ja päivämäärällä**.
+
+      Kirjaa ensivaikutelmat huoneesta ja yöstä. Valitse sää tunnelman mukaan (sivu 8) — joko vartijan fiktiivisen tilan tai omien tunteidesi perusteella. Kirjaa lämpötila, näkyvyys ja äänet.
+  - heading: Valon sytytys
+    body: |
+      Heitä kolikko ja nosta kortti: tarvitset **kruunan ja punaisen kortin** kerralla. Toista kunnes valo syttyy. Jos oli vaikeaa, kirjaa miksi (väsymys, sää, kostea sydän…). Käännä kellokoneisto — valo alkaa heilua.
+  - heading: Tehtävät
+    body: |
+      Valitse tehtävä yön tunnelman mukaan (sivu 11): esim. levoton yö → Observation, villi → Maintenance.
+
+      - **Maintenance:** heitä d6 tehtäväksi, nosta kortti lopputulokselle (sivu 12–13).
+      - **Observation:** heitä d6 kohdeksi, nosta kortti etäisyydelle (sivu 14–15).
+      - **Event:** käännä kortti; punainen = pitkäkestoisempi seuraus (sivu 16–17).
+
+      Suorita tehtävä, kirjaa se logbookiin ja valitse seuraava tehtävä.
+  - heading: Rantahaku
+    body: |
+      Valon noustessa voit kerätä tarvikkeita (sivu 20–21): jaa kellonaika kahdella (pyöristä ylös) = löytöjen määrä. Jokaiselle kortille heitä kolikko kunnon määrittämiseksi. Säilytä löydöt myöhempää huoltoa varten.
+  - heading: Lopetus
+    bullets:
+      - Hiljainen yö — sekoita pakka 1×
+      - Tasainen yö — 2×
+      - Kiireinen yö — 3×
+      - Villi/pelottava yö — 4×
+      - Sammuta valo, viimeistele merkintä ja palauta logbook laatikkoon majakan juurella
+  - heading: Vinkki
+    body: |
+      Zinen viimeisellä sivulla on paperinen majakka, jonka voi leikata ja koota. Yöllä voit laittaa puhelimen valon päälle ja asettaa majakan sen päälle tunnelmaa varten.
+  - heading: Sovelluksessa
+    bullets:
+      - Asetukset → **Character**: vartijan nimi, yön numero ja säätunnelma; tallenna Watch
+      - Asetukset → **Play**: story mode (kirjoitat itse vs. AI narrator), physical vs virtual deck
+      - Shortcuts → aloitus (weather, task routing, light lamp), tehtävät (maintenance, observation, event), rantahaku, **End watch**
+      - "Lonelog tallentaa nostot ja merkinnät"
+      - Physical-tilassa raportoi kortit chatissa

@@ -1,0 +1,13 @@
+# Maintenance — d6 task + suit outcome, p.12–13
+tasks:
+  "1": Something is fractured, shattered, cracked — a pane of glass, the lens, your heart, a bone, etc.
+  "2": Something has come undone, unravelled — a pipe in the wall, a length of rope, a thread in your jumper, etc.
+  "3": Something needs tending to/care — an injured creature, the oil in your lantern, the potted plants, the water-damaged stairs, the tea in your cup, etc.
+  "4": Something is missing, lost, misplaced — a key, a traveller, the last 24 hours, pages from the logbook, etc.
+  "5": Something is creaky, wonky, squeaky — the gears in the light, door hinges, a picture frame, a floorboard, etc.
+  "6": Something needs order, tidying — the table from which you write, the floor downstairs, the shelves beside the door, etc.
+suit_outcomes:
+  spades: Something unexpected occurs when you complete the task
+  clubs: Things do not work in your favour
+  hearts: A memory is brought up during the task
+  diamonds: Things work in your favour

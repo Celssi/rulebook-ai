@@ -1,0 +1,8 @@
+# PDF: core-rulebook.pdf p.47
+bands:
+  ace_2: "TREASURE FALL — stone capsule from sky contains TREASURE."
+  "3_4": "ASTROLITHIC ROOK CHASE — Rook hunts you; run, hide, or fight."
+  "5_6": "EERIE SILENCE — Nothing happens. Maybe you got away with it."
+  "7_8": "ASTROLITHIC WRECKFALL — draw again: RED=one WOUND from debris; BLACK=safe."
+  "9_10": "METEOR SHOWER — caught with no cover; take one WOUND."
+  jack_queen_king: "ASTROLITHIC ROOK APPEARS — create opponent and fight (COMBAT score 6)."

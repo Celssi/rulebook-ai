@@ -49,6 +49,7 @@ from src.games.saves.play_store import (
     get_play_profile,
     get_play_store,
     has_play_roster,
+    all_play_profiles,
     register_play_profile,
 )
 from src.games.saves.roster import RosterEntry, RosterStore
@@ -111,6 +112,7 @@ __all__ = [
     "get_play_profile",
     "get_play_store",
     "has_play_roster",
+    "all_play_profiles",
     "load_session",
     "play_setting_key",
     "register_play_profile",

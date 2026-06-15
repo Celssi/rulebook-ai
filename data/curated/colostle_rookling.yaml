@@ -1,0 +1,15 @@
+# PDF: core-rulebook.pdf p.40
+ranks:
+  ace: "A spidery one with 6 legs"
+  "2": "A ball-shaped one that rolls"
+  "3": "A telescopic one that extends and retracts"
+  "4": "One with a large glowing eye"
+  "5": "A speedy wheeled one"
+  "6": "A friendly and loving one"
+  "7": "One with powerful spring-like legs"
+  "8": "It walks on 4 legs like a dog"
+  "9": "One that splits into 3 parts"
+  "10": "A mean looking one bristling with blades"
+  jack: "One that magically floats in the air beside you"
+  queen: "One with a mysterious door in its front"
+  king: "One that emits garbled speech from time to time"

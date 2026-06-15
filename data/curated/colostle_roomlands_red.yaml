@@ -1,0 +1,32 @@
+# PDF: rules-reference.pdf p.1 / core-rulebook.pdf p.28 — red cards (organic)
+ranks:
+  ace:
+    hearts: "Unarmed — CULTIST"
+    diamonds: "Armed — CULTIST"
+  "2":
+    hearts: "Easy Prey — ANIMAL TO HUNT"
+    diamonds: "Dangerous — ANIMAL TO HUNT"
+  "3":
+    hearts: "Friendly — CALLING"
+    diamonds: "Not friendly — CALLING"
+  "4":
+    hearts: "Trustworthy — PERSON NEEDS YOU TO FIND SOMETHING (check ITEM table for reward)"
+    diamonds: "Untrustworthy — PERSON NEEDS YOU TO FIND SOMETHING (check ITEM table for reward)"
+  "5":
+    hearts: "Seems safe — DEAD BODY (check ITEM or EVENT tables)"
+    diamonds: "Something's off... — DEAD BODY (check ITEM or EVENT tables)"
+  "6":
+    hearts: "Friendly — ANOTHER ADVENTURER"
+    diamonds: "Not friendly — ANOTHER ADVENTURER"
+  "7":
+    hearts: "Taken to a new area — GARGOYLE!"
+    diamonds: "Taken to the rafters — GARGOYLE!"
+  "8":
+    hearts: "Safe — SMALL SETTLEMENT (check ITEM or EVENT tables)"
+    diamonds: "Event — SMALL SETTLEMENT (check ITEM or EVENT tables)"
+  "9":
+    hearts: "Safe — MASSIVE SKELETON"
+    diamonds: "Bandit camp — MASSIVE SKELETON"
+  "10":
+    hearts: "They don't notice you — CAMP OF NON-HUMANOID PEOPLE"
+    diamonds: "You are taken prisoner — CAMP OF NON-HUMANOID PEOPLE"
