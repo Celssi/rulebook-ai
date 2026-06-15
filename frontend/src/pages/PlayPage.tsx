@@ -113,8 +113,12 @@ export default function PlayPage() {
   };
 
   const handleShortcut = async (id: string) => {
+    const label = shortcuts.find((s) => s.id === id)?.label || id;
     setShortcutLoading(id);
     setMobileTab("chat");
+    setLoading(true);
+    setLastRoute(`brambletrek:${id}`);
+    setMessages((m) => [...m, { role: "user", content: `**${label}**` }]);
     try {
       const res = await api.runShortcut(id);
       setMessages(res.messages);
@@ -132,6 +136,7 @@ export default function PlayPage() {
       ]);
     } finally {
       setShortcutLoading(null);
+      setLoading(false);
     }
   };
 
@@ -379,11 +384,13 @@ export default function PlayPage() {
       <SettingsDialog
         open={settingsOpen}
         session={session}
+        roster={roster}
         onClose={() => setSettingsOpen(false)}
+        onRosterSwitch={refresh}
         onSaved={(s, header) => {
           setSession(s);
           if (header) setHeader(header);
-          else refresh();
+          loadBrambletrek();
         }}
       />
     </div>

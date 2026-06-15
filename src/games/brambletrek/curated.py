@@ -61,6 +61,11 @@ def _combat_reference() -> dict[str, Any]:
 
 
 @lru_cache(maxsize=1)
+def _player_tactics() -> dict[str, Any]:
+    return _load_yaml("brambletrek_player_tactics.yaml")
+
+
+@lru_cache(maxsize=1)
 def _legacies_data() -> dict[str, Any]:
     return _load_yaml("brambletrek_legacies.yaml")
 
@@ -486,6 +491,102 @@ def format_recovery_draw(stat: str, card: str) -> str:
     )
 
 
+def lookup_opponent_tactic(card: str) -> dict[str, Any] | None:
+    parsed = parse_playing_card(card)
+    if not parsed:
+        return None
+    row = (_combat_reference().get("opponent_tactics") or {}).get(parsed["rank_key"])
+    if not isinstance(row, dict):
+        return None
+    return {**row, "rank_key": parsed["rank_key"], "card": parsed["card"]}
+
+
+def lookup_player_tactic(legacy_id: str, card: str) -> dict[str, Any] | None:
+    if not legacy_id:
+        return None
+    parsed = parse_playing_card(card)
+    if not parsed:
+        return None
+    row = (_player_tactics().get("player_tactics") or {}).get(legacy_id, {}).get(
+        parsed["rank_key"]
+    )
+    if not row:
+        return None
+    return {"legacy": legacy_id, "rank_key": parsed["rank_key"], "card": parsed["card"], "effect": str(row)}
+
+
+def format_opponent_tactics_table() -> str:
+    rows = (_combat_reference().get("opponent_tactics") or {})
+    if not rows:
+        return ""
+    lines = ["**Opponent Tactics** (curated, p. 30):"]
+    for rank, meta in rows.items():
+        if isinstance(meta, dict):
+            lines.append(f"- {rank}: {meta.get('label', '?')}")
+    return "\n".join(lines)
+
+
+def _initiative_value(card: str) -> int | None:
+    parsed = parse_playing_card(card)
+    if not parsed:
+        return None
+    return int(parsed["numeric_value"])
+
+
+def format_combat_setup_curated(
+    cards: list[str],
+    *,
+    legacy_id: str = "",
+    legacy_label: str = "",
+) -> str:
+    """Curated combat setup: initiative, opponent info, tactic hand effects."""
+    if len(cards) < 6:
+        return ""
+    your_init, opp_init = cards[0], cards[1]
+    tactic_cards = cards[2:6]
+    lines = ["**Curated combat setup** (Core Rulebook pp. 30–31):"]
+
+    yv, ov = _initiative_value(your_init), _initiative_value(opp_init)
+    if yv is not None and ov is not None:
+        if yv > ov:
+            first = "You"
+        elif ov > yv:
+            first = "Opponent"
+        else:
+            first = "Tie — redraw or house rule"
+        lines.append(
+            f"- Initiative: you {your_init} ({yv}) vs opponent {opp_init} ({ov}) — **{first}** goes first."
+        )
+
+    opp_parsed = parse_playing_card(opp_init)
+    if opp_parsed:
+        suits = (_combat_reference().get("opponent_type_by_suit") or {})
+        opp_type = suits.get(opp_parsed["suit"], "")
+        if opp_type:
+            lines.append(f"- Opponent type (by suit): {opp_parsed['suit']} → {opp_type}.")
+        hp_map = (_combat_reference().get("opponent_health_by_rank") or {})
+        rk = opp_parsed["rank_key"]
+        if rk in hp_map:
+            lines.append(f"- Opponent HP if rank is {rk}: {hp_map[rk]}.")
+
+    leg = legacy_label or legacy_id or "your Legacy"
+    lines.append(f"- Your tactic hand ({leg}):")
+    for i, card in enumerate(tactic_cards, 1):
+        tactic = lookup_player_tactic(legacy_id, card)
+        if tactic:
+            lines.append(f"  - Tactic {i} ({card}): {tactic['effect']}")
+        else:
+            lines.append(f"  - Tactic {i} ({card}): set Legacy to resolve tactic table.")
+
+    lines.append("")
+    lines.append(format_opponent_tactics_table())
+    rules = (_combat_reference().get("rules") or {})
+    for key in ("initiative", "tactics", "opponent_tactics"):
+        if rules.get(key):
+            lines.append(f"- {rules[key]}")
+    return "\n".join(lines)
+
+
 def combat_reference_summary() -> str:
     data = _combat_reference()
     if not data:
@@ -507,4 +608,8 @@ def combat_reference_summary() -> str:
     for key in ("initiative", "tactics", "opponent_tactics"):
         if rules.get(key):
             lines.append(f"- {rules[key]}")
+    table = format_opponent_tactics_table()
+    if table:
+        lines.append("")
+        lines.append(table)
     return "\n".join(lines)

@@ -3,6 +3,7 @@ import { Loader2, Shuffle } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { api } from "../../api/client";
 import { applyLegacyStatSwap } from "../../lib/legacyStats";
+import { rosterEntryLabel } from "../../lib/rosterLabel";
 import type { CharacterHeader } from "../../types";
 
 interface TableOption {
@@ -34,6 +35,9 @@ interface Props {
   entity: Record<string, unknown>;
   onChange: (entity: Record<string, unknown>) => void;
   onSaved?: (entity: Record<string, unknown>, header: CharacterHeader) => void;
+  roster?: { id: string; name: string }[];
+  activeId?: string;
+  onSwitchRoster?: () => void;
 }
 
 function CardDrawnDisplay({
@@ -138,11 +142,19 @@ function SelectField({
   );
 }
 
-export default function CharacterSetupPanel({ entity, onChange, onSaved }: Props) {
+export default function CharacterSetupPanel({
+  entity,
+  onChange,
+  onSaved,
+  roster,
+  activeId,
+  onSwitchRoster,
+}: Props) {
   const [options, setOptions] = useState<CharacterOptions | null>(null);
   const [reasonPreview, setReasonPreview] = useState("");
   const [saving, setSaving] = useState(false);
   const [drawing, setDrawing] = useState<string | null>(null);
+  const [switching, setSwitching] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -199,6 +211,20 @@ export default function CharacterSetupPanel({ entity, onChange, onSaved }: Props
 
   const selectedLegacy = options?.legacies.find((l) => l.id === String(entity.legacy || ""));
 
+  const switchRoster = async (id: string) => {
+    if (!id || id === activeId) return;
+    setSwitching(true);
+    setError(null);
+    try {
+      await api.switchGnawborn(id);
+      onSwitchRoster?.();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Switch failed");
+    } finally {
+      setSwitching(false);
+    }
+  };
+
   const save = async () => {
     setSaving(true);
     setError(null);
@@ -220,10 +246,27 @@ export default function CharacterSetupPanel({ entity, onChange, onSaved }: Props
   return (
     <div className="space-y-4">
       <p className="text-muted text-xs">
-        Table bands from the rulebook (pp. 12–14). Use <strong>Draw</strong> to pull from the
-        virtual deck, or pick a row manually. Draw six resource cards with the{" "}
-        <strong>Resources</strong> shortcut, assign two per stat, then pick a Legacy.
+        Edit the active Gnawborn — name, creation bands, legacy, resources, and adventure.
+        Use <strong>Draw</strong> to pull table cards from the virtual deck.
       </p>
+
+      {roster && roster.length > 0 && (
+        <div>
+          <div className="label mb-1">Active Gnawborn</div>
+          <select
+            className="select"
+            value={activeId || ""}
+            disabled={switching}
+            onChange={(e) => switchRoster(e.target.value)}
+          >
+            {roster.map((r) => (
+              <option key={r.id} value={r.id}>
+                {rosterEntryLabel(r.name)}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
 
       <div>
         <div className="label mb-1">Name</div>
@@ -350,8 +393,8 @@ export default function CharacterSetupPanel({ entity, onChange, onSaved }: Props
 
       {error && <p className="text-red-400 text-xs">{error}</p>}
 
-      <button type="button" className="btn btn-primary" disabled={saving} onClick={save}>
-        {saving ? "Saving…" : "Save character setup"}
+      <button type="button" className="btn btn-primary" disabled={saving || switching} onClick={save}>
+        {saving ? "Saving…" : "Save character"}
       </button>
     </div>
   );

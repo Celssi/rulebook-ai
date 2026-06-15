@@ -73,6 +73,24 @@ def main() -> None:
 
     assert lookup_reason_ending("jack")["title"] == "Lost Light"
     assert "fireflies" in format_reason_ending("jack").lower()
+
+    from src.games.brambletrek.curated import (
+        format_combat_setup_curated,
+        lookup_opponent_tactic,
+        lookup_player_tactic,
+    )
+
+    assert lookup_opponent_tactic("7 of spades")["label"].startswith("Terrifying")
+    assert lookup_player_tactic("seer", "5 of hearts")["effect"].startswith("Healing")
+    setup = format_combat_setup_curated(
+        ["8 of hearts", "3 of clubs", "5 of diamonds", "9 of spades", "jack of hearts", "2 of clubs"],
+        legacy_id="seer",
+        legacy_label="Seer",
+    )
+    assert "Opponent Tactics" in setup
+    assert "Tactic 1" in setup
+    assert "goes first" in setup
+
     assert adventure_options()
     assert adventure_meta("pumpkin_party")["pdf_page_min"] == 85
     assert adventure_meta("birthday_wonders")["faction"] == "adventure"

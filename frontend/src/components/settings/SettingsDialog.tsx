@@ -9,8 +9,10 @@ type Tab = "play" | "rag" | "character" | "index";
 interface Props {
   open: boolean;
   session: SessionState;
+  roster?: { id: string; name: string }[];
   onClose: () => void;
   onSaved: (session: SessionState, header?: CharacterHeader) => void;
+  onRosterSwitch?: () => void;
 }
 
 const TABS: { id: Tab; label: string; icon: typeof Play }[] = [
@@ -20,7 +22,14 @@ const TABS: { id: Tab; label: string; icon: typeof Play }[] = [
   { id: "index", label: "Index", icon: Database },
 ];
 
-export default function SettingsDialog({ open, session, onClose, onSaved }: Props) {
+export default function SettingsDialog({
+  open,
+  session,
+  roster,
+  onClose,
+  onSaved,
+  onRosterSwitch,
+}: Props) {
   const [tab, setTab] = useState<Tab>("play");
   const [meta, setMeta] = useState<Record<string, unknown> | null>(null);
   const [games, setGames] = useState<{ id: string; label: string }[]>([]);
@@ -227,6 +236,9 @@ export default function SettingsDialog({ open, session, onClose, onSaved }: Prop
                 entity={entity}
                 onChange={setEntity}
                 onSaved={handleCharacterSaved}
+                roster={roster}
+                activeId={session.slot_id}
+                onSwitchRoster={onRosterSwitch}
               />
             )}
 

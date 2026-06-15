@@ -4,11 +4,13 @@ from __future__ import annotations
 
 from typing import Literal, TypedDict
 
-from src.games.brambletrek.character import label_for_band
+from src.games.brambletrek.character import get_legacy_options, label_for_band
 from src.games.brambletrek.curated import (
     adventure_meta,
+    adventure_options,
     combat_reference_summary,
     format_adventure_context,
+    format_combat_setup_curated,
     format_journey_events,
     format_reason_ending,
     format_recovery_draw,
@@ -18,7 +20,7 @@ from src.games.brambletrek.curated import (
 GAME_BRAMBLETREK = "brambletrek"
 from src.play_tools import draw_cards, format_card_result, format_dice_result, roll_dice
 
-ShortcutKind = Literal["card_rag", "multi_draw_rag", "roll_rag", "rag_only"]
+ShortcutKind = Literal["card_rag", "multi_draw_rag", "roll_rag", "rag_only", "static"]
 
 MULTI_DRAW_SHORTCUTS = frozenset(
     {
@@ -187,6 +189,33 @@ BRAMBLETREK_SHORTCUTS: list[BrambletrekShortcut] = [
 ]
 
 
+def _adventure_select_help(*, for_scene: bool = False) -> str:
+    intro = (
+        "**Adventure scene** — pick an active adventure first."
+        if for_scene
+        else "**Active adventure** — choose a module for your campaign."
+    )
+    lines = [
+        intro,
+        "",
+        "In the app: **Settings** (gear icon) → **Character** → **Active adventure** → **Save character setup**.",
+        "",
+        "Available modules:",
+    ]
+    for aid, label in adventure_options():
+        if aid:
+            lines.append(f"- **{label}**")
+    lines.extend(
+        [
+            "- **Hyhill solo (core rules)** — leave Active adventure empty for standard forest play.",
+            "",
+            "After selecting a module, use **Adventure scene (3 cards)** in Play → Shortcuts, "
+            "or **Journey day** for core Hyhill tables.",
+        ]
+    )
+    return "\n".join(lines)
+
+
 def shortcuts_for_character(*, active_adventure: str = "") -> list[BrambletrekShortcut]:
     """Sidebar shortcuts; adventure scene only when a module is selected."""
     out: list[BrambletrekShortcut] = []
@@ -272,6 +301,7 @@ def run_shortcut(
     in_aldwund: bool = False,
     reason_band: str = "",
     active_adventure: str = "",
+    legacy: str = "",
     char_id: str | None = None,
     card_source: str = "virtual",
 ) -> ShortcutRun:
@@ -322,12 +352,8 @@ def run_shortcut(
 
     if shortcut_id == "adventure_scene":
         if not active_adventure:
-            msg = (
-                "**Adventure scene** — select an active adventure on the character sheet first. "
-                "Adventure scenes are read from the indexed PDF (no curated journey tables). "
-                "For Hyhill solo play, use **Journey day (4 cards)** instead."
-            )
-            return {"user_message": msg, "prompt": msg, "kind": "rag_only"}
+            msg = _adventure_select_help(for_scene=True)
+            return {"user_message": msg, "prompt": msg, "kind": "static"}
         adv = adventure_meta(active_adventure)
         label = adv.get("label", active_adventure)
         source = str(adv.get("source_label", "") or "").strip()
@@ -365,11 +391,8 @@ def run_shortcut(
 
     if shortcut_id == "adventure_overview":
         if not active_adventure:
-            msg = (
-                "**Active adventure** — select an adventure module in the sidebar "
-                "(under Your Gnawborn), or play Hyhill solo with the Core Rulebook only."
-            )
-            return {"user_message": msg, "prompt": msg, "kind": "rag_only"}
+            msg = _adventure_select_help(for_scene=False)
+            return {"user_message": msg, "prompt": msg, "kind": "static"}
         ctx = format_adventure_context(active_adventure)
         adv = adventure_meta(active_adventure)
         label = adv.get("label", active_adventure)
@@ -389,7 +412,8 @@ def run_shortcut(
             "and Legacy assigned). Cover: each in-game day you draw four cards for Journey "
             "& Exploration (pages 24-25), resolve them in order, then rest. Mention combat "
             "when a face card says Combat, recovery tables on page 16, and that they can "
-            "use the sidebar **Journey day (4 cards)** button or ask for 'today's journey cards'."
+            "use the **Journey day (4 cards)** shortcut in Play → Shortcuts, or ask for "
+            "'today's journey cards'."
         )
         user = "How do I start playing Brambletrek with my character ready?"
         return {"user_message": user, "prompt": prompt, "kind": "rag_only"}
@@ -474,6 +498,12 @@ def run_shortcut(
         )
         if not cards:
             return {"user_message": deck_block, "prompt": deck_block, "kind": "multi_draw_rag"}
+        legacy_label = get_legacy_options().get(legacy, {}).get("label", legacy)
+        curated = format_combat_setup_curated(
+            cards,
+            legacy_id=legacy,
+            legacy_label=legacy_label,
+        )
         ref = combat_reference_summary()
         prompt = _table_lookup_prompt(
             "Combat setup",
@@ -488,15 +518,18 @@ def run_shortcut(
                 "Your tactic 4",
             ],
             extra=(
-                "Who goes first (higher initiative, Ace=11, face=10)? Summarize opponent type "
-                "by suit if helpful. List the four tactic values as the player's hand for round 1."
+                "Use the curated combat reference below (initiative, opponent tactics, "
+                "and your Legacy tactic effects). Do not say tables are missing. "
+                "Who goes first (Ace=11, face=10)? Summarize opponent type by suit. "
+                "Explain each tactic in your hand for round 1 in plain language."
             ),
         )
-        ref_block = f"\n\n{ref}" if ref else ""
-        prompt = f"{prompt}\n\n{ref}" if ref else prompt
+        curated_block = f"\n\n{curated}" if curated else ""
+        ref_block = f"\n\n{ref}" if ref and not curated else ""
+        prompt = f"{prompt}{curated_block}{ref_block}"
         user = (
             "**Combat setup** — initiative (2) plus four tactic cards for your hand.\n\n"
-            f"{deck_block}{ref_block}"
+            f"{deck_block}{curated_block}"
         )
         return {"user_message": user, "prompt": prompt, "kind": "multi_draw_rag"}
 

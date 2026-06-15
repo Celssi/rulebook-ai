@@ -13,7 +13,11 @@ from src.games.saves import PlayProfile, get_play_store, register_play_profile
 GAME_ID = "brambletrek"
 
 
-def _display_name(entity: BrambletrekCharacter) -> str:
+def _roster_slot_name(entity: BrambletrekCharacter) -> str:
+    return entity.name.strip()
+
+
+def _lonelog_name(entity: BrambletrekCharacter) -> str:
     return entity.name.strip() or "Gnawborn"
 
 
@@ -21,13 +25,13 @@ BRAMBLETREK_PROFILE = PlayProfile(
     game_id=GAME_ID,
     game_label="Brambletrek",
     slot_label="Gnawborn",
-    default_slot_name="Gnawborn",
+    default_slot_name="",
     entity_filename="character.json",
     entity_from_dict=character_from_dict,
     entity_to_dict=character_to_dict,
     default_entity=default_character,
-    slot_display_name=_display_name,
-    lonelog_display_name=_display_name,
+    slot_display_name=_roster_slot_name,
+    lonelog_display_name=_lonelog_name,
     before_save_entity=lambda c: c.clamp_stats(),
     has_lonelog=True,
     play_settings={

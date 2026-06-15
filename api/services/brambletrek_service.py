@@ -50,7 +50,7 @@ from src.games.brambletrek.lonelog import (
     read_tail,
 )
 from src.games.brambletrek.narrator import synthesize_narrator_line
-from src.games.brambletrek.roster import create_character, delete_character, list_characters
+from src.games.brambletrek.roster import create_character, delete_character, list_characters, load_character
 from src.games.saves import AppSession, PlayContext, get_play_store
 from src.llm import ChatProvider
 from src.rag import query as rag_query
@@ -111,6 +111,7 @@ def shortcut_kwargs(ctx: PlayContext) -> dict:
         "in_aldwund": char.in_aldwund,
         "reason_band": char.reason_band,
         "active_adventure": char.active_adventure,
+        "legacy": char.legacy,
         "char_id": ctx.slot_id or None,
         "card_source": card_source,
     }
@@ -428,6 +429,9 @@ def execute_shortcut(
     route = f"brambletrek:{shortcut_id}"
     user_message = run["user_message"]
 
+    if kind == "static":
+        return user_message, user_message, [], route
+
     if kind in {"multi_draw_rag", "rag_only", "roll_rag"}:
         answer, sources, _ = answer_table_lookup_prompt(
             run["prompt"],
@@ -566,7 +570,12 @@ def shortcuts_payload(ctx: PlayContext) -> list[dict]:
 
 
 def roster_payload() -> list[dict]:
-    return [{"id": e.id, "name": e.name} for e in list_characters()]
+    entries: list[dict] = []
+    for entry in list_characters():
+        char = load_character(entry.id)
+        name = char.name.strip() if hasattr(char, "name") else str(char.get("name", "") or "").strip()
+        entries.append({"id": entry.id, "name": name})
+    return entries
 
 
 def create_gnawborn(name: str) -> dict:

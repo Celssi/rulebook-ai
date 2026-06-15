@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown, ChevronUp, RotateCcw } from "lucide-react";
 import { api } from "../../api/client";
+import { rosterEntryLabel } from "../../lib/rosterLabel";
 import type { CharacterHeader, LegacyAbility } from "../../types";
 
 interface Props {
@@ -59,6 +60,12 @@ export default function CharacterPanel({
   const [saving, setSaving] = useState(false);
   const [statsOpen, setStatsOpen] = useState(false);
 
+  useEffect(() => {
+    setLocal(entity);
+  }, [entity]);
+
+  const displayName = rosterEntryLabel(String(local.name || ""));
+
   const patch = (key: string, value: unknown) => {
     setLocal((prev) => ({ ...prev, [key]: value }));
   };
@@ -105,18 +112,12 @@ export default function CharacterPanel({
         >
           {roster.map((r) => (
             <option key={r.id} value={r.id}>
-              {r.name || r.id}
+              {rosterEntryLabel(r.name)}
             </option>
           ))}
         </select>
 
-        <input
-          className="input font-medium"
-          placeholder="Name"
-          value={String(local.name || "")}
-          onChange={(e) => patch("name", e.target.value)}
-          onBlur={() => save()}
-        />
+        <div className="font-medium text-sm truncate">{displayName}</div>
 
         <button
           type="button"
@@ -140,7 +141,7 @@ export default function CharacterPanel({
           ))}
         </div>
         {statsOpen && (
-          <p className="text-[10px] text-muted">Changes save on blur when you leave the name field.</p>
+          <p className="text-[10px] text-muted">Stats save when you leave a field.</p>
         )}
 
         <label className="flex items-center gap-2 text-xs cursor-pointer">
