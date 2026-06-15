@@ -19,7 +19,9 @@ from src.config import (
     CHUNK_SIZE,
     DEFAULT_GAME_ID,
     DOCS_DIR,
+    EMBED_DOCUMENT_PREFIX,
     EMBED_MODEL,
+    EMBED_QUERY_PREFIX,
     GAME_CATALOG,
     OLLAMA_BASE_URL,
     get_collection_name,
@@ -33,7 +35,7 @@ from src.ocr import (
     needs_ocr,
     ocr_pdf_page_indices,
 )
-from src.text_utils import clean_text, is_meaningful
+from src.text_utils import clean_text, is_low_quality, is_meaningful
 
 
 def _keep_chunk(text: str) -> bool:
@@ -161,7 +163,7 @@ def extract_pages(
                 weak_pages = [
                     page_num
                     for page_num, text in page_map.items()
-                    if not is_meaningful(text, min_chars=60, min_alpha_ratio=0.2)
+                    if is_low_quality(text, min_chars=60, min_alpha_ratio=0.2)
                 ]
                 missing_pages = [p for p in range(1, total_pages + 1) if p not in page_map]
                 target_pages = sorted(set(weak_pages + missing_pages))
@@ -173,7 +175,7 @@ def extract_pages(
                         base = page_map.get(page_num, "")
                         prefer_ocr = (
                             not base
-                            or not is_meaningful(base, min_chars=60, min_alpha_ratio=0.2)
+                            or is_low_quality(base, min_chars=60, min_alpha_ratio=0.2)
                             or len(ocr_text) > int(len(base) * 1.2)
                         )
                         if prefer_ocr:
@@ -312,6 +314,8 @@ def run_ingest(
     embed_model = OllamaEmbedding(
         model_name=EMBED_MODEL,
         base_url=OLLAMA_BASE_URL,
+        text_instruction=EMBED_DOCUMENT_PREFIX,
+        query_instruction=EMBED_QUERY_PREFIX,
     )
 
     print(f"Embedding {len(all_docs)} chunks with {EMBED_MODEL}...")

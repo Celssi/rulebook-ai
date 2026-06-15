@@ -9,7 +9,9 @@ RETRIEVAL_PROFILES = {
     "Quality+ rerank": {"candidate_k": 70, "use_hybrid": True, "use_rerank": True},
 }
 
-DEFAULT_RETRIEVAL_PROFILE = "Fast"
+# Balanced (hybrid dense + lexical) is a much better default than Fast (dense-only,
+# small candidate pool). Quality / Quality+ rerank remain opt-in for best recall.
+DEFAULT_RETRIEVAL_PROFILE = "Balanced"
 
 
 def resolve_retrieval_profile(name: str | None) -> tuple[str, dict]:

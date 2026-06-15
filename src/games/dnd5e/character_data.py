@@ -16,6 +16,7 @@ _CLASSES_PATH = CURATED_DIR / "dnd5e_classes.yaml"
 _SPECIES_PATH = CURATED_DIR / "dnd5e_species.yaml"
 _BACKGROUNDS_PATH = CURATED_DIR / "dnd5e_backgrounds.yaml"
 _SPELLS_PATH = CURATED_DIR / "dnd5e_spells.yaml"
+_EQUIPMENT_PATH = CURATED_DIR / "dnd5e_equipment.yaml"
 
 
 def _load(path) -> dict[str, Any]:
@@ -46,6 +47,34 @@ def backgrounds_data() -> dict[str, Any]:
 @lru_cache(maxsize=1)
 def spells_data() -> dict[str, Any]:
     return _load(_SPELLS_PATH)
+
+
+@lru_cache(maxsize=1)
+def equipment_data() -> dict[str, Any]:
+    return _load(_EQUIPMENT_PATH)
+
+
+def list_armor() -> list[dict[str, Any]]:
+    return list(equipment_data().get("armor") or [])
+
+
+def get_armor(armor_id: str) -> dict[str, Any] | None:
+    for row in list_armor():
+        if row.get("id") == armor_id:
+            return row
+    return None
+
+
+def list_weapons() -> list[dict[str, Any]]:
+    return list(equipment_data().get("weapons") or [])
+
+
+def list_languages() -> list[str]:
+    return [str(x) for x in (equipment_data().get("languages") or [])]
+
+
+def shield_ac_bonus() -> int:
+    return int(equipment_data().get("shield_ac", 2) or 2)
 
 
 def list_classes() -> list[dict[str, Any]]:
@@ -117,4 +146,8 @@ def character_options_payload() -> dict[str, Any]:
         "standard_array_by_class": skills.get("standard_array_by_class") or {},
         "spell_lists": spells_data().get("spell_lists") or {},
         "campaign_settings": CAMPAIGN_SETTING_OPTIONS,
+        "armor": list_armor(),
+        "weapons": list_weapons(),
+        "languages": list_languages(),
+        "shield_ac": shield_ac_bonus(),
     }

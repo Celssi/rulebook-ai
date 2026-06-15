@@ -134,7 +134,13 @@ def _mvp_pdfs_present(game_id: str) -> list[Path]:
     return present
 
 
-def ensure_indexes(*, skip: bool = False, ingest_all: bool = False) -> bool:
+def ensure_indexes(
+    *,
+    skip: bool = False,
+    ingest_all: bool = True,
+    force: bool = False,
+    force_ocr: bool = False,
+) -> bool:
     if skip:
         print("Skipping index build (--skip-ingest)")
         return True
@@ -149,13 +155,22 @@ def ensure_indexes(*, skip: bool = False, ingest_all: bool = False) -> bool:
             print(f"  {label}: no MVP PDFs in docs/ — skipping ingest")
             continue
 
-        if index_exists(game_id):
+        already = index_exists(game_id)
+        if already and not force:
             print(f"  {label}: index ready")
             continue
 
         scope = "MVP" if mvp_only else "full"
-        print(f"  {label}: building {scope} index ({len(pdfs)} PDF(s))...")
-        code = run_ingest(game_id, mvp_only=mvp_only, reset=True, use_ocr=True)
+        action = "rebuilding" if already else "building"
+        ocr_note = " + OCR refresh" if force_ocr else ""
+        print(f"  {label}: {action} {scope} index ({len(pdfs)} MVP PDF(s)){ocr_note}...")
+        code = run_ingest(
+            game_id,
+            mvp_only=mvp_only,
+            reset=True,
+            use_ocr=True,
+            force_ocr=force_ocr,
+        )
         if code != 0:
             print(f"  {label}: ingest failed (exit {code})")
             ok = False
@@ -210,7 +225,22 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--ingest-all",
         action="store_true",
-        help="Build full indexes (not MVP-only) when ingest is needed",
+        help="(default) Build full indexes (all PDFs), not MVP-only",
+    )
+    parser.add_argument(
+        "--mvp-only",
+        action="store_true",
+        help="Build only MVP PDFs (faster first run) instead of the full set",
+    )
+    parser.add_argument(
+        "--reindex-all",
+        action="store_true",
+        help="Force a full re-ingest of EVERY game with OCR, even if an index already exists",
+    )
+    parser.add_argument(
+        "--force-ocr",
+        action="store_true",
+        help="Ignore the OCR cache and re-run OCR (use after raising OCR DPI)",
     )
     return parser.parse_args(argv)
 
@@ -228,7 +258,15 @@ def main(argv: list[str] | None = None) -> int:
             return 1
 
     print("=== Indexes ===")
-    if not ensure_indexes(skip=args.skip_ingest, ingest_all=args.ingest_all):
+    # Full ingest (all PDFs) is the default; --mvp-only opts into the faster set.
+    # --reindex-all forces a rebuild of every game even if its index already exists.
+    ingest_all = not args.mvp_only
+    if not ensure_indexes(
+        skip=args.skip_ingest,
+        ingest_all=ingest_all,
+        force=args.reindex_all,
+        force_ocr=args.force_ocr,
+    ):
         return 1
 
     print("=== Smoke checks ===")

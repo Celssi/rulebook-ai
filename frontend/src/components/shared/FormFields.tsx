@@ -41,6 +41,22 @@ export function FormTextarea({
   return <textarea className={joinClass("input", className)} {...props} />;
 }
 
+export function FormCheckbox({
+  className,
+  ...props
+}: Omit<InputHTMLAttributes<HTMLInputElement>, "type">) {
+  return (
+    <input
+      type="checkbox"
+      className={joinClass(
+        "h-4 w-4 shrink-0 cursor-pointer accent-amber-500 align-middle",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
 export function SelectField({
   label,
   value,

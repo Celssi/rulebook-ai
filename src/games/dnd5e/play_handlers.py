@@ -44,6 +44,8 @@ def _shortcut_kwargs(ctx: PlayContext, params: dict | None = None) -> dict:
         "hit_dice_spent": char.hit_dice_spent,
         "ability_scores": dict(char.ability_scores),
         "spell_slots": dict(char.spell_slots),
+        "death_save_successes": char.death_save_successes,
+        "death_save_failures": char.death_save_failures,
     }
     if params:
         for key in _ROLL_PARAM_KEYS:

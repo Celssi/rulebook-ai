@@ -8,7 +8,7 @@ from src.chat_history import recent_chat_history
 from src.games.saves import AppSession, PlayContext, get_play_store
 from src.games.saves.messages import append_chat_exchange
 from src.llm import ChatProvider
-from src.rag import query as rag_query
+# rag_query is imported lazily at the call site (avoids src.rag <-> registry cycle).
 from src.retrieval_profiles import resolve_retrieval_profile
 
 
@@ -64,6 +64,8 @@ def answer_prompt(
     factions: list[str],
     chat_provider: ChatProvider,
 ) -> tuple[str, list[dict]]:
+    from src.rag import query as rag_query
+
     result = rag_query(
         prompt,
         top_k=top_k,

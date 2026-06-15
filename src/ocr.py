@@ -11,7 +11,13 @@ import pytesseract
 from pypdf import PdfReader
 from pytesseract import TesseractNotFoundError
 
-from src.config import OCR_CACHE_DIR, OCR_MIN_CHARS_SAMPLE, OCR_RENDER_DPI, TESSERACT_LANG
+from src.config import (
+    OCR_CACHE_DIR,
+    OCR_MIN_CHARS_SAMPLE,
+    OCR_RENDER_DPI,
+    TESSERACT_CONFIG,
+    TESSERACT_LANG,
+)
 from src.text_utils import clean_text, is_meaningful
 
 # Stay under PIL's decompression bomb limit on oversized PDF pages (e.g. DMG spreads).
@@ -76,7 +82,7 @@ def ocr_pdf_pages(
         page = doc[i]
         pix = _render_page_pixmap(page, dpi)
         img = Image.open(io.BytesIO(pix.tobytes("png")))
-        text = pytesseract.image_to_string(img, lang=TESSERACT_LANG)
+        text = pytesseract.image_to_string(img, lang=TESSERACT_LANG, config=TESSERACT_CONFIG)
         cleaned = clean_text(text)
         if is_meaningful(cleaned, min_chars=40):
             pages_out.append({"page": i + 1, "text": cleaned})
@@ -114,7 +120,7 @@ def ocr_pdf_page_indices(
             continue
         pix = _render_page_pixmap(doc[idx], dpi)
         img = Image.open(io.BytesIO(pix.tobytes("png")))
-        text = pytesseract.image_to_string(img, lang=TESSERACT_LANG)
+        text = pytesseract.image_to_string(img, lang=TESSERACT_LANG, config=TESSERACT_CONFIG)
         cleaned = clean_text(text)
         if is_meaningful(cleaned, min_chars=30, min_alpha_ratio=0.15):
             pages_out.append((page_no, cleaned))

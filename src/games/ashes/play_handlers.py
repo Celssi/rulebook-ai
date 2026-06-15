@@ -34,7 +34,7 @@ from src.games.ashes.scion import (
 from src.games.saves import AppSession, PlayContext, get_play_store
 from src.games.saves.messages import append_chat_exchange
 from src.llm import ChatProvider
-from src.rag import query as rag_query
+# rag_query is imported lazily at the call site (avoids src.rag <-> registry cycle).
 from src.tools import draw_cards
 
 
@@ -173,6 +173,8 @@ def _answer_prompt(
 ) -> tuple[str, list[dict]]:
     scion = get_scion(ctx)
     card_source, _, _ = get_play_settings(ctx)
+    from src.rag import query as rag_query
+
     result = rag_query(
         prompt,
         top_k=top_k,

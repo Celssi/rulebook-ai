@@ -16,7 +16,9 @@ from src.settings import (
     CHAT_MODEL,
     CHROMA_DIR,
     DEFAULT_GAME_ID,
+    EMBED_DOCUMENT_PREFIX,
     EMBED_MODEL,
+    EMBED_QUERY_PREFIX,
     OLLAMA_BASE_URL,
     OLLAMA_REQUEST_TIMEOUT,
 )
@@ -44,6 +46,8 @@ def build_index(collection) -> VectorStoreIndex:
     embed_model = OllamaEmbedding(
         model_name=EMBED_MODEL,
         base_url=OLLAMA_BASE_URL,
+        text_instruction=EMBED_DOCUMENT_PREFIX,
+        query_instruction=EMBED_QUERY_PREFIX,
     )
     llm = Ollama(
         model=CHAT_MODEL,
@@ -130,8 +134,16 @@ def _doc_matches_factions(meta: dict | None, factions: list[str] | None) -> bool
     return str(meta.get("faction", "")) in factions
 
 
+# Short but meaningful game tokens that the length filter would otherwise drop.
+_KEEP_SHORT = {
+    "ac", "hp", "dc", "xp", "gp", "sp", "cp", "pp", "ep", "ki", "pb",
+    "str", "dex", "con", "int", "wis", "cha", "cr", "rp",
+}
+_DICE_RE = re.compile(r"^\d*d\d+$")  # d20, 2d6, d8 ...
+
+
 def query_terms(question: str) -> set[str]:
-    words = re.findall(r"[a-zA-Z][a-zA-Z0-9_-]+", question.lower())
+    words = re.findall(r"[a-zA-Z0-9][a-zA-Z0-9_-]*", question.lower())
     stop = {
         "what",
         "which",
@@ -149,7 +161,13 @@ def query_terms(question: str) -> set[str]:
         "was",
         "has",
     }
-    return {w for w in words if len(w) >= 4 and w not in stop}
+    terms: set[str] = set()
+    for w in words:
+        if w in stop:
+            continue
+        if len(w) >= 4 or w in _KEEP_SHORT or _DICE_RE.match(w):
+            terms.add(w)
+    return terms
 
 
 def _lexical_score(text: str, terms: set[str], phrase: str) -> float:

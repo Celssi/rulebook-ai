@@ -9,6 +9,8 @@ ABILITY_KEYS = ("str", "dex", "con", "int", "wis", "cha")
 
 DEFAULT_ABILITY_SCORES: dict[str, int] = {k: 10 for k in ABILITY_KEYS}
 
+CURRENCY_KEYS = ("cp", "sp", "ep", "gp", "pp")
+
 CAMPAIGN_SETTING_OPTIONS: list[dict[str, str]] = [
     {"id": "freeform", "label": "Freeform / homebrew"},
     {"id": "faerun", "label": "Faerûn (Forgotten Realms)"},
@@ -45,6 +47,7 @@ class Dnd5eCharacter:
     hit_dice_max: int = 1
     hit_dice_spent: int = 0
     ability_scores: dict[str, int] = field(default_factory=lambda: dict(DEFAULT_ABILITY_SCORES))
+    base_ability_scores: dict[str, int] = field(default_factory=dict)
     ability_scores_set: bool = False
     background_asi_plus2: str = ""
     background_asi_plus1: str = ""
@@ -62,7 +65,20 @@ class Dnd5eCharacter:
     known_spells: list[str] = field(default_factory=list)
     spell_slots: dict[str, int] = field(default_factory=dict)
     heroic_inspiration: bool = False
+    armor: str = "none"
+    shield: bool = False
+    ac_manual: bool = False
+    weapons: list[dict[str, Any]] = field(default_factory=list)
+    inventory: list[str] = field(default_factory=list)
+    currency: dict[str, int] = field(default_factory=dict)
     equipment_notes: str = ""
+    asi_choices: list[dict[str, Any]] = field(default_factory=list)
+    feats: list[str] = field(default_factory=list)
+    death_save_successes: int = 0
+    death_save_failures: int = 0
+    exhaustion: int = 0
+    conditions: list[str] = field(default_factory=list)
+    concentration: str = ""
     campaign_setting: str = "freeform"
     campaign_notes: str = ""
     last_roll_summary: str = ""
@@ -90,6 +106,12 @@ class Dnd5eCharacter:
         self.ability_scores = {
             k: max(1, min(30, int(scores.get(k, 10) or 10))) for k in ABILITY_KEYS
         }
+        base = self.base_ability_scores if isinstance(self.base_ability_scores, dict) else {}
+        self.base_ability_scores = {
+            k: max(1, min(30, int(base[k] or 10)))
+            for k in ABILITY_KEYS
+            if k in base
+        }
         slots = self.spell_slots if isinstance(self.spell_slots, dict) else {}
         self.spell_slots = {
             str(k): max(0, min(20, int(v or 0)))
@@ -106,6 +128,23 @@ class Dnd5eCharacter:
         self.known_spells = _clean_list(self.known_spells, 40)
         self.human_skill = str(self.human_skill or "").strip().lower()
         self.origin_feat = str(self.origin_feat or "").strip()
+        self.armor = str(self.armor or "none").strip().lower() or "none"
+        self.shield = bool(self.shield)
+        self.ac_manual = bool(self.ac_manual)
+        self.weapons = _clean_weapons(self.weapons)
+        self.inventory = _clean_list(self.inventory, 60)
+        self.currency = {
+            k: max(0, int(v or 0))
+            for k, v in (self.currency or {}).items()
+            if k in CURRENCY_KEYS and str(v).lstrip("-").isdigit()
+        }
+        self.asi_choices = _clean_asi_choices(self.asi_choices)
+        self.feats = _clean_list(self.feats, 12)
+        self.death_save_successes = max(0, min(3, int(self.death_save_successes or 0)))
+        self.death_save_failures = max(0, min(3, int(self.death_save_failures or 0)))
+        self.exhaustion = max(0, min(6, int(self.exhaustion or 0)))
+        self.conditions = _clean_list(self.conditions, 12)
+        self.concentration = str(self.concentration or "").strip()[:80]
         self.equipment_notes = str(self.equipment_notes or "").strip()
         setting = str(self.campaign_setting or "freeform").strip().lower()
         self.campaign_setting = setting if setting in {"freeform", "faerun"} else "freeform"
@@ -145,6 +184,63 @@ def _clean_list(raw: Any, limit: int) -> list[str]:
     return out
 
 
+def _clean_weapons(raw: Any) -> list[dict[str, Any]]:
+    if not isinstance(raw, list):
+        return []
+    out: list[dict[str, Any]] = []
+    for item in raw:
+        if not isinstance(item, dict):
+            continue
+        name = str(item.get("name", "") or "").strip()
+        if not name:
+            continue
+        ability = str(item.get("ability", "str") or "str").strip().lower()
+        if ability not in ABILITY_KEYS:
+            ability = "str"
+        out.append(
+            {
+                "name": name[:60],
+                "damage": str(item.get("damage", "") or "").strip()[:20],
+                "damage_type": str(item.get("damage_type", "") or "").strip().lower()[:20],
+                "ability": ability,
+                "proficient": bool(item.get("proficient", True)),
+            }
+        )
+        if len(out) >= 20:
+            break
+    return out
+
+
+def _clean_asi_choices(raw: Any) -> list[dict[str, Any]]:
+    if not isinstance(raw, list):
+        return []
+    out: list[dict[str, Any]] = []
+    for item in raw:
+        if not isinstance(item, dict):
+            continue
+        kind = str(item.get("type", "asi") or "asi").strip().lower()
+        level = max(1, min(20, int(item.get("level", 0) or 0))) if item.get("level") else 0
+        if kind == "feat":
+            name = str(item.get("feat", "") or "").strip()
+            if not name:
+                continue
+            out.append({"type": "feat", "feat": name[:60], "level": level})
+        else:
+            plus_raw = item.get("plus") if isinstance(item.get("plus"), dict) else {}
+            plus = {
+                k: max(0, min(2, int(v or 0)))
+                for k, v in plus_raw.items()
+                if k in ABILITY_KEYS
+            }
+            plus = {k: v for k, v in plus.items() if v > 0}
+            if not plus:
+                continue
+            out.append({"type": "asi", "plus": plus, "level": level})
+        if len(out) >= 10:
+            break
+    return out
+
+
 def default_character() -> Dnd5eCharacter:
     return Dnd5eCharacter(hp=10, max_hp=10)
 
@@ -173,6 +269,9 @@ def character_from_dict(data: dict[str, Any] | None) -> Dnd5eCharacter:
         hit_dice_max=int(data.get("hit_dice_max", data.get("level", 1)) or 1),
         hit_dice_spent=int(data.get("hit_dice_spent", 0) or 0),
         ability_scores=dict(scores) if isinstance(scores, dict) else dict(DEFAULT_ABILITY_SCORES),
+        base_ability_scores=dict(data.get("base_ability_scores") or {})
+        if isinstance(data.get("base_ability_scores"), dict)
+        else {},
         ability_scores_set=bool(data.get("ability_scores_set", False)),
         background_asi_plus2=str(data.get("background_asi_plus2", "") or ""),
         background_asi_plus1=str(data.get("background_asi_plus1", "") or ""),
@@ -190,7 +289,20 @@ def character_from_dict(data: dict[str, Any] | None) -> Dnd5eCharacter:
         known_spells=_clean_list(data.get("known_spells"), 40),
         spell_slots=dict(slots) if isinstance(slots, dict) else {},
         heroic_inspiration=bool(data.get("heroic_inspiration", False)),
+        armor=str(data.get("armor", "none") or "none"),
+        shield=bool(data.get("shield", False)),
+        ac_manual=bool(data.get("ac_manual", False)),
+        weapons=list(data.get("weapons") or []),
+        inventory=_clean_list(data.get("inventory"), 60),
+        currency=dict(data.get("currency") or {}) if isinstance(data.get("currency"), dict) else {},
         equipment_notes=str(data.get("equipment_notes", "") or ""),
+        asi_choices=list(data.get("asi_choices") or []),
+        feats=_clean_list(data.get("feats"), 12),
+        death_save_successes=int(data.get("death_save_successes", 0) or 0),
+        death_save_failures=int(data.get("death_save_failures", 0) or 0),
+        exhaustion=int(data.get("exhaustion", 0) or 0),
+        conditions=_clean_list(data.get("conditions"), 12),
+        concentration=str(data.get("concentration", "") or ""),
         campaign_setting=str(data.get("campaign_setting", "freeform") or "freeform"),
         campaign_notes=str(data.get("campaign_notes", "") or ""),
         last_roll_summary=str(data.get("last_roll_summary", "") or ""),
@@ -220,6 +332,7 @@ def character_to_dict(char: Dnd5eCharacter) -> dict[str, Any]:
         "hit_dice_max": char.hit_dice_max,
         "hit_dice_spent": char.hit_dice_spent,
         "ability_scores": dict(char.ability_scores),
+        "base_ability_scores": dict(char.base_ability_scores),
         "ability_scores_set": char.ability_scores_set,
         "background_asi_plus2": char.background_asi_plus2,
         "background_asi_plus1": char.background_asi_plus1,
@@ -237,7 +350,20 @@ def character_to_dict(char: Dnd5eCharacter) -> dict[str, Any]:
         "known_spells": list(char.known_spells),
         "spell_slots": dict(char.spell_slots),
         "heroic_inspiration": char.heroic_inspiration,
+        "armor": char.armor,
+        "shield": char.shield,
+        "ac_manual": char.ac_manual,
+        "weapons": list(char.weapons),
+        "inventory": list(char.inventory),
+        "currency": dict(char.currency),
         "equipment_notes": char.equipment_notes,
+        "asi_choices": list(char.asi_choices),
+        "feats": list(char.feats),
+        "death_save_successes": char.death_save_successes,
+        "death_save_failures": char.death_save_failures,
+        "exhaustion": char.exhaustion,
+        "conditions": list(char.conditions),
+        "concentration": char.concentration,
         "campaign_setting": char.campaign_setting,
         "campaign_notes": char.campaign_notes,
         "last_roll_summary": char.last_roll_summary,
@@ -273,6 +399,18 @@ def format_for_prompt(
     skills = ", ".join(char.skill_proficiencies) or "(none)"
     cantrips = ", ".join(char.cantrips) or "(none)"
     spells = ", ".join(char.prepared_spells or char.known_spells) or "(none)"
+    feats = ", ".join([char.origin_feat] + list(char.feats)) if (char.origin_feat or char.feats) else "(none)"
+    armor_line = char.armor.replace("_", " ") if char.armor and char.armor != "none" else "unarmored"
+    if char.shield:
+        armor_line += " + shield"
+    weapons = (
+        "; ".join(
+            f"{w.get('name')} ({w.get('damage', '')} {w.get('damage_type', '')}, {str(w.get('ability', 'str')).upper()})".strip()
+            for w in char.weapons
+        )
+        or "(none)"
+    )
+    coins = ", ".join(f"{char.currency[k]}{k}" for k in CURRENCY_KEYS if char.currency.get(k))
     lines = [
         "Current D&D 5e character:",
         f"- Name: {char.name or 'unnamed'}",
@@ -281,16 +419,25 @@ def format_for_prompt(
         f"- Background: {char.background or '(not set)'}",
         f"- Alignment: {char.alignment or '(not set)'}",
         f"- HP: {char.hp}/{char.max_hp} (Hit Die d{char.hit_die}, {char.hit_dice_max - char.hit_dice_spent} left)",
-        f"- AC: {char.ac} | Speed: {char.speed} ft.",
+        f"- AC: {char.ac} ({armor_line}) | Speed: {char.speed} ft.",
         f"- Ability scores: {scores}",
         f"- Skill proficiencies: {skills}",
         f"- Save proficiencies: {', '.join(char.save_proficiencies) or '(none)'}",
-        f"- Origin feat: {char.origin_feat or '(none)'}",
+        f"- Languages: {', '.join(char.languages) or '(none)'}",
+        f"- Feats: {feats}",
+        f"- Weapons: {weapons}",
         f"- Cantrips: {cantrips}",
         f"- Spells: {spells}",
         f"- Spell slots: {slots or '(none)'}",
         f"- Proficiency bonus: +{char.proficiency_bonus()}",
         f"- Heroic Inspiration: {'yes' if char.heroic_inspiration else 'no'}",
+        f"- Exhaustion: level {char.exhaustion}" + (f" (−{char.exhaustion} to d20 tests)" if char.exhaustion else ""),
+        f"- Conditions: {', '.join(char.conditions) or '(none)'}",
+        f"- Concentration: {char.concentration or '(none)'}",
+        f"- Death saves: {char.death_save_successes} success / {char.death_save_failures} failure"
+        if char.max_hp and char.hp == 0
+        else "- Death saves: (not dying)",
+        f"- Currency: {coins or '(none)'}",
         f"- Campaign: {char.campaign_setting or 'freeform'}"
         + (f" — {char.campaign_notes}" if char.campaign_notes else ""),
         f"- Story mode: {story_mode}",

@@ -1,0 +1,1741 @@
+{
+  "legacies": {
+    "bramble": {
+      "label": "Bramble",
+      "tagline": "Wonderer in a new land",
+      "health": 10,
+      "supplies": 8,
+      "morale": 12,
+      "abilities": [
+        {
+          "id": "arcane_ripples",
+          "label": "Arcane Ripples",
+          "description": "ONCE PER DAY, BRAMBLE CAN CREATE A SURGE THAT DISTORTS FATE, ALLOWING THEM TO REDRAW A CARD FOR AN EVENT OR TACTIC."
+        },
+        {
+          "id": "wardens_veil",
+          "label": "Warden'S Veil",
+          "description": "ONCE PER DAY, BRAMBLE CONJURES A PROTECTIVE SHIMMER THAT ABSORBS THE NEXT SOURCE OF DAMAGE, PREVENTING HARM ENTIRELY."
+        },
+        {
+          "id": "echo_of_realms",
+          "label": "Echo Of Realms",
+          "description": "ONCE PER DAY, BRAMBLE MAY CALL UPON VISIONS OF ANOTHER TIME OR PLACE, REVEALING TRUTHS AND CLUES ABOUT THEIR SURROUNDINGS."
+        },
+        {
+          "id": "spellbound_whispers",
+          "label": "Spellbound Whispers",
+          "description": "ONCE PER DAY, BRAMBLE CAN INFUSE THEIR WORDS WITH SUBTLE MAGIC CAUSING ENEMIES TO SKIP THEIR TURN."
+        }
+      ]
+    },
+    "pooh": {
+      "label": "Winnie the Pooh",
+      "tagline": "Honey Guardian",
+      "health": 12,
+      "supplies": 8,
+      "morale": 10,
+      "abilities": [
+        {
+          "id": "sweet_infusion",
+          "label": "Sweet Infusion",
+          "description": "ONCE PER DAY, DURING COMBAT, WINNIE CAN HEAL HIMSELF OR AN ALLY FOR 3 HEALTH."
+        },
+        {
+          "id": "summon_bees",
+          "label": "Summon Bees",
+          "description": "ONCE PER DAY, WINNIE CAN SUMMON A SWARM OF BEES, HARMING THE CRYSTAL FOR 2 HARM PER TURN."
+        },
+        {
+          "id": "butterfly_ally",
+          "label": "Butterfly Ally",
+          "description": "ONCE PER DAY, WINNIE CALLS BUTTERFLIES TO SURROUND HIM OR AN ALLY, GRANTING A SHIELD THAT NEGATES THE NEXT ATTACK."
+        },
+        {
+          "id": "honey_glow",
+          "label": "Honey Glow",
+          "description": "ONCE PER DAY, DURING AN ENCOUNTER, WINNIE CAN RADIATE LIGHT INFUSED WITH HONEY. THIS RESTORES 2 MORALE TO ALL ALLIES."
+        }
+      ]
+    },
+    "piglet": {
+      "label": "Piglet",
+      "tagline": "Nervous Shadow",
+      "health": 10,
+      "supplies": 12,
+      "morale": 8,
+      "abilities": [
+        {
+          "id": "small_steps",
+          "label": "Small Steps",
+          "description": "ONCE PER DAY, PIGLET CAN AVOID A CHALLENGE BY FINDING A HIDDEN PATH. THIS ABILITY ALLOWS HIM TO SKIP AN ENCOUNTER."
+        },
+        {
+          "id": "smart_escape",
+          "label": "Smart Escape",
+          "description": "ONCE PER DAY, DURING COMBAT, PIGLET CAN CREATE A DIVERSION THAT CONFUSES THE OPPONENT, SKIPPING THEIR NEXT TURN."
+        },
+        {
+          "id": "whisper_of_courage",
+          "label": "Whisper Of Courage",
+          "description": "ONCE PER DAY, PIGLET CAN INSPIRE HIMSELF OR AN ALLY WITH QUIET ENCOURAGEMENT, RESTORING 2 HEALTH AND 2 MORALE."
+        },
+        {
+          "id": "acorn_toss",
+          "label": "Acorn Toss",
+          "description": "ONCE PER DAY, PIGLET THROWS AN OBJECT AT AN OPPONENT, DEALING 2 HARM AND REDUCING THEIR NEXT ACTION’S EFFECTIVENESS BY -1."
+        }
+      ]
+    },
+    "eeyore": {
+      "label": "Eeyore",
+      "tagline": "Sad Protector",
+      "health": 12,
+      "supplies": 10,
+      "morale": 8,
+      "abilities": [
+        {
+          "id": "unshaken_stance",
+          "label": "Unshaken Stance",
+          "description": "ONCE PER DAY, EEYORE CAN BRACE HIMSELF AGAINST AN ATTACK, REDUCING ALL INCOMING DAMAGE BY 3 FOR ONE ROUND."
+        },
+        {
+          "id": "slow_but_steady",
+          "label": "Slow But Steady",
+          "description": "ONCE PER DAY, EEYORE CAN TAKE AN EXTRA TURN AFTER BEING HIT, TURNING HIS PERSEVERANCE INTO MOMENTUM."
+        },
+        {
+          "id": "heavy_hoof",
+          "label": "Heavy Hoof",
+          "description": "ONCE PER DAY, EEYORE CAN DELIVER A STOMP, DEALING 3 DAMAGE AND AN OPPONENT SKIPS THEIR NEXT ACTION. WHY BOTHER?: ONCE PER DAY, EEYORE CAN SHRUG OFF A NEGATIVE EVENT, IGNORING ITS EFFECTS ENTIRELY."
+        }
+      ]
+    },
+    "tigger": {
+      "label": "Tigger",
+      "tagline": "Boundless Performer",
+      "health": 10,
+      "supplies": 8,
+      "morale": 12,
+      "abilities": [
+        {
+          "id": "bouncy_pounce",
+          "label": "Bouncy Pounce",
+          "description": "ONCE PER DAY, TIGGER CAN LEAP PAST AN ENEMY, SKIPPING THEIR TURN."
+        },
+        {
+          "id": "cheerful_tune",
+          "label": "Cheerful Tune",
+          "description": "ONCE PER DAY, TIGGER CAN BOOST MORALE FOR ALL ALLIES, RESTORING 2 MORALE EACH."
+        },
+        {
+          "id": "unpredictable_leap",
+          "label": "Unpredictable Leap",
+          "description": "ONCE PER DAY, TIGGER CAN REROLL ANY FAILED ACTION."
+        },
+        {
+          "id": "distracting_antics",
+          "label": "Distracting Antics",
+          "description": "ONCE PER DAY, TIGGER CAN CONFUSE AN ENEMY, REDUCING THEIR ATTACK BY -2 FOR THE NEXT ROUND."
+        }
+      ]
+    },
+    "owl": {
+      "label": "Owl",
+      "tagline": "Sage of Knowledge",
+      "health": 8,
+      "supplies": 10,
+      "morale": 12,
+      "abilities": [
+        {
+          "id": "ancient_wisdom",
+          "label": "Ancient Wisdom",
+          "description": "ONCE PER DAY, OWL CAN PROVIDE INSIGHT, ALLOWING A PLAYER TO REDRAW ANY ONE CARD."
+        },
+        {
+          "id": "mystic_whirl",
+          "label": "Mystic Whirl",
+          "description": "ONCE PER DAY, OWL CREATES A GUST OF WIND, PUSHING AN ENEMY BACK AND SKIPPING THEIR NEXT TURN."
+        },
+        {
+          "id": "guided_insight",
+          "label": "Guided Insight",
+          "description": "ONCE PER DAY, OWL CAN PREDICT THE OUTCOME OF AN EVENT, ALLOWING A PLAYER TO PEEK AT THE NEXT TWO CARDS."
+        },
+        {
+          "id": "feathered_spell",
+          "label": "Feathered Spell",
+          "description": "ONCE PER DAY, OWL CONJURES A GLOWING SCRIPT, REDUCING AN OPPONENT’S EFFECTIVENESS BY -2 FOR ONE ROUND."
+        }
+      ]
+    },
+    "rabbit": {
+      "label": "Rabbit",
+      "tagline": "Bossy Caretaker",
+      "health": 8,
+      "supplies": 12,
+      "morale": 10,
+      "abilities": [
+        {
+          "id": "tidy_up",
+          "label": "Tidy Up",
+          "description": "ONCE PER DAY, RABBIT CAN ORGANIZE HIS SURROUNDINGS TO FIND AN ADDITIONAL SUPPLY ITEM, RESTORING 3 SUPPLIES."
+        },
+        {
+          "id": "herbal_remedy",
+          "label": "Herbal Remedy",
+          "description": "ONCE PER DAY, RABBIT CAN HEAL HIMSELF OR AN ALLY FOR 3 HEALTH USING NATURAL REMEDIES HE’S CAREFULLY PREPARED."
+        },
+        {
+          "id": "lecture_of_encouragement",
+          "label": "Lecture Of Encouragement",
+          "description": "ONCE PER DAY, RABBIT CAN RESTORE 2 MORALE TO ALL ALLIES BY GIVING A WELL-STRUCTURED (IF SLIGHTLY BOSSY) PEP TALK."
+        },
+        {
+          "id": "calculated",
+          "label": "Calculated",
+          "description": "ONCE PER DAY, RABBIT CAN ANALYZE A SITUATION AND ADJUST ACCORDINGLY, ALLOWING HIM TO REDRAW ONE CARD DURING AN ENCOUNTER."
+        }
+      ]
+    },
+    "kanga_roo": {
+      "label": "Kanga & Roo",
+      "tagline": "Wandering Love",
+      "health": 8,
+      "supplies": 10,
+      "morale": 12,
+      "abilities": [
+        {
+          "id": "s_touch",
+          "label": "S Touch",
+          "description": "ONCE PER DAY, KANGA CAN HEAL AN ALLY FOR 3 HEALTH, OFFERING GENTLE CARE AND WORDS OF ENCOURAGEMENT."
+        },
+        {
+          "id": "bounding_shot",
+          "label": "Bounding Shot",
+          "description": "ONCE PER DAY, ROO CAN FIRE A SHOT, DEALING 3 DAMAGE AND REDUCING AN OPPONENT’S EFFECTIVENESS BY -1 ON THEIR NEXT ACTION."
+        },
+        {
+          "id": "safe_haven",
+          "label": "Safe Haven",
+          "description": "ONCE PER DAY, KANGA CAN CREATE A PROTECTIVE SPACE, NEGATING THE NEXT INCOMING ATTACK FOR AN ALLY."
+        },
+        {
+          "id": "leap_into_action",
+          "label": "Leap Into Action",
+          "description": "ONCE PER DAY, ROO CAN ACT TWICE IN A TURN, USING HIS AGILITY TO GAIN AN ADVANTAGE OVER OPPONENTS."
+        }
+      ]
+    },
+    "salvager": {
+      "label": "Salvager",
+      "tagline": "Gearholding Tinkerer",
+      "health": 8,
+      "supplies": 12,
+      "morale": 10,
+      "abilities": [
+        {
+          "id": "quick_fix",
+          "label": "Quick Fix",
+          "description": "ONCE PER COMBAT, RESTORE 3 HEALTH BY PATCHING UP ARMOR OR REINFORCING YOUR STANCE."
+        },
+        {
+          "id": "scrap_shield",
+          "label": "Scrap Shield",
+          "description": "ONCE PER COMBAT, REDUCE THE NEXT INCOMING ATTACK’S DAMAGE BY 3 BY USING A MAKESHIFT BARRIER. TINKER’S TRICK: IF YOU FAIL AN ATTACK, YOU CAN RE-ROLL YOUR NEXT ACTION AS YOU ADJUST YOUR GADGET."
+        },
+        {
+          "id": "overclock",
+          "label": "Overclock",
+          "description": "ONCE PER DAY, DRAW AN ADDITIONAL TACTIC IN COMBAT AND PLAY 2 TACTICS PER TURN AS YOU PUSH YOUR CONTRAPTION TO ITS LIMITS."
+        }
+      ]
+    },
+    "snoozer": {
+      "label": "Snoozer",
+      "tagline": "Dreambound Drifter",
+      "health": 12,
+      "supplies": 8,
+      "morale": 10,
+      "abilities": [
+        {
+          "id": "sleepy_aura",
+          "label": "Sleepy Aura",
+          "description": "THE CALM ENERGY AROUND YOU MAKES ENEMIES SLUGGISH. ONCE PER COMBAT, REDUCE AN ENEMY’S NEXT ATTACK BY 2."
+        },
+        {
+          "id": "lullaby_breath",
+          "label": "Lullaby Breath",
+          "description": "A SOFT SNORE CARRIES ON THE WIND, CAUSING THE OPPONENT TO HESITATE. ONCE PER COMBAT, FORCE THEM TO MISS THEIR TURN."
+        },
+        {
+          "id": "sleepwalk_recovery",
+          "label": "Sleepwalk Recovery",
+          "description": "WHEN RESTING, RESTORE AN ADDITIONAL 3 TO ANY SINGLE RESOURCE. DREAMWALKER’S ESCAPE: IF YOU ARE REDUCED TO 0 HEALTH, YOU CAN ATTEMPT TO ENTER A DEEP SLEEP INSTEAD, DELAYING DEFEAT UNTIL THE NEXT TURN."
+        }
+      ]
+    },
+    "shadowcaster": {
+      "label": "Shadowcaster",
+      "tagline": "Keeper of Secrets",
+      "health": 9,
+      "supplies": 9,
+      "morale": 12,
+      "abilities": [
+        {
+          "id": "hex_mark",
+          "label": "Hex Mark",
+          "description": "ONCE PER COMBAT, REDUCE AN ENEMY’S NEXT ATTACK BY 3 AS A CURSE SAPS THEIR STRENGTH."
+        },
+        {
+          "id": "life_drain",
+          "label": "Life Drain",
+          "description": "DURING COMBAT, DEAL 2 HEALTH DAMAGE AND HEAL YOURSELF FOR 2 HEALTH."
+        },
+        {
+          "id": "dark_bargain",
+          "label": "Dark Bargain",
+          "description": "IF YOU WOULD TAKE DAMAGE, YOU MAY INSTEAD LOSE 2 MORALE TO NEGATE IT. SHADOW’S EMBRACE: ONCE PER DAY, DRAW AN ADDITIONAL TACTIC IN COMBAT AND IMMEDIATELY FORCE AN ENEMY TO REDRAW THEIR NEXT CARD."
+        }
+      ]
+    },
+    "smasher": {
+      "label": "Smasher",
+      "tagline": "Rock-crushing Brute",
+      "health": 14,
+      "supplies": 8,
+      "morale": 8,
+      "abilities": [
+        {
+          "id": "crushing_blow",
+          "label": "Crushing Blow",
+          "description": "ONCE PER COMBAT, DEAL 4 HEALTH DAMAGE WITH AN OVERHEAD SMASH."
+        },
+        {
+          "id": "rampage",
+          "label": "Rampage",
+          "description": "DURING COMBAT, YOU MAY SACRIFICE 1 SUPPLY TO ADD +2 DAMAGE TO YOUR NEXT ATTACK AT ANY POINT."
+        },
+        {
+          "id": "brute_force",
+          "label": "Brute Force",
+          "description": "IF YOU WOULD MISS AN ATTACK, YOU MAY INSTEAD DEAL 2 HEALTH DAMAGE AND TAKE THAT DAMAGE YOURSELF."
+        },
+        {
+          "id": "smash_through",
+          "label": "Smash Through",
+          "description": "ONCE PER DAY, DRAW AN ADDITIONAL CARD AND DEAL DAMAGE EQUAL TO IT’S VALUE BUT YOU TAKE HALF THE DAMAGE DEALT."
+        }
+      ]
+    },
+    "singer": {
+      "label": "Singer",
+      "tagline": "Voice of the World",
+      "health": 8,
+      "supplies": 9,
+      "morale": 13,
+      "abilities": [
+        {
+          "id": "resonant_note",
+          "label": "Resonant Note",
+          "description": "ONCE PER COMBAT, REDUCE THE DAMAGE OF AN ENEMY’S NEXT ATTACK BY 2 AS YOUR VOICE DISRUPTS THEIR FOCUS."
+        },
+        {
+          "id": "stirring_chorus",
+          "label": "Stirring Chorus",
+          "description": "ONCE PER COMBAT, RESTORE 3 MORALE TO YOURSELF. IF YOUR MORALE IS ALREADY FULL, INSTEAD RESTORE 2 HEALTH."
+        },
+        {
+          "id": "lament_of_binding",
+          "label": "Lament Of Binding",
+          "description": "ONCE PER DAY, DURING COMBAT, FORCE AN ENEMY TO SKIP THEIR NEXT TURN AS GRIEF, DOUBT, OR MEMORY OVERWHELMS THEM."
+        },
+        {
+          "id": "final_refrain",
+          "label": "Final Refrain",
+          "description": "ONCE PER DAY, DRAW ONE TACTIC. YOU MAY DISCARD ANOTHER CARD IN YOUR HAND TO INCREASE OR REDUCE A CARD’S EFFECT BY 2."
+        }
+      ]
+    },
+    "snickerer": {
+      "label": "Snickerer",
+      "tagline": "Laughing Trickster",
+      "health": 10,
+      "supplies": 8,
+      "morale": 12,
+      "abilities": [
+        {
+          "id": "stage_left",
+          "label": "Stage Left",
+          "description": "ONCE PER DAY, IMMEDIATELY ESCAPE A COMBAT ENCOUNTER WITHOUT PENALTY. MAKE ’EM LAUGH: ONCE PER DAY, ALL ALLIES WHO WITNESS YOUR PRANK RESTORE 2 MORALE."
+        },
+        {
+          "id": "scary_face",
+          "label": "Scary Face",
+          "description": "ONCE PER DAY, DURING COMBAT, REDUCE AN ENEMY’S MORALE BY 1."
+        },
+        {
+          "id": "slapstick",
+          "label": "Slapstick",
+          "description": "ONCE PER DAY, INCREASE YOUR NEXT ATTACK’S DAMAGE BY 1 USING THE ENVIRONMENT."
+        }
+      ]
+    },
+    "solver": {
+      "label": "Solver",
+      "tagline": "One That Sees Patterns",
+      "health": 7,
+      "supplies": 11,
+      "morale": 12,
+      "abilities": [
+        {
+          "id": "just_in_time",
+          "label": "Just In Time",
+          "description": "ONCE PER DAY, NEGATE THE EFFECTS OF A NEGATIVE EVENT AFFECTING YOU OR AN ALLY."
+        },
+        {
+          "id": "puzzle_master",
+          "label": "Puzzle Master",
+          "description": "ONCE PER DAY, REDRAW AN UNFAVOURABLE EVENT CARD AND TAKE THE NEW RESULT."
+        },
+        {
+          "id": "helping_hand",
+          "label": "Helping Hand",
+          "description": "ONCE PER DAY, RESTORE 3 HEALTH TO YOURSELF OR AN ALLY."
+        },
+        {
+          "id": "clear_the_way",
+          "label": "Clear The Way",
+          "description": "ONCE PER DAY, REDUCE DAMAGE OR RESOURCE LOSS FROM A SINGLE EFFECT BY 3."
+        }
+      ]
+    },
+    "sleeptalker": {
+      "label": "Sleeptalker",
+      "tagline": "The Well-Rested Speaker",
+      "health": 8,
+      "supplies": 10,
+      "morale": 14,
+      "abilities": [
+        {
+          "id": "dream_cloud",
+          "label": "Dream Cloud",
+          "description": "ONCE PER DAY, RESTORE 3 HEALTH TO YOURSELF OR AN ALLY BY MANIFESTING A COMFORTING DREAM."
+        },
+        {
+          "id": "somniliquy",
+          "label": "Somniliquy",
+          "description": "ONCE PER DAY, DURING COMBAT, REDUCE AN ENEMY’S NEXT ATTACK DAMAGE BY 3 AS THEY ARE LULLED BY WHISPERED DREAMS."
+        },
+        {
+          "id": "shaped_reverie",
+          "label": "Shaped Reverie",
+          "description": "ONCE PER DAY, INCREASE YOUR NEXT ATTACK’S DAMAGE BY 2 BY FORMING DREAM-MIST ANTLERS."
+        },
+        {
+          "id": "safe_memory",
+          "label": "Safe Memory",
+          "description": "ONCE PER DAY, NEGATE THE MORALE LOSS FROM A NEGATIVE EVENT FOR YOURSELF OR AN ALLY."
+        }
+      ]
+    }
+  },
+  "arrival": {
+    "ace": "The path ahead shimmered for just a moment, as if inviting you forward. With a single step, the air grew warmer, the trees softer, the sky brighter. Before you could turn back, the Woods already welcomed you.",
+    "2-4": "A strange, glowing crystal washed up on the riverbank near your home. The moment you touched it, the current surged, pulling you under. When you woke up, you were somewhere else. A place the crystal seemed to belong.",
+    "5-7": "You woke to the sound of distant cries, echoing through the trees. They weren’t voices you recognized, but something deep inside told you to follow. As you stepped forward, the world around you shifted, and you found yourself in a place you had never seen before.",
+    "8-10": "A mysterious trinket, perhaps a locket, a small wooden carving, or even a polished stone, was left on your doorstep. Holding it filled you with warmth and familiarity, yet you didn’t know why. The moment you looked away, the world was no longer the same.",
+    "jack": "A crystal embedded in an ancient tree pulsed with light as you drew near. When you reached out, light flared, and the world spun. As you steadied yourself, the landscape had changed, and the whispers of the Woods called to you.",
+    "queen": "A name keeps slipping from your memory, one you should know, but don’t. You see it carved into a rock, scrawled in the dirt. Following its echoes led you somewhere you were certain you had never been… yet, it felt familiar.",
+    "king": "A storm unlike any other roared to life overhead. The sky cracked, light spilling through as if the world itself had torn open. When it faded, you were here, in the Hundred Acre Woods, with only the faintest memory of what came before."
+  },
+  "exploration": {
+    "hearts": {
+      "3": {
+        "morale": 3,
+        "label": "A gentle rain begins to fall, making the Woods smell of earth. An umbrella-like leaf provides just enough cover to keep dry"
+      },
+      "4": {
+        "health": 4,
+        "label": "You stumble upon a burrow lined with soft moss and tucked-away treats. It's the perfect place to rest your paws",
+        "tags": [
+          "item"
+        ]
+      },
+      "5": {
+        "morale": 5,
+        "label": "A well-packed basket sits unattended on a checkered cloth. Whoever left it must have forgotten, but everything looks delicious"
+      },
+      "6": {
+        "health": 6,
+        "label": "A wise owl perches nearby, sharing a bit of advice on which paths are safest. \"Mind the tree with the sleepy bees!\"",
+        "tags": [
+          "item"
+        ]
+      },
+      "7": {
+        "health": 2,
+        "morale": 2,
+        "supplies": 2,
+        "label": "Rabbit’s second cousins invite you to a tea party. Between biscuits and chatter, you feel lighter and refreshed"
+      },
+      "8": {
+        "morale": 8,
+        "label": "A bouncing tail is caught in some brambles! After freeing the creature, they bound away joyfully, leaving behind a few supplies"
+      },
+      "9": {
+        "morale": 9,
+        "label": "A small note pinned to a tree reads: You’re doing just fine. It’s unsigned, but it makes you smile",
+        "tags": [
+          "hollow",
+          "item"
+        ]
+      },
+      "10": {
+        "morale": 10,
+        "label": "A melody drifts through the trees, reminding you of home. Humming along, your worries seem a little smaller"
+      },
+      "jack": {
+        "combat": true,
+        "label": "A creature stands in your way, its movements unnatural, eyes glowing with a light. The only way forward is to break the crystal",
+        "tags": [
+          "combat"
+        ]
+      },
+      "queen": {
+        "combat": true,
+        "label": "A figure lurks ahead, something clutched in its grasp. The corruption holds it fast. You must shatter it to set things right",
+        "tags": [
+          "combat"
+        ]
+      },
+      "king": {
+        "combat": true,
+        "label": "A towering figure, frozen in unnatural stillness, suddenly stirs. The crystal’s magic pulses, forcing it to attack. Only breaking the spell will set them free",
+        "tags": [
+          "combat",
+          "item"
+        ]
+      },
+      "ace": {
+        "all_stats": 10,
+        "label": "You step into a sun-dappled glade where the air feels warm and safe. A soft glow surrounds you, filling you with renewed energy and Health"
+      }
+    },
+    "diamonds": {
+      "3": {
+        "supplies": 3,
+        "label": "A gust of wind rustles the leaves, revealing a satchel hanging from a low branch. Inside, you find dried fruit and a small notebook"
+      },
+      "4": {
+        "supplies": 4,
+        "label": "You come across a stream. A few smooth stones glimmer beneath the water, alongside a perfectly fresh apple"
+      },
+      "5": {
+        "supplies": 5,
+        "label": "A cheerful sparrow hops beside you, dropping a small pouch of seeds at your feet. It seems to insist you take it"
+      },
+      "6": {
+        "supplies": 6,
+        "label": "A hollow in a great oak reveals a stashed bundle of nuts, tied up with twine. It looks like it’s been left just for you"
+      },
+      "7": {
+        "health": 2,
+        "morale": 2,
+        "supplies": 2,
+        "label": "You come across a small gathering of forest creatures happily nibbling on an assortment of snacks. They wave you over, offering to share",
+        "tags": [
+          "hollow",
+          "item"
+        ]
+      },
+      "8": {
+        "supplies": 8,
+        "label": "A hum fills the air as you discover a beehive dripping with golden honey. Carefully collecting a small jar, you taste its sweetness"
+      },
+      "9": {
+        "supplies": 9,
+        "label": "Tucked beside an old stump, a woven picnic basket holds wrapped sandwiches and a warm thermos of tea. Someone must have left it behind",
+        "tags": [
+          "item"
+        ]
+      },
+      "10": {
+        "supplies": 10,
+        "label": "Behind a tangle of vines, you uncover a tiny, well-kept pantry carved into the base of a tree. Inside are jars of jam, crackers, and a cosy little note that says, Help yourself!",
+        "tags": [
+          "item"
+        ]
+      },
+      "jack": {
+        "combat": true,
+        "label": "A pile of glittering trinkets lies scattered before you, but a faint hum of dark energy warns you that something is wrong. The crystal’s corruption has touched this place",
+        "tags": [
+          "combat",
+          "hollow"
+        ]
+      },
+      "queen": {
+        "combat": true,
+        "label": "A shadow moves in the undergrowth, guarding something. A cursed presence lingers. You’ll need to break it",
+        "tags": [
+          "combat"
+        ]
+      },
+      "king": {
+        "combat": true,
+        "label": "A dark hollow whispers of something lost & hidden. As you step forward, the air grows tense. Something is waiting",
+        "tags": [
+          "combat"
+        ]
+      },
+      "ace": {
+        "all_stats": 10,
+        "label": "Behind a thick curtain of ivy, you discover an old, untouched storeroom. Stacks of supplies, neatly arranged, glisten in the dim light. Who placed them here?",
+        "tags": [
+          "item"
+        ]
+      }
+    },
+    "spades": {
+      "3": {
+        "health": -3,
+        "label": "You get caught in a patch of brambles, and it takes some effort to free yourself. A few scratches later, you press on"
+      },
+      "4": {
+        "health": -4,
+        "label": "A loose patch of dirt sends you tumbling down a small hill. You manage to land safely, but not without bruises",
+        "tags": [
+          "hollow"
+        ]
+      },
+      "5": {
+        "supplies": -5,
+        "label": "While crossing a stream, you misstep and end up soaked. It will take a while for your things to dry out"
+      },
+      "6": {
+        "morale": -6,
+        "label": "A wind sweeps through the trees, sending a shiver down your spine. The air is heavy, as if something is watching",
+        "tags": [
+          "hollow"
+        ]
+      },
+      "7": {
+        "health": -3,
+        "morale": -3,
+        "label": "You hear a rustling in the bushes. You freeze, waiting. Nothing happens, but you get the feeling that something was there"
+      },
+      "8": {
+        "health": -8,
+        "label": "A branch nearly knocks you off your feet. You manage to dodge at the last second, but your heart races from the close call"
+      },
+      "9": {
+        "health": -9,
+        "label": "You find what looks like a cosy den, but something inside growls. Best not to linger"
+      },
+      "10": {
+        "morale": -10,
+        "label": "A long shadow stretches across your path, moving when it shouldn't. The air crackles with strange energy",
+        "tags": [
+          "hollow"
+        ]
+      },
+      "jack": {
+        "combat": true,
+        "label": "The path ahead is blocked by twisted roots pulsing with crystal energy. Something is watching you from the trees",
+        "tags": [
+          "combat"
+        ]
+      },
+      "queen": {
+        "combat": true,
+        "label": "Faint whispers drift through the air, laced with an eerie melody. The corruption lingers here, waiting",
+        "tags": [
+          "combat"
+        ]
+      },
+      "king": {
+        "combat": true,
+        "label": "Clouds gather overhead, but the storm isn’t natural. The wind howls, carrying the sound of something moving through the trees",
+        "tags": [
+          "combat"
+        ]
+      },
+      "ace": {
+        "all_stats": -10,
+        "label": "You stumble into a clearing where the grass is withered, the trees lifeless. A single, corrupted crystal hums faintly in the center, its energy unsettling"
+      }
+    },
+    "clubs": {
+      "3": {
+        "health": -3,
+        "label": "You wander too close to a thicket of brambles, and they snatch at your clothes and fur, leaving you scratched"
+      },
+      "4": {
+        "morale": -4,
+        "label": "The Woods feel different here. Quieter, heavier. You can’t shake the sense that something is watching"
+      },
+      "5": {
+        "supplies": -5,
+        "label": "In the distance, a strange glow appears between the trees. As you approach, it vanishes, leading you off course",
+        "tags": [
+          "hollow"
+        ]
+      },
+      "6": {
+        "supplies": -6,
+        "label": "The ground gives way beneath your feet! You manage to climb out, but not before losing some of your belongings"
+      },
+      "7": {
+        "health": -3,
+        "morale": -3,
+        "label": "A low, rumbling noise follows you along the path. It never gets closer, but it never fades away either"
+      },
+      "8": {
+        "morale": -8,
+        "label": "The trees here seem taller, their branches reaching in unnatural ways. The air is thick and cold",
+        "tags": [
+          "hollow"
+        ]
+      },
+      "9": {
+        "health": -9,
+        "label": "The path you were following is suddenly gone, replaced by tangled roots and mist. Finding your way again takes time and effort"
+      },
+      "10": {
+        "morale": -10,
+        "label": "Not a single sound can be heard, no birds, no rustling leaves, nothing. The absence of life is deeply unsettling"
+      },
+      "jack": {
+        "combat": true,
+        "label": "A once-beautiful meadow is now twisted and wrong, its grass brittle, its trees lifeless. Something stirs within the gloom",
+        "tags": [
+          "combat"
+        ]
+      },
+      "queen": {
+        "combat": true,
+        "label": "Ancient trees, cracked and broken, line the path. A crystal hums softly at the center, its corruption lingering",
+        "tags": [
+          "combat"
+        ]
+      },
+      "king": {
+        "combat": true,
+        "label": "The trail ahead is lined with darkened trees, their bark scarred and twisted. The Woods themselves seem to resist your passage",
+        "tags": [
+          "combat"
+        ]
+      },
+      "ace": {
+        "all_stats": -10,
+        "label": "You arrive at a place where the corruption is strongest. Crystals pulse in the earth, spreading darkness through the Woods"
+      }
+    }
+  },
+  "hollow": {
+    "hearts": {
+      "3": {
+        "morale": 2,
+        "label": "A small stuffed bear sits atop a mossy rock, its button eye missing. Holding it fills you with warmth. Who did this belong to?"
+      },
+      "4": {
+        "health": 1,
+        "label": "You find small footprints leading in circles before vanishing. Were they yours? Or someone else’s?"
+      },
+      "5": {
+        "memory_fragments": 1,
+        "label": "A note pinned to a tree reads, “You’re not alone.” The ink is smudged, but the message is clear",
+        "tags": [
+          "memory_fragment"
+        ]
+      },
+      "6": {
+        "health": 2,
+        "label": "A fully prepared picnic sits untouched on a checkered cloth. The tea is still warm. If you sit down, does someone join you?"
+      },
+      "7": {
+        "memory_fragments": 1,
+        "label": "The wind whispers a name of someone you forgot. As you speak it aloud, the mist swirls",
+        "tags": [
+          "memory_fragment"
+        ]
+      },
+      "8": {
+        "morale": 3,
+        "label": "Faint giggles echo around you, but when you turn, no one is there. The sound lingers, filling you with hope"
+      },
+      "9": {
+        "memory_fragments": 1,
+        "label": "A small lantern flickers ahead, guiding you forward. When you reach it, there is no holder, just a quiet glow",
+        "tags": [
+          "memory_fragment"
+        ]
+      },
+      "10": {
+        "memory_fragments": 2,
+        "label": "A book rests on a tree stump, its pages blank except for the words, “Remember.” As you touch it, a forgotten story fills your mind",
+        "tags": [
+          "memory_fragment"
+        ]
+      },
+      "jack": {
+        "morale": 2,
+        "label": "A figure stands just at the edge of sight, familiar but indistinct. You call out, but they are gone, leaving behind only a lingering warmth"
+      },
+      "queen": {
+        "memory_fragments": 1,
+        "label": "A patch of flowers blooms perfectly, untouched by the Hollow’s mist. A place someone once cared for",
+        "tags": [
+          "memory_fragment"
+        ]
+      },
+      "king": {
+        "memory_fragments": 2,
+        "label": "A wooden door stands alone in the clearing, slightly ajar. Behind it, a light beckons you forward. Do you step through?",
+        "tags": [
+          "memory_fragment"
+        ]
+      },
+      "ace": {
+        "memory_fragments": 3,
+        "label": "A memory washes over you, vivid and clear. It is a moment of kindness, of joy, of something that mattered. The Hollow trembles as if recognizing your strength",
+        "tags": [
+          "memory_fragment"
+        ]
+      }
+    },
+    "diamonds": {
+      "3": {
+        "morale": 2,
+        "label": "A small, rusted key lies in the dirt. No door or chest is in sight, but you can’t shake the feeling that it still belongs to something"
+      },
+      "4": {
+        "memory_fragments": 1,
+        "label": "A tree bears a name carved long ago, though you don’t recognize it. When you trace the letters with your fingers, warmth spreads through your palm",
+        "tags": [
+          "memory_fragment"
+        ]
+      },
+      "5": {
+        "health": 1,
+        "label": "A delicate envelope sits atop a stone, addressed to someone who may no longer exist. The words inside are blurred but full of longing"
+      },
+      "6": {
+        "memory_fragments": 1,
+        "label": "A single glass marble rolls at your feet, reflecting more than just the trees. Looking into it, you see a moment you don’t recall living",
+        "tags": [
+          "memory_fragment"
+        ]
+      },
+      "7": {
+        "health": 2,
+        "label": "An old pocket watch ticks in reverse. Holding it makes your head swim, as if the past and present are shifting places"
+      },
+      "8": {
+        "morale": 3,
+        "memory_fragments": 1,
+        "label": "A fully packed basket rests near a log, the food still fresh. Someone meant to return for it, but never did",
+        "tags": [
+          "memory_fragment"
+        ]
+      },
+      "9": {
+        "memory_fragments": 1,
+        "label": "As you step forward, faint voices drift through the mist. Half-heard words, laughter, a promise. When you turn, the sound fades",
+        "tags": [
+          "memory_fragment"
+        ]
+      },
+      "10": {
+        "memory_fragments": 2,
+        "label": "A lantern flickers ahead, revealing a hidden path. But when you reach it, the handle is cold, and the candle inside is untouched",
+        "tags": [
+          "memory_fragment"
+        ]
+      },
+      "jack": {
+        "morale": 2,
+        "label": "A carved wooden puzzle piece lies alone in the dirt, its edges worn smooth. What picture did it once complete?"
+      },
+      "queen": {
+        "memory_fragments": 1,
+        "label": "A large, weathered stone bears an inscription in a language you almost understand. If only you could read the missing words",
+        "tags": [
+          "memory_fragment"
+        ]
+      },
+      "king": {
+        "memory_fragments": 2,
+        "label": "A small wooden box sits in the grass, locked tight. The moment you touch it, a faint hum vibrates through your fingertips. Do you open it?",
+        "tags": [
+          "memory_fragment"
+        ]
+      },
+      "ace": {
+        "memory_fragments": 3,
+        "label": "As you step forward, a rush of images fills your mind. Moments of joy, sorrow, and belonging, none of them your own. The Hollow shifts, as if acknowledging what was lost",
+        "tags": [
+          "memory_fragment"
+        ]
+      }
+    },
+    "spades": {
+      "3": {
+        "morale": 2,
+        "label": "Shadows shift behind the trees, watching, waiting. You never catch them moving, but you know they are"
+      },
+      "4": {
+        "health": -2,
+        "memory_fragments": 1,
+        "label": "No matter how many steps you take, you find yourself back where you started. Something is keeping you here",
+        "tags": [
+          "memory_fragment"
+        ]
+      },
+      "5": {
+        "morale": 3,
+        "label": "The mist clings to your skin, and faint voices swirl around you. They speak in half- formed thoughts, trying to pull you deeper"
+      },
+      "6": {
+        "health": -3,
+        "label": "A statue stands in the Hollow, its form eerily lifelike. As you touch it, you realize the expression looks… familiar"
+      },
+      "7": {
+        "health": -3,
+        "label": "A towering tree covered in jagged crystals hums softly. Its roots pulse as if alive. As you move closer, the ground beneath you trembles"
+      },
+      "8": {
+        "morale": 4,
+        "label": "You step onto a narrow path, but your footsteps echo strangely, as if someone else is walking right behind you"
+      },
+      "9": {
+        "health": -4,
+        "label": "A distant cry for help reaches your ears, but when you follow it, you find nothing but broken shards of crystal in the dirt"
+      },
+      "10": {
+        "morale": 5,
+        "memory_fragments": 1,
+        "label": "You glimpse yourself in a pool of still water, but your reflection doesn’t match your movements. Then, it smiles",
+        "tags": [
+          "memory_fragment"
+        ]
+      },
+      "jack": {
+        "combat": true,
+        "label": "A figure looms ahead, its body wrapped in shards of dark crystal. It moves with a purpose, but whose?",
+        "tags": [
+          "combat"
+        ]
+      },
+      "queen": {
+        "combat": true,
+        "memory_fragments": 1,
+        "label": "A low voice murmurs from nowhere, telling you to turn back. Then, it speaks with your voice",
+        "tags": [
+          "combat",
+          "memory_fragment"
+        ]
+      },
+      "king": {
+        "combat": true,
+        "label": "A hulking form rises from the ground, its body more crystal than flesh. Its glowing eyes lock onto you, filled with something close to recognition",
+        "tags": [
+          "combat"
+        ]
+      },
+      "ace": {
+        "health": -6,
+        "label": "You find the source of the corruption. It is a massive crystal, deep within the mist. The Hollow itself seems to hold its breath, waiting for your next move"
+      }
+    },
+    "clubs": {
+      "3": {
+        "morale": 2,
+        "label": "A hollowed-out tree acts as a tunnel, stretching on far longer than it should. When you finally emerge, you’re somewhere you don’t recognize"
+      },
+      "4": {
+        "health": -2,
+        "label": "A trail splits into three identical routes, none of which were here moments ago. Each seems equally safe, or equally dangerous"
+      },
+      "5": {
+        "morale": 3,
+        "label": "Thick mist rolls in, swallowing up everything beyond a few feet. Shapes move just beyond sight. Which way is forward?"
+      },
+      "6": {
+        "health": -3,
+        "memory_fragments": 1,
+        "label": "The trees around you are not where they were a moment ago. One leans down, as if listening",
+        "tags": [
+          "memory_fragment"
+        ]
+      },
+      "7": {
+        "health": -3,
+        "label": "No matter how far you walk, you find yourself looping back to the same clearing. A single stone in the center seems to have moved slightly each time"
+      },
+      "8": {
+        "morale": 4,
+        "label": "A gentle stream winds through the Hollow, but its water moves against the current. Stepping in, you feel an unsettling tug"
+      },
+      "9": {
+        "health": -4,
+        "memory_fragments": 1,
+        "label": "A door stands alone in the clearing, slightly ajar. It leads… nowhere. Or does it?",
+        "tags": [
+          "memory_fragment"
+        ]
+      },
+      "10": {
+        "morale": 5,
+        "label": "You hear footsteps behind you, but when you turn, the path is empty. The prints in the dirt don’t belong to you"
+      },
+      "jack": {
+        "combat": true,
+        "label": "You take a step, and the world tilts. The trees, the sky, the ground, it all shifts. Are you even in the same place anymore?",
+        "tags": [
+          "combat"
+        ]
+      },
+      "queen": {
+        "combat": true,
+        "memory_fragments": 1,
+        "label": "A familiar voice calls from ahead, leading you forward. But something feels off, what if it isn’t real?",
+        "tags": [
+          "combat",
+          "memory_fragment"
+        ]
+      },
+      "king": {
+        "combat": true,
+        "label": "The path simply stops. No trees, no mist, just… emptiness. A step forward might be a step into nothingness",
+        "tags": [
+          "combat"
+        ]
+      },
+      "ace": {
+        "health": -5,
+        "label": "The Hollow has decided to keep you. The mist rises, the ground trembles, and the world begins to fold in on itself"
+      }
+    }
+  },
+  "items": {
+    "2": {
+      "label": "Smudged Storybook Page",
+      "effect": "Smudged Storybook Page. A page from a book, filled with scribbles & doodles. Reading it fills you with warmth"
+    },
+    "3": {
+      "label": "Rabbit’s Spare Scarf",
+      "effect": "Rabbit’s Spare Scarf. A well-knitted scarf, slightly itchy but full of care"
+    },
+    "4": {
+      "label": "Bouncing Shoes",
+      "effect": "Bouncing Shoes. A pair of well-worn shoes with extra spring in the soles"
+    },
+    "5": {
+      "label": "Jar of Very Special Honey",
+      "effect": "Jar of Very Special Honey. A perfectly golden jar of honey, rich and soothing"
+    },
+    "6": {
+      "label": "Map of the Woods",
+      "effect": "Map of the Woods. A hand-drawn map with notes about shortcuts and secret paths"
+    },
+    "7": {
+      "label": "Eeyore’s Lost Ribbon",
+      "effect": "Eeyore’s Lost Ribbon. A faded ribbon. Holding it reminds you that even little things matter"
+    },
+    "8": {
+      "label": "Owl’s Wind Chime",
+      "effect": "Owl’s Wind Chime. A delicate chime that gently tinkles when danger is near"
+    },
+    "9": {
+      "label": "Roo’s Favorite Acorn",
+      "effect": "Roo’s Favorite Acorn. A small, well-loved acorn, said to bring good luck"
+    },
+    "10": {
+      "label": "Christopher’s Pocket Watch",
+      "effect": "Christopher’s Pocket Watch. An old but reliable watch, ticking steadily in your hand"
+    },
+    "jack": {
+      "label": "Tigger’s Striped Sash",
+      "effect": "Tigger’s Striped Sash. A lively, energetic sash that makes you feel ready for anything"
+    },
+    "queen": {
+      "label": "The Seasons’ Jar",
+      "effect": "The Seasons’ Jar. A glass jar filled with little bits of each season, leaves, petals, and snowflakes"
+    },
+    "king": {
+      "label": "Crown of the Thicket King",
+      "effect": "Crown of the Thicket King. A playful circlet of twigs and flowers, woven with care"
+    },
+    "ace": {
+      "label": "Pooh’s Golden Sigil",
+      "effect": "Pooh’s Golden Sigil. A symbol of friendship and adventures, glowing softly. ITEM TABLE In some exploration results on the surface world you will see the word ITEM. In these cases you can draw an additional card and consult the Item Table to see what you discover on your journey. It could be as insignificant as a pebble to the sigil of an old house. Remember, you can use these as prompts & come up with your own items! These are one-time use trinkets. Once the effect has been used up, they don’t disappear but no longer have the ability they came with so use them wisely. If you overcome a combat event using your ‘Overcome the Odds’ ability and get a Critical Success, your opponent will always drop an item! Any Heart or Diamond Encounter will also give you an item as a reward if you beat them. ITEMS"
+    }
+  },
+  "player_tactics": {
+    "bramble": {
+      "3": "Mystic Bolt: Deal 3 damage. Your next tactic this turn gains +1 damage.",
+      "4": "Runic Insight: Draw 2 additional tactic cards. Restore 2 Health.",
+      "5": "Mana Infusion: Restore 3 Health. If you have fewer than 3 tactic cards, draw 1.",
+      "6": "Blinking Shadows: Evade the next attack and deal 2 damage.",
+      "7": "Burst: Deal 4 damage. Opponent’s next attack deals -1 damage.",
+      "8": "Time Rift: Skip opponent’s next turn. You may draw 1 tactic card.",
+      "9": "Astral Volley: Deal 5 damage. If target has more than 5 Health remaining, deal +2. Nature’s",
+      "10": "Essence Drain: Deal 2 damage. Restore 2 Health. Draw 1 card.",
+      "jack": "Chronoshift: Take an immediate second turn. Your next attack this turn deals +2 damage.",
+      "queen": "Ghostly Helper: Deal 2 damage and block 2 damage. Guardian of the",
+      "king": "Mind Capture: View the top card of your deck. You may take it for yourself or place it at the bottom of the deck Earth’s",
+      "ace": "Nexus: Deal damage equal to half your current Morale (rounded down). Restore 2 Health and 2 Morale. Harmony of the"
+    },
+    "pooh": {
+      "3": "Honey Strike: Deal 2 damage. Draw a card. If it's Red, opponent skips their next turn.",
+      "4": "Respite: Restore 2 Health and 2 Morale. Your next attack this turn deals +1 damage.",
+      "5": "Sweet Reprieve: Restore 3 Health. Negate the opponent’s next attack.",
+      "6": "Hug: Restore 2 Health. Opponent’s next attack deals -2 damage.",
+      "7": "Sticky Shield: Reflect half of the next attack’s damage back at the opponent.",
+      "8": "Honey Trap: Evade the next attack. Immediately deal 2 damage.",
+      "9": "Embrace: Restore 2 Health. Reduce damage from the next attack by 2.",
+      "10": "Soothing Nectar: Restore 5 Morale. You may draw 1 tactic card.",
+      "jack": "Unshakable Presence: Negate the next attack. Restore 3 Morale.",
+      "queen": "Grove: Summon a spirit: Immediately block 2 damage and deal 2 damage.",
+      "king": "Embrace: Deal 5 damage. Stun the opponent (they skip their next turn).",
+      "ace": "Woods: Restore 3 Health and 3 Morale. Your next attack deals +3 damage. COMBAT TACTIC CARDS"
+    },
+    "piglet": {
+      "3": "Shadow Step: Evade the next attack. Deal 1 damage.",
+      "4": "Dagger Flurry: Deal 4 damage. Take 1 damage as recoil.",
+      "5": "Silent Strike: Deal 3 damage. Opponent’s next attack deals half damage.",
+      "6": "Fading Silhouette: Restore 2 Morale. Draw 1 tactic card.",
+      "7": "Poised to Strike: Deal 2 damage. If your Morale is below 5, deal +2 damage.",
+      "8": "Pocket Sand: Opponent's next attack misses.",
+      "9": "Trick of the Light: Reveal the top card of your deck. If it's Black, negate the next enemy card",
+      "10": "Backstab: Deal 5 damage. Skip your next turn. Do I have to?: Deal 5 damage. Opponent’s next attack is reduced by 3.",
+      "jack": "Ambush: Take an immediate extra turn. All damage this turn is reduced by 1, but you restore 2 Morale.",
+      "queen": "Mind Hook: Opponent discards their next tactic. You draw 1 card.",
+      "king": "Gambit: Deal damage equal to half your current Morale (rounded up). Take 1 damage.",
+      "ace": "Master of Shadows: Deal damage equal to your Morale and restore half damage done if this defeats the enemy"
+    },
+    "eeyore": {
+      "3": "Enduring Blow: Deal 3 damage. Restore 1 Morale.",
+      "4": "Health: Reduce damage from the next attack by 4.",
+      "5": "Heavy Hoof: Deal 5 damage. Lose 1 Morale.",
+      "6": "Unmoved: Ignore movement or control effects. Halve the next attack’s damage.",
+      "7": "Bitter Swing: Deal 5 damage. Take 1 damage yourself.",
+      "8": "Bored Charge: Your next attack this turn deals double damage.",
+      "9": "Swinging Tail: Deal 4 damage. Opponent’s next attack deals half damage.",
+      "jack": "Courage: Negate the next attack. Restore 2 Health.",
+      "queen": "Crushing Slam: Deal 5 damage. Opponent skips their next turn.",
+      "king": "Final Stand: Halve the next two damage sources. Restore 1 Health.",
+      "ace": "Lasting Will: Fully restore Health and Morale. Your next attack this turn deals double damage."
+    },
+    "tigger": {
+      "3": "Pouncing Swipe: Deal 3 damage and opponent’s next attack reduced by 1.",
+      "4": "Spring Leap: Deal 2 damage and evade opponent's next attack. Wisdom’s",
+      "5": "Bounding Spirit: Restore 2 Health; your next attack deals +2 damage.",
+      "6": "Tail Whirl: Deal 2 damage to all opponents; next attack gains +1 damage. Ward of",
+      "7": "Energetic Boost: Restore 2 Morale; your next attack is doubled.",
+      "8": "Joyful Evasion: Evade damage this turn and reduce next attack by half.",
+      "9": "Bouncy Assault: Deal 3 damage; opponent's next attack misses entirely.",
+      "10": "Vibrant Rally: Restore 3 Morale and boost your next attack damage by 2.",
+      "jack": "Momentum: Skip opponent’s next turn; your next attack deals +3 damage.",
+      "queen": "Encore! Take two additional turns in a row after playing this card. Arcane Shield: Halve the damage from the next two attacks (rounded up).",
+      "king": "Lively Dodge: Evade opponent's next two attacks completely and draw 1 extra tactic card.",
+      "ace": "Tigger’s Finale: Deal damage equal to half your Morale (rounded up) and restore 5 Health."
+    },
+    "owl": {
+      "3": "Rune Insight: Deal 2 damage. Look at opponent’s top tactic card and choose whether they keep it or discard it.",
+      "4": "Veil: Reduce damage from the next attack by 3. Restore 1 Morale.",
+      "5": "Mystic Clarity: Draw 2 tactic cards. Immediately play one as a free action.",
+      "6": "Protection: Completely negate the next attack against you.",
+      "7": "Gale Strike: Deal 4 damage. Opponent skips their next turn.",
+      "8": "Chrono Shift: Opponent skips their next turn. Draw 1 tactic card.",
+      "9": "Focused Barrage: Deal 5 damage. Opponent’s next attack deals -2 damage.",
+      "10": "Arcane Recovery: Restore 2 Health. Draw 1 tactic card.",
+      "jack": "Spectral Owl: Deal 2 damage. Opponent’s next attack automatically misses.",
+      "king": "Chronomancy: Opponent’s next two attacks are skipped.",
+      "ace": "Celestial Wisdom: Fully restore Health and Morale. Your next attack this turn deals double damage."
+    },
+    "rabbit": {
+      "3": "Herbal Poultice: Restore 3 Health to yourself or an ally.",
+      "4": "Soothing Bloom: Deal 2 damage and restore 2 Health to yourself or an ally. Rain of",
+      "5": "Patch and Praise: Restore 2 Health and 1 Morale to an ally.",
+      "6": "Barkfang Strike: Deal 3 damage. If this defeats an enemy, restore 3 Morale.",
+      "7": "Radiant Bloom: Restore 2 Health and gain +2 damage on your next attack.",
+      "8": "Verdant Surge: Deal 4 damage. You gain 2 Health if your Morale is above 5.",
+      "9": "Gentle Intervention: Halve the next incoming damage (rounded up) and restore 1 Morale.",
+      "10": "Syrup-Soaked Thorns: Deal 2 damage. Opponent loses 1 damage on next attack. Heal 1.",
+      "jack": "Guiding Glow: Take one extra turn immediately after this card and draw an additional tactic.",
+      "queen": "Healing Stew: Restore 4 Health to all allies.",
+      "king": "Sap Pulse: Deal 5 damage. You and your ally restore 1 Health each.",
+      "ace": "Miracle of Life: Fully restore Health and Morale. Use once per combat."
+    },
+    "kanga_roo": {
+      "3": "Arrow Shot: Deal 3 damage. If target has higher Health than you, deal +2.",
+      "4": "Arrows: Deal 2 damage to all enemies. Draw 1 tactic card.",
+      "5": "Tanglethorn Trap: Opponent’s next attack deals no damage. Gain 1 Morale.",
+      "6": "Animal Companion: Deal 3 damage. If you’re below 5 Health, also restore 3 Health.",
+      "7": "Family Strike: Deal 3 damage. You may play a second tactic card this turn.",
+      "8": "Tracking Shot: Deal 3 damage. Reveal the top card of opponent’s tactic deck.",
+      "9": "Spring Kick: Deal 4 damage and push the opponent back (they skip next turn).",
+      "10": "Hidden Grove: Draw 2 tactic cards. You may discard one to restore 2 Health.",
+      "jack": "Momentum Shift: Evade the next attack and deal 4 damage. If it defeats the enemy, draw an extra item card.",
+      "queen": "Flanking Ambush: Deal 7 damage. If you evaded last turn, restore 3 Morale.",
+      "king": "Coordinated Assault: Deal 5 damage. Choose: opponent skips their next turn, or you draw 2 cards.",
+      "ace": "Final Push: Deal 8 damage. Restore 2 Morale and gain an extra turn."
+    },
+    "snoozer": {
+      "3": "Healing Snooze: Restore 3 Health.",
+      "4": "Protective Slumber: Reduce all incoming damage by 3 for two turns.",
+      "5": "Dreamer's Breath: Restore 3 Health; your next attack gains +1 damage.",
+      "6": "Restful Recovery: Restore 2 Health each turn for two turns and reduce opponent's next attack by 1.",
+      "7": "Sleepwalker’s Strike: Deal 4 damage and reduce damage from opponent’s next attack by 2.",
+      "8": "Lullaby Veil: Opponent misses next attack; you restore 2 Morale immediately.",
+      "9": "Slumbering Charm: Opponent takes 3 damage per turn for two turns and skips their next turn.",
+      "10": "Eternal Nap: Restore 5 Morale and deal 5 damage at the end of your next turn.",
+      "jack": "Chrono Slumber: Take two extra turns.",
+      "queen": "Dreamscape: Restore 3 Health per turn for the next 2 turns to all allies.",
+      "king": "Deep Sleep: Opponent skips their next two turns entirely.",
+      "ace": "Restful Eternity: Heal for half max Health; opponent skips their turn if the tactic drawn is an attack."
+    },
+    "salvager": {
+      "3": "Spark Surge: Deal 3 damage, opponent's next attack reduced by 1.",
+      "4": "Gadget Barrage: Deal 2 damage and opponent misses their next attack.",
+      "5": "Clockwork Trap: Opponent takes 3 damage and skips next turn.",
+      "6": "Explosive Charge: Deal 3 damage and opponent’s next attack misses entirely.",
+      "7": "Tinker's Trick: Double the damage of your next attack.",
+      "8": "Overclocked Assault: Take an additional action immediately; your next attack deals +2 damage.",
+      "9": "Explosive Charge: Deal 4 damage immediately and 2 additional damage next turn.",
+      "10": "Shrapnel Burst: Deal 5 damage, opponent takes an additional 2 damage for next 2 turns.",
+      "jack": "Rapid Assembly: Deal 3 damage twice and evade the next attack.",
+      "queen": "Reinforced Armour: Halve damage from all attacks for two turns (rounded up).",
+      "king": "Ultimate Gadget: Deal 6 damage, stun opponent next turn.",
+      "ace": "Explosive Finale: Deal 8 damage, ignoring all opponent defences, and gain an extra action immediately."
+    },
+    "smasher": {
+      "3": "Headlong Charge: Deal 3 damage but lose 1 Supply.",
+      "4": "Bonecrack Smash: Deal 4 damage.",
+      "5": "Reckless Bash: Deal 5 damage but take 2 damage yourself. Pact of",
+      "6": "Fistful of Fury: Deal 3 damage. If you have fewer than 5 Supplies, deal +4.",
+      "7": "Break and Take: Deal 4 damage and gain 1 Supply.",
+      "8": "Staggering Blow: Deal 5 damage and increase your Morale by 1.",
+      "9": "Crushing Momentum: Deal 3 damage per card you hold.",
+      "10": "Rage Slam: Deal 6 damage. If opponent still has more Health than you, deal +2.",
+      "jack": "Rampage: Deal 7 damage but discard your lowest-value tactic card.",
+      "queen": "Savage Frenzy: Deal 8 damage. Lose 1 Morale.",
+      "king": "Unstoppable Smash: Deal 9 damage. Ignore all enemy effects this turn.",
+      "ace": "Bonebreaker’s Finale: Deal damage equal to your current Health. True Form of"
+    },
+    "shadowcaster": {
+      "3": "Shadow Needle: Deal 2 damage and increase your Morale by 1.",
+      "4": "Life Drain: Deal 2 damage and heal yourself 2 Health.",
+      "5": "Pain: Take 2 damage to cancel opponent’s tactic card next turn.",
+      "6": "Dark Whispers: Opponent redraws their next tactic card if it is above 10 in value.",
+      "7": "Soul Bite: Deal 3 damage and gain +1 Morale.",
+      "8": "Binding Hex: Opponent skips their next turn. Deal 2 damage.",
+      "9": "Fearful Glare: Deal 2 damage and increase your Morale by 3.",
+      "10": "Supply Leech: Opponent loses 2 Supplies and you restore 2 Health.",
+      "jack": "Hex Burst: Deal 4 damage. Opponent redraws their next tactic card.",
+      "queen": "Deathly Pact: Deal 5 damage. You may lose 2 Morale to deal +3 extra.",
+      "king": "Shadow Flood: Deal 6 damage and enemy cannot heal for 2 turns.",
+      "ace": "Darkness: Deal 7 damage, incrase your Morale by 3, and you gain 2 Supplies."
+    },
+    "singer": {
+      "3": "Gentle Verse: Restore 3 Morale.",
+      "4": "Harmonised Guard: Reduce all incoming damage by 2 for two turns. Slip and",
+      "5": "Rousing Rhythm: Deal 2 damage and restore 2 Morale.",
+      "6": "Call and Response: Restore 2 Morale each turn for two turns; opponent’s next attack deals -1 damage.",
+      "7": "Cutting Lyric: Deal 4 damage and reduce the opponent’s next attack damage by 2.",
+      "8": "Disarming Melody: Opponent misses their next attack; restore 2 Morale.",
+      "9": "Sorrowful Refrain: Opponent takes 3 damage per turn for two turns and loses 2 Morale immediately.",
+      "10": "Crescendo: Deal 5 damage; at the end of your next turn, restore 3 Morale.",
+      "jack": "Encore: Take two extra turns.",
+      "queen": "Anthem of Unity: Restore 3 Morale per turn for the next 2 turns to all allies. Make ’",
+      "king": "Shattering Note: Opponent skips their next turn and deals -3 damage on their following attack.",
+      "ace": "Final Aria: Restore Morale equal to half your maximum. If the opponent would attack next, they instead lose their turn."
+    },
+    "snickerer": {
+      "3": "Quiet Chuckle: Restore 3 Morale.",
+      "4": "Skitter: Evade the opponent’s next attack entirely.",
+      "5": "Pratfall Setup: Deal 2 damage; opponent’s next attack deals -1 damage.",
+      "6": "Comic Timing: Restore 2 Morale and draw 1 additional tactic card next turn.",
+      "7": "Unexpected Bonk: Deal 4 damage and reduce opponent’s Morale by 1.",
+      "8": "Peekaboo Horror: Opponent skips their next attack as fear and confusion set in.",
+      "9": "Slapstick Spiral: Deal 3 damage per turn for two turns as the enemy keeps stumbling.",
+      "10": "Laughing Escape: Deal 3 damage and avoid all damage until your next turn.",
+      "jack": "Trap Door: Immediately end combat; escape but lose 3 Supplies.",
+      "queen": "Em Laugh: Restore 3 Morale per turn for the next 2 turns to all allies.",
+      "king": "Scary Face: Opponent skips their next turn and loses 2 Morale.",
+      "ace": "Unkillable Gag: If you would take damage before your next turn, ignore it and instead restore 3 Morale."
+    },
+    "solver": {
+      "3": "Reassuring Words: Restore 3 Morale.",
+      "4": "Careful Planning: Reduce all incoming damage by 2 for two turns.",
+      "5": "Helpful Insight: Deal 2 damage and restore 2 Morale.",
+      "6": "Step by Step: Restore 2 Health and reduce the opponent’s next attack damage by 1.",
+      "7": "Clever Solution: Deal 4 damage or restore 4 Health. Choose when played.",
+      "8": "Timely Intervention: Opponent misses their next attack; restore 1 Health.",
+      "9": "Problem Unravelled: Opponent takes 3 damage per turn for two turns as their plans fall apart.",
+      "10": "Breakthrough: Restore 5 Morale and deal 3 damage at the end of your next turn.",
+      "jack": "Just in Time: Take two extra turns.",
+      "queen": "Helping Everyone: Restore 3 Health per turn for the next 2 turns to all allies.",
+      "king": "Perfect Answer: Opponent skips their next turn entirely.",
+      "ace": "It's All Coming Together: Restore Health equal to half your maximum. If the opponent would attack, they lose 2 turns."
+    },
+    "sleeptalker": {
+      "3": "Exhaled Dream: Create a dream cloud. The next damage you take is reduced by 2 and you restore 2 Health afterward.",
+      "4": "Fogbound Steps: Evade the opponent’s next attack. Your next attack deals -1 damage.",
+      "5": "Antlered Strike: Deal 3 damage. If you healed this turn, deal +2 damage instead.",
+      "6": "Borrowed Comfort: Restore 3 Health to an ally. You lose 1 Morale as the memory weighs on you.",
+      "7": "Unstable Reverie: Deal 4 damage. On your next turn, you must either heal 2 Health or lose 2 Morale.",
+      "8": "Sleepwalking Field: Until your next turn, all damage dealt by both sides is reduced by 2.",
+      "9": "Living Memory: Choose a past comfort. Restore 2 Health per turn for three turns. If interrupted, the effect ends.",
+      "10": "Dream Given Form: Shape the mist into something impossible. Deal 5 damage or negate the next two sources of damage.",
+      "jack": "Somnambulant Surge: Take an extra turn. You cannot deal damage on that turn.",
+      "queen": "Shared Dreamspace: All allies restore 2 Health and 2 Morale. Opponents deal -2 damage next turn.",
+      "king": "Dissolving Wakefulness: Opponent skips their next turn. On their following turn, their damage is halved.",
+      "ace": "Total Submersion: Enter a deep dream. You cannot be damaged until your next turn. At the end of that turn, restore Health equal to half your maximum."
+    }
+  },
+  "hollow_entry": {
+    "2": {
+      "label": "The path you were walking simply vanishes behind you. Turning around, the Woods no longer look the same. Trees are too high, the sky is pale, and mist curls at your feet. How did you get here?"
+    },
+    "3": {
+      "label": "A soft voice calls your name from deep within the mist, familiar yet unplaceable. You step forward, drawn to it, but as you do, everything behind you fades into nothingness. What is it that called you?"
+    },
+    "4": {
+      "label": "Leaning over a small stream, you see something strange in the water. Not your reflection, but an echo of a memory you don’t recall having. When you look up again, the stream is gone, and you stand somwhere else entirely"
+    },
+    "5": {
+      "label": "An archway appears along the trail, twisting into the shape of a door. It wasn’t there before. As you step through, a feeling of weightlessness washes over you, and suddenly, the Woods is nowhere to be found"
+    },
+    "6": {
+      "label": "A small golden light flickers ahead, bobbing like a firefly. It flutters away when you approach, leading you deeper into the mist. When you finally catch up, there is no lantern, only a long-forgotten path. Do you follow?"
+    },
+    "7": {
+      "label": "As you walk, you hear footsteps matching your own, just out of sync. You stop. They stop. You run. They chase. Then, silence. Turning back, you find only mist and uncertainty"
+    },
+    "8": {
+      "label": "A tree with a gaping hollow stands before you, dark and inviting. Inside, you glimpse flickering images, moments lost to time. A gust of wind nudges you forward. Do you enter?"
+    },
+    "9": {
+      "label": "One moment, you’re where you should be but the next, you realize time has slipped away. The sun is in a different place, the trees are unfamiliar, and you can’t remember how you got here. What did you forget?"
+    },
+    "10": {
+      "label": "A name drifts through the air, carried by an unseen breeze. The sound tugs at something deep in your chest, leading you onward before you realize your feet have already moved"
+    },
+    "jack": {
+      "label": "In a clearing, a broken mirror sits on a tree stump. When you look into it, you see yourself, but something is wrong. Your reflection blurs and shifts, as if it does not quite remember you. When you blink, the mirror is gone"
+    },
+    "queen": {
+      "label": "You step onto a winding trail and feel your feet moving forward, except you aren’t the one guiding them. The road pulls you along, and the further you go, the less sure you are of where you began"
+    },
+    "king": {
+      "label": "A shadow moves between the trees, always just out of reach. You aren’t sure if it’s following or leading. When you stop, it stops. When you speak, it listens. What does it want?"
+    },
+    "ace": {
+      "label": "A book lies open on the ground, its pages filled with words you don’t remember writing. The final sentence is half-finished, waiting for you to complete it. As you do, the world shifts, and the Hollow welcomes you. HOLLOW PROMPTS"
+    }
+  },
+  "hollow_exit": {
+    "2": {
+      "label": "As you step forward, the mist clings to your skin, pulling at your thoughts. Something whispers, asking if you’ve truly remembered everything. What do you leave behind as you exit?"
+    },
+    "3": {
+      "label": "Just before you step through, a name echoes in your mind, one you don’t quite recall. You hesitate. Do you turn back to seek it, or let it slip into the mist forever?"
+    },
+    "4": {
+      "label": "The ground beneath your feet shifts, a new path forming ahead. Was this always the way out, or is the Hollow offering you a choice? Do you trust it?"
+    },
+    "5": {
+      "label": "Shadows flicker in the distance, watching, waiting. You feel their gaze even as you step beyond the Hollow. Will they follow you? Do they let you leave so easily?"
+    },
+    "6": {
+      "label": "As you walk, something tugs at your memory. One last, unclaimed fragment. Do you turn back for it, risking your escape, or step forward, accepting what is lost?"
+    },
+    "7": {
+      "label": "A familiar voice calls your name from deep within the Hollow. It is neither friendly nor hostile. It’s just… there. Do you answer before you leave?"
+    },
+    "8": {
+      "label": "In a pool of still water, you see your reflection, except it does not move as you do. It smiles, nods, and turns away. A parting gift, or something else entirely?"
+    },
+    "9": {
+      "label": "A whispered thought fills your mind: “Will you return?” The words feel less like a question and more like a promise. How do you respond?"
+    },
+    "10": {
+      "label": "You find yourself standing before a wooden door. Simple, unremarkable, yet full of meaning. You turn the handle, and step through. What do you feel as you leave?"
+    },
+    "jack": {
+      "label": "The Hollow does not release you without a final challenge. A piece of yourself resists leaving. Do you struggle against it, or offer something in exchange for safe passage?"
+    },
+    "queen": {
+      "label": "As you walk forward, the Hollow folds in on itself behind you, as if erasing the path you took. Do you feel relief, or does something about it feel… wrong?"
+    },
+    "king": {
+      "label": "A book sits before the exit, its pages blank. As you touch it, words begin to appear. They tell your story, but they end just before this moment. What do you write before stepping through?"
+    },
+    "ace": {
+      "label": "As you step forward, something small and weightless presses into your palm. A keepsake, a token, a remnant of this place. What is it, and what does it mean to you?"
+    }
+  },
+  "opponent_tactics": {
+    "bumblebeast": {
+      "tactics": {
+        "3": "Pollen Puff: A burst of pollen makes you sneeze! Discard a next tactic card.",
+        "4": "Crystal Sting: Deal 3 damage.",
+        "5": "Unnerving Buzz: The weird humming gets under your fur. Lose 2 Morale.",
+        "6": "Zigzag Zip: It zips around unpredictably! Your next attack deals -2 damage.",
+        "7": "Hive Helper: A tiny Bumblebuddy joins the fun! It bops you for 2 damage, then zooms off giggling.",
+        "8": "Crystal Flash: A bright flash of color! You flinch, your next attack automatically misses.",
+        "9": "Bouncy Bump: It bumps into you mid- air! Deal 4 damage and drop 1 Supply if you're carrying any.",
+        "10": "Wiggly Jab: An excited stingy wiggle! Deal 5 damage.",
+        "jack": "Sticky Wax: Covers itself in goop! Halve damage from your next attack.",
+        "queen": "Buzz-Buzz Break: It calms down and hums softly. Heal 4 Health.",
+        "king": "Drone Dazzle: A deep hum fills the air.",
+        "ace": "Flutter Finale: Deal 5 damage, then it floats gently out of reach for the rest of the turn."
+      },
+      "reward_items": {
+        "3": "Buzzing Chitin. A fragment of the Bumblebeast’s exoskeleton. (Reduces damage from the next attack by 2.)",
+        "4": "Bumblebeast looks proud of itself. Gleaming Pollen. Glows faintly with an unnatural hue. (Can blind an enemy, causing them to miss their next turn.)",
+        "5": "Cracked Crystal Stinger. A broken piece of the cursed stinger. (Deals 3 damage when thrown at an opponent.)",
+        "6": "Scented Wax. A faintly floral wax that can be molded. (Grants a temporary +2 Damage boost in combat for 2 turns.)",
+        "7": "Echoing Carapace. A hollow shell that hums when tapped. (Next attack deals an additional 2 damage.)",
+        "8": "Golden Nectar. A rare, shimmering nectar. (Restores 2 Health and reduces the opponent’s next attack by 1.)",
+        "9": "Queen’s Fragment. A tiny piece of what might have been part of a hive leader. (Confuses the enemy and they hit themselves with their next attack.)",
+        "10": "The Bumblebeast wobbles and looks dizzy afterward. Resonant Shard. A shard of crystal that vibrates softly. (Used to deal 3 damage.)",
+        "jack": "Hive Guardian’s Charm. A protective charm made from woven wax and pollen. (Once per combat, reduces an attack’s damage by 3.)",
+        "queen": "Echoing Pollen Bloom. A pouch of rare pollen that increases focus. (Next two attacks gain +3 damage each.)",
+        "king": "You can't draw any new cards next turn. Ancient Hive Relic. A forgotten artifact from the oldest hives. (Boosts Health by 3 for one combat.)",
+        "ace": "Heart of the Swarm. A core of collected memories from the Bumblebeasts. (Restores all Health.)"
+      }
+    },
+    "heffalump": {
+      "tactics": {
+        "3": "Heavy Footfall: The ground rumbles. Your next attack deals -1 damage.",
+        "4": "Crushing Step: A big stomp deals 3 damage. You drop 1 Item from your bag (if you have any).",
+        "5": "Echoing Trumpet: A loud trumpet makes you dizzy. Lose 2 Morale.",
+        "6": "Protective Curl: The Heffalump tucks in.",
+        "7": "Mighty Push: With a nudge (that feels like a boulder), you fall down.",
+        "8": "Crystal Sparkle: Its forest crystal glows bright. All your next turn’s attacks deal - 1 damage.",
+        "9": "Bouncy Stampede: A playful but powerful charge! Deal 4 damage and lose 2 Morale.",
+        "10": "Wobbly Whack: A wild tail swing deals 5 damage. The Heffalump stumbles and takes 3 damage itself.",
+        "jack": "Huff-Puff Bellow: A grumpy bellow makes you doubt yourself.",
+        "queen": "Forest Nap: The Heffalump takes a moment to rest. It restores 4 Health.",
+        "king": "Unmovable: You can't budge it! Ignore all effects from your next attack except damage.",
+        "ace": "Tremble-Trot: The Heffalump charges forward with all its weight! Deal 6 damage and you drop 3 Morale."
+      },
+      "reward_items": {
+        "3": "Torn Blanket. A piece of soft fabric. (Can be used to restore 1 Morale.)",
+        "4": "Heffalump Tooth. A large, worn tooth. (Can be used once to increase an attack by 2 damage.)",
+        "5": "Crystal Dust. Faintly glowing shards of crystal. (Can be crushed to reduce an opponent’s next attack by 2.)",
+        "6": "Halve the damage from your next attack. Heffalump’s Tear. A drop of shimmering liquid. (Restores 2 Health.)",
+        "7": "Miss your next turn. Worn Carving. A wooden figure, perhaps once important. (Boosts Morale by 2.)",
+        "8": "Heavy Stompers. Boots that steady the wearer. (Reduce physical damage by half.)",
+        "9": "Echoing Horn. A horn that mimics the Heffalump’s trumpet. (Draw a card, reduce the next attack by the value.)",
+        "10": "Crystal Chunk. A large, radiant crystal shard. (Used once per combat to deal 3 unblockable damage.)",
+        "jack": "Your next attack deals half damage and you lose Morale equal to the damage. Guardian’s Amulet. A necklace imbued with past protection. (Once per combat, reduces an attack’s damage by 3.)",
+        "queen": "Resonating Crystal. Vibrates with energy. (Restore 2 Health per turn for 3 turns.)",
+        "king": "Heffalump Relic. A treasured artifact. (Boosts Health and Morale by 3.)",
+        "ace": "Heffalump's Notebook. A fragment with memories. (Restores all Morale.)"
+      }
+    },
+    "jagular": {
+      "tactics": {
+        "3": "Ambush Strike: If the Jagular acts first this round, deal 3 damage. Otherwise, deal 1.",
+        "4": "Treetop Leap: It bounds into the canopy! You miss your next attack.",
+        "5": "Echoing Call: A creepy growl from somewhere nearby… you lose 2 Morale.",
+        "6": "Twisting Pounce: A sudden strike! Deal 3 damage. Your next attack deals -1 damage.",
+        "7": "Lurking Dread: Its unsettling presence drains your spirit. Lose 3 Morale.",
+        "8": "Glare: The Jagular’s gem flashes.",
+        "9": "Claw Flicker: Quick strikes! Deal 4 damage.",
+        "10": "Predatory Pause: It just watches. Draw a Card: If Black, your next attack misses.",
+        "jack": "Shifting Shadows: It moves the fight into darker terrain.",
+        "queen": "Cunning Recuperation: The Jagular blends into the shadows and heals 4 Health.",
+        "king": "Flickering Form: You try to hit then realize it wasn’t there.",
+        "ace": "Final Pounce: A dramatic leap! Deal damage equal to half the Jagular’s current Health (rounded up)."
+      },
+      "reward_items": {
+        "3": "Shadowed Claw. A faded claw that hums with latent energy. (Can be used to evade one attack.)",
+        "4": "Cursed Hide. A fragment of its fur, crackling with residual energy. (Reduces all incoming damage by 1 for one combat.)",
+        "5": "Echoing Growl. A bottled sound of its call. (Draw 2 tactics and keep the tactic you prefer, reshuffle the unchosen card.)",
+        "6": "Jagged Fang. A sharp, crystalline fang. (Deals 2 extra damage on your next attack.)",
+        "7": "Twisting Vines. Vines imbued with Hollow energy. (Can be used to snare an enemy, making them miss a turn.)",
+        "8": "Your next turn’s attack deals half damage. Hunter’s Mark. A strange marking that lingers. (Next attack against the same opponent deals +3 damage.)",
+        "9": "Jagular's Shadow. A misty remnant of its movement. (Grants one free dodge per combat.)",
+        "10": "Crystal Stone. A hardened drop of energy. (Can be used to temporarily weaken an enemy’s attack by 2.)",
+        "jack": "You must use a tactic and discard another next turn. Phantom Pawprint. A spectral mark left behind. (Use once to confuse an opponent, making their next attack miss.)",
+        "queen": "Silent Charm. An eerie trinket that enhances awareness. (Your next two attacks cannot be dodged or missed.)",
+        "king": "Halve the damage of your current attack. Jagular’s Bracelet. A deep understanding of movement. (Once per combat, allows you to take an extra turn.)",
+        "ace": "It then bows dramatically. Hunting Guidebook. A pulse of the Jagular’s power. (Your next attack deals half your current health.)"
+      }
+    },
+    "rockodile": {
+      "tactics": {
+        "3": "Jaw Clamp: A big, toothy snap! Deal 3 damage and discard 1 tactic card.",
+        "4": "Boulder Roll: Rolls straight into you! Deal 3 damage and you lose 1 Morale.",
+        "5": "Echoing Roar: A thunderous bellow shakes the canopy. Lose 2 Morale.",
+        "6": "Gator Glide: Dashes with surprising speed! Evade your next attack and gain +1 damage on its next one.",
+        "7": "Murky Ambush: Leaps from the water! Deal 4 damage.",
+        "8": "Crystal Shock: Its crystal pulses with heat.",
+        "9": "Stony Hide: Its skin hardens. Halve the damage from your next attack (rounded up).",
+        "10": "Iron Maw: A mighty chomp! Deal 5 damage. Your next attack deals -2 damage.",
+        "jack": "Riptide Toss: Tosses you with a snout- flick! Deal 3 damage.",
+        "queen": "Shake-It-Off: Wiggles and stretches. Restore 4 Health.",
+        "king": "Sentinel Stomp: Stands firm, then strikes.",
+        "ace": "Final Roar: With one last shout, deal 5 damage. Then the Rockadile flops on its belly, skipping its next turn."
+      },
+      "reward_items": {
+        "3": "Heavy Fang. A stone-like tooth. (Deals 3 extra damage when thrown in combat.)",
+        "4": "Echoing Stone. Vibrates with residual energy. (Can be used once to force an enemy to skip a turn.)",
+        "5": "Riverstone Shard. A smooth, polished fragment. (Once per combat, allows you to block an attack entirely.)",
+        "6": "Heavystone Charm. A relic infused with endurance. (If you reach 0 health or morale, instead remain at 3.)",
+        "7": "Guardian’s Claw. A claw hardened by time. (Grants +1 damage on your next two attacks.)",
+        "8": "Your next attack automatically misses. Crystalized Mud. Hardened, enchanted sediment. (Can be thrown at an enemy to reduce their next attack’s damage by 3.)",
+        "9": "Tectonic Core. A shard of earthbound energy. (Increases your damage resistance by 1 for the next three turns.)",
+        "10": "Stonebound Totem. A relic once used to ward off intruders. (Once per combat, can absorb 4 damage.)",
+        "jack": "You discard your right most card. Rockodile’s Crest. A weathered crest symbolizing endurance. (Reduces all damage taken by 1 for one full battle.)",
+        "queen": "Echoing Coin. Emits a faint vibration. (Enemies draw an extra card on their turn. If value is lower than 10 their Tactic Fails.)",
+        "king": "Halve damage from your next attack. Then its next attack deals +2 damage. Ancient Guardian’s Relic. A relic from the old river guardians. (Boosts Damage by 3 for one combat.)",
+        "ace": "Heart of the Earth. A fragment of resilience. (Restores all Health and Morale.)"
+      }
+    },
+    "snuffalo": {
+      "tactics": {
+        "3": "Herculean Charge: It lunges with full force! Deal 3 damage and you lose 1 Morale from the impact.",
+        "4": "Boulder Lift: Lifts a massive stone and tosses it! Deal 3 damage.",
+        "5": "Snorting Power: Lets out a powerful snort! Its next attack deals +2 damage.",
+        "6": "Buffed Up: Tense muscles deflect harm.",
+        "7": "Stampeding Reps: Dashes in circles! Its next attack hits twice (and get’s +2 damage each).",
+        "8": "Crystal Pulse: The Snuffalo’s cursed crystal throbs. Your next attack deals -2 damage. Stone-Lifting Gloves. Thick, well-worn gloves. (Once per combat, lets you avoid knockback effects.)",
+        "9": "Bench Press Slam: Slams a heavy log overhead! Deal 5 damage. Buffed-Up Brew. A drink made from secret herbs. (Grants +2 Health and +1 damage next turn.)",
+        "10": "Unstoppable: Roars with triumph! Its next attack deals +3 damage.",
+        "jack": "Tornado Sneeze: A ridiculous sneeze sends dust everywhere! Deal 3 damage to all creatures (including the Snuffalo).",
+        "queen": "Power Puff: Shakes off soreness. Restore 4 Health.",
+        "king": "Iron Bulk: Tenses all over. The next attack against it deals only 1 damage.",
+        "ace": "Final Blowout: With a final epic pose, it deals 5 damage… then falls over dramatically and skips its next turn to catch its breath."
+      },
+      "reward_items": {
+        "3": "Horn Shard. A piece of Snuffalo horn. (Once per combat, adds +2 to an attack.)",
+        "4": "Training Manual. A well-used book on fitness. (Boosts Strength-based rolls by +1.)",
+        "5": "Crystalized Protein Powder. Infused with lingering power. (Once per combat, grants +1 to all damage dealt.)",
+        "6": "Halve the damage of the next attack it takes. Champion’s Belt. A golden belt once worn by the strongest Snuffalo. (Reduces next attack damage by 3.)",
+        "7": "Muscle Balm. A paste to ease soreness. (Heals +3 Health outside of combat.)",
+        "10": "Then it skip its next turn. Snuffalo’s Weighted Bracer. A heavy bracer that strengthens the wearer. (Grants +2 damage for the rest of combat.)",
+        "jack": "Champion’s Medallion. Proof of immense strength. (Once per combat, prevents Stun effects.)",
+        "queen": "Gilded Horn Ring. A ring once fitted around a Snuffalo’s horn. (Boosts Health by 3 in one combat.)",
+        "king": "Herd Legacy. A stone with inscriptions. (Boosts Morale by +1 when resting.)",
+        "ace": "Unbreakable Core. A relic of strength. (Once per combat, makes you immune to all damage for one turn.)"
+      }
+    },
+    "woozle": {
+      "tactics": {
+        "3": "Illusionary Strike. A feint attack causes you to react too soon, reducing your next attack’s damage by 2.",
+        "4": "Misdirection. The Woozle distracts you with a sudden movement, causing you to lose 1 Morale.",
+        "5": "Confusing Echo. Its voice bounces off the trees, making it hard to focus. (Draw a Card: Red – Your next card hits, Black – Your next card misses.) Blurred Lens. A lens that distorts vision. (Use once to Draw a card if Red the enemy’s attack will miss.)",
+        "6": "Retreat. Woozle disengages, reducing the damage of your next attack by 3.",
+        "7": "Shadow Dash. A rapid movement allows the Woozle to reposition and strike for 4 damage.",
+        "8": "Crystal Pulse. The cursed crystal embedded in the Woozle shimmers, reducing your next attack by 2 damage.",
+        "9": "Feign Vulnerability.",
+        "10": "Dizzying Spin. A quick spinning move forces you to lose your balance, making you miss your next turn.",
+        "jack": "Vanishing Blink. The Woozle disappears into the mist, forcing you to miss your next attack.",
+        "queen": "Regenerative Trickery. The Woozle siphons energy from the Hollow, healing 2 Health per turn for the next two turns.",
+        "king": "Master of Deception. The Woozle confounds your senses, causing your next two attacks to deal half damage.",
+        "ace": "Grand Trickster’s Finale. The Woozle unleashes a powerful illusion, dealing damage equal to its remaining Health before vanishing."
+      },
+      "reward_items": {
+        "3": "Glinting Trinket. A shiny object of unknown purpose. (Once per combat, distracts an enemy, reducing their next attack’s damage by 2.)",
+        "4": "Echo Stone. A small stone that repeats whispers. (Once per combat, forces an enemy to miss a turn.)",
+        "6": "Phantom Dust. A pouch of shimmering dust. (Once per combat, allows you to avoid an area attack.)",
+        "7": "Flickering Amulet. A charm that shifts in and out of sight. (Boosts Morale by 2.)",
+        "8": "Shadow Sliver. A fragment of the Woozle’s illusionary magic. (Once per combat, lets you redraw a tactic.)",
+        "9": "The Woozle baits you into an overextension. (You take 2 extra damage next turn.) Cursed Ribbon. A tattered piece of fabric from the Woozle’s past. (Reduces an enemy’s next attack by 3.)",
+        "10": "Gleaming Mirage. A mysterious, shifting object. (Once per combat, swap turns with an ally or take over an enemy’s turn.)",
+        "jack": "Trickster’s Coin. A two-sided coin that never lands the same. (Draw a Card: Red – Dodge an attack, Black – Deal 3 damage.)",
+        "queen": "Echoing Charm. A charm that causes eerie laughter when held. (Forces an enemy to redraw their Tactic Card.)",
+        "king": "Whispering Band. A bracelet that vibrates. (Gain armor that can absorb damage equal to half your current health.)",
+        "ace": "Phantom’s Gift. A relic that flickers out of existence. (Once per combat, you vanish and avoid all attacks until your next turn.)"
+      }
+    },
+    "tootle": {
+      "tactics": {
+        "3": "Bass Boom. A deep thump rattles your chest, dealing 2 Health and -1 Morale.",
+        "4": "Reed Whistle. Piercing tone startles you, making you drop 2 Supplies.",
+        "5": "Harmony Clash. Strikes a chord: deal 3 Health and -1 Morale.",
+        "6": "Discordant Chord. The tune twists, dealing 2 Health and forcing you to discard your top tactic card.",
+        "7": "Nature’s Crescendo. A roar of sound calls animals. It deals 4 Health and takes 1 Supply.",
+        "8": "Melodic Rush.",
+        "9": "Chaotic Encore. Plays wildly, hitting twice for 2 Health each (total 4).",
+        "10": "Drumquake.",
+        "jack": "Feral Rhythm. A wild beat overwhelms, deal 6 Health damage.",
+        "queen": "Crystal Hymn. The cursed crystal hums, restoring 4 Health to itself and stealing 2 Supplies from you.",
+        "king": "Finale Roar. A devastating chord shakes the whole area, deal 5 Health and -2 Supplies.",
+        "ace": "Grand Crescendo. Plays with full force: deals 4 Health, -2 Morale, and -2 Supplies all at once."
+      },
+      "reward_items": {
+        "3": "Forest Flute. A carved wooden flute. (Outside combat: calm beasts or charm travellers; in combat: restore 2 Morale.)",
+        "4": "Meadow Rattle. A woven reed rattle. (Once per exploration, reroll/re-draw any Supplies-loss event.)",
+        "5": "Sunbeat Pendant. A pendant with a carved sun. (Once per combat, add +2 damage to your next attack.)",
+        "6": "Wild Drumstick. A stick chewed by beetles. (Outside combat: redraw a Depth event; in combat: block 1 damage once.)",
+        "7": "Bramble Charm. A vine-woven charm. (Once per combat, reflect 2 damage back at an attacker.)",
+        "8": "The rhythm drives it into a frenzy. Deal 5 Health to you but also 1 recoil to itself. Songleaf. A large leaf with holes that hum in the wind. (Outside combat: forecast weather; in combat: restore 2 Health once.)",
+        "9": "Bloomstone. A moss-covered stone. (Once per rest, heal 2 Health and gain +1 Supply from foraging.)",
+        "10": "Slams its shell like thunder. Deal 3 Health and -2 Morale. Earth Idol. Once per combat, negate the effects of a morale-loss attack.",
+        "jack": "Totem Stick. A carved, painted baton. (Once per combat, rally allies: all allies gain +1 damage on their next attack.)",
+        "queen": "Echo Gem. A gem that repeats sounds. (Redraw your hand once.)",
+        "king": "Unity Banner. A banner made of stitched leaves. (Prevent the next Supply loss.)",
+        "ace": "Festival Crown. A circlet of vines and beads. (Once per game, restore 3 Health, 3 Morale, and 3 Supplies at camp.)"
+      }
+    },
+    "totter": {
+      "tactics": {
+        "3": "Pebble Ping. Flicks a pebble with precision, dealing 2 Health.",
+        "4": "Splash Spray. Blasts water in your face, you lose 1 Supply.",
+        "5": "Tail Flick. Smacks you for 2 Health and forces you to redraw your card.",
+        "6": "Illusion.",
+        "7": "Double Dip. Pops up twice, hitting you for 2 Health and 2 Morale.",
+        "8": "Red Blur. Darts around wildly, striking for 4 Health.",
+        "9": "Blue Trick.",
+        "10": "Snatch & Dash. Swipes something from you, lose 2 Supplies.",
+        "jack": "Group Prank. Other Totters join, together they deal 3 Health and force you to redraw your hand.",
+        "queen": "Chaotic Spin. Whirls through the water, 3 Health and 2 Morale lost.",
+        "king": "Otterstorm. Splashes everywhere, deal 4 Health & lose 1 Supply.",
+        "ace": "Grand Prank. Pretends to be defeated, flip a card: Red, you take 5 Health; Black, nothing happens."
+      },
+      "reward_items": {
+        "3": "Shiny Button. A lost button polished smooth. (Once per combat: distract an enemy to reduce their damage by 1.)",
+        "4": "Watershell Cup. A shell that holds water. (Once per rest, negate a Supply loss due to thirst or spoilage.)",
+        "5": "River Charm. A plaited talisman. (Once per combat: cancel an enemy’s tactic.)",
+        "6": "Splits into echos. Your attack misses, & you lose 1 Morale in frustration. Glass Bauble. A colorful bead. (Once per combat, restore 2 Morale and swap cards with the top card in the deck.)",
+        "7": "Otter Pawprint Stone. A river stone etched by claws. (Once, let you draw your lowest-value card.)",
+        "8": "Copper Whistle. A tiny whistle. (Once per combat: once, boost your next Morale gain by +2.)",
+        "9": "Mimics you. Copy your last tactic, but deal half its value to you. Mirror Pebble. A pebble that shines like glass. (Once per combat, reflect half the damage of an attack back to the attacker.)",
+        "10": "Hidden Cache Map. A scrap of waterproof hide. (Once per day, negate a single Supply loss.)",
+        "jack": "Otter Totem. A carved figurine. (Once per day, skip a Hollow Event.)",
+        "queen": "Rainbow Scale. A fish scale shimmering with color. (Once per combat, negate a Morale-loss effect once.)",
+        "king": "River Crown. A crown woven from weeds and flowers. (When worn restore 2 Health at camp)",
+        "ace": "Trickster’s Coin. A two-sided coin. (Outside combat: used for decisions or dares; in combat: flip Red = dodge an attack, Black = deal 3 damage.)"
+      }
+    },
+    "lizzle": {
+      "tactics": {
+        "3": "Tail Sweep. Knocks you aside for 2 Health and 1 Supply.",
+        "4": "Orderly Bite. Deals 2 Health. Both sides discard their lowest-value card.",
+        "5": "Shielding Stance. Reduces your attack this round by 3 and heals itself 2 Health.",
+        "6": "Sacred Dash. Charges in, dealing 3 Health and lowering Morale by 1.",
+        "7": "Battle Chant. A piercing cry rallies itself, restoring 2 Health and causing you to lose 2 Morale.",
+        "8": "Fiery Trample. Leaps with reckless energy for 4 Health and scatters 2 Supplies.",
+        "9": "Lawful Lash. A tail strike for 3 Health. If your next attack does 5+ damage, reduce it to 3.",
+        "10": "Radiant Pulse. Crystal glows, dealing 3 Health and lowering Morale by 2.",
+        "jack": "Pack Rally. Other lizards splash in, together deal 4 Health and cost you 1 Supply.",
+        "queen": "Molten Renewal. Sheds its heated skin, healing 5 Health and burning your confidence (Morale -2).",
+        "king": "Judgment Strike. A mighty slam deals 5 Health and forces both sides to lose 1 Supply.",
+        "ace": "Grand Marshal’s Roar. Heals itself 3 Health, deals 3 Health to you, lowers everyone’s Morale by 2, and shakes 2 Supplies loose."
+      },
+      "reward_items": {
+        "3": "Balance Bell. A tiny bronze bell. (Once per day, restore +1 Morale when rung at camp.)",
+        "4": "Unity Beads. A string of carved beads. (Permanent: you gain +1 Morale maximum.)",
+        "5": "Ivory Token. A smooth bone charm. (Once per combat, prevent 3 damage to yourself.)",
+        "6": "Marcher’s Strap. A sturdy leather strap. (Permanent: reduce Supply loss from travel events by 1.)",
+        "7": "Chant Stone. A rune-etched pebble. (Once per combat, force an enemy to redraw their tactic card.)",
+        "8": "Flame Ribbon. A scorched ribbon. (Once per day, add 2 Supplies during a supplies event.)",
+        "9": "Scales of Justice. A balanced talisman. (Once per combat, reduce the damage of the highest attack card played by 2.)",
+        "10": "Radiant Shard. A white-hot crystal. (During combat, deal 2 damage that cannot be prevented.)",
+        "jack": "Banner Charm. A woven charm. (Once per combat, all allies add +1 damage to their next attack.)",
+        "queen": "Molted Hide. A thick piece of skin. (Once per combat, absorb 4 damage before it reaches you.)",
+        "king": "Oath Stone. A polished stone. (Once per day, negate any Supply loss from an event.)",
+        "ace": "Crown of Ashes. A scorched circlet. (Once per combat, negate all incoming damage for one round, then discard this item.)"
+      }
+    },
+    "lumpus": {
+      "tactics": {
+        "3": "Snout Slam. A sudden thrust deals 2 Health and knocks away 1 Supply.",
+        "4": "River Splash. Crashes into the water sending waves that scatter 2 Supplies.",
+        "5": "Wide Maw. A huge bite crushes down for 3 Health.",
+        "6": "Mud Wall. Kicks up sludge blocking vision & reducing your next attack by 3.",
+        "7": "Bellowing Roar. Lets out a thunderous cry that shakes your spirit causing -3 Morale.",
+        "8": "River Charge. Lumbers forward for 4 Health and knocks away 1 Supply.",
+        "9": "Equalizing Stomp. A mighty stomp that deals 2 Health to both combatants and forces both to drop 1 Supply.",
+        "10": "Thornhide Bash. Scrapes across you with its bulk for 3 Health and lowers Morale by 2.",
+        "jack": "Territorial Rally. Calls other river beasts who trample in dealing 4 Health and scattering 2 Supplies.",
+        "queen": "Soothing Submerge. Slips into the water and heals 5 Health.",
+        "king": "Crystal Surge. The crystal pulses for 4 Health and -2 Morale.",
+        "ace": "Nature’s Verdict. The Lumpus slams the riverbank with all its strength causing 3 Health damage, -2 Morale, and loss of 2 Supplies to its opponent."
+      },
+      "reward_items": {
+        "3": "Hippo Tooth. A large worn tooth. (Once per combat, prevent 2 damage to yourself.)",
+        "4": "Mud Jar. A clay jar sealed with river mud. (Once per day, negate 1 Supply loss.)",
+        "5": "Jawbone Bead. A bead carved from bone. (Once per combat, add +2 damage to your next attack.)",
+        "6": "Clay Pendant. A pendant hardened in fire. (Once per combat, reduce an enemy’s attack by 3.)",
+        "7": "Horn Token. A polished horn fragment. (Once per day, restore 2 Morale at camp when blown.)",
+        "8": "Charging Stone. A smooth weighty rock. (Once per combat, deal 3 damage to an enemy.)",
+        "9": "Balance Stone. A round white stone. (Once per combat, force all players to discard their lowest-value card.)",
+        "10": "Bramble Charm. A charm of thorn and vine. (Once per combat, reflect 2 damage back at an attacker.)",
+        "jack": "River Banner. A reed-woven banner. (Once per combat, all allies add +1 damage to their next attack.)",
+        "queen": "Reed Crown. A circlet of reeds. (Once per day, restore 3 Health when worn at camp.)",
+        "king": "Pulse Gem. A glowing shard. (Once per combat, cancel the tactic of an enemy.)",
+        "ace": "Relic of the River. A moss-covered stone crown. (Once per combat, deal 2 damage & negate Supply loss this round.)"
+      }
+    },
+    "grizzle": {
+      "tactics": {
+        "3": "Heavy Claw. A wide paw swipe deals 3 Health.",
+        "4": "Rooted Might. Stands tall and heals 3 Health, then slams for damage equal to its current Health - 3.",
+        "5": "Foraging Bite. Bites down for 2 Health and knocks away 2 Supplies.",
+        "6": "Overhead Slam. A crushing strike deals damage equal to half its current Health (rounded down).",
+        "7": "Roar. A roar lowers your Morale by damage equal to half the number of Supplies you have (rounded down).",
+        "8": "Enduring Hide. Absorbs your blow, ignores damage, then retaliates for 4 Health.",
+        "9": "Crushing Maul.",
+        "10": "Feral Slam. Hits with full weight, dealing 4 Health and -2 Morale.",
+        "jack": "Endless Appetite. Bites deeply for 3 Health, then heals 3 Health.",
+        "queen": "Verdant Wrath. Calls the forest to aid, Draw a card and deal damage equal to its value.",
+        "king": "Primal Crash. Slams down, lowering your Morale equal to its current Health and dealing 3 Health.",
+        "ace": "Nature Unleashed. At peak fury, deals damage equal to its current Health, lowers Morale by 3, and knocks away 3 Supplies."
+      },
+      "reward_items": {
+        "3": "Hunter’s Claw. A sharpened claw. (Once per combat, add +2 damage to an attack.)",
+        "4": "Strength Bead. A mossy bead. (Once per day, restore 2 Health at camp.)",
+        "5": "Berry Bundle. A pouch of forest berries. (Once per day, gain +2 Supplies.)",
+        "6": "Stone Tooth. A cracked fang. (Once per combat, deal 4 damage.)",
+        "7": "Roar Pendant. A fang pendant. (Once per combat, reduce an enemy’s Morale by 2.)",
+        "8": "Hide Strip. A strip of fur. (Once per combat, absorb 3 damage.)",
+        "9": "Leaps forward dealing Morale damage equal to half its current Health. Maul Stone. A weighty charm. (Once per combat, deal 3 damage.)",
+        "10": "Feral Token. A carved bone. (Once per combat, deal 2 damage and reduce enemy Morale by 1.)",
+        "jack": "Bloodleaf Herb. A red-veined leaf. (Once per day, restore 3 Health at camp.)",
+        "queen": "Wrath Stone. A rune-marked stone. (Once per combat, deal 2 damage to all enemies.)",
+        "king": "Crash Relic. A carved relic. (Once per combat, negate Morale loss this round.)",
+        "ace": "Relic of Growth. A moss-covered crown stone. (Once per combat, deal 3 damage to all enemies and restore 2 Health to yourself.)"
+      }
+    },
+    "spookle": {
+      "tactics": {
+        "3": "Rotting Touch. Strikes with decayed bark dealing 2 Health and lowering Supplies by 1 as food spoils.",
+        "4": "Leeching Vines. Strikes for 2 Health and heals itself for 2 Health.",
+        "5": "Fungal Bloom. Spores cloud the air lowering Morale by 3.",
+        "6": "Branch Slam. A swing deals 4 Health.",
+        "7": "Supply Rot. Roots coil around your pack scattering 2 Supplies.",
+        "8": "Decay Howl. A hollow cry lowers your Morale by 2 and deals 2 Health.",
+        "9": "Entangling Crash. Slams down dealing 3 Health and lowering your Morale by 1.",
+        "10": "Corrupt Growth. Roots erupt violently dealing damage equal to half its current Health (rounded up).",
+        "jack": "Thor Swarm. Thorns and brambles whip out dealing 4 Health and forcing you to drop 2 Supplies.",
+        "queen": "Verdant Drain. Lashes of ivy deal 3 Health and it heals 3 Health.",
+        "king": "Forest’s Hunger. The trees themselves seem alive dealing 5 Health and lowering Morale by 2.",
+        "ace": "Rot and Bloom. A surge deals damage equal to half its current Health, lowers Morale by 3, and scatters 3 Supplies."
+      },
+      "reward_items": {
+        "3": "Rotwood Chip. A piece of dark bark. (Once per day, negate 1 Supply loss event.)",
+        "4": "Leech Seed. A seed pod. (Once per combat, heal 2 Health after attacking.)",
+        "5": "Spore Pouch. A pouch of mushrooms. (Once per combat, increase damage by 2.)",
+        "6": "Branch Club. A carved stick. (Once per combat, deal 3 damage.)",
+        "7": "Hollow Gourd. A dried container. (Once per day, add +2 Supplies after an event.)",
+        "8": "Howl Stone. A carved stone. (Once per day, restore 2 Morale when held at camp.)",
+        "9": "Vine Token. A vine knot charm. (Once per combat, absorb 2 damage.)",
+        "10": "Corruption Seed. A black seed. (Once per combat, deal 2 damage and regain 1 morale.)",
+        "jack": "Crown of Leaves. A circlet. (Once per combat, reflect 2 damage back.)",
+        "queen": "Drain Gem. A dark gem. (Once per combat, restore 2 Health after being hit.)",
+        "king": "Hunger Idol. A carved idol. (Once per combat, deal 3 damage and reduce enemy Morale by 1.)",
+        "ace": "Relic of Decay. A relic bound in roots. (Once per combat, deal 2 damage to all enemies & stop them healing for 2 turns.)"
+      }
+    }
+  }
+}

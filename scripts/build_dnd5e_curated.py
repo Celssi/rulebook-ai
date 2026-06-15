@@ -126,10 +126,12 @@ CLASSES = [
         "id": "sorcerer", "label": "Sorcerer", "hit_die": 6, "primary_ability": "cha",
         "saving_throws": ["con", "cha"], "skill_choices": 2,
         "skill_options": ["arcana", "deception", "insight", "intimidation", "persuasion", "religion"],
-        "armor_training": [], "spellcasting": "known", "spell_list": "sorcerer", "subclass_level": 3,
+        # PHB 2024: the Sorcerer is a *prepared* caster (Spells Prepared column),
+        # not Spells Known as in 2014. Counts read from the PHB Sorcerer table.
+        "armor_training": [], "spellcasting": "prepared", "spell_list": "sorcerer", "subclass_level": 3,
         "subclasses": ["Aberrant Sorcery", "Clockwork Sorcery", "Draconic Sorcery", "Wild Magic Sorcery"],
         "cantrips_by_level": [4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-        "spells_known_by_level": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16],
+        "prepared_by_level": [2, 4, 6, 7, 9, 10, 11, 12, 14, 15, 16, 16, 17, 17, 18, 18, 19, 20, 21, 22],
     },
     {
         "id": "warlock", "label": "Warlock", "hit_die": 8, "primary_ability": "cha",
@@ -152,7 +154,7 @@ CLASSES = [
     {
         "id": "wizard", "label": "Wizard", "hit_die": 6, "primary_ability": "int",
         "saving_throws": ["int", "wis"], "skill_choices": 2,
-        "skill_options": ["arcana", "history", "insight", "investigation", "medicine", "religion"],
+        "skill_options": ["arcana", "history", "insight", "investigation", "medicine", "nature", "religion"],
         "armor_training": [], "spellcasting": "prepared", "spell_list": "wizard", "subclass_level": 3,
         "subclasses": ["Abjurer", "Diviner", "Evoker", "Illusionist"],
         "cantrips_by_level": [3, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],

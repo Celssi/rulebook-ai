@@ -9,7 +9,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from src.games.dnd5e.character_builder import level_up, rebuild_character, spell_limits, compute_spell_slots
+from src.games.dnd5e.character_builder import (
+    character_creation_summary,
+    compute_spell_slots,
+    level_up,
+    rebuild_character,
+    spell_limits,
+)
 from src.games.dnd5e.character_data import (
     character_options_payload,
     get_background,
@@ -37,7 +43,7 @@ def main() -> int:
         "cleric": {"mode": "prepared", "cantrips": 3, "picks": 4, "slots": {"1": 2}},
         "druid": {"mode": "prepared", "cantrips": 2, "picks": 4, "slots": {"1": 2}},
         "wizard": {"mode": "prepared", "cantrips": 3, "picks": 4, "slots": {"1": 2}},
-        "sorcerer": {"mode": "known", "cantrips": 4, "picks": 2, "slots": {"1": 2}},
+        "sorcerer": {"mode": "prepared", "cantrips": 4, "picks": 2, "slots": {"1": 2}},
         "warlock": {"mode": "pact", "cantrips": 2, "picks": 2, "slots": {"1": 1}},
         "paladin": {"mode": "prepared", "cantrips": 0, "picks": 2, "slots": {"1": 2}},
         "ranger": {"mode": "prepared", "cantrips": 0, "picks": 2, "slots": {"1": 2}},
@@ -91,6 +97,69 @@ def main() -> int:
 
     leveled = level_up(rebuild_character(Dnd5eCharacter(name="X", class_name="fighter", level=1)))
     assert leveled.level == 2
+
+    # Regression: background ability increase must not stack across repeated rebuilds.
+    stack = Dnd5eCharacter(
+        name="Stack",
+        species="human",
+        class_name="fighter",
+        background="soldier",  # STR/DEX/CON, applies +2/+1
+        level=1,
+        ability_scores_set=True,
+        ability_scores={"str": 15, "dex": 14, "con": 13, "int": 8, "wis": 10, "cha": 12},
+    )
+    stack = rebuild_character(stack)
+    first = dict(stack.ability_scores)
+    for _ in range(3):
+        stack = rebuild_character(stack)
+    assert stack.ability_scores == first, (first, stack.ability_scores)
+    assert stack.base_ability_scores["str"] == 15, stack.base_ability_scores
+    assert stack.ability_scores["str"] == 17, stack.ability_scores  # 15 + 2 background, once
+
+    # Armor-derived AC (PHB 2024 armor table).
+    from src.games.dnd5e.character_builder import compute_ac, asi_feat_slots
+    from src.games.dnd5e.actions import run_shortcut
+
+    ac_char = Dnd5eCharacter(
+        class_name="fighter", level=1, ability_scores_set=True,
+        ability_scores={"str": 16, "dex": 14, "con": 14, "int": 8, "wis": 10, "cha": 12},
+        armor="breastplate", shield=True,
+    )
+    ac_char = rebuild_character(ac_char)
+    assert ac_char.ac == 18, ("breastplate+shield", ac_char.ac)  # 14 + min(2,2) + 2
+    ac_char.armor, ac_char.shield = "plate", False
+    ac_char = rebuild_character(ac_char)
+    assert ac_char.ac == 18, ("plate", ac_char.ac)
+    ac_char.armor = "leather"
+    ac_char = rebuild_character(ac_char)
+    assert ac_char.ac == 13, ("leather", ac_char.ac)  # 11 + 2 dex
+    ac_char.ac_manual, ac_char.ac = True, 21
+    ac_char = rebuild_character(ac_char)
+    assert ac_char.ac == 21, ("manual override", ac_char.ac)
+
+    # ASI / feat slots and idempotent application.
+    assert asi_feat_slots("fighter", 8) == 3  # 4, 6, 8
+    assert asi_feat_slots("rogue", 10) == 3  # 4, 8, 10
+    assert asi_feat_slots("wizard", 12) == 3  # 4, 8, 12
+    asi_char = Dnd5eCharacter(
+        class_name="fighter", level=8, ability_scores_set=True,
+        ability_scores={"str": 16, "dex": 12, "con": 14, "int": 8, "wis": 10, "cha": 12},
+        asi_choices=[{"type": "asi", "plus": {"str": 2}}, {"type": "feat", "feat": "Sentinel"}],
+    )
+    asi_char = rebuild_character(asi_char)
+    assert asi_char.ability_scores["str"] == 18, asi_char.ability_scores
+    assert asi_char.feats == ["sentinel"], asi_char.feats
+    before = asi_char.ability_scores["str"]
+    for _ in range(3):
+        asi_char = rebuild_character(asi_char)
+    assert asi_char.ability_scores["str"] == before
+    summ = character_creation_summary(asi_char)
+    assert summ["asi_feat_slots"] == 3 and summ["needs_asi"] is True
+
+    # Death save shortcut tracks running tally and persists via entity_updates.
+    run = run_shortcut("death_save", hp=0, max_hp=12, death_save_successes=2, death_save_failures=0)
+    upd = run["entity_updates"]
+    assert "death_save_successes" in upd and "death_save_failures" in upd
 
     print("validate_dnd5e_character: OK")
     return 0

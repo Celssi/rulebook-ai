@@ -52,7 +52,7 @@ from src.games.brambletrek.narrator import synthesize_narrator_line
 from src.games.brambletrek.roster import create_character, delete_character, list_characters, load_character
 from src.games.saves import AppSession, PlayContext, get_play_store
 from src.llm import ChatProvider
-from src.rag import query as rag_query
+# rag_query is imported lazily at the call site (avoids src.rag <-> registry cycle).
 from src.tools import draw_cards, format_card_result
 
 PENDING_JOURNEY_KEY = "pending_journey"
@@ -392,6 +392,8 @@ def answer_table_lookup_prompt(
         effective_top_k = max(effective_top_k, 14)
     if "journey" in lower or "exploration" in lower or "event 1" in lower:
         effective_top_k = max(effective_top_k, 12)
+    from src.rag import query as rag_query
+
     result = rag_query(
         prompt,
         top_k=effective_top_k,

@@ -35,7 +35,7 @@ from src.games.whispers.lonelog import (
 from src.games.whispers.narrator import synthesize_journal_entry, synthesize_lonelog_summary
 from src.games.whispers.roster import create_investigation, delete_investigation, list_investigations, load_investigation
 from src.llm import ChatProvider
-from src.rag import query as rag_query
+# rag_query is imported lazily at the call site (avoids src.rag <-> registry cycle).
 from src.tools import normalize_card_name
 
 
@@ -166,6 +166,8 @@ def _answer_prompt(
     chat_provider: ChatProvider,
 ) -> tuple[str, list[dict]]:
     inv = get_investigation(ctx)
+    from src.rag import query as rag_query
+
     result = rag_query(
         prompt,
         top_k=top_k,

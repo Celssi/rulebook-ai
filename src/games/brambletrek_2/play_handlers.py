@@ -59,7 +59,7 @@ from src.games.brambletrek_2.lonelog import (
 from src.games.brambletrek_2.narrator import synthesize_narrator_line
 from src.games.brambletrek_2.roster import create_character, delete_character, list_characters, load_character
 from src.games.saves import AppSession, PlayContext, get_play_store
-from src.rag import query as rag_query
+# rag_query is imported lazily at the call site (avoids src.rag <-> registry cycle).
 from src.tools import draw_cards
 
 GAME_ID = "brambletrek_2"
@@ -406,6 +406,8 @@ def answer_table_lookup_prompt(
     selected_factions: list[str],
     chat_provider: str,
 ) -> tuple[str, list[dict], str]:
+    from src.rag import query as rag_query
+
     result = rag_query(
         prompt,
         top_k=top_k,

@@ -7,10 +7,12 @@ from typing import Any
 
 from src.games.dnd5e.character_data import (
     full_caster_slots,
+    get_armor,
     get_background,
     get_class,
     get_species,
     half_caster_slots,
+    shield_ac_bonus,
     skills_data,
 )
 from src.games.dnd5e.entity import ABILITY_KEYS, Dnd5eCharacter
@@ -140,17 +142,46 @@ def spell_limits(char: Dnd5eCharacter) -> dict[str, int]:
 def rebuild_character(char: Dnd5eCharacter, *, recompute_hp: bool = False) -> Dnd5eCharacter:
     """Recompute derived stats from class, species, background, and level."""
     char.clamp()
+    # Resolve the *base* (pre-background) ability scores, then derive the final
+    # scores by applying the background increase exactly once. Tracking the base
+    # separately keeps rebuild idempotent — without it, repeated saves would stack
+    # the +2/+1 onto already-boosted scores.
     if char.class_name and not char.ability_scores_set:
-        char.ability_scores = standard_array_for_class(char.class_name)
+        base = standard_array_for_class(char.class_name)
+    elif char.base_ability_scores:
+        base = {
+            k: int(char.base_ability_scores.get(k, char.ability_scores.get(k, 10)) or 10)
+            for k in ABILITY_KEYS
+        }
+    else:
+        base = {k: int(char.ability_scores.get(k, 10) or 10) for k in ABILITY_KEYS}
+    char.base_ability_scores = dict(base)
 
+    final = dict(base)
     if char.background and char.background_asi_mode != "manual":
-        char.ability_scores = apply_background_asi(
-            dict(char.ability_scores),
+        final = apply_background_asi(
+            final,
             char.background,
             plus2=char.background_asi_plus2,
             plus1=char.background_asi_plus1,
             all_three=char.background_asi_all_three,
         )
+    # Apply ability score improvements taken at level-up (idempotent: summed from
+    # the recorded choices, not the already-derived scores). Derive feats too.
+    feat_names: list[str] = []
+    for choice in char.asi_choices:
+        if not isinstance(choice, dict):
+            continue
+        if choice.get("type") == "feat":
+            name = str(choice.get("feat") or "").strip()
+            if name:
+                feat_names.append(name)
+        else:
+            for ab, amount in (choice.get("plus") or {}).items():
+                if ab in ABILITY_KEYS:
+                    final[ab] = min(20, final.get(ab, 10) + int(amount or 0))
+    char.feats = feat_names
+    char.ability_scores = final
 
     sp = get_species(char.species)
     if sp:
@@ -186,12 +217,33 @@ def rebuild_character(char: Dnd5eCharacter, *, recompute_hp: bool = False) -> Dn
         if char.hp <= 0 or char.hp > char.max_hp:
             char.hp = char.max_hp
 
-    # Base AC: 10 + DEX (armor not modeled yet)
-    if char.ac <= 0:
+    # Armor Class from worn armor + shield, unless the player set it manually.
+    if not char.ac_manual:
+        char.ac = compute_ac(char)
+    elif char.ac <= 0:
         char.ac = 10 + char.ability_modifier("dex")
 
     char.clamp()
     return char
+
+
+def compute_ac(char: Dnd5eCharacter) -> int:
+    """AC from worn armor + shield (PHB 2024 armor table)."""
+    dex = char.ability_modifier("dex")
+    armor = get_armor(char.armor) if char.armor and char.armor != "none" else None
+    if not armor:
+        base = 10 + dex
+    else:
+        base = int(armor.get("base_ac", 10) or 10)
+        category = str(armor.get("category", "") or "")
+        if armor.get("add_dex") or category == "light":
+            base += dex
+        elif "dex_cap" in armor or category == "medium":
+            base += min(dex, int(armor.get("dex_cap", 2) or 2))
+        # heavy armor adds no DEX
+    if char.shield:
+        base += shield_ac_bonus()
+    return max(1, min(30, base))
 
 
 def level_up(char: Dnd5eCharacter, *, hp_roll: int | None = None) -> Dnd5eCharacter:
@@ -209,9 +261,26 @@ def level_up(char: Dnd5eCharacter, *, hp_roll: int | None = None) -> Dnd5eCharac
     return rebuild_character(char, recompute_hp=False)
 
 
+# Levels that grant an Ability Score Improvement / feat. Most classes use the
+# default; Fighter and Rogue get extras (PHB 2024).
+_ASI_LEVELS_DEFAULT = (4, 8, 12, 16, 19)
+_ASI_LEVELS_BY_CLASS = {
+    "fighter": (4, 6, 8, 12, 14, 16, 19),
+    "rogue": (4, 8, 10, 12, 16, 19),
+}
+
+
+def asi_feat_slots(class_id: str, level: int) -> int:
+    """Number of ASI/feat choices unlocked by the given level."""
+    levels = _ASI_LEVELS_BY_CLASS.get(class_id, _ASI_LEVELS_DEFAULT)
+    return sum(1 for lv in levels if level >= lv)
+
+
 def character_creation_summary(char: Dnd5eCharacter) -> dict[str, Any]:
     limits = spell_limits(char)
     cls = get_class(char.class_name) or {}
+    slots = asi_feat_slots(char.class_name, char.level) if char.class_name else 0
+    taken = len(char.asi_choices)
     return {
         "proficiency_bonus": char.proficiency_bonus(),
         "spell_limits": limits,
@@ -220,6 +289,10 @@ def character_creation_summary(char: Dnd5eCharacter) -> dict[str, Any]:
         "needs_subclass": char.level >= int(cls.get("subclass_level", 3) or 3) and not char.subclass,
         "hit_die": char.hit_die,
         "hit_dice_available": max(0, char.hit_dice_max - char.hit_dice_spent),
+        "asi_feat_slots": slots,
+        "asi_feat_taken": taken,
+        "needs_asi": slots > taken,
+        "ac": char.ac,
     }
 
 
@@ -268,6 +341,10 @@ def long_rest_recover(char: Dnd5eCharacter) -> dict[str, Any]:
     char.hp = char.max_hp
     char.hit_dice_spent = 0
     char.spell_slots = compute_spell_slots(char)
+    char.death_save_successes = 0
+    char.death_save_failures = 0
+    char.exhaustion = max(0, char.exhaustion - 1)  # PHB 2024: long rest removes 1 level
+    char.concentration = ""
     if char.species == "human":
         char.heroic_inspiration = True
     char.clamp()
@@ -275,6 +352,8 @@ def long_rest_recover(char: Dnd5eCharacter) -> dict[str, Any]:
     summary = f"Long rest: HP restored to **{char.hp}/{char.max_hp}**, all Hit Dice available"
     if slots:
         summary += f", spell slots restored ({slots})"
+    if char.exhaustion:
+        summary += f", exhaustion now level {char.exhaustion}"
     return {
         "summary": summary,
         "entity_updates": {
@@ -282,5 +361,9 @@ def long_rest_recover(char: Dnd5eCharacter) -> dict[str, Any]:
             "hit_dice_spent": 0,
             "spell_slots": dict(char.spell_slots),
             "heroic_inspiration": char.heroic_inspiration,
+            "death_save_successes": 0,
+            "death_save_failures": 0,
+            "exhaustion": char.exhaustion,
+            "concentration": "",
         },
     }

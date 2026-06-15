@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 # Bootstrap and run rulebook-ai (venv, deps, Ollama, indexes, API + React UI).
+#
+# Indexing: by default builds FULL indexes (all PDFs, with OCR) for every game
+# that doesn't have one yet, then starts the app.
+#
+# Usage:
+#   ./run.sh                      Build missing full indexes, then run
+#   ./run.sh --reindex-all        Force a full re-ingest of EVERY game (all PDFs + OCR)
+#   ./run.sh --reindex-all --force-ocr   ...also ignore the OCR cache (re-OCR at current DPI)
+#   ./run.sh --mvp-only           Faster: build only the MVP PDF set for missing indexes
+#   ./run.sh --skip-ingest        Don't touch indexes
+# Bootstrap flags also: --skip-ollama, --skip-checks. App args after `--`.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")" && pwd)"

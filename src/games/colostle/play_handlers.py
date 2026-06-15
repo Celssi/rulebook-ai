@@ -22,7 +22,7 @@ from src.games.colostle.roster import create_character, delete_character, list_c
 from src.games.saves import AppSession, PlayContext, get_play_store
 from src.games.saves.messages import append_chat_exchange
 from src.llm import ChatProvider
-from src.rag import query as rag_query
+# rag_query is imported lazily at the call site (avoids src.rag <-> registry cycle).
 
 
 def _store():
@@ -135,6 +135,8 @@ def _answer_prompt(
     factions: list[str],
     chat_provider: ChatProvider,
 ) -> tuple[str, list[dict]]:
+    from src.rag import query as rag_query
+
     result = rag_query(
         prompt,
         top_k=top_k,

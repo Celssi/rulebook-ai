@@ -109,6 +109,8 @@ def run_shortcut(
     advantage: str = "normal",
     target_ac: int | None = None,
     hit_dice_to_spend: int = 1,
+    death_save_successes: int = 0,
+    death_save_failures: int = 0,
     **_kwargs,
 ) -> dict:
     _ = game_id, ac
@@ -166,12 +168,46 @@ def run_shortcut(
 
     if shortcut_id == "death_save":
         result = roll_death_saves()
-        user = f"**Death save** (HP {hp}/{max_hp})\n\n{result['summary']}"
+        roll = int(result.get("roll", 0))
+        succ = max(0, min(3, int(death_save_successes)))
+        fail = max(0, min(3, int(death_save_failures)))
+        updates: dict = {}
+        status = ""
+        if roll == 20:
+            succ, fail = 0, 0
+            status = "**Natural 20 — regain 1 HP and wake up!**"
+            updates = {"hp": 1, "death_save_successes": 0, "death_save_failures": 0}
+        else:
+            if roll == 1:
+                fail = min(3, fail + 2)
+            elif roll >= 10:
+                succ = min(3, succ + 1)
+            else:
+                fail = min(3, fail + 1)
+            if succ >= 3:
+                status = "**Three successes — stable** (still at 0 HP)."
+                updates = {"death_save_successes": 0, "death_save_failures": 0}
+            elif fail >= 3:
+                status = "**Three failures — the character dies.**"
+                updates = {"death_save_successes": 0, "death_save_failures": 3}
+            else:
+                updates = {"death_save_successes": succ, "death_save_failures": fail}
+        tally = f"Successes {min(succ, 3)}/3 · Failures {min(fail, 3)}/3"
+        user = f"**Death save** (HP {hp}/{max_hp})\n\n{result['summary']}\n\n{tally}"
+        if status:
+            user += f"\n\n{status}"
         prompt = (
             f"D&D 5e death saving throw for {build} at {hp}/{max_hp} HP. "
-            f"{result['summary']}. Explain death save rules and outcomes."
+            f"{result['summary']}. Running tally: {tally}. {status} "
+            "Explain death save rules and what happens next."
         )
-        return {"user_message": user, "prompt": prompt, "dice": result, "task": "death_save"}
+        return {
+            "user_message": user,
+            "prompt": prompt,
+            "dice": result,
+            "entity_updates": updates,
+            "task": "death_save",
+        }
 
     if shortcut_id == "oracle":
         result = roll_oracle()

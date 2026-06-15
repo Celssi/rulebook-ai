@@ -7,7 +7,7 @@ import {
   spellPickLabel,
   spellPickLimit,
 } from "../../lib/dnd5eCharacterCreation";
-import { FormInput, FormSelect, FormTextarea, RosterSelect } from "../shared/FormFields";
+import { FormCheckbox, FormInput, FormSelect, FormTextarea, RosterSelect } from "../shared/FormFields";
 
 interface OptionRow {
   id: string;
@@ -57,7 +57,43 @@ interface Props {
   onSwitchRoster?: () => void;
 }
 
-const STEPS = ["Basics", "Origin", "Abilities", "Skills & spells", "Review"] as const;
+const STEPS = ["Basics", "Origin", "Abilities", "Skills & spells", "Gear & status", "Review"] as const;
+
+const CONDITIONS = [
+  "blinded", "charmed", "deafened", "frightened", "grappled", "incapacitated",
+  "invisible", "paralyzed", "petrified", "poisoned", "prone", "restrained",
+  "stunned", "unconscious",
+] as const;
+
+interface ArmorOption {
+  id: string;
+  label: string;
+  category?: string;
+  base_ac?: number;
+}
+
+interface WeaponCatalogEntry {
+  id: string;
+  label: string;
+  damage?: string;
+  damage_type?: string;
+  properties?: string[];
+}
+
+interface WeaponRow {
+  name: string;
+  damage: string;
+  damage_type: string;
+  ability: string;
+  proficient: boolean;
+}
+
+interface AsiChoice {
+  type: "asi" | "feat";
+  plus?: Record<string, number>;
+  feat?: string;
+  level?: number;
+}
 
 function str(v: unknown): string {
   return String(v ?? "").trim();
@@ -100,6 +136,9 @@ export default function Dnd5eSetupPanel({
   const alignments = list(options.alignments);
   const campaignSettings = (options.campaign_settings || []) as OptionRow[];
   const spellLists = (options.spell_lists || {}) as Record<string, Record<string, string[]>>;
+  const armorOptions = (options.armor || []) as ArmorOption[];
+  const weaponCatalog = (options.weapons || []) as WeaponCatalogEntry[];
+  const languagesList = list(options.languages);
 
   const selectedClass = classes.find((c) => c.id === str(local.class_name));
   const selectedBg = backgrounds.find((b) => b.id === str(local.background));
@@ -149,6 +188,53 @@ export default function Dnd5eSetupPanel({
     patch({ [key]: [...current, v] });
   };
 
+  // PHB 2024: every character knows Common plus two languages of choice (3 total).
+  const LANGUAGE_LIMIT = 3;
+  const toggleLanguage = (lang: string) => {
+    if (lang === "common") return; // Common is always known
+    const current = list(local.languages);
+    if (current.includes(lang)) {
+      patch({ languages: current.filter((x) => x !== lang) });
+    } else if (current.length < LANGUAGE_LIMIT) {
+      patch({ languages: [...current, lang] });
+    }
+  };
+
+  const weapons = (Array.isArray(local.weapons) ? local.weapons : []) as WeaponRow[];
+  const setWeapons = (next: WeaponRow[]) => patch({ weapons: next });
+  const addWeapon = (entry?: WeaponCatalogEntry) => {
+    const finesse = (entry?.properties || []).includes("finesse");
+    const ranged = (entry?.properties || []).includes("ranged");
+    setWeapons([
+      ...weapons,
+      {
+        name: entry?.label || "",
+        damage: entry?.damage || "1d6",
+        damage_type: entry?.damage_type || "",
+        ability: finesse || ranged ? "dex" : "str",
+        proficient: true,
+      },
+    ]);
+  };
+  const updateWeapon = (i: number, patchRow: Partial<WeaponRow>) =>
+    setWeapons(weapons.map((w, idx) => (idx === i ? { ...w, ...patchRow } : w)));
+  const removeWeapon = (i: number) => setWeapons(weapons.filter((_, idx) => idx !== i));
+
+  const currency = (local.currency || {}) as Record<string, number>;
+  const setCoin = (k: string, v: number) =>
+    patch({ currency: { ...currency, [k]: Math.max(0, v || 0) } });
+
+  const asiChoices = (Array.isArray(local.asi_choices) ? local.asi_choices : []) as AsiChoice[];
+  const asiSlots = Number(summary.asi_feat_slots || 0);
+  const addAsi = () =>
+    patch({ asi_choices: [...asiChoices, { type: "asi", plus: { str: 2 } }] });
+  const addFeat = () =>
+    patch({ asi_choices: [...asiChoices, { type: "feat", feat: "" }] });
+  const updateAsi = (i: number, next: AsiChoice) =>
+    patch({ asi_choices: asiChoices.map((c, idx) => (idx === i ? next : c)) });
+  const removeAsi = (i: number) =>
+    patch({ asi_choices: asiChoices.filter((_, idx) => idx !== i) });
+
   const save = async (extra: Record<string, unknown> = {}) => {
     setSaving(true);
     setError(null);
@@ -186,10 +272,16 @@ export default function Dnd5eSetupPanel({
     const table = (options.standard_array_by_class || {}) as Record<string, Record<string, number>>;
     const scores = table[str(local.class_name)];
     if (!scores) return;
-    patch({ ability_scores: scores, ability_scores_set: true });
+    patch({ base_ability_scores: scores, ability_scores: scores, ability_scores_set: true });
   };
 
-  const scores = (local.ability_scores || {}) as Record<string, number>;
+  // Inputs edit the *base* (pre-background) scores; the background +2/+1 is added
+  // by the backend into `ability_scores`. Fall back to ability_scores for legacy data.
+  const baseRaw = (local.base_ability_scores || {}) as Record<string, number>;
+  const baseScores = (
+    Object.keys(baseRaw).length ? baseRaw : (local.ability_scores || {})
+  ) as Record<string, number>;
+  const finalScores = (local.ability_scores || {}) as Record<string, number>;
   const bgAbilities = list(selectedBg?.ability_scores);
 
   return (
@@ -431,6 +523,32 @@ export default function Dnd5eSetupPanel({
               ))}
             </FormSelect>
           </label>
+          <div>
+            <div className="label mb-1">
+              Languages ({list(local.languages).length}/{LANGUAGE_LIMIT}) — Common + 2 of choice
+            </div>
+            <div className="max-h-32 overflow-y-auto flex flex-wrap gap-1">
+              {languagesList.map((lang) => {
+                const on = list(local.languages).includes(lang);
+                const isCommon = lang === "common";
+                const atCap = !on && list(local.languages).length >= LANGUAGE_LIMIT;
+                return (
+                  <button
+                    key={lang}
+                    type="button"
+                    disabled={isCommon || atCap}
+                    className={`btn text-xs py-1 px-2 ${on ? "btn-primary" : "btn-ghost"} ${
+                      atCap ? "opacity-40" : ""
+                    }`}
+                    onClick={() => toggleLanguage(lang)}
+                  >
+                    {lang}
+                    {isCommon ? " ✓" : ""}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
       )}
 
@@ -445,8 +563,7 @@ export default function Dnd5eSetupPanel({
             <div className="space-y-2 border border-border rounded p-2">
               <div className="text-xs font-medium">Background ability increases</div>
               <label className="flex items-center gap-2 text-xs">
-                <FormInput
-                  type="checkbox"
+                <FormCheckbox
                   checked={Boolean(local.background_asi_all_three)}
                   onChange={(e) => patch({ background_asi_all_three: e.target.checked })}
                 />
@@ -488,25 +605,37 @@ export default function Dnd5eSetupPanel({
               )}
             </div>
           )}
+          <p className="text-xs text-muted">
+            Enter base scores (before background). The background increase is added automatically.
+          </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-            {["str", "dex", "con", "int", "wis", "cha"].map((ab) => (
-              <label key={ab} className="block">
-                <span className="text-muted text-xs">{ab.toUpperCase()}</span>
-                <FormInput
-                  type="number"
-                  min={1}
-                  max={30}
-                  className="w-full mt-1"
-                  value={Number(scores[ab] ?? 10)}
-                  onChange={(e) =>
-                    patch({
-                      ability_scores: { ...scores, [ab]: Number(e.target.value) },
-                      ability_scores_set: true,
-                    })
-                  }
-                />
-              </label>
-            ))}
+            {["str", "dex", "con", "int", "wis", "cha"].map((ab) => {
+              const base = Number(baseScores[ab] ?? 10);
+              const finalVal = Number(finalScores[ab] ?? base);
+              return (
+                <label key={ab} className="block">
+                  <span className="text-muted text-xs">
+                    {ab.toUpperCase()}
+                    {finalVal !== base && (
+                      <span className="text-accent"> → {finalVal}</span>
+                    )}
+                  </span>
+                  <FormInput
+                    type="number"
+                    min={1}
+                    max={30}
+                    className="w-full mt-1"
+                    value={base}
+                    onChange={(e) =>
+                      patch({
+                        base_ability_scores: { ...baseScores, [ab]: Number(e.target.value) },
+                        ability_scores_set: true,
+                      })
+                    }
+                  />
+                </label>
+              );
+            })}
           </div>
           <div className="grid grid-cols-3 gap-2">
             <label className="block">
@@ -530,16 +659,88 @@ export default function Dnd5eSetupPanel({
               />
             </label>
             <label className="block">
-              <span className="text-muted text-xs">AC</span>
+              <span className="text-muted text-xs">
+                AC {!local.ac_manual && <span className="text-accent">(auto)</span>}
+              </span>
               <FormInput
                 type="number"
                 min={1}
                 className="w-full mt-1"
                 value={Number(local.ac || 10)}
+                disabled={!local.ac_manual}
                 onChange={(e) => patch({ ac: Number(e.target.value) })}
               />
             </label>
           </div>
+          <label className="flex items-center gap-2 text-xs">
+            <FormCheckbox
+              checked={Boolean(local.ac_manual)}
+              onChange={(e) => patch({ ac_manual: e.target.checked })}
+            />
+            Set AC manually (otherwise computed from armor in Gear &amp; status)
+          </label>
+
+          {selectedClass && asiSlots > 0 && (
+            <div className="space-y-2 border border-border rounded p-2">
+              <div className="text-xs font-medium">
+                Ability score improvements / feats ({asiChoices.length}/{asiSlots})
+                {Boolean(summary.needs_asi) && (
+                  <span className="text-accent"> — {asiSlots - asiChoices.length} unspent</span>
+                )}
+              </div>
+              {asiChoices.map((choice, i) => (
+                <div key={i} className="flex flex-wrap items-center gap-1 text-xs">
+                  {choice.type === "feat" ? (
+                    <FormInput
+                      className="flex-1 min-w-[8rem]"
+                      placeholder="Feat name (e.g. Sentinel)"
+                      value={str(choice.feat)}
+                      onChange={(e) => updateAsi(i, { ...choice, feat: e.target.value })}
+                    />
+                  ) : (
+                    <>
+                      <span className="text-muted">+</span>
+                      {["str", "dex", "con", "int", "wis", "cha"].map((ab) => {
+                        const amt = Number(choice.plus?.[ab] || 0);
+                        return (
+                          <button
+                            key={ab}
+                            type="button"
+                            className={`btn text-xs py-0.5 px-1 ${amt ? "btn-primary" : "btn-ghost"}`}
+                            title="Click to cycle 0/+1/+2"
+                            onClick={() => {
+                              const next = (amt + 1) % 3;
+                              const plus = { ...(choice.plus || {}) };
+                              if (next === 0) delete plus[ab];
+                              else plus[ab] = next;
+                              updateAsi(i, { ...choice, plus });
+                            }}
+                          >
+                            {ab.toUpperCase()}
+                            {amt ? `+${amt}` : ""}
+                          </button>
+                        );
+                      })}
+                    </>
+                  )}
+                  <button type="button" className="btn btn-ghost text-xs py-0.5 px-1" onClick={() => removeAsi(i)}>
+                    ✕
+                  </button>
+                </div>
+              ))}
+              <div className="flex gap-1">
+                <button type="button" className="btn btn-ghost text-xs" onClick={addAsi}>
+                  + Add ASI
+                </button>
+                <button type="button" className="btn btn-ghost text-xs" onClick={addFeat}>
+                  + Add feat
+                </button>
+              </div>
+              <p className="text-[11px] text-muted">
+                ASI: +2 to one ability or +1 to two (max 20). Apply on save.
+              </p>
+            </div>
+          )}
           <div className="grid grid-cols-2 gap-2">
             <label className="block">
               <span className="text-muted text-xs">Hit Dice spent</span>
@@ -654,6 +855,196 @@ export default function Dnd5eSetupPanel({
       )}
 
       {step === 4 && (
+        <div className="space-y-4">
+          <div className="grid grid-cols-2 gap-3">
+            <label className="block">
+              <span className="text-muted text-xs">Armor</span>
+              <FormSelect
+                className="w-full mt-1"
+                value={str(local.armor) || "none"}
+                onChange={(e) => patch({ armor: e.target.value })}
+              >
+                {armorOptions.map((a) => (
+                  <option key={a.id} value={a.id}>
+                    {a.label}
+                    {a.category && a.category !== "none" ? ` (${a.category})` : ""}
+                  </option>
+                ))}
+              </FormSelect>
+            </label>
+            <label className="flex items-end gap-2 text-xs pb-2">
+              <FormCheckbox
+                checked={Boolean(local.shield)}
+                onChange={(e) => patch({ shield: e.target.checked })}
+              />
+              Shield (+2 AC)
+            </label>
+          </div>
+          {!local.ac_manual && (
+            <p className="text-xs text-muted">Computed AC: <span className="text-accent">{Number(local.ac || 10)}</span></p>
+          )}
+
+          <div>
+            <div className="label mb-1">Weapons</div>
+            <div className="space-y-1">
+              {weapons.map((w, i) => (
+                <div key={i} className="flex flex-wrap items-center gap-1 text-xs">
+                  <FormInput
+                    className="flex-1 min-w-[6rem]"
+                    placeholder="Name"
+                    value={str(w.name)}
+                    onChange={(e) => updateWeapon(i, { name: e.target.value })}
+                  />
+                  <FormInput
+                    className="w-16"
+                    placeholder="1d8"
+                    value={str(w.damage)}
+                    onChange={(e) => updateWeapon(i, { damage: e.target.value })}
+                  />
+                  <FormSelect
+                    className="w-20"
+                    value={str(w.ability) || "str"}
+                    onChange={(e) => updateWeapon(i, { ability: e.target.value })}
+                  >
+                    <option value="str">STR</option>
+                    <option value="dex">DEX</option>
+                  </FormSelect>
+                  <label className="flex items-center gap-1">
+                    <FormCheckbox
+                      checked={w.proficient !== false}
+                      onChange={(e) => updateWeapon(i, { proficient: e.target.checked })}
+                    />
+                    prof
+                  </label>
+                  <button type="button" className="btn btn-ghost text-xs py-0.5 px-1" onClick={() => removeWeapon(i)}>
+                    ✕
+                  </button>
+                </div>
+              ))}
+            </div>
+            <div className="flex items-stretch gap-2 mt-1">
+              <FormSelect
+                className="text-xs flex-1"
+                value=""
+                onChange={(e) => {
+                  const entry = weaponCatalog.find((w) => w.id === e.target.value);
+                  if (entry) addWeapon(entry);
+                }}
+              >
+                <option value="">Add weapon from list…</option>
+                {weaponCatalog.map((w) => (
+                  <option key={w.id} value={w.id}>
+                    {w.label} ({w.damage})
+                  </option>
+                ))}
+              </FormSelect>
+              <button
+                type="button"
+                className="btn btn-ghost text-xs whitespace-nowrap shrink-0"
+                onClick={() => addWeapon()}
+              >
+                + Custom
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <div className="label mb-1">Currency</div>
+            <div className="grid grid-cols-5 gap-1">
+              {["pp", "gp", "ep", "sp", "cp"].map((k) => (
+                <label key={k} className="block">
+                  <span className="text-muted text-[11px] uppercase">{k}</span>
+                  <FormInput
+                    type="number"
+                    min={0}
+                    className="w-full mt-0.5"
+                    value={Number(currency[k] || 0)}
+                    onChange={(e) => setCoin(k, Number(e.target.value))}
+                  />
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <label className="block">
+            <span className="text-muted text-xs">Inventory / equipment notes</span>
+            <FormTextarea
+              className="w-full mt-1 min-h-[4rem]"
+              placeholder="Backpack, rope, rations, potions of healing…"
+              value={str(local.equipment_notes)}
+              onChange={(e) => patch({ equipment_notes: e.target.value })}
+            />
+          </label>
+
+          <div className="border-t border-border pt-3 space-y-3">
+            <div className="text-xs font-medium">Combat status</div>
+            <div className="grid grid-cols-3 gap-2">
+              <label className="block">
+                <span className="text-muted text-xs">Death save ✓</span>
+                <FormInput
+                  type="number"
+                  min={0}
+                  max={3}
+                  className="w-full mt-1"
+                  value={Number(local.death_save_successes || 0)}
+                  onChange={(e) => patch({ death_save_successes: Number(e.target.value) })}
+                />
+              </label>
+              <label className="block">
+                <span className="text-muted text-xs">Death save ✗</span>
+                <FormInput
+                  type="number"
+                  min={0}
+                  max={3}
+                  className="w-full mt-1"
+                  value={Number(local.death_save_failures || 0)}
+                  onChange={(e) => patch({ death_save_failures: Number(e.target.value) })}
+                />
+              </label>
+              <label className="block">
+                <span className="text-muted text-xs">Exhaustion (0–6)</span>
+                <FormInput
+                  type="number"
+                  min={0}
+                  max={6}
+                  className="w-full mt-1"
+                  value={Number(local.exhaustion || 0)}
+                  onChange={(e) => patch({ exhaustion: Number(e.target.value) })}
+                />
+              </label>
+            </div>
+            <label className="block">
+              <span className="text-muted text-xs">Concentrating on</span>
+              <FormInput
+                className="w-full mt-1"
+                placeholder="e.g. Hex, Bless (blank if none)"
+                value={str(local.concentration)}
+                onChange={(e) => patch({ concentration: e.target.value })}
+              />
+            </label>
+            <div>
+              <div className="label mb-1">Conditions</div>
+              <div className="flex flex-wrap gap-1">
+                {CONDITIONS.map((cond) => {
+                  const on = list(local.conditions).includes(cond);
+                  return (
+                    <button
+                      key={cond}
+                      type="button"
+                      className={`btn text-xs py-1 px-2 ${on ? "btn-primary" : "btn-ghost"}`}
+                      onClick={() => toggleList("conditions", cond, 0)}
+                    >
+                      {cond}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {step === 5 && (
         <div className="space-y-2 text-xs">
           <div className="font-medium">{str(local.name) || "Unnamed hero"}</div>
           <div className="text-muted whitespace-pre-wrap">
@@ -663,13 +1054,18 @@ export default function Dnd5eSetupPanel({
               local.subclass,
               `Level ${local.level}`,
               selectedBg?.label,
-              `HP ${local.hp}/${local.max_hp} · AC ${local.ac}`,
+              `HP ${local.hp}/${local.max_hp} · AC ${local.ac}${
+                str(local.armor) && str(local.armor) !== "none" ? ` (${str(local.armor).replace(/_/g, " ")}${local.shield ? " + shield" : ""})` : local.shield ? " (shield)" : ""
+              }`,
               `Campaign: ${
                 campaignSettings.find((c) => c.id === str(local.campaign_setting || "freeform"))?.label ||
                 (str(local.campaign_setting) === "faerun" ? "Faerûn" : "Freeform")
               }${local.campaign_notes ? ` — ${local.campaign_notes}` : ""}`,
               `Proficiency +${summary.proficiency_bonus ?? "?"}`,
               `Origin feat: ${local.origin_feat || selectedBg?.feat || "—"}`,
+              list(local.feats).length ? `Feats: ${list(local.feats).join(", ")}` : "",
+              `Languages: ${list(local.languages).join(", ") || "—"}`,
+              weapons.length ? `Weapons: ${weapons.map((w) => `${w.name} (${w.damage})`).join(", ")}` : "",
               `Skills: ${list(local.skill_proficiencies).join(", ") || "—"}`,
               `Cantrips: ${list(local.cantrips).join(", ") || "—"}`,
               `Spells: ${list(local.prepared_spells).concat(list(local.known_spells)).join(", ") || "—"}`,
