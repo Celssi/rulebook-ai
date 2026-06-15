@@ -1,0 +1,15 @@
+# The One Ring 2e - Strider Mode, Telling Table (p.10)
+chances:
+  certain:
+    min_roll: 1
+  likely:
+    min_roll: 4
+  middling:
+    min_roll: 6
+  doubtful:
+    min_roll: 8
+  unthinkable:
+    min_roll: 10
+special:
+  gandalf_rune: "yes_with_twist"
+  sauron_icon: "no_with_twist"

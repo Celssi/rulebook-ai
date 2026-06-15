@@ -1,0 +1,7 @@
+# Combat reference (BT2 pp. 51-52).
+rules:
+  initiative: "Draw initiative for you and opponent; Ace=11, face=10; higher goes first."
+  tactics: "Draw 4 tactic cards for your hand; play one per turn; redraw 4 when hand empty (new round)."
+  opponent_tactics: "On opponent turn, draw a card and use the foe's tactic table."
+  retreat: "If you run out of cards, redraw 4 for Round 2 or retreat."
+  defeat: "Reduce opponent Health to 0 to win; Hearts/Diamond combat wins grant an item."

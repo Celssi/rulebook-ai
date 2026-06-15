@@ -1,0 +1,22 @@
+[
+  {
+    "query": "How do plot dice work in the Cosmere RPG?",
+    "expected_terms": ["plot", "opportunity", "complication"],
+    "require_faction_in_top_n": "player"
+  },
+  {
+    "query": "What are Paths and Roles in Cosmere character creation?",
+    "expected_terms": ["path", "role", "expertise"],
+    "require_faction_in_top_n": "player"
+  },
+  {
+    "query": "How does deflection work in Cosmere combat?",
+    "expected_terms": ["deflection", "damage", "health"],
+    "require_faction_in_top_n": "player"
+  },
+  {
+    "query": "How does Stormlight and investiture work?",
+    "expected_terms": ["stormlight", "investiture", "surge"],
+    "require_faction_in_top_n": "player"
+  }
+]

@@ -1,0 +1,222 @@
+# Woods exploration tables (BT2 pp. 35-38).
+
+hearts:
+  '2':
+    morale: 2
+    label: A friendly hedgehog waddles up and offers you a pot of honey they found. "Too sweet for me, but just right for you!"
+  '3':
+    morale: 3
+    label: A gentle rain begins to fall, making the Woods smell of earth. An umbrella-like leaf provides just enough cover to keep dry
+  '4':
+    health: 4
+    label: You stumble upon a burrow lined with soft moss and tucked-away treats. It's the perfect place to rest your paws
+    tags:
+    - item
+  '5':
+    morale: 5
+    label: A well-packed basket sits unattended on a checkered cloth. Whoever left it must have forgotten, but everything looks delicious
+  '6':
+    health: 6
+    label: A wise owl perches nearby, sharing a bit of advice on which paths are safest. "Mind the tree with the sleepy bees!"
+    tags:
+    - item
+  '7':
+    health: 2
+    morale: 2
+    supplies: 2
+    label: Rabbit’s second cousins invite you to a tea party. Between biscuits and chatter, you feel lighter and refreshed
+  '8':
+    morale: 8
+    label: A bouncing tail is caught in some brambles! After freeing the creature, they bound away joyfully, leaving behind a few supplies
+  '9':
+    morale: 9
+    label: 'A small note pinned to a tree reads: You’re doing just fine. It’s unsigned, but it makes you smile'
+    tags:
+    - hollow
+    - item
+  '10':
+    morale: 10
+    label: A melody drifts through the trees, reminding you of home. Humming along, your worries seem a little smaller
+  jack:
+    combat: true
+    label: A creature stands in your way, its movements unnatural, eyes glowing with a light. The only way forward is to break the crystal
+    tags:
+    - combat
+  queen:
+    combat: true
+    label: A figure lurks ahead, something clutched in its grasp. The corruption holds it fast. You must shatter it to set things right
+    tags:
+    - combat
+  king:
+    combat: true
+    label: A towering figure, frozen in unnatural stillness, suddenly stirs. The crystal’s magic pulses, forcing it to attack. Only breaking the spell will set them free
+    tags:
+    - combat
+    - item
+  ace:
+    all_stats: 10
+    label: You step into a sun-dappled glade where the air feels warm and safe. A soft glow surrounds you, filling you with renewed energy and Health
+diamonds:
+  '2':
+    supplies: 2
+    label: Digging near a tree root, you uncover a tin filled with biscuits. Who left it here? No one knows, but it’s still good!
+    tags:
+    - item
+  '3':
+    supplies: 3
+    label: A gust of wind rustles the leaves, revealing a satchel hanging from a low branch. Inside, you find dried fruit and a small notebook
+  '4':
+    supplies: 4
+    label: You come across a stream. A few smooth stones glimmer beneath the water, alongside a perfectly fresh apple
+  '5':
+    supplies: 5
+    label: A cheerful sparrow hops beside you, dropping a small pouch of seeds at your feet. It seems to insist you take it
+  '6':
+    supplies: 6
+    label: A hollow in a great oak reveals a stashed bundle of nuts, tied up with twine. It looks like it’s been left just for you
+  '7':
+    health: 2
+    morale: 2
+    supplies: 2
+    label: You come across a small gathering of forest creatures happily nibbling on an assortment of snacks. They wave you over, offering to share
+    tags:
+    - hollow
+    - item
+  '8':
+    supplies: 8
+    label: A hum fills the air as you discover a beehive dripping with golden honey. Carefully collecting a small jar, you taste its sweetness
+  '9':
+    supplies: 9
+    label: Tucked beside an old stump, a woven picnic basket holds wrapped sandwiches and a warm thermos of tea. Someone must have left it behind
+    tags:
+    - item
+  '10':
+    supplies: 10
+    label: Behind a tangle of vines, you uncover a tiny, well-kept pantry carved into the base of a tree. Inside are jars of jam, crackers, and a cosy little note that says, Help yourself!
+    tags:
+    - item
+  jack:
+    combat: true
+    label: A pile of glittering trinkets lies scattered before you, but a faint hum of dark energy warns you that something is wrong. The crystal’s corruption has touched this place
+    tags:
+    - combat
+    - hollow
+  queen:
+    combat: true
+    label: A shadow moves in the undergrowth, guarding something. A cursed presence lingers. You’ll need to break it
+    tags:
+    - combat
+  king:
+    combat: true
+    label: A dark hollow whispers of something lost & hidden. As you step forward, the air grows tense. Something is waiting
+    tags:
+    - combat
+  ace:
+    all_stats: 10
+    label: Behind a thick curtain of ivy, you discover an old, untouched storeroom. Stacks of supplies, neatly arranged, glisten in the dim light. Who placed them here?
+    tags:
+    - item
+spades:
+  '2':
+    supplies: -2
+    label: You take a path that looks familiar, but it only leads you in circles. By the time you find your way again, you’ve lost some time
+  '3':
+    health: -3
+    label: You get caught in a patch of brambles, and it takes some effort to free yourself. A few scratches later, you press on
+  '4':
+    health: -4
+    label: A loose patch of dirt sends you tumbling down a small hill. You manage to land safely, but not without bruises
+    tags:
+    - hollow
+  '5':
+    supplies: -5
+    label: While crossing a stream, you misstep and end up soaked. It will take a while for your things to dry out
+  '6':
+    morale: -6
+    label: A wind sweeps through the trees, sending a shiver down your spine. The air is heavy, as if something is watching
+    tags:
+    - hollow
+  '7':
+    health: -3
+    morale: -3
+    label: You hear a rustling in the bushes. You freeze, waiting. Nothing happens, but you get the feeling that something was there
+  '8':
+    health: -8
+    label: A branch nearly knocks you off your feet. You manage to dodge at the last second, but your heart races from the close call
+  '9':
+    health: -9
+    label: You find what looks like a cosy den, but something inside growls. Best not to linger
+  '10':
+    morale: -10
+    label: A long shadow stretches across your path, moving when it shouldn't. The air crackles with strange energy
+    tags:
+    - hollow
+  jack:
+    combat: true
+    label: The path ahead is blocked by twisted roots pulsing with crystal energy. Something is watching you from the trees
+    tags:
+    - combat
+  queen:
+    combat: true
+    label: Faint whispers drift through the air, laced with an eerie melody. The corruption lingers here, waiting
+    tags:
+    - combat
+  king:
+    combat: true
+    label: Clouds gather overhead, but the storm isn’t natural. The wind howls, carrying the sound of something moving through the trees
+    tags:
+    - combat
+  ace:
+    all_stats: -10
+    label: You stumble into a clearing where the grass is withered, the trees lifeless. A single, corrupted crystal hums faintly in the center, its energy unsettling
+clubs:
+  '2':
+    health: -2
+    label: The sky darkens, and a heavy rain drenches everything. The paths become muddy and hard to traverse
+  '3':
+    health: -3
+    label: You wander too close to a thicket of brambles, and they snatch at your clothes and fur, leaving you scratched
+  '4':
+    morale: -4
+    label: The Woods feel different here. Quieter, heavier. You can’t shake the sense that something is watching
+  '5':
+    supplies: -5
+    label: In the distance, a strange glow appears between the trees. As you approach, it vanishes, leading you off course
+    tags:
+    - hollow
+  '6':
+    supplies: -6
+    label: The ground gives way beneath your feet! You manage to climb out, but not before losing some of your belongings
+  '7':
+    health: -3
+    morale: -3
+    label: A low, rumbling noise follows you along the path. It never gets closer, but it never fades away either
+  '8':
+    morale: -8
+    label: The trees here seem taller, their branches reaching in unnatural ways. The air is thick and cold
+    tags:
+    - hollow
+  '9':
+    health: -9
+    label: The path you were following is suddenly gone, replaced by tangled roots and mist. Finding your way again takes time and effort
+  '10':
+    morale: -10
+    label: Not a single sound can be heard, no birds, no rustling leaves, nothing. The absence of life is deeply unsettling
+  jack:
+    combat: true
+    label: A once-beautiful meadow is now twisted and wrong, its grass brittle, its trees lifeless. Something stirs within the gloom
+    tags:
+    - combat
+  queen:
+    combat: true
+    label: Ancient trees, cracked and broken, line the path. A crystal hums softly at the center, its corruption lingering
+    tags:
+    - combat
+  king:
+    combat: true
+    label: The trail ahead is lined with darkened trees, their bark scarred and twisted. The Woods themselves seem to resist your passage
+    tags:
+    - combat
+  ace:
+    all_stats: -10
+    label: You arrive at a place where the corruption is strongest. Crystals pulse in the earth, spreading darkness through the Woods

@@ -2,15 +2,21 @@ import { useEffect, useState } from "react";
 import DeckPanel from "../shared/DeckPanel";
 import JourneyPanel from "../brambletrek/JourneyPanel";
 import BrambletrekShortcutGroups from "../brambletrek/ShortcutGroups";
+import ExplorationPanel from "../brambletrek_2/ExplorationPanel";
+import HollowPanel from "../brambletrek_2/HollowPanel";
+import Bt2ShortcutGroups from "../brambletrek_2/ShortcutGroups";
 import DayPanel from "../sansibilia/DayPanel";
 import ShortcutList from "../shared/ShortcutList";
 import AshesShortcutGroups from "../ashes/ShortcutGroups";
 import AilmentPanel from "../apothecaria/AilmentPanel";
 import ApothecariaShortcutGroups from "../apothecaria/ShortcutGroups";
 import GameStatePanel from "../warhammer40k/GameStatePanel";
-import type { CottageHeader, PendingJourney, Shortcut, VisitHeader } from "../../types";
+import { GM_SOLO_PLAY_PANEL, isGmSoloPanelGame } from "../../games/panelRegistry";
+import type { GmSoloGameId } from "../../games/gmSoloGames";
+import type { CottageHeader, HollowState, PendingExploration, PendingJourney, Shortcut, VisitHeader } from "../../types";
 
 type BrambletrekTab = "journey" | "deck" | "shortcuts";
+type Bt2Tab = "exploration" | "hollow" | "deck" | "shortcuts";
 type SansibiliaTab = "day" | "deck" | "shortcuts";
 type LighthouseTab = "deck" | "shortcuts";
 type ApothecariaTab = "ailment" | "deck" | "shortcuts";
@@ -20,6 +26,8 @@ interface Props {
   hasCharacterSheet: boolean;
   hasGameState: boolean;
   journey: PendingJourney | null;
+  exploration?: PendingExploration | null;
+  hollow?: HollowState | null;
   shortcuts: Shortcut[];
   shortcutLoading: string | null;
   deckRemaining: number;
@@ -38,8 +46,12 @@ interface Props {
   onJourneyDrawItem: (index: number) => Promise<{ item_error?: string | null }>;
   onJourneyFinish: () => Promise<void>;
   onJourneyDiscard: () => Promise<void>;
+  onExplorationApply?: (index: number) => Promise<{ summary?: string }>;
+  onExplorationFinish?: () => Promise<void>;
+  onExplorationDiscard?: () => Promise<void>;
+  onHollowMove?: (row: number, col: number) => Promise<void>;
   onDeckAction: (formatted: string) => void;
-  onShortcut: (id: string) => void;
+  onShortcut: (id: string, params?: Record<string, unknown>) => void;
   onDayDraw?: () => Promise<void>;
   onVisitUpdate?: (entity: Record<string, unknown>, header: VisitHeader) => void;
   onCottageUpdate?: (entity: Record<string, unknown>, header: CottageHeader) => void;
@@ -52,6 +64,8 @@ export default function PlayPanel({
   hasCharacterSheet,
   hasGameState,
   journey,
+  exploration = null,
+  hollow = null,
   shortcuts,
   shortcutLoading,
   deckRemaining,
@@ -66,6 +80,10 @@ export default function PlayPanel({
   onJourneyDrawItem,
   onJourneyFinish,
   onJourneyDiscard,
+  onExplorationApply,
+  onExplorationFinish,
+  onExplorationDiscard,
+  onHollowMove,
   onDeckAction,
   onShortcut,
   onDayDraw,
@@ -75,7 +93,9 @@ export default function PlayPanel({
   on40kUpdate,
 }: Props) {
   const hasJourney = Boolean(journey?.events?.length);
+  const hasExploration = Boolean(exploration?.events?.length);
   const [btTab, setBtTab] = useState<BrambletrekTab>("journey");
+  const [bt2Tab, setBt2Tab] = useState<Bt2Tab>("exploration");
   const [ssTab, setSsTab] = useState<SansibiliaTab>("day");
   const [lhTab, setLhTab] = useState<LighthouseTab>("shortcuts");
   const [apoTab, setApoTab] = useState<ApothecariaTab>("ailment");
@@ -83,6 +103,70 @@ export default function PlayPanel({
   useEffect(() => {
     if (hasJourney) setBtTab("journey");
   }, [hasJourney]);
+
+  useEffect(() => {
+    if (hasExploration) setBt2Tab("exploration");
+  }, [hasExploration]);
+
+  if (isGmSoloPanelGame(gameId) && hasCharacterSheet) {
+    const GmPlay = GM_SOLO_PLAY_PANEL;
+    return (
+      <GmPlay
+        gameId={gameId as GmSoloGameId}
+        shortcuts={shortcuts}
+        shortcutLoading={shortcutLoading}
+        onShortcut={onShortcut}
+      />
+    );
+  }
+
+  if (gameId === "brambletrek_2" && hasCharacterSheet) {
+    const tabs: { id: Bt2Tab; label: string }[] = [
+      { id: "exploration", label: "Exploration" },
+      { id: "hollow", label: "Hollow" },
+      { id: "deck", label: "Deck" },
+      { id: "shortcuts", label: "Shortcuts" },
+    ];
+    return (
+      <div className="panel flex flex-col h-full min-h-0 overflow-hidden">
+        <div className="flex border-b border-border shrink-0">
+          {tabs.map((t) => (
+            <button
+              key={t.id}
+              type="button"
+              className={bt2Tab === t.id ? "tab-btn-active" : "tab-btn hover:text-gray-200"}
+              onClick={() => setBt2Tab(t.id)}
+            >
+              {t.label}
+              {t.id === "exploration" && hasExploration && (
+                <span className="ml-1 inline-block w-1.5 h-1.5 rounded-full bg-accent" />
+              )}
+            </button>
+          ))}
+        </div>
+        <div className="flex-1 overflow-y-auto p-3 min-h-0">
+          {bt2Tab === "exploration" && (
+            <ExplorationPanel
+              exploration={exploration}
+              onApply={onExplorationApply!}
+              onFinish={onExplorationFinish!}
+              onDiscard={onExplorationDiscard!}
+              embedded
+            />
+          )}
+          {bt2Tab === "hollow" && (
+            <HollowPanel hollow={hollow} onMove={onHollowMove!} />
+          )}
+          {bt2Tab === "deck" && (
+            <DeckPanel remaining={deckRemaining} cardSource={cardSource} onAction={onDeckAction} embedded />
+          )}
+          {bt2Tab === "shortcuts" && (
+            <Bt2ShortcutGroups shortcuts={shortcuts} loading={shortcutLoading} onRun={onShortcut} embedded />
+          )}
+        </div>
+      </div>
+    );
+  }
 
   if (hasGameState && state40k) {
     return (
@@ -327,6 +411,8 @@ export default function PlayPanel({
   }
 
   if (!hasCharacterSheet) return null;
+
+  if (gameId !== "brambletrek") return null;
 
   const tabs: { id: BrambletrekTab; label: string }[] = [
     { id: "journey", label: "Journey" },

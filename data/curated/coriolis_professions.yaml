@@ -1,0 +1,206 @@
+# Coriolis: The Great Dark — professions (core rulebook ch. 2, pp. 34–48)
+
+professions:
+  - id: artist
+    label: Artist
+    key_attribute: empathy
+    key_talents: [acrobat, charmer, cultural_savant, renowned]
+    specialties:
+      - id: hull_painter
+        label: Hull Painter
+        free_talent: acrobat
+      - id: staircase_poet
+        label: Staircase Poet
+        free_talent: charmer
+      - id: maidy_row_balladeer
+        label: Maidy Row Balladeer
+        free_talent: renowned
+      - id: alley_theater_actor
+        label: Alley Theater Actor
+        free_talent: actor
+      - id: occasional_publisher
+        label: Occasional Publisher
+        free_talent: cultural_savant
+      - id: machine_artisan
+        label: Machine Artisan
+        free_talent: mechanic
+
+  - id: enforcer
+    label: Enforcer
+    key_attribute: agility
+    key_talents: [blade_fighter, commander, evasive, medic]
+    specialties:
+      - id: zapti_constable
+        label: Zapti Constable
+        free_talent: interrogator
+      - id: guild_militia
+        label: Guild Militia
+        free_talent: lookout
+      - id: fusillard_protector
+        label: Fusillard Protector
+        free_talent: bodyguard
+      - id: guild_investigator
+        label: Guild Investigator
+        free_talent: investigator
+      - id: coriolite_guard
+        label: Coriolite Guard
+        free_talent: polearms
+      - id: bounty_hunter
+        label: Bounty Hunter
+        free_talent: streetwise
+
+  - id: esoteric
+    label: Esoteric
+    key_attribute: insight
+    key_talents: [actor, botanist, cultural_savant, librarian]
+    specialties:
+      - id: spice_engineer
+        label: Spice Engineer
+        free_talent: laboratorist
+      - id: bird_warden
+        label: Bird Warden
+        free_talent: bird_handler
+      - id: coriolite_seer
+        label: Coriolite Seer
+        free_talent: intuition
+      - id: revolutionary_prophet
+        label: Revolutionary Prophet
+        free_talent: agitator
+      - id: toad_dreamer
+        label: Toad Dreamer
+        free_talent: hardened
+      - id: rim_zealot
+        label: Rim Zealot
+        free_talent: endurance
+
+  - id: odd_jobber
+    label: Odd Jobber
+    key_attribute: empathy
+    key_talents: [actor, charmer, cultural_savant, streetwise]
+    specialties:
+      - id: dust_runner
+        label: Dust Runner
+        free_talent: streetwise
+      - id: tech_smuggler
+        label: Tech Smuggler
+        free_talent: electro_specialist
+      - id: guild_spy
+        label: Guild Spy
+        free_talent: stealthy
+      - id: alley_thug
+        label: Alley Thug
+        free_talent: dirty_fighter
+      - id: fixer
+        label: Fixer
+        free_talent: barter
+      - id: courier
+        label: Courier
+        free_talent: acrobat
+
+  - id: roughneck
+    label: Roughneck
+    key_attribute: strength
+    key_talents: [endurance, force, jury_rig, scan_operator]
+    specialties:
+      - id: hull_guard
+        label: Hull Guard
+        free_talent: lookout
+      - id: wreck_diver
+        label: Wreck Diver
+        free_talent: exo_specialist
+      - id: vacuum_welder
+        label: Vacuum Welder
+        free_talent: zero_g_training
+      - id: deep_miner
+        label: Deep Miner
+        free_talent: miner
+      - id: crane_rat
+        label: Crane Rat
+        free_talent: acrobat
+      - id: machine_tender
+        label: Machine Tender
+        free_talent: mechanic
+
+  - id: scholar
+    label: Scholar
+    key_attribute: logic
+    key_talents: [investigator, librarian, smart, teratology]
+    specialties:
+      - id: guild_algebraist
+        label: Guild Algebraist
+        free_talent: smart
+      - id: archivist
+        label: Archivist
+        free_talent: librarian
+      - id: field_researcher
+        label: Field Researcher
+        free_talent: botanist
+      - id: xenolinguist
+        label: Xenolinguist
+        free_talent: cultural_savant
+      - id: relic_hunter
+        label: Relic Hunter
+        free_talent: investigator
+      - id: guild_teacher
+        label: Guild Teacher
+        free_talent: renowned
+
+  - id: scoundrel
+    label: Scoundrel
+    key_attribute: perception
+    key_talents: [acrobat, charmer, lookout, stealthy]
+    specialties:
+      - id: card_sharp
+        label: Card Sharp
+        free_talent: charmer
+      - id: dock_rat
+        label: Dock Rat
+        free_talent: streetwise
+      - id: fence
+        label: Fence
+        free_talent: barter
+      - id: smuggler
+        label: Smuggler
+        free_talent: stealthy
+      - id: pickpocket
+        label: Pickpocket
+        free_talent: acrobat
+      - id: informant
+        label: Informant
+        free_talent: investigator
+
+  - id: traveler
+    label: Traveler
+    key_attribute: perception
+    key_talents: [driver, mechanic, exo_specialist, zero_g_training]
+    specialties:
+      - id: tugship_pilot
+        label: Tugship Pilot
+        free_talent: shuttle_pilot
+      - id: hull_warden
+        label: Hull Warden
+        free_talent: investigator
+      - id: guild_surveyor
+        label: Guild Surveyor
+        free_talent: scan_operator
+      - id: kite_handler
+        label: Kite Handler
+        free_talent: mechanic
+      - id: slipstream_navigator
+        label: Slipstream Navigator
+        free_talent: driver
+      - id: prospector
+        label: Prospector
+        free_talent: miner
+
+crew_roles:
+  - id: delver
+    label: Delver
+  - id: scout
+    label: Scout
+  - id: burrower
+    label: Burrower
+  - id: guard
+    label: Guard
+  - id: archaeologist
+    label: Archaeologist

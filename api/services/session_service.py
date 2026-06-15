@@ -82,6 +82,7 @@ def app_session_payload(app: AppSession) -> dict:
         "has_character_sheet": bool(plugin and plugin.has_character_sheet),
         "has_game_state": bool(plugin and plugin.has_game_state),
         "has_play_roster": has_play_roster(app.selected_game_id),
+        "play_style": getattr(plugin, "play_style", "solo_journal"),
     }
     if ctx:
         payload["slot_id"] = ctx.slot_id

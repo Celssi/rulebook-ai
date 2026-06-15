@@ -1,15 +1,25 @@
 import { useEffect, useState } from "react";
-import { BookOpen, Database, Play, User, X } from "lucide-react";
+import { BookOpen, Database, Play, User } from "lucide-react";
 import { api } from "../../api/client";
 import CharacterSetupPanel from "../brambletrek/CharacterSetupPanel";
+import Bt2CharacterSetupPanel from "../brambletrek_2/CharacterSetupPanel";
 import VisitSetupPanel from "../sansibilia/VisitSetupPanel";
 import WatchSetupPanel from "../lighthouse/WatchSetupPanel";
 import CottageSetupPanel from "../apothecaria/CottageSetupPanel";
 import InvestigationSetupPanel from "../whispers/InvestigationSetupPanel";
 import AdventurerSetupPanel from "../colostle/AdventurerSetupPanel";
 import ScionSetupPanel from "../ashes/ScionSetupPanel";
+import GmSoloSetupPanel from "../gm_solo/GmSoloSetupPanel";
+import OutgunnedSetupPanel from "../outgunned/OutgunnedSetupPanel";
+import CoriolisSetupPanel from "../coriolis/CoriolisSetupPanel";
+import TorSetupPanel from "../tor/TorSetupPanel";
+import Dnd5eSetupPanel from "../dnd5e/Dnd5eSetupPanel";
+import MlpSetupPanel from "../mlp/MlpSetupPanel";
+import { isGmSoloGameId } from "../../games/gmSoloGames";
 import type { PlayHeader, SessionState } from "../../types";
 import { ASHES_PROMPT_SETS } from "../ashes/promptSets";
+import AppDialog from "../shared/AppDialog";
+import { FormSelect } from "../shared/FormFields";
 
 type Tab = "play" | "rag" | "character" | "index";
 
@@ -56,8 +66,6 @@ export default function SettingsDialog({
     if (session.entity) setEntity(session.entity);
   }, [open, session.entity]);
 
-  if (!open) return null;
-
   const providers = (meta?.chat_providers as { id: string; label: string }[]) || [];
   const profiles = (meta?.retrieval_profiles as string[]) || [];
 
@@ -81,15 +89,7 @@ export default function SettingsDialog({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4">
-      <div className="panel-elevated w-full max-w-3xl max-h-[90vh] flex flex-col overflow-hidden">
-        <div className="flex items-center justify-between px-5 py-4 border-b border-border shrink-0">
-          <h2 className="font-semibold text-lg">Settings</h2>
-          <button type="button" className="btn-ghost p-2" onClick={onClose}>
-            <X className="w-4 h-4" />
-          </button>
-        </div>
-
+    <AppDialog open={open} title="Settings" onClose={onClose} size="lg">
         <div className="flex flex-1 min-h-0 overflow-hidden">
           <nav className="hidden sm:flex sm:flex-col w-36 shrink-0 border-r border-border p-2 space-y-0.5">
             {TABS.map(({ id, label, icon: Icon }) => (
@@ -130,8 +130,7 @@ export default function SettingsDialog({
               <div className="space-y-4">
                 <section>
                   <div className="label mb-2">Game</div>
-                  <select
-                    className="select"
+                  <FormSelect
                     value={session.selected_game_id}
                     onChange={(e) => saveSession({ selected_game_id: e.target.value })}
                   >
@@ -140,16 +139,16 @@ export default function SettingsDialog({
                         {g.label}
                       </option>
                     ))}
-                  </select>
+                  </FormSelect>
                 </section>
 
                 {session.has_character_sheet && session.settings && (
                   <section className="grid sm:grid-cols-2 gap-4 pt-4 border-t border-border">
-                    {session.selected_game_id === "brambletrek" && (
+                    {(session.selected_game_id === "brambletrek" ||
+                      session.selected_game_id === "brambletrek_2") && (
                       <div>
                         <div className="label mb-2">Story mode</div>
-                        <select
-                          className="select"
+                        <FormSelect
                           value={session.settings.story_mode || "player"}
                           onChange={(e) =>
                             saveSession({
@@ -159,14 +158,13 @@ export default function SettingsDialog({
                         >
                           <option value="player">Player-led</option>
                           <option value="ai_narrator">AI narrator</option>
-                        </select>
+                        </FormSelect>
                       </div>
                     )}
                     {session.selected_game_id === "apothecaria" && (
                       <div>
                         <div className="label mb-2">Story mode</div>
-                        <select
-                          className="select"
+                        <FormSelect
                           value={session.settings.story_mode || "player"}
                           onChange={(e) =>
                             saveSession({
@@ -176,14 +174,13 @@ export default function SettingsDialog({
                         >
                           <option value="player">Player-led journal</option>
                           <option value="ai_narrator">AI narrator</option>
-                        </select>
+                        </FormSelect>
                       </div>
                     )}
                     {session.selected_game_id === "lighthouse" && (
                       <div>
                         <div className="label mb-2">Story mode</div>
-                        <select
-                          className="select"
+                        <FormSelect
                           value={session.settings.story_mode || "player"}
                           onChange={(e) =>
                             saveSession({
@@ -193,15 +190,14 @@ export default function SettingsDialog({
                         >
                           <option value="player">Player-led logbook</option>
                           <option value="ai_narrator">AI narrator</option>
-                        </select>
+                        </FormSelect>
                       </div>
                     )}
                     {session.selected_game_id === "colostle" && (
                       <>
                         <div>
                           <div className="label mb-2">Story mode</div>
-                          <select
-                            className="select"
+                          <FormSelect
                             value={session.settings.story_mode || "player"}
                             onChange={(e) =>
                               saveSession({
@@ -211,12 +207,11 @@ export default function SettingsDialog({
                           >
                             <option value="player">Player-led journal</option>
                             <option value="ai_narrator">AI narrator</option>
-                          </select>
+                          </FormSelect>
                         </div>
                         <div>
                           <div className="label mb-2">Location module</div>
-                          <select
-                            className="select"
+                          <FormSelect
                             value={session.settings.location_mode || "roomlands"}
                             onChange={(e) =>
                               saveSession({
@@ -228,7 +223,7 @@ export default function SettingsDialog({
                             <option value="ocean">Ocean</option>
                             <option value="city">City</option>
                             <option value="battlements">Battlements</option>
-                          </select>
+                          </FormSelect>
                         </div>
                       </>
                     )}
@@ -236,8 +231,7 @@ export default function SettingsDialog({
                       <>
                         <div>
                           <div className="label mb-2">Story mode</div>
-                          <select
-                            className="select"
+                          <FormSelect
                             value={session.settings.story_mode || "player"}
                             onChange={(e) =>
                               saveSession({
@@ -247,12 +241,11 @@ export default function SettingsDialog({
                           >
                             <option value="player">Player-led journal</option>
                             <option value="ai_narrator">AI narrator</option>
-                          </select>
+                          </FormSelect>
                         </div>
                         <div>
                           <div className="label mb-2">Difficulty</div>
-                          <select
-                            className="select"
+                          <FormSelect
                             value={session.settings.difficulty || "normal"}
                             onChange={(e) =>
                               saveSession({
@@ -262,7 +255,7 @@ export default function SettingsDialog({
                           >
                             <option value="normal">Normal (2 jokers)</option>
                             <option value="easy">Easy (1 joker)</option>
-                          </select>
+                          </FormSelect>
                         </div>
                       </>
                     )}
@@ -270,8 +263,7 @@ export default function SettingsDialog({
                       <>
                         <div>
                           <div className="label mb-2">Story mode</div>
-                          <select
-                            className="select"
+                          <FormSelect
                             value={session.settings.story_mode || "player"}
                             onChange={(e) =>
                               saveSession({
@@ -281,12 +273,11 @@ export default function SettingsDialog({
                           >
                             <option value="player">Player-led journal</option>
                             <option value="ai_narrator">AI narrator</option>
-                          </select>
+                          </FormSelect>
                         </div>
                         <div>
                           <div className="label mb-2">Journal prompt set</div>
-                          <select
-                            className="select"
+                          <FormSelect
                             value={session.settings.prompt_set || "crypt"}
                             onChange={(e) =>
                               saveSession({
@@ -299,7 +290,7 @@ export default function SettingsDialog({
                                 {s.label}
                               </option>
                             ))}
-                          </select>
+                          </FormSelect>
                         </div>
                       </>
                     )}
@@ -307,8 +298,7 @@ export default function SettingsDialog({
                       <>
                         <div>
                           <div className="label mb-2">Story mode</div>
-                          <select
-                            className="select"
+                          <FormSelect
                             value={session.settings.story_mode || "player"}
                             onChange={(e) =>
                               saveSession({
@@ -318,12 +308,11 @@ export default function SettingsDialog({
                           >
                             <option value="player">Player-led journal</option>
                             <option value="ai_narrator">AI narrator</option>
-                          </select>
+                          </FormSelect>
                         </div>
                         <div>
                           <div className="label mb-2">Ending mode</div>
-                          <select
-                            className="select"
+                          <FormSelect
                             value={session.settings.ending_mode || "four_changes"}
                             onChange={(e) =>
                               saveSession({
@@ -333,14 +322,29 @@ export default function SettingsDialog({
                           >
                             <option value="four_changes">Four city changes</option>
                             <option value="score_90">Score to 90</option>
-                          </select>
+                          </FormSelect>
                         </div>
                       </>
                     )}
+                    {isGmSoloGameId(session.selected_game_id) && (
+                      <div>
+                        <div className="label mb-2">Story mode</div>
+                        <FormSelect
+                          value={session.settings.story_mode || "player"}
+                          onChange={(e) =>
+                            saveSession({
+                              settings: { ...session.settings, story_mode: e.target.value },
+                            })
+                          }
+                        >
+                          <option value="player">Player-led</option>
+                          <option value="ai_narrator">AI narrator</option>
+                        </FormSelect>
+                      </div>
+                    )}
                     <div>
                       <div className="label mb-2">Card source</div>
-                      <select
-                        className="select"
+                      <FormSelect
                         value={session.settings.card_source || "virtual"}
                         onChange={(e) =>
                           saveSession({
@@ -350,7 +354,7 @@ export default function SettingsDialog({
                       >
                         <option value="virtual">Virtual (AI draws)</option>
                         <option value="physical">Physical deck</option>
-                      </select>
+                      </FormSelect>
                     </div>
                   </section>
                 )}
@@ -362,8 +366,7 @@ export default function SettingsDialog({
                 {providers.length > 1 && (
                   <section>
                     <div className="label mb-2">Chat provider</div>
-                    <select
-                      className="select"
+                    <FormSelect
                       value={session.chat_provider}
                       onChange={(e) => saveSession({ chat_provider: e.target.value })}
                     >
@@ -372,21 +375,20 @@ export default function SettingsDialog({
                           {p.label}
                         </option>
                       ))}
-                    </select>
+                    </FormSelect>
                   </section>
                 )}
 
                 <section className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <div className="label mb-2">Mode</div>
-                    <select
-                      className="select"
+                    <FormSelect
                       value={session.mode}
                       onChange={(e) => saveSession({ mode: e.target.value })}
                     >
                       <option value="RAG">RAG</option>
                       <option value="Agent">Agent</option>
-                    </select>
+                    </FormSelect>
                   </div>
                   <div>
                     <div className="label mb-2">Top-k ({session.top_k})</div>
@@ -403,8 +405,7 @@ export default function SettingsDialog({
 
                 <section>
                   <div className="label mb-2">Retrieval profile</div>
-                  <select
-                    className="select"
+                  <FormSelect
                     value={session.retrieval_profile}
                     onChange={(e) => saveSession({ retrieval_profile: e.target.value })}
                   >
@@ -413,9 +414,20 @@ export default function SettingsDialog({
                         {p}
                       </option>
                     ))}
-                  </select>
+                  </FormSelect>
                 </section>
               </div>
+            )}
+
+            {tab === "character" && session.has_character_sheet && session.selected_game_id === "brambletrek_2" && (
+              <Bt2CharacterSetupPanel
+                entity={entity}
+                onChange={setEntity}
+                onSaved={handleCharacterSaved}
+                roster={roster}
+                activeId={session.slot_id}
+                onSwitchRoster={onRosterSwitch}
+              />
             )}
 
             {tab === "character" && session.has_character_sheet && session.selected_game_id === "brambletrek" && (
@@ -488,6 +500,76 @@ export default function SettingsDialog({
               <ScionSetupPanel session={session} onSaved={onSaved} />
             )}
 
+            {tab === "character" &&
+              session.has_character_sheet &&
+              session.selected_game_id === "mlp" &&
+              session.entity && (
+                <MlpSetupPanel
+                  entity={entity}
+                  onChange={setEntity}
+                  onSaved={handleCharacterSaved}
+                  roster={roster}
+                  activeId={session.slot_id}
+                  onSwitchRoster={onRosterSwitch}
+                />
+              )}
+
+            {tab === "character" &&
+              session.has_character_sheet &&
+              session.selected_game_id === "dnd5e" &&
+              session.entity && (
+                <Dnd5eSetupPanel
+                  entity={session.entity}
+                  session={session}
+                  roster={roster}
+                  activeId={session.slot_id}
+                  onSwitchRoster={onRosterSwitch}
+                  onSaved={onSaved}
+                />
+              )}
+
+            {tab === "character" &&
+              session.has_character_sheet &&
+              session.selected_game_id === "tor" &&
+              session.entity && (
+                <TorSetupPanel entity={session.entity} session={session} onSaved={onSaved} />
+              )}
+
+            {tab === "character" &&
+              session.has_character_sheet &&
+              session.selected_game_id === "outgunned" &&
+              session.entity && (
+                <OutgunnedSetupPanel
+                  entity={session.entity}
+                  session={session}
+                  onSaved={onSaved}
+                />
+              )}
+
+            {tab === "character" &&
+              session.has_character_sheet &&
+              session.selected_game_id === "coriolis" &&
+              session.entity && (
+                <CoriolisSetupPanel entity={session.entity} session={session} onSaved={onSaved} />
+              )}
+
+            {tab === "character" &&
+              session.has_character_sheet &&
+              isGmSoloGameId(session.selected_game_id) &&
+              session.selected_game_id !== "dnd5e" &&
+              session.selected_game_id !== "tor" &&
+              session.selected_game_id !== "outgunned" &&
+              session.selected_game_id !== "mlp" &&
+              session.selected_game_id !== "coriolis" &&
+              session.entity && (
+                <GmSoloSetupPanel
+                  gameId={session.selected_game_id}
+                  entity={session.entity}
+                  session={session}
+                  onSaved={onSaved}
+                />
+              )}
+
             {tab === "character" && !session.has_character_sheet && (
               <p className="text-muted">Character setup is available in supported play games.</p>
             )}
@@ -516,7 +598,6 @@ export default function SettingsDialog({
             </div>
           </div>
         </div>
-      </div>
-    </div>
+    </AppDialog>
   );
 }

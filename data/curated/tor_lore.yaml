@@ -1,0 +1,87 @@
+# The One Ring 2e - Strider Mode, Lore Table appendix (pp.11-12, 22-23)
+# Roll Feat d12 for section, Success d6 for row. Gandalf/Sauron icons use special sections.
+sections:
+  gandalf:
+    "1": {action: Abandon, aspect: Corrupted, focus: Curse}
+    "2": {action: Attack, aspect: Cruel, focus: Despair}
+    "3": {action: Betray, aspect: Deceptive, focus: Enemy}
+    "4": {action: Corrupt, aspect: Fell, focus: Fear}
+    "5": {action: Defeat, aspect: Ruined, focus: Shadow}
+    "6": {action: Weaken, aspect: Treacherous, focus: War}
+  sauron:
+    "1": {action: Believe, aspect: Flourishing, focus: Courage}
+    "2": {action: Bolster, aspect: Beautiful, focus: Duty}
+    "3": {action: Defend, aspect: Good, focus: Fellowship}
+    "4": {action: Forgive, aspect: Kind, focus: Hope}
+    "5": {action: Resist, aspect: Gentle, focus: Love}
+    "6": {action: Strengthen, aspect: Wondrous, focus: Peace}
+  "1":
+    "1": {action: Aid, aspect: Active, focus: Battle}
+    "2": {action: Arrive, aspect: Ancient, focus: Border}
+    "3": {action: Await, aspect: Bold, focus: Burden}
+    "4": {action: Breach, aspect: Bright, focus: Council}
+    "5": {action: Break, aspect: Broken, focus: Court}
+    "6": {action: Capture, aspect: Cheerless, focus: Creature}
+  "2":
+    "1": {action: Change, aspect: Cold, focus: Darkness}
+    "2": {action: Chase, aspect: Concealed, focus: Death}
+    "3": {action: Command, aspect: Dangerous, focus: Defence}
+    "4": {action: Control, aspect: Dark, focus: Depths}
+    "5": {action: Create, aspect: Dead, focus: Doubt}
+    "6": {action: Defy, aspect: Defended, focus: Dreams}
+  "3":
+    "1": {action: Demand, aspect: Desolate, focus: Fate}
+    "2": {action: Discover, aspect: Destroyed, focus: Fire}
+    "3": {action: Disguise, aspect: Dreadful, focus: Folk}
+    "4": {action: Endure, aspect: Empty, focus: Followers}
+    "5": {action: Escape, aspect: Evil, focus: Greed}
+    "6": {action: Evade, aspect: Faded, focus: Haven}
+  "4":
+    "1": {action: Explore, aspect: Far-reaching, focus: History}
+    "2": {action: Find, aspect: Fierce, focus: Honour}
+    "3": {action: Focus, aspect: Foreboding, focus: Journey}
+    "4": {action: Gather, aspect: Forgotten, focus: Kindred}
+    "5": {action: Guard, aspect: Fragile, focus: Knowledge}
+    "6": {action: Guide, aspect: Ghastly, focus: Land}
+  "5":
+    "1": {action: Hide, aspect: Gloomy, focus: Leader}
+    "2": {action: Hinder, aspect: Growing, focus: Legend}
+    "3": {action: Hoard, aspect: Hidden, focus: Life}
+    "4": {action: Hold, aspect: Ill-fated, focus: Light}
+    "5": {action: Hunt, aspect: Impenetrable, focus: Luck}
+    "6": {action: Journey, aspect: inspiring, focus: Memory}
+  "6":
+    "1": {action: Lead, aspect: Isolated, focus: Message}
+    "2": {action: Learn, aspect: Lofty, focus: Might}
+    "3": {action: Leave, aspect: Lost, focus: Nature}
+    "4": {action: Lose, aspect: Menacing, focus: Pain}
+    "5": {action: Mourn, aspect: Mighty, focus: Path}
+    "6": {action: Move, aspect: Mysterious, focus: Patron}
+  "7":
+    "1": {action: Persist, aspect: Noble, focus: Peril}
+    "2": {action: Preserve, aspect: Obstructed, focus: Plan}
+    "3": {action: Prevent, aspect: Old, focus: Power}
+    "4": {action: Refuse, aspect: Ominous, focus: Prophecy}
+    "5": {action: Reject, aspect: Open, focus: Quest}
+    "6": {action: Remove, aspect: Peaceful, focus: Refuge}
+  "8":
+    "1": {action: Replenish, aspect: Restored, focus: Riddle}
+    "2": {action: Restore, aspect: Sheltered, focus: Ruins}
+    "3": {action: Scheme, aspect: Silent, focus: Rumour}
+    "4": {action: Search, aspect: Simple, focus: Secret}
+    "5": {action: Seize, aspect: Small, focus: Skill}
+    "6": {action: Share, aspect: Sombre, focus: Song}
+  "9":
+    "1": {action: Slay, aspect: Stony, focus: Story}
+    "2": {action: Steal, aspect: Stout, focus: Strength}
+    "3": {action: Summon, aspect: Stricken, focus: Time}
+    "4": {action: Surrender, aspect: Stubborn, focus: Tool}
+    "5": {action: Surround, aspect: Twisted, focus: Treasure}
+    "6": {action: Threaten, aspect: Unnatural, focus: Trust}
+  "10":
+    "1": {action: Transform, aspect: Veiled, focus: Truth}
+    "2": {action: Trap, aspect: Vigorous, focus: Vengeance}
+    "3": {action: Trick, aspect: Weary, focus: Wealth}
+    "4": {action: Uncover, aspect: Wild, focus: Weapon}
+    "5": {action: Uphold, aspect: Wretched, focus: Wilds}
+    "6": {action: Withstand, aspect: Young, focus: Wish}

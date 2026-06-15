@@ -219,9 +219,3 @@ python3 scripts/eval_retrieval.py --game <game_id>
 ```
 
 Add 5–10 regression questions in `data/eval/` with expected source files/pages.
-
----
-
-## Attribution
-
-Add game credit to README and any in-app about/attribution if required by license.

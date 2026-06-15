@@ -1,0 +1,28 @@
+# Hollow escape prompts (BT2 p. 49).
+exit:
+  '2':
+    label: As you step forward, the mist clings to your skin, pulling at your thoughts. Something whispers, asking if you’ve truly remembered everything. What do you leave behind as you exit?
+  '3':
+    label: Just before you step through, a name echoes in your mind, one you don’t quite recall. You hesitate. Do you turn back to seek it, or let it slip into the mist forever?
+  '4':
+    label: The ground beneath your feet shifts, a new path forming ahead. Was this always the way out, or is the Hollow offering you a choice? Do you trust it?
+  '5':
+    label: Shadows flicker in the distance, watching, waiting. You feel their gaze even as you step beyond the Hollow. Will they follow you? Do they let you leave so easily?
+  '6':
+    label: As you walk, something tugs at your memory. One last, unclaimed fragment. Do you turn back for it, risking your escape, or step forward, accepting what is lost?
+  '7':
+    label: A familiar voice calls your name from deep within the Hollow. It is neither friendly nor hostile. It’s just… there. Do you answer before you leave?
+  '8':
+    label: In a pool of still water, you see your reflection, except it does not move as you do. It smiles, nods, and turns away. A parting gift, or something else entirely?
+  '9':
+    label: 'A whispered thought fills your mind: “Will you return?” The words feel less like a question and more like a promise. How do you respond?'
+  '10':
+    label: You find yourself standing before a wooden door. Simple, unremarkable, yet full of meaning. You turn the handle, and step through. What do you feel as you leave?
+  jack:
+    label: The Hollow does not release you without a final challenge. A piece of yourself resists leaving. Do you struggle against it, or offer something in exchange for safe passage?
+  queen:
+    label: As you walk forward, the Hollow folds in on itself behind you, as if erasing the path you took. Do you feel relief, or does something about it feel… wrong?
+  king:
+    label: A book sits before the exit, its pages blank. As you touch it, words begin to appear. They tell your story, but they end just before this moment. What do you write before stepping through?
+  ace:
+    label: As you step forward, something small and weightless presses into your palm. A keepsake, a token, a remnant of this place. What is it, and what does it mean to you?

@@ -3,8 +3,8 @@ import { Loader2, Shuffle } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { api } from "../../api/client";
 import { applyLegacyStatSwap } from "../../lib/legacyStats";
-import { rosterEntryLabel } from "../../lib/rosterLabel";
 import type { CharacterHeader } from "../../types";
+import { FormSelect, RosterSelect, SelectField } from "../shared/FormFields";
 
 interface TableOption {
   id: string;
@@ -105,39 +105,14 @@ function TableDrawField({
           Draw
         </button>
       </div>
-      <select className="select" value={value} onChange={(e) => onChange(e.target.value)}>
+      <FormSelect value={value} onChange={(e) => onChange(e.target.value)}>
         {options.map((o) => (
           <option key={o.id || "empty"} value={o.id}>
             {o.label}
           </option>
         ))}
-      </select>
+      </FormSelect>
       <CardDrawnDisplay bandId={bandId} card={card} cardBands={cardBands} />
-    </div>
-  );
-}
-
-function SelectField({
-  label,
-  value,
-  options,
-  onChange,
-}: {
-  label: string;
-  value: string;
-  options: TableOption[];
-  onChange: (id: string) => void;
-}) {
-  return (
-    <div>
-      <div className="label mb-1">{label}</div>
-      <select className="select" value={value} onChange={(e) => onChange(e.target.value)}>
-        {options.map((o) => (
-          <option key={o.id || "empty"} value={o.id}>
-            {o.label}
-          </option>
-        ))}
-      </select>
     </div>
   );
 }
@@ -251,21 +226,13 @@ export default function CharacterSetupPanel({
       </p>
 
       {roster && roster.length > 0 && (
-        <div>
-          <div className="label mb-1">Active Gnawborn</div>
-          <select
-            className="select"
-            value={activeId || ""}
-            disabled={switching}
-            onChange={(e) => switchRoster(e.target.value)}
-          >
-            {roster.map((r) => (
-              <option key={r.id} value={r.id}>
-                {rosterEntryLabel(r.name)}
-              </option>
-            ))}
-          </select>
-        </div>
+        <RosterSelect
+          label="Active Gnawborn"
+          roster={roster}
+          activeId={activeId || ""}
+          disabled={switching}
+          onChange={switchRoster}
+        />
       )}
 
       <div>

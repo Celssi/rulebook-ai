@@ -11,11 +11,20 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.config import DEFAULT_GAME_ID, GAME_BRAMBLETREK
+from src.config import DEFAULT_GAME_ID, GAME_BRAMBLETREK, GAME_BRAMBLETREK_2
 from src.rag import nodes_to_sources, retrieve_nodes
 
 DEFAULT_CASES = ROOT / "data" / "eval" / "retrieval_regression.json"
 BRAMBLETREK_CASES = ROOT / "data" / "eval" / "brambletrek_retrieval_regression.json"
+BRAMBLETREK_2_CASES = ROOT / "data" / "eval" / "brambletrek_2_retrieval_regression.json"
+GM_SOLO_CASES: dict[str, Path] = {
+    "outgunned": ROOT / "data" / "eval" / "outgunned_retrieval_regression.json",
+    "tor": ROOT / "data" / "eval" / "tor_retrieval_regression.json",
+    "coriolis": ROOT / "data" / "eval" / "coriolis_retrieval_regression.json",
+    "cosmere": ROOT / "data" / "eval" / "cosmere_retrieval_regression.json",
+    "mlp": ROOT / "data" / "eval" / "mlp_retrieval_regression.json",
+    "dnd5e": ROOT / "data" / "eval" / "dnd5e_retrieval_regression.json",
+}
 
 
 def _load_cases(path: Path) -> list[dict]:
@@ -83,7 +92,14 @@ def main() -> None:
 
     case_path = args.cases
     if case_path is None:
-        case_path = BRAMBLETREK_CASES if args.game == GAME_BRAMBLETREK else DEFAULT_CASES
+        if args.game == GAME_BRAMBLETREK:
+            case_path = BRAMBLETREK_CASES
+        elif args.game == GAME_BRAMBLETREK_2:
+            case_path = BRAMBLETREK_2_CASES
+        elif args.game in GM_SOLO_CASES:
+            case_path = GM_SOLO_CASES[args.game]
+        else:
+            case_path = DEFAULT_CASES
     cases = _load_cases(case_path)
     hits = 0
     total_coverage = 0.0

@@ -45,18 +45,31 @@ def _keep_chunk(text: str) -> bool:
     return len(compact) >= 20 and has_letters and has_numbers
 
 
+def _hard_split(text: str, chunk_size: int) -> list[str]:
+    if len(text) <= chunk_size:
+        return [text]
+    return [text[i : i + chunk_size] for i in range(0, len(text), chunk_size)]
+
+
 def _split_long_paragraph(paragraph: str, chunk_size: int) -> list[str]:
     if len(paragraph) <= chunk_size:
         return [paragraph]
     sentence_parts = re.split(r"(?<=[.!?])\s+", paragraph)
     if len(sentence_parts) <= 1:
-        return [paragraph[i : i + chunk_size] for i in range(0, len(paragraph), chunk_size)]
+        return _hard_split(paragraph, chunk_size)
     out: list[str] = []
     buf: list[str] = []
     buf_len = 0
     for sent in sentence_parts:
         sent = sent.strip()
         if not sent:
+            continue
+        if len(sent) > chunk_size:
+            if buf:
+                out.append(" ".join(buf))
+                buf = []
+                buf_len = 0
+            out.extend(_hard_split(sent, chunk_size))
             continue
         add_len = len(sent) + (1 if buf else 0)
         if buf and buf_len + add_len > chunk_size:
@@ -67,7 +80,11 @@ def _split_long_paragraph(paragraph: str, chunk_size: int) -> list[str]:
             buf.append(sent)
             buf_len += add_len
     if buf:
-        out.append(" ".join(buf))
+        joined = " ".join(buf)
+        if len(joined) > chunk_size:
+            out.extend(_hard_split(joined, chunk_size))
+        else:
+            out.append(joined)
     return out
 
 
@@ -99,7 +116,11 @@ def _chunk_text(text: str, chunk_size: int, overlap: int) -> list[str]:
         current_len += add_len
     if current:
         chunks.append("\n\n".join(current).strip())
-    return [c for c in chunks if _keep_chunk(c)]
+
+    capped: list[str] = []
+    for chunk in chunks:
+        capped.extend(_hard_split(chunk, chunk_size))
+    return [c for c in capped if _keep_chunk(c)]
 
 
 def extract_pages_pypdf(pdf_path: Path) -> list[tuple[int, str]]:

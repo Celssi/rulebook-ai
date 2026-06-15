@@ -1,0 +1,28 @@
+# Hollow entry prompts (BT2 p. 44).
+entry:
+  '2':
+    label: The path you were walking simply vanishes behind you. Turning around, the Woods no longer look the same. Trees are too high, the sky is pale, and mist curls at your feet. How did you get here?
+  '3':
+    label: A soft voice calls your name from deep within the mist, familiar yet unplaceable. You step forward, drawn to it, but as you do, everything behind you fades into nothingness. What is it that called you?
+  '4':
+    label: Leaning over a small stream, you see something strange in the water. Not your reflection, but an echo of a memory you don’t recall having. When you look up again, the stream is gone, and you stand somwhere else entirely
+  '5':
+    label: An archway appears along the trail, twisting into the shape of a door. It wasn’t there before. As you step through, a feeling of weightlessness washes over you, and suddenly, the Woods is nowhere to be found
+  '6':
+    label: A small golden light flickers ahead, bobbing like a firefly. It flutters away when you approach, leading you deeper into the mist. When you finally catch up, there is no lantern, only a long-forgotten path. Do you follow?
+  '7':
+    label: As you walk, you hear footsteps matching your own, just out of sync. You stop. They stop. You run. They chase. Then, silence. Turning back, you find only mist and uncertainty
+  '8':
+    label: A tree with a gaping hollow stands before you, dark and inviting. Inside, you glimpse flickering images, moments lost to time. A gust of wind nudges you forward. Do you enter?
+  '9':
+    label: One moment, you’re where you should be but the next, you realize time has slipped away. The sun is in a different place, the trees are unfamiliar, and you can’t remember how you got here. What did you forget?
+  '10':
+    label: A name drifts through the air, carried by an unseen breeze. The sound tugs at something deep in your chest, leading you onward before you realize your feet have already moved
+  jack:
+    label: In a clearing, a broken mirror sits on a tree stump. When you look into it, you see yourself, but something is wrong. Your reflection blurs and shifts, as if it does not quite remember you. When you blink, the mirror is gone
+  queen:
+    label: You step onto a winding trail and feel your feet moving forward, except you aren’t the one guiding them. The road pulls you along, and the further you go, the less sure you are of where you began
+  king:
+    label: A shadow moves between the trees, always just out of reach. You aren’t sure if it’s following or leading. When you stop, it stops. When you speak, it listens. What does it want?
+  ace:
+    label: A book lies open on the ground, its pages filled with words you don’t remember writing. The final sentence is half-finished, waiting for you to complete it. As you do, the world shifts, and the Hollow welcomes you. HOLLOW PROMPTS

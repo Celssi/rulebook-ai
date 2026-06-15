@@ -9,6 +9,7 @@ from src.games.registry import (
     GAME_APOTHECARIA,
     GAME_ASHES,
     GAME_BRAMBLETREK,
+    GAME_BRAMBLETREK_2,
     GAME_COLOSTLE,
     GAME_LIGHTHOUSE,
     GAME_SANSIBILIA,
@@ -38,6 +39,19 @@ def build_system_prompt(
 
     _ = language
     lang_instruction = "Answer in English."
+
+    from src.games.gm_solo.prompt_dispatch import gm_solo_system_prompt
+
+    gm_prompt = gm_solo_system_prompt(
+        game_id,
+        play_entity=play_entity,
+        story_mode=story_mode,
+        card_source=card_source,
+        language_instruction=lang_instruction,
+    )
+    if gm_prompt:
+        return gm_prompt
+
     if game_id == GAME_BRAMBLETREK:
         from src.games.brambletrek.character import character_from_dict
         from src.games.brambletrek.prompts import brambletrek_system_prompt
@@ -45,6 +59,17 @@ def build_system_prompt(
         return brambletrek_system_prompt(
             language_instruction=lang_instruction,
             character=character_from_dict(play_entity) if play_entity else None,
+            story_mode=story_mode,
+            card_source=card_source,
+        )
+
+    if game_id == GAME_BRAMBLETREK_2:
+        from src.games.brambletrek_2.character import character_from_dict as bt2_from_dict
+        from src.games.brambletrek_2.prompts import brambletrek_2_system_prompt
+
+        return brambletrek_2_system_prompt(
+            language_instruction=lang_instruction,
+            character=bt2_from_dict(play_entity) if play_entity else None,
             story_mode=story_mode,
             card_source=card_source,
         )

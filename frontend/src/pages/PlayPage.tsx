@@ -3,6 +3,7 @@ import { flushSync } from "react-dom";
 import { MessageSquare, ScrollText, User } from "lucide-react";
 import { api } from "../api/client";
 import CharacterPanel from "../components/brambletrek/CharacterPanel";
+import Bt2CharacterPanel from "../components/brambletrek_2/CharacterPanel";
 import LonelogBar from "../components/shared/LonelogBar";
 import VisitPanel from "../components/sansibilia/VisitPanel";
 import WatchPanel from "../components/lighthouse/WatchPanel";
@@ -15,6 +16,9 @@ import PlayPanel from "../components/layout/PlayPanel";
 import StatsBar from "../components/layout/StatsBar";
 import SettingsDialog from "../components/settings/SettingsDialog";
 import HowToPlayDialog from "../components/shared/HowToPlayDialog";
+import GmSoloPanel from "../components/gm_solo/GmSoloPanel";
+import { gmSoloApi } from "../api/gmSolo";
+import { isGmSoloGameId, type GmSoloGameId, type GmSoloHeader } from "../games/gmSoloGames";
 import { shouldReloadSession } from "../games/registry";
 import type {
   CharacterHeader,
@@ -22,6 +26,9 @@ import type {
   LegacyAbility,
   Message,
   PendingJourney,
+  PendingExploration,
+  HollowState,
+  ExplorationActionResult,
   SessionState,
   Shortcut,
   Source,
@@ -48,9 +55,12 @@ export default function PlayPage() {
   const [wHeader, setWHeader] = useState<InvestigationHeader | null>(null);
   const [colHeader, setColHeader] = useState<ColostleHeader | null>(null);
   const [ashHeader, setAshHeader] = useState<ScionHeader | null>(null);
+  const [gmHeader, setGmHeader] = useState<GmSoloHeader | null>(null);
   const [abilities, setAbilities] = useState<LegacyAbility[]>([]);
   const [roster, setRoster] = useState<{ id: string; name: string }[]>([]);
   const [journey, setJourney] = useState<PendingJourney | null>(null);
+  const [exploration, setExploration] = useState<PendingExploration | null>(null);
+  const [hollow, setHollow] = useState<HollowState | null>(null);
   const [shortcuts, setShortcuts] = useState<Shortcut[]>([]);
   const [lonelog, setLonelog] = useState<string[]>([]);
   const [deckRemaining, setDeckRemaining] = useState(0);
@@ -94,6 +104,37 @@ export default function PlayPage() {
     setLonelog(lonelogRes.lines);
     setDeckRemaining(deckRes.remaining);
     setCardSource(deckRes.card_source);
+  }, []);
+
+  const loadBrambletrek2 = useCallback(async () => {
+    const [h, char, rosterRes, explorationRes, shortcutsRes, lonelogRes, hollowRes, deckRes] =
+      await Promise.all([
+        api.getBt2Header(),
+        api.getBt2Character(),
+        api.getBt2Roster(),
+        api.getBt2Exploration(),
+        api.getBt2Shortcuts(),
+        api.getBt2Lonelog(),
+        api.getBt2Hollow(),
+        api.deckStatus(),
+      ]);
+    setBtHeader(h);
+    setSsHeader(null);
+    setLhHeader(null);
+    setApoHeader(null);
+    setWHeader(null);
+    setColHeader(null);
+    setAshHeader(null);
+    setAbilities(char.abilities);
+    setRoster(rosterRes.entries);
+    setJourney(null);
+    setExploration(explorationRes.pending_exploration);
+    setHollow(hollowRes.hollow);
+    setShortcuts(shortcutsRes.shortcuts);
+    setLonelog(lonelogRes.lines);
+    setDeckRemaining(deckRes.remaining);
+    setCardSource(deckRes.card_source);
+    setSession((s) => (s ? { ...s, entity: char.entity, settings: char.settings } : s));
   }, []);
 
   const loadSansibilia = useCallback(async () => {
@@ -252,12 +293,43 @@ export default function PlayPage() {
     setState40k(res);
     setBtHeader(null);
     setSsHeader(null);
+    setGmHeader(null);
+  }, []);
+
+  const loadGmSolo = useCallback(async (gameId: GmSoloGameId) => {
+    const gApi = gmSoloApi(gameId);
+    const [h, character, rosterRes, shortcutsRes, lonelogRes, deckRes] = await Promise.all([
+      gApi.getHeader(),
+      gApi.getCharacter(),
+      gApi.getRoster(),
+      gApi.getShortcuts(),
+      gApi.getLonelog(),
+      api.deckStatus(),
+    ]);
+    setGmHeader(h);
+    setBtHeader(null);
+    setSsHeader(null);
+    setLhHeader(null);
+    setApoHeader(null);
+    setWHeader(null);
+    setColHeader(null);
+    setAshHeader(null);
+    setAbilities([]);
+    setRoster(rosterRes.entries);
+    setJourney(null);
+    setShortcuts(shortcutsRes.shortcuts);
+    setLonelog(lonelogRes.lines);
+    setDeckRemaining(deckRes.remaining);
+    setCardSource(deckRes.card_source);
+    setSession((s) => (s ? { ...s, entity: character.entity, settings: character.settings } : s));
   }, []);
 
   const loadPlayData = useCallback(
     async (gameId: string, hasCharacterSheet: boolean, hasGameState: boolean) => {
       if (gameId === "brambletrek" && hasCharacterSheet) {
         await loadBrambletrek();
+      } else if (gameId === "brambletrek_2" && hasCharacterSheet) {
+        await loadBrambletrek2();
       } else if (gameId === "sansibilia" && hasCharacterSheet) {
         await loadSansibilia();
       } else if (gameId === "lighthouse" && hasCharacterSheet) {
@@ -270,11 +342,13 @@ export default function PlayPage() {
         await loadColostle();
       } else if (gameId === "ashes" && hasCharacterSheet) {
         await loadAshes();
+      } else if (isGmSoloGameId(gameId) && hasCharacterSheet) {
+        await loadGmSolo(gameId);
       } else if (hasGameState) {
         await load40k();
       }
     },
-    [loadBrambletrek, loadSansibilia, loadLighthouse, loadApothecaria, loadWhispers, loadColostle, loadAshes, load40k]
+    [loadBrambletrek, loadBrambletrek2, loadSansibilia, loadLighthouse, loadApothecaria, loadWhispers, loadColostle, loadAshes, loadGmSolo, load40k]
   );
 
   const refresh = useCallback(async () => {
@@ -324,7 +398,7 @@ export default function PlayPage() {
     }
   };
 
-  const handleShortcut = async (id: string) => {
+  const handleShortcut = async (id: string, params?: Record<string, unknown>) => {
     const label = shortcuts.find((s) => s.id === id)?.label || id;
     const gameId = session?.selected_game_id;
     setShortcutLoading(id);
@@ -336,8 +410,12 @@ export default function PlayPage() {
     setLoading(true);
     try {
       const res =
-        gameId === "sansibilia"
+        isGmSoloGameId(gameId || "")
+          ? await gmSoloApi(gameId as GmSoloGameId).runShortcut(id, params)
+          : gameId === "sansibilia"
           ? await api.runSansibiliaShortcut(id)
+          : gameId === "brambletrek_2"
+            ? await api.runBt2Shortcut(id)
           : gameId === "lighthouse"
             ? await api.runLighthouseShortcut(id)
             : gameId === "apothecaria"
@@ -352,7 +430,9 @@ export default function PlayPage() {
       setMessages(res.messages);
       setSources(res.sources);
       setLastRoute(res.route);
-      if (gameId === "sansibilia") {
+      if (isGmSoloGameId(gameId || "")) {
+        setGmHeader(res.header as GmSoloHeader);
+      } else if (gameId === "sansibilia") {
         setSsHeader(res.header as VisitHeader);
       } else if (gameId === "lighthouse") {
         setLhHeader(res.header as WatchHeader);
@@ -367,6 +447,10 @@ export default function PlayPage() {
       } else if (gameId === "brambletrek") {
         setBtHeader(res.header as CharacterHeader);
         setJourney("pending_journey" in res ? res.pending_journey : null);
+      } else if (gameId === "brambletrek_2") {
+        setBtHeader(res.header as CharacterHeader);
+        setExploration("pending_exploration" in res ? res.pending_exploration : null);
+        setHollow("hollow" in res ? res.hollow : null);
       }
       if (res.entity) setSession((s) => (s ? { ...s, entity: res.entity } : s));
       await reloadCurrentGame();
@@ -406,6 +490,41 @@ export default function PlayPage() {
     const res = await api.finishJourney();
     applyJourneyResult(res);
     const lonelogRes = await api.getLonelog();
+    setLonelog(lonelogRes.lines);
+  };
+
+  const applyExplorationResult = useCallback((res: ExplorationActionResult) => {
+    if (res.header) setBtHeader(res.header);
+    if (res.pending_exploration !== undefined) setExploration(res.pending_exploration);
+    if (res.entity) setSession((s) => (s ? { ...s, entity: res.entity } : s));
+  }, []);
+
+  const handleExplorationApply = async (eventIndex: number) => {
+    const res = await api.applyBt2Exploration(eventIndex);
+    applyExplorationResult(res);
+    const lonelogRes = await api.getBt2Lonelog();
+    setLonelog(lonelogRes.lines);
+    return { summary: res.summary };
+  };
+
+  const handleExplorationFinish = async () => {
+    const res = await api.finishBt2Exploration();
+    applyExplorationResult(res);
+    const lonelogRes = await api.getBt2Lonelog();
+    setLonelog(lonelogRes.lines);
+  };
+
+  const handleExplorationDiscard = async () => {
+    const res = await api.discardBt2Exploration();
+    applyExplorationResult(res);
+  };
+
+  const handleHollowMove = async (row: number, col: number) => {
+    const res = await api.moveBt2Hollow(row, col);
+    if (res.header) setBtHeader(res.header);
+    if (res.hollow !== undefined) setHollow(res.hollow);
+    if (res.entity) setSession((s) => (s ? { ...s, entity: res.entity } : s));
+    const lonelogRes = await api.getBt2Lonelog();
     setLonelog(lonelogRes.lines);
   };
 
@@ -532,6 +651,8 @@ export default function PlayPage() {
               ? colHeader
             : gameId === "ashes"
               ? ashHeader
+              : isGmSoloGameId(gameId)
+                ? gmHeader
             : btHeader;
 
   const chatPlaceholder =
@@ -547,6 +668,10 @@ export default function PlayPage() {
               ? "Exploration phase, combat setup, oracle… or /draw 1"
             : gameId === "ashes"
               ? "Draw rooms, journal prompts, enemies… or /roll 3d6, /draw 1"
+              : isGmSoloGameId(gameId)
+                ? "Rules, shortcuts, dice… or /roll d20, /roll 2d6"
+            : gameId === "brambletrek_2"
+              ? "Exploration, Hollow, rules… or /day, /roll d6"
             : session.has_character_sheet
         ? "Journey, @ action, rules… or /day, /roll d20"
         : "Ask about rules… or /roll 2d6+1, /draw 1";
@@ -577,6 +702,12 @@ export default function PlayPage() {
       onJourneyDrawItem={handleJourneyDrawItem}
       onJourneyFinish={handleJourneyFinish}
       onJourneyDiscard={handleJourneyDiscard}
+      exploration={exploration}
+      hollow={hollow}
+      onExplorationApply={handleExplorationApply}
+      onExplorationFinish={handleExplorationFinish}
+      onExplorationDiscard={handleExplorationDiscard}
+      onHollowMove={handleHollowMove}
       onDeckAction={handleDeckAction}
       onShortcut={handleShortcut}
       onDayDraw={handleDayDraw}
@@ -637,6 +768,27 @@ export default function PlayPage() {
         roster={roster}
         activeId={session.slot_id || ""}
         header={ashHeader}
+        onSwitch={refresh}
+      />
+    ) : isGmSoloGameId(gameId) && showCharacter ? (
+      <GmSoloPanel
+        gameId={gameId}
+        entity={session.entity!}
+        roster={roster}
+        activeId={session.slot_id || ""}
+        header={gmHeader}
+        onSwitch={refresh}
+      />
+    ) : gameId === "brambletrek_2" && showCharacter ? (
+      <Bt2CharacterPanel
+        entity={session.entity!}
+        abilities={abilities}
+        roster={roster}
+        activeId={session.slot_id || ""}
+        onUpdate={(entity, h) => {
+          setSession({ ...session, entity });
+          setBtHeader(h);
+        }}
         onSwitch={refresh}
       />
     ) : gameId === "brambletrek" && showCharacter ? (

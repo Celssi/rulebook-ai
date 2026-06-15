@@ -225,12 +225,13 @@ def run_character_shortcut(
     user_message = run["user_message"]
     char = get_character(ctx)
     sources: list[dict] = []
+    _, story_mode, _ = get_play_settings(ctx)
 
     if shortcut_id in _NARRATOR_SHORTCUTS:
         prose = _maybe_ai_prose(ctx, char, user_message, chat_provider=chat_provider)
         if prose:
             answer = prose
-        elif run.get("static"):
+        elif run.get("static") or story_mode != "ai_narrator":
             answer = user_message
         else:
             rag_answer, sources = _answer_prompt(

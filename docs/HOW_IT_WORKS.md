@@ -56,12 +56,19 @@ Current games:
 |----|-------|----------------|
 | `40k` | Warhammer 40,000 | Battle game state, Leviathan unit list, codex/datasheet retrieval |
 | `brambletrek` | Brambletrek | Gnawborn roster, Lonelog, story/card modes, curated YAML, journey/adventure shortcuts |
+| `brambletrek_2` | Brambletrek 2 | Traveller roster, Lonelog, Misty Hollow grid, 16 legacies, exploration/combat shortcuts, curated YAML |
 | `sansibilia` | A Visit To San Sibilia | Visit roster, Lonelog, card-oracle journaling, city-change tracker, curated YAML |
 | `lighthouse` | The Lighthouse at the Edge of the Universe | Keeper roster, Lonelog, lamp/maintenance/observation/events, beachcombing, curated YAML |
 | `apothecaria` | Apothecaria | Witch cottage roster, Lonelog, ailments/reagents/locales, foraging shortcuts, curated YAML |
 | `colostle` | Colostle | Adventurer roster, Lonelog, exploration/combat card tables, ocean/city/battlements modules, curated YAML |
 | `whispers` | Whispers in the Walls | Investigation roster, Lonelog, Whispers deck builder, suit tables, oracle 2d6, curated YAML |
 | `ashes` | Ashes (Mayfalls) | Scion roster, Lonelog, dungeon card draws, trials/Ember, journal prompt sets, curated YAML |
+| `outgunned` | Outgunned Adventure | GM solo, Assistant Director tables, mission/hero entity, Lonelog |
+| `tor` | The One Ring (Strider Mode) | GM solo, Strider Mode curated tables, patron/journey shortcuts |
+| `coriolis` | Coriolis: The Great Dark | GM solo, attribute+gear dice, Explorer/crew/Bird entity, Lonelog |
+| `cosmere` | Cosmere RPG | GM solo, plot dice, Stormlight hero entity, Lonelog |
+| `mlp` | My Little Pony RPG | GM solo, d20 checks, pony entity, Lonelog |
+| `dnd5e` | D&D 5e (2024) | GM solo, freeform or Faerûn campaign, PHB/DMG/MM PDF set, d20 shortcuts, character entity, Lonelog |
 
 ## Key files
 
@@ -133,6 +140,8 @@ You should **not** need to edit `src/rag.py` or `src/agent.py` for a PDF-only ga
 python3 scripts/validate_play_tools.py
 python3 scripts/validate_brambletrek_curated.py   # Brambletrek only
 python3 scripts/validate_brambletrek_lonelog.py   # roster + Lonelog
+python3 scripts/validate_brambletrek_2_curated.py   # Brambletrek 2 tables
+python3 scripts/validate_brambletrek_2_lonelog.py   # Brambletrek 2 roster + Lonelog
 python3 scripts/validate_sansibilia_curated.py    # San Sibilia tables
 python3 scripts/validate_sansibilia_lonelog.py    # San Sibilia roster + Lonelog
 python3 scripts/validate_lighthouse_curated.py    # Lighthouse tables
@@ -145,6 +154,7 @@ python3 scripts/validate_ashes_curated.py    # Ashes tables
 python3 scripts/validate_ashes_lonelog.py    # Ashes roster + Lonelog
 python3 scripts/eval_retrieval.py --game 40k
 python3 scripts/eval_retrieval.py --game brambletrek
+python3 scripts/eval_retrieval.py --game brambletrek_2
 python3 scripts/eval_retrieval.py --game sansibilia
 python3 scripts/eval_retrieval.py --game lighthouse
 python3 scripts/eval_retrieval.py --game apothecaria

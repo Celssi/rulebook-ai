@@ -1,0 +1,123 @@
+# Coriolis: The Great Dark — curated talents subset (core rulebook ch. 3, p. 50+)
+
+talents:
+  - id: acrobat
+    label: Acrobat
+    category: general
+  - id: actor
+    label: Actor
+    category: social
+  - id: agitator
+    label: Agitator
+    category: social
+  - id: barter
+    label: Barter
+    category: social
+  - id: bird_handler
+    label: Bird Handler
+    category: general
+  - id: blade_fighter
+    label: Blade Fighter
+    category: combat
+  - id: bodyguard
+    label: Bodyguard
+    category: combat
+  - id: botanist
+    label: Botanist
+    category: general
+  - id: charmer
+    label: Charmer
+    category: social
+  - id: commander
+    label: Commander
+    category: social
+  - id: cultural_savant
+    label: Cultural Savant
+    category: social
+  - id: dirty_fighter
+    label: Dirty Fighter
+    category: combat
+  - id: driver
+    label: Driver
+    category: general
+  - id: electro_specialist
+    label: Electro Specialist
+    category: general
+  - id: endurance
+    label: Endurance
+    category: general
+  - id: evasive
+    label: Evasive
+    category: combat
+  - id: exo_specialist
+    label: Exo Specialist
+    category: general
+  - id: force
+    label: Force
+    category: combat
+  - id: hardened
+    label: Hardened
+    category: general
+  - id: intuition
+    label: Intuition
+    category: general
+  - id: interrogator
+    label: Interrogator
+    category: social
+  - id: investigator
+    label: Investigator
+    category: general
+  - id: jury_rig
+    label: Jury Rig
+    category: general
+  - id: laboratorist
+    label: Laboratorist
+    category: general
+  - id: librarian
+    label: Librarian
+    category: general
+  - id: lookout
+    label: Lookout
+    category: general
+  - id: mechanic
+    label: Mechanic
+    category: general
+  - id: medic
+    label: Medic
+    category: general
+  - id: miner
+    label: Miner
+    category: general
+  - id: pistoleer
+    label: Pistoleer
+    category: combat
+  - id: polearms
+    label: Polearms
+    category: combat
+  - id: renowned
+    label: Renowned
+    category: social
+  - id: scan_operator
+    label: Scan Operator
+    category: general
+  - id: sharpshooter
+    label: Sharpshooter
+    category: combat
+  - id: shuttle_pilot
+    label: Shuttle Pilot
+    category: general
+  - id: smart
+    label: Smart
+    category: general
+  - id: stealthy
+    label: Stealthy
+    category: general
+  - id: streetwise
+    label: Streetwise
+    category: social
+  - id: teratology
+    label: Teratology
+    category: general
+  - id: zero_g_training
+    label: Zero G Training
+    category: general

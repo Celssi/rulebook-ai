@@ -1,0 +1,41 @@
+game_id: dnd5e
+title: Näin pelaat
+source:
+  pdf: docs/dnd5e/player.pdf
+  pages: [1, 10, 20, 30]
+sections:
+  - heading: Yleiskuva
+    body: |
+      **D&D 5e** (2024) yksinpelissä pelaat sekä sankaria että Dungeon Masteria. Kampanja voi olla vapaamuotoinen kotimaailma tai Faerûn (Forgotten Realms). Sovellus hakee säännöt Player's Handbookista, DMG:stä ja Monster Manualista; Faerûn-lisäkirjat käytössä vain kun kampanja-asetus on Faerûn.
+  - heading: Tarvitset
+    bullets:
+      - Player's Handbook (2024)
+      - d20 ja muut nopat (d4–d12)
+      - hahmoarkki tai sovelluksen tallennuspaikka
+      - valinnainen DMG ja Monster Manual sääntöhakuun
+  - heading: Hahmo
+    body: |
+      Avaa **Asetukset → Character** ja käytä viisiaskelista luontia (PHB 2024):
+
+      1. **Basics** — nimi, luokka, taso (tai *Level up*), subclass tasolla 3+; kampanja-asetus (vapaamuotoinen tai Faerûn)
+      2. **Origin** — species, background, alignment; Human saa ylimääräisen taidon
+      3. **Abilities** — standard array luokalle, background +2/+1, HP/AC
+      4. **Skills & spells** — luokkataidot, cantripit ja valmistetut/known-loitsut
+      5. **Review** — yhteenveto ennen tallennusta
+
+      Taustat antavat kolme ability score -vaihtoehtoa (+2/+1 tai +1 kaikille kolmelle), species- ja luokkatraitit, featit ja spell slotit lasketaan automaattisesti.
+  - heading: Sovelluksessa
+    bullets:
+      - Asetukset → Character: koko hahmoluonti (luokka, species, background, scores, loitsut)
+      - '"Level up" -nappi nostaa tason ja heittää HP:n (hit die + CON)'
+      - Shortcuts → Ability check, Saving throw, Attack roll, Initiative, Death save, Oracle (d6), Short rest, Long rest
+      - Asetukset → Play: player vs AI narrator
+      - AI narrator kirjoittaa DM-kohtausprosan heittojen jälkeen
+      - Lonelog tallentaa toiminnot ja yhteenvedot
+  - heading: Nopat ja lepo
+    body: |
+      - **Ability check**, **Saving throw**, **Attack roll** — d20 etulla tai haitalla
+      - **Initiative** — DEX-pohjainen aloite
+      - **Death save** — kuolemantilanteessa (`roll_death_saves`)
+      - **Short rest** / **Long rest** — lyhyt ja pitkä lepo PHB-sääntöjen mukaan
+      - **d6 oracle** shortcut tai chatissa "oracle" — yksinkertainen kyllä/ei (`dnd5e_oracle.yaml`)

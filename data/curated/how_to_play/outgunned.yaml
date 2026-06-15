@@ -1,0 +1,42 @@
+game_id: outgunned
+title: Näin pelaat
+source:
+  pdf: docs/outgunned/OG_Assistent_Director_ENG_1_0.pdf
+  pages: [42, 44, 46, 50, 54, 55, 56]
+sections:
+  - heading: Yleiskuva
+    body: |
+      Outgunned on toimintaelokuvatyylinen roolipeli, jossa sankarit suorittavat elokuvamaisia tehtäviä. Assistant Director -lisäkirja mahdollistaa **solopelin**: pelaat yksin, Assistant Director -taulukot ja orakkelit vastaavat ohjaajan rooliin.
+  - heading: Tarvitset
+    bullets:
+      - Outgunned Adventure -sääntökirja ja Assistant Director
+      - noppasarja (d6)
+      - Solo Sheet / Assistant Director Sheet
+      - kynä ja paperi tai sovelluksen Lonelog
+  - heading: Hahmonluonti
+    body: |
+      Valitse **Role** ja **Trope** Adventure-kirjasta (tai Special Role Fortune Seeker). Peruspisteet: attribuutit 2, taidot 1. Role ja Trope antavat bonuksia; lisää 2 vapaata skill-pistettä ja **Solo Boosts** (AD s. 46): +1 attribuutti, +2 skilliä, +1 Spotlight, +1 Advancement, +$2 Gear.
+
+      Sovelluksessa: Asetukset → **Character** — nimi, tausta, catchphrase, flaw, Role/Trope, Solo Boosts, kampanjakentät.
+  - heading: Solokampanjan valmistelu
+    body: |
+      Luo kampanjan runko (Villain, Mission, Stakes, Leads) Assistant Director -osion mukaan, mutta valmistele vain **yksi Campaign Phase** kerrallaan. Adventure-solossa vaiheet: Pilot Shot → Discovery → Point of No Return → Exploration → Moment of Truth.
+  - heading: Solosäännöt
+    body: |
+      Tärkeimmät muutokset solopelissä:
+
+      - **Double Action** — kaksi peräkkäistä Action Turnia ennen Reaction Turnia
+      - **Tension** korvaa Heatin (12 segmenttiä; Climax kun täysi)
+      - **Death Roulette** — kuoleman partaalla pyöräytä rulettia; kapea selviytyminen lisää luodin ja palauttaa 6 Grit (Second Wind)
+      - **I Want Them Alive** — Left for Dead tarkoittaa vangiksi joutumista, ei pelin loppua
+  - heading: Nopat
+    body: |
+      Adventure käyttää **matching pair** -pooleja: onnistuminen kahdesta (tai useammasta) samanarvoisesta nopasta (Basic 2, Critical 3, Extreme 4…). **Re-roll** heittää uudelleen kaikki nopat, jotka eivät kuulu pariin.
+  - heading: Orakkelit ja promptit
+    body: |
+      Yes/No-orakkeli (d6), Scene Prompts (s. 54), Scene Drama -taulukko, Hurdle- ja Climax-taulukot. Adventure-hurdlet poikkeavat hieman core-versiosta.
+  - heading: Sovelluksessa
+    bullets:
+      - Shortcuts → **AD scene prompt**, **Mission roll**, **Outgunned dice pool**, **Re-roll**, **Tension**, **Yes/No oracle**, **Scene drama**, **Death Roulette**
+      - AI narrator kirjoittaa toimintakohtauksen proosan prompteista
+      - Lonelog tallentaa nostot ja merkinnät (@, d:, =>)

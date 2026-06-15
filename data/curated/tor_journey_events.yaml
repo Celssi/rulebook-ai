@@ -1,0 +1,50 @@
+# The One Ring 2e - Strider Mode, Solo Journey Events (p.17, appendix p.24)
+events:
+  gandalf:
+    event: "Terrible Misfortune"
+    fail: "You are Wounded."
+    fatigue: 3
+  "1":
+    event: "Despair"
+    fail: "Gain 2 Shadow points (Dread)."
+    fatigue: 2
+  "2":
+    event: "Ill Choices"
+    fail: "Gain 1 Shadow point (Dread)."
+    fatigue: 2
+  "3":
+    event: "Ill Choices"
+    fail: "Gain 1 Shadow point (Dread)."
+    fatigue: 2
+  "4":
+    event: "Mishap"
+    fail: "Add 1 day to the journey and gain 1 additional Fatigue."
+    fatigue: 2
+  "5":
+    event: "Mishap"
+    fail: "Add 1 day to the journey and gain 1 additional Fatigue."
+    fatigue: 2
+  "6":
+    event: "Mishap"
+    fail: "Add 1 day to the journey and gain 1 additional Fatigue."
+    fatigue: 2
+  "7":
+    event: "Mishap"
+    fail: "Add 1 day to the journey and gain 1 additional Fatigue."
+    fatigue: 2
+  "8":
+    event: "Short Cut"
+    success: "Reduce the length of the journey by 1 day."
+    fatigue: 1
+  "9":
+    event: "Short Cut"
+    success: "Reduce the length of the journey by 1 day."
+    fatigue: 1
+  "10":
+    event: "Chance-meeting"
+    success: "No Fatigue is gained; improvise a favourable encounter."
+    fatigue: 1
+  sauron:
+    event: "Joyful Sight"
+    success: "Regain 1 Hope."
+    fatigue: 0

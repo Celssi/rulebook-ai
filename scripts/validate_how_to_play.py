@@ -32,6 +32,7 @@ MIN_MARKDOWN_LEN = 200
 GAME_KEYWORDS: dict[str, tuple[str, ...]] = {
     "sansibilia": ("Day", "kaupungin"),
     "brambletrek": ("Legacy", "Journey"),
+    "brambletrek_2": ("Legacy", "Hollow"),
     "lighthouse": ("logbook", "valo"),
     "apothecaria": ("foraging", "maine"),
     "whispers": ("Hollows", "Whispers"),

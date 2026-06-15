@@ -1,0 +1,19 @@
+# Coriolis: The Great Dark — encounter prompts (Lost Horizon / delve inspired)
+
+encounters:
+  - category: delve
+    text: "A sealed Builder hatch groans open — cold air and glyph-light spill into the tunnel."
+  - category: blight
+    text: "Your delving suit registers a Blight spike; whispers seem to come from the walls themselves."
+  - category: station
+    text: "Ship City dockmasters demand Guild papers your crew does not carry."
+  - category: bird
+    text: "The Bird refuses a command and circles the shuttle bay, agitated by something in the Dark."
+  - category: guild
+    text: "An Explorers Guild liaison offers a contract that sounds too lucrative for the stated risk."
+  - category: wreck
+    text: "A silent wreck drifts across your route — transponder dead, bio-signs faint in the hold."
+  - category: cult
+    text: "Prayers in Old Coriolic crackle over an open channel; the Icons are watching this passage."
+  - category: slipstream
+    text: "Slipstream turbulence throws the crew against the bulkheads; the Bird strains at its tether."

@@ -1,0 +1,16 @@
+# How did I get here? (BT2 p. 17).
+bands:
+  ace:
+    label: The path ahead shimmered for just a moment, as if inviting you forward. With a single step, the air grew warmer, the trees softer, the sky brighter. Before you could turn back, the Woods already welcomed you.
+  2-4:
+    label: A strange, glowing crystal washed up on the riverbank near your home. The moment you touched it, the current surged, pulling you under. When you woke up, you were somewhere else. A place the crystal seemed to belong.
+  5-7:
+    label: You woke to the sound of distant cries, echoing through the trees. They weren’t voices you recognized, but something deep inside told you to follow. As you stepped forward, the world around you shifted, and you found yourself in a place you had never seen before.
+  8-10:
+    label: A mysterious trinket, perhaps a locket, a small wooden carving, or even a polished stone, was left on your doorstep. Holding it filled you with warmth and familiarity, yet you didn’t know why. The moment you looked away, the world was no longer the same.
+  jack:
+    label: A crystal embedded in an ancient tree pulsed with light as you drew near. When you reached out, light flared, and the world spun. As you steadied yourself, the landscape had changed, and the whispers of the Woods called to you.
+  queen:
+    label: A name keeps slipping from your memory, one you should know, but don’t. You see it carved into a rock, scrawled in the dirt. Following its echoes led you somewhere you were certain you had never been… yet, it felt familiar.
+  king:
+    label: A storm unlike any other roared to life overhead. The sky cracked, light spilling through as if the world itself had torn open. When it faded, you were here, in the Hundred Acre Woods, with only the faintest memory of what came before.

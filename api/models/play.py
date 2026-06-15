@@ -33,6 +33,15 @@ class JourneyApplyRequest(BaseModel):
     event_index: int
 
 
+class ExplorationApplyRequest(BaseModel):
+    event_index: int
+
+
+class HollowMoveRequest(BaseModel):
+    row: int
+    col: int
+
+
 class DeckDrawRequest(BaseModel):
     count: int = 1
 

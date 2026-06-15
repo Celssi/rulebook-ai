@@ -1,0 +1,306 @@
+# Legacies (BT2 pp. 18-33).
+overcome_the_odds:
+  label: Overcome the Odds
+  description: 'Once per day, in place of one Legacy ability: draw Ability + Outcome vs an Unfortunate Event (Clubs/Spades) or in combat. Higher ability wins.'
+legacies:
+  bramble:
+    label: Bramble
+    tagline: Wonderer in a new land
+    health: 10
+    supplies: 8
+    morale: 12
+    abilities:
+    - id: arcane_ripples
+      label: Arcane Ripples
+      description: ONCE PER DAY, BRAMBLE CAN CREATE A SURGE THAT DISTORTS FATE, ALLOWING THEM TO REDRAW A CARD FOR AN EVENT OR TACTIC.
+    - id: wardens_veil
+      label: Warden's Veil
+      description: ONCE PER DAY, BRAMBLE CONJURES A PROTECTIVE SHIMMER THAT ABSORBS THE NEXT SOURCE OF DAMAGE, PREVENTING HARM ENTIRELY.
+    - id: echo_of_realms
+      label: Echo Of Realms
+      description: ONCE PER DAY, BRAMBLE MAY CALL UPON VISIONS OF ANOTHER TIME OR PLACE, REVEALING TRUTHS AND CLUES ABOUT THEIR SURROUNDINGS.
+    - id: spellbound_whispers
+      label: Spellbound Whispers
+      description: ONCE PER DAY, BRAMBLE CAN INFUSE THEIR WORDS WITH SUBTLE MAGIC CAUSING ENEMIES TO SKIP THEIR TURN.
+  pooh:
+    label: Winnie the Pooh
+    tagline: Honey Guardian
+    health: 12
+    supplies: 8
+    morale: 10
+    abilities:
+    - id: sweet_infusion
+      label: Sweet Infusion
+      description: ONCE PER DAY, DURING COMBAT, WINNIE CAN HEAL HIMSELF OR AN ALLY FOR 3 HEALTH.
+    - id: summon_bees
+      label: Summon Bees
+      description: ONCE PER DAY, WINNIE CAN SUMMON A SWARM OF BEES, HARMING THE CRYSTAL FOR 2 HARM PER TURN.
+    - id: butterfly_ally
+      label: Butterfly Ally
+      description: ONCE PER DAY, WINNIE CALLS BUTTERFLIES TO SURROUND HIM OR AN ALLY, GRANTING A SHIELD THAT NEGATES THE NEXT ATTACK.
+    - id: honey_glow
+      label: Honey Glow
+      description: ONCE PER DAY, DURING AN ENCOUNTER, WINNIE CAN RADIATE LIGHT INFUSED WITH HONEY. THIS RESTORES 2 MORALE TO ALL ALLIES.
+  piglet:
+    label: Piglet
+    tagline: Nervous Shadow
+    health: 10
+    supplies: 12
+    morale: 8
+    abilities:
+    - id: small_steps
+      label: Small Steps
+      description: ONCE PER DAY, PIGLET CAN AVOID A CHALLENGE BY FINDING A HIDDEN PATH. THIS ABILITY ALLOWS HIM TO SKIP AN ENCOUNTER.
+    - id: smart_escape
+      label: Smart Escape
+      description: ONCE PER DAY, DURING COMBAT, PIGLET CAN CREATE A DIVERSION THAT CONFUSES THE OPPONENT, SKIPPING THEIR NEXT TURN.
+    - id: whisper_of_courage
+      label: Whisper Of Courage
+      description: ONCE PER DAY, PIGLET CAN INSPIRE HIMSELF OR AN ALLY WITH QUIET ENCOURAGEMENT, RESTORING 2 HEALTH AND 2 MORALE.
+    - id: acorn_toss
+      label: Acorn Toss
+      description: ONCE PER DAY, PIGLET THROWS AN OBJECT AT AN OPPONENT, DEALING 2 HARM AND REDUCING THEIR NEXT ACTION’S EFFECTIVENESS BY -1.
+  eeyore:
+    label: Eeyore
+    tagline: Sad Protector
+    health: 12
+    supplies: 10
+    morale: 8
+    abilities:
+    - id: unshaken_stance
+      label: Unshaken Stance
+      description: ONCE PER DAY, EEYORE CAN BRACE HIMSELF AGAINST AN ATTACK, REDUCING ALL INCOMING DAMAGE BY 3 FOR ONE ROUND.
+    - id: slow_but_steady
+      label: Slow But Steady
+      description: ONCE PER DAY, EEYORE CAN TAKE AN EXTRA TURN AFTER BEING HIT, TURNING HIS PERSEVERANCE INTO MOMENTUM.
+    - id: heavy_hoof
+      label: Heavy Hoof
+      description: 'ONCE PER DAY, EEYORE CAN DELIVER A STOMP, DEALING 3 DAMAGE AND AN OPPONENT SKIPS THEIR NEXT ACTION. WHY BOTHER?: ONCE PER DAY, EEYORE CAN SHRUG OFF A NEGATIVE EVENT, IGNORING ITS EFFECTS ENTIRELY.'
+  tigger:
+    label: Tigger
+    tagline: Boundless Performer
+    health: 10
+    supplies: 8
+    morale: 12
+    abilities:
+    - id: bouncy_pounce
+      label: Bouncy Pounce
+      description: ONCE PER DAY, TIGGER CAN LEAP PAST AN ENEMY, SKIPPING THEIR TURN.
+    - id: cheerful_tune
+      label: Cheerful Tune
+      description: ONCE PER DAY, TIGGER CAN BOOST MORALE FOR ALL ALLIES, RESTORING 2 MORALE EACH.
+    - id: unpredictable_leap
+      label: Unpredictable Leap
+      description: ONCE PER DAY, TIGGER CAN REROLL ANY FAILED ACTION.
+    - id: distracting_antics
+      label: Distracting Antics
+      description: ONCE PER DAY, TIGGER CAN CONFUSE AN ENEMY, REDUCING THEIR ATTACK BY -2 FOR THE NEXT ROUND.
+  owl:
+    label: Owl
+    tagline: Sage of Knowledge
+    health: 8
+    supplies: 10
+    morale: 12
+    abilities:
+    - id: ancient_wisdom
+      label: Ancient Wisdom
+      description: ONCE PER DAY, OWL CAN PROVIDE INSIGHT, ALLOWING A PLAYER TO REDRAW ANY ONE CARD.
+    - id: mystic_whirl
+      label: Mystic Whirl
+      description: ONCE PER DAY, OWL CREATES A GUST OF WIND, PUSHING AN ENEMY BACK AND SKIPPING THEIR NEXT TURN.
+    - id: guided_insight
+      label: Guided Insight
+      description: ONCE PER DAY, OWL CAN PREDICT THE OUTCOME OF AN EVENT, ALLOWING A PLAYER TO PEEK AT THE NEXT TWO CARDS.
+    - id: feathered_spell
+      label: Feathered Spell
+      description: ONCE PER DAY, OWL CONJURES A GLOWING SCRIPT, REDUCING AN OPPONENT’S EFFECTIVENESS BY -2 FOR ONE ROUND.
+  rabbit:
+    label: Rabbit
+    tagline: Bossy Caretaker
+    health: 8
+    supplies: 12
+    morale: 10
+    abilities:
+    - id: tidy_up
+      label: Tidy Up
+      description: ONCE PER DAY, RABBIT CAN ORGANIZE HIS SURROUNDINGS TO FIND AN ADDITIONAL SUPPLY ITEM, RESTORING 3 SUPPLIES.
+    - id: herbal_remedy
+      label: Herbal Remedy
+      description: ONCE PER DAY, RABBIT CAN HEAL HIMSELF OR AN ALLY FOR 3 HEALTH USING NATURAL REMEDIES HE’S CAREFULLY PREPARED.
+    - id: lecture_of_encouragement
+      label: Lecture Of Encouragement
+      description: ONCE PER DAY, RABBIT CAN RESTORE 2 MORALE TO ALL ALLIES BY GIVING A WELL-STRUCTURED (IF SLIGHTLY BOSSY) PEP TALK.
+    - id: calculated
+      label: Calculated
+      description: ONCE PER DAY, RABBIT CAN ANALYZE A SITUATION AND ADJUST ACCORDINGLY, ALLOWING HIM TO REDRAW ONE CARD DURING AN ENCOUNTER.
+  kanga_roo:
+    label: Kanga & Roo
+    tagline: Wandering Love
+    health: 8
+    supplies: 10
+    morale: 12
+    abilities:
+    - id: mothers_touch
+      label: Mother's Touch
+      description: ONCE PER DAY, KANGA CAN HEAL AN ALLY FOR 3 HEALTH, OFFERING GENTLE CARE AND WORDS OF ENCOURAGEMENT.
+    - id: bounding_shot
+      label: Bounding Shot
+      description: ONCE PER DAY, ROO CAN FIRE A SHOT, DEALING 3 DAMAGE AND REDUCING AN OPPONENT’S EFFECTIVENESS BY -1 ON THEIR NEXT ACTION.
+    - id: safe_haven
+      label: Safe Haven
+      description: ONCE PER DAY, KANGA CAN CREATE A PROTECTIVE SPACE, NEGATING THE NEXT INCOMING ATTACK FOR AN ALLY.
+    - id: leap_into_action
+      label: Leap Into Action
+      description: ONCE PER DAY, ROO CAN ACT TWICE IN A TURN, USING HIS AGILITY TO GAIN AN ADVANTAGE OVER OPPONENTS.
+  salvager:
+    label: Salvager
+    tagline: Gearholding Tinkerer
+    health: 8
+    supplies: 12
+    morale: 10
+    abilities:
+    - id: quick_fix
+      label: Quick Fix
+      description: ONCE PER COMBAT, RESTORE 3 HEALTH BY PATCHING UP ARMOR OR REINFORCING YOUR STANCE.
+    - id: scrap_shield
+      label: Scrap Shield
+      description: ONCE PER COMBAT, REDUCE THE NEXT INCOMING ATTACK’S DAMAGE BY 3 BY USING A MAKESHIFT BARRIER.
+    - id: tinkers_trick
+      label: Tinker's Trick
+      description: IF YOU FAIL AN ATTACK, YOU CAN RE-ROLL YOUR NEXT ACTION AS YOU ADJUST YOUR GADGET.
+    - id: overclock
+      label: Overclock
+      description: ONCE PER DAY, DRAW AN ADDITIONAL TACTIC IN COMBAT AND PLAY 2 TACTICS PER TURN AS YOU PUSH YOUR CONTRAPTION TO ITS LIMITS.
+  snoozer:
+    label: Snoozer
+    tagline: Dreambound Drifter
+    health: 12
+    supplies: 8
+    morale: 10
+    abilities:
+    - id: sleepy_aura
+      label: Sleepy Aura
+      description: THE CALM ENERGY AROUND YOU MAKES ENEMIES SLUGGISH. ONCE PER COMBAT, REDUCE AN ENEMY’S NEXT ATTACK BY 2.
+    - id: lullaby_breath
+      label: Lullaby Breath
+      description: A SOFT SNORE CARRIES ON THE WIND, CAUSING THE OPPONENT TO HESITATE. ONCE PER COMBAT, FORCE THEM TO MISS THEIR TURN.
+    - id: sleepwalk_recovery
+      label: Sleepwalk Recovery
+      description: WHEN RESTING, RESTORE AN ADDITIONAL 3 TO ANY SINGLE RESOURCE.
+    - id: dreamwalkers_escape
+      label: Dreamwalker's Escape
+      description: IF YOU ARE REDUCED TO 0 HEALTH, YOU CAN ATTEMPT TO ENTER A DEEP SLEEP INSTEAD, DELAYING DEFEAT UNTIL THE NEXT TURN.
+  shadowcaster:
+    label: Shadowcaster
+    tagline: Keeper of Secrets
+    health: 9
+    supplies: 9
+    morale: 12
+    abilities:
+    - id: hex_mark
+      label: Hex Mark
+      description: ONCE PER COMBAT, REDUCE AN ENEMY’S NEXT ATTACK BY 3 AS A CURSE SAPS THEIR STRENGTH.
+    - id: life_drain
+      label: Life Drain
+      description: DURING COMBAT, DEAL 2 HEALTH DAMAGE AND HEAL YOURSELF FOR 2 HEALTH.
+    - id: dark_bargain
+      label: Dark Bargain
+      description: IF YOU WOULD TAKE DAMAGE, YOU MAY INSTEAD LOSE 2 MORALE TO NEGATE IT.
+    - id: shadows_embrace
+      label: Shadow's Embrace
+      description: ONCE PER DAY, DRAW AN ADDITIONAL TACTIC IN COMBAT AND IMMEDIATELY FORCE AN ENEMY TO REDRAW THEIR NEXT CARD.
+  smasher:
+    label: Smasher
+    tagline: Rock-crushing Brute
+    health: 14
+    supplies: 8
+    morale: 8
+    abilities:
+    - id: crushing_blow
+      label: Crushing Blow
+      description: ONCE PER COMBAT, DEAL 4 HEALTH DAMAGE WITH AN OVERHEAD SMASH.
+    - id: rampage
+      label: Rampage
+      description: DURING COMBAT, YOU MAY SACRIFICE 1 SUPPLY TO ADD +2 DAMAGE TO YOUR NEXT ATTACK AT ANY POINT.
+    - id: brute_force
+      label: Brute Force
+      description: IF YOU WOULD MISS AN ATTACK, YOU MAY INSTEAD DEAL 2 HEALTH DAMAGE AND TAKE THAT DAMAGE YOURSELF.
+    - id: smash_through
+      label: Smash Through
+      description: ONCE PER DAY, DRAW AN ADDITIONAL CARD AND DEAL DAMAGE EQUAL TO IT’S VALUE BUT YOU TAKE HALF THE DAMAGE DEALT.
+  singer:
+    label: Singer
+    tagline: Voice of the World
+    health: 8
+    supplies: 9
+    morale: 13
+    abilities:
+    - id: resonant_note
+      label: Resonant Note
+      description: ONCE PER COMBAT, REDUCE THE DAMAGE OF AN ENEMY’S NEXT ATTACK BY 2 AS YOUR VOICE DISRUPTS THEIR FOCUS.
+    - id: stirring_chorus
+      label: Stirring Chorus
+      description: ONCE PER COMBAT, RESTORE 3 MORALE TO YOURSELF. IF YOUR MORALE IS ALREADY FULL, INSTEAD RESTORE 2 HEALTH.
+    - id: lament_of_binding
+      label: Lament Of Binding
+      description: ONCE PER DAY, DURING COMBAT, FORCE AN ENEMY TO SKIP THEIR NEXT TURN AS GRIEF, DOUBT, OR MEMORY OVERWHELMS THEM.
+    - id: final_refrain
+      label: Final Refrain
+      description: ONCE PER DAY, DRAW ONE TACTIC. YOU MAY DISCARD ANOTHER CARD IN YOUR HAND TO INCREASE OR REDUCE A CARD’S EFFECT BY 2.
+  snickerer:
+    label: Snickerer
+    tagline: Laughing Trickster
+    health: 10
+    supplies: 8
+    morale: 12
+    abilities:
+    - id: stage_left
+      label: Stage Left
+      description: ONCE PER DAY, IMMEDIATELY ESCAPE A COMBAT ENCOUNTER WITHOUT PENALTY.
+    - id: make_em_laugh
+      label: Make 'Em Laugh
+      description: ONCE PER DAY, ALL ALLIES WHO WITNESS YOUR PRANK RESTORE 2 MORALE.
+    - id: scary_face
+      label: Scary Face
+      description: ONCE PER DAY, DURING COMBAT, REDUCE AN ENEMY’S MORALE BY 1.
+    - id: slapstick
+      label: Slapstick
+      description: ONCE PER DAY, INCREASE YOUR NEXT ATTACK’S DAMAGE BY 1 USING THE ENVIRONMENT.
+  solver:
+    label: Solver
+    tagline: One That Sees Patterns
+    health: 7
+    supplies: 11
+    morale: 12
+    abilities:
+    - id: just_in_time
+      label: Just In Time
+      description: ONCE PER DAY, NEGATE THE EFFECTS OF A NEGATIVE EVENT AFFECTING YOU OR AN ALLY.
+    - id: puzzle_master
+      label: Puzzle Master
+      description: ONCE PER DAY, REDRAW AN UNFAVOURABLE EVENT CARD AND TAKE THE NEW RESULT.
+    - id: helping_hand
+      label: Helping Hand
+      description: ONCE PER DAY, RESTORE 3 HEALTH TO YOURSELF OR AN ALLY.
+    - id: clear_the_way
+      label: Clear The Way
+      description: ONCE PER DAY, REDUCE DAMAGE OR RESOURCE LOSS FROM A SINGLE EFFECT BY 3.
+  sleeptalker:
+    label: Sleeptalker
+    tagline: The Well-Rested Speaker
+    health: 8
+    supplies: 10
+    morale: 14
+    abilities:
+    - id: dream_cloud
+      label: Dream Cloud
+      description: ONCE PER DAY, RESTORE 3 HEALTH TO YOURSELF OR AN ALLY BY MANIFESTING A COMFORTING DREAM.
+    - id: somniliquy
+      label: Somniliquy
+      description: ONCE PER DAY, DURING COMBAT, REDUCE AN ENEMY’S NEXT ATTACK DAMAGE BY 3 AS THEY ARE LULLED BY WHISPERED DREAMS.
+    - id: shaped_reverie
+      label: Shaped Reverie
+      description: ONCE PER DAY, INCREASE YOUR NEXT ATTACK’S DAMAGE BY 2 BY FORMING DREAM-MIST ANTLERS.
+    - id: safe_memory
+      label: Safe Memory
+      description: ONCE PER DAY, NEGATE THE MORALE LOSS FROM A NEGATIVE EVENT FOR YOURSELF OR AN ALLY.

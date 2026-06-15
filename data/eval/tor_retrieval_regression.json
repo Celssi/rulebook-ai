@@ -1,0 +1,27 @@
+[
+  {
+    "query": "How does the Telling Table work in Strider Mode solo play?",
+    "expected_terms": ["telling", "feat", "certain"],
+    "require_faction_in_top_n": "strider_mode"
+  },
+  {
+    "query": "What is the Lore Table in The One Ring Strider Mode?",
+    "expected_terms": ["lore", "success", "action"],
+    "require_faction_in_top_n": "strider_mode"
+  },
+  {
+    "query": "How do Patron Quests work for solo heroes in Strider Mode?",
+    "expected_terms": ["patron", "quest", "balin"],
+    "require_faction_in_top_n": "strider_mode"
+  },
+  {
+    "query": "Explain Hope and Dread in The One Ring 2e.",
+    "expected_terms": ["hope", "dread", "weary"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "What are solo journey events in Strider Mode?",
+    "expected_terms": ["journey", "event", "misfortune"],
+    "require_faction_in_top_n": "strider_mode"
+  }
+]

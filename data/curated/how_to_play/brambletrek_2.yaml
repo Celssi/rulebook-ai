@@ -1,0 +1,34 @@
+game_id: brambletrek_2
+title: Näin pelaat
+source:
+  pdf: docs/brambletrek_2/Brambletrek_2_-_Tales_in_the_Hundred_Acre_Woods.pdf
+  pages: [7, 8, 13, 14, 17, 35, 40, 51]
+sections:
+  - heading: Yleiskuva
+    body: |
+      Brambletrek 2 vie sinut Satumetsään (Hundred Acre Woods). Pelaat valitsemasi Legacy-hahmoa — Pooh-ystäviä tai Gnawborn-kantajaa — ja kirjoitat oman tarinasi korttipakan ja päiväkirjan avulla.
+  - heading: Tarvitset
+    bullets:
+      - päiväkirja
+      - 52 kortin pakka (ei jokereita)
+      - hahmoarkki (valinnainen PDF)
+  - heading: Hahmon luonti
+    body: |
+      Valitse **Legacy** (s. 18–33) — jokaisella on valmis Health / Morale / Supplies -jakauma ja päivittäiset kyvyt.
+      Voit nostaa kortin **How did I get here?** -taulukosta (s. 17).
+  - heading: Päivän kulku
+    body: |
+      Jokaisena pelipäivänä nosta **4 korttia**. Punainen (♥♦) = suotuisa, musta (♠♣) = epäsuotuisa. Ratkaise tapahtumat järjestyksessä. Resurssit voivat nousta tai laskea (max 30). Nolla → recovery-taulukko (s. 13).
+  - heading: Misty Hollow
+    body: |
+      Sumuinen Ontelo on 5×4-korttiruudukko. Kerää 3 memory fragmentia, navigoi ruudukossa ja poistu escape-testillä (s. 40–49).
+  - heading: Taistelu
+    body: |
+      Vastustaja nostetaan kortin arvosta (s. 51). Initiative, 4 taktiikkakorttia legacy-kohtaisesta taulukosta (s. 52–59), vastustajan omat taktiikat.
+  - heading: Sovelluksessa
+    bullets:
+      - "Asetukset → Character: nimi, Legacy, valinnainen How did I get here; tallenna hahmo"
+      - "Asetukset → Play: story mode, physical vs virtual deck"
+      - "Exploration-välilehti: neljän kortin päivä, apply järjestyksessä"
+      - "Hollow-välilehti: ruudukko ja liike"
+      - "Shortcuts: exploration day, combat setup, recovery, hollow"

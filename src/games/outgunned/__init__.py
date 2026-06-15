@@ -1,0 +1,1 @@
+"""Outgunned solo RPG."""

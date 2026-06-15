@@ -1,0 +1,615 @@
+# Outgunned Adventure (Outgunned_Adventure_ENG_1_1.pdf) — Roles s. 22–42, Tropes s. 46–51
+# Regenerate metadata: python scripts/build_outgunned_roles.py
+
+attributes:
+  - Brawn
+  - Nerves
+  - Smooth
+  - Focus
+  - Crime
+
+skills:
+  - Endure
+  - Fight
+  - Stunt
+  - Cool
+  - Drive
+  - Shoot
+  - Survival
+  - Flirt
+  - Leadership
+  - Speech
+  - Style
+  - Detect
+  - Heal
+  - Know
+  - Awareness
+  - Dexterity
+  - Stealth
+  - Streetwise
+  - Force
+  - Fix
+
+ages:
+  - Young
+  - Adult
+  - Old
+
+roles:
+  - id: daredevil
+    label: The Daredevil
+    special: false
+    attribute_point: Brawn
+    skill_points:
+      - Endure
+      - Fight
+      - Stunt
+      - Cool
+      - Shoot
+      - Survival
+      - Flirt
+      - Leadership
+      - Stealth
+      - Streetwise
+    feats:
+      - Fighter
+      - Get Down!
+      - Gunslinger
+      - Hardened
+      - That Was Close!
+      - Thrill Seeker
+    gear: "Pistol or Revolver, Knife, Rope"
+
+  - id: guardian
+    label: The Guardian
+    special: false
+    attribute_point: Brawn
+    skill_points:
+      - Endure
+      - Fight
+      - Force
+      - Cool
+      - Survival
+      - Leadership
+      - Heal
+      - Know
+      - Awareness
+      - Streetwise
+    feats:
+      - Big and Strong
+      - Bodyguard
+      - Explorer
+      - Favored Weapon
+      - Hardened
+      - Physician
+    gear: "Weapon of choice, protective gear"
+
+  - id: captain
+    label: The Captain
+    special: false
+    attribute_point: Nerves
+    skill_points:
+      - Endure
+      - Stunt
+      - Drive
+      - Shoot
+      - Survival
+      - Flirt
+      - Leadership
+      - Fix
+      - Awareness
+      - Dexterity
+    feats:
+      - Fix-it
+      - Guide
+      - Pilot
+      - Reassure
+      - Saddle Up
+      - Sailor
+    gear: "Pistol or Revolver, Old Ride, Compass"
+
+  - id: hunter
+    label: The Hunter
+    special: false
+    attribute_point: Nerves
+    skill_points:
+      - Endure
+      - Force
+      - Cool
+      - Shoot
+      - Survival
+      - Leadership
+      - Detect
+      - Heal
+      - Awareness
+      - Stealth
+    feats:
+      - Explorer
+      - Favored Weapon
+      - Guide
+      - Hardened
+      - Hawkeye
+      - Skulker
+    gear: "One $1 item, Hunting rifle or bow, Knife"
+
+  - id: heart
+    label: The Heart
+    special: false
+    attribute_point: Smooth
+    skill_points:
+      - Endure
+      - Stunt
+      - Drive
+      - Flirt
+      - Speech
+      - Style
+      - Detect
+      - Heal
+      - Know
+      - Stealth
+    feats:
+      - Artist
+      - Chin Up
+      - Physician
+      - Reassure
+      - Silver Tongue
+      - That Was Close!
+    gear: "One $1 item, One $2 item"
+
+  - id: star
+    label: The Star
+    special: false
+    attribute_point: Smooth
+    skill_points:
+      - Stunt
+      - Cool
+      - Flirt
+      - Leadership
+      - Speech
+      - Style
+      - Detect
+      - Know
+      - Awareness
+      - Dexterity
+    feats:
+      - Artist
+      - Disguise
+      - Heartbreaker
+      - Linguist
+      - Silver Tongue
+      - Style Icon
+    gear: "Stylish outfit, Signature item"
+
+  - id: professor
+    label: The Professor
+    special: false
+    attribute_point: Focus
+    skill_points:
+      - Cool
+      - Speech
+      - Style
+      - Detect
+      - Heal
+      - Know
+      - Awareness
+      - Dexterity
+      - Stealth
+      - Streetwise
+    feats:
+      - Archeology
+      - Eye for Details
+      - Linguist
+      - Physician
+      - Watch and Learn
+      - Wise
+    gear: "Research kit, Notebook"
+
+  - id: technician
+    label: The Technician
+    special: false
+    attribute_point: Focus
+    skill_points:
+      - Stunt
+      - Drive
+      - Shoot
+      - Survival
+      - Fix
+      - Know
+      - Awareness
+      - Dexterity
+      - Stealth
+      - Streetwise
+    feats:
+      - Engineer
+      - Fix-it
+      - Gadgeteer
+      - Pilot
+      - Quick Fingers
+      - Tinkerer
+    gear: "Toolkit, Gadget"
+
+  - id: scoundrel
+    label: The Scoundrel
+    special: false
+    attribute_point: Crime
+    skill_points:
+      - Fight
+      - Stunt
+      - Cool
+      - Shoot
+      - Survival
+      - Speech
+      - Dexterity
+      - Stealth
+      - Streetwise
+      - Fix
+    feats:
+      - Disguise
+      - Lockpicker
+      - Quick Fingers
+      - Subterfuge
+      - Teamwork
+      - Trailblazer
+    gear: "Lockpicks, Concealed weapon"
+
+  - id: smuggler
+    label: The Smuggler
+    special: false
+    attribute_point: Crime
+    skill_points:
+      - Stunt
+      - Drive
+      - Shoot
+      - Survival
+      - Speech
+      - Style
+      - Fix
+      - Awareness
+      - Stealth
+      - Streetwise
+    feats:
+      - Disguise
+      - Fix-it
+      - Pilot
+      - Sailor
+      - Smuggler
+      - Subterfuge
+    gear: "Contraband stash, Fast ride"
+
+  - id: fortune_seeker
+    label: The Fortune Seeker
+    special: true
+    attribute_points:
+      - Brawn
+      - Nerves
+    skill_points:
+      - Fight
+      - Stunt
+      - Cool
+      - Drive
+      - Shoot
+      - Survival
+      - Flirt
+      - Leadership
+      - Speech
+      - Detect
+      - Know
+      - Awareness
+      - Dexterity
+      - Stealth
+    free_skill_points: 6
+    feats:
+      - Archeology
+      - Disguise
+      - Explorer
+      - Eye for Details
+      - Fast Reflexes
+      - Favored Weapon
+      - Gunslinger
+      - Hardened
+      - Moneybags
+      - Saddle Up
+      - That Was Close!
+      - Thrill Seeker
+    gear: "2 Pistols or Revolvers, Compass, Item of choice"
+
+tropes:
+  - id: action_archeologist
+    label: Action Archeologist
+    attribute_options:
+      - Brawn
+      - Focus
+    skill_points:
+      - Fight
+      - Stunt
+      - Shoot
+      - Speech
+      - Detect
+      - Know
+      - Dexterity
+      - Stealth
+    feats:
+      - Archeology
+      - Eye for Details
+      - Fast Reflexes
+      - Thrill Seeker
+
+  - id: adventuring_author
+    label: Adventuring Author
+    attribute_options:
+      - Brawn
+      - Focus
+    skill_points:
+      - Stunt
+      - Cool
+      - Speech
+      - Style
+      - Detect
+      - Know
+      - Awareness
+      - Stealth
+    feats:
+      - Artist
+      - Eye for Details
+      - Linguist
+      - Silver Tongue
+
+  - id: born_rebel
+    label: Born Rebel
+    attribute_options:
+      - Smooth
+      - Focus
+    skill_points:
+      - Endure
+      - Fight
+      - Cool
+      - Survival
+      - Flirt
+      - Style
+      - Dexterity
+      - Streetwise
+    feats:
+      - Fix-it
+      - Gunslinger
+      - Maverick
+      - Teamwork
+
+  - id: cold_and_distant
+    label: Cold and Distant
+    attribute_options:
+      - Nerves
+      - Crime
+    skill_points:
+      - Fight
+      - Stunt
+      - Cool
+      - Shoot
+      - Survival
+      - Style
+      - Stealth
+      - Dexterity
+    feats:
+      - Get Down!
+      - Guide
+      - Gunslinger
+      - Quick and Nimble
+
+  - id: cowardly_lion
+    label: Cowardly Lion
+    attribute_options:
+      - Focus
+      - Crime
+    skill_points:
+      - Stunt
+      - Shoot
+      - Speech
+      - Style
+      - Detect
+      - Heal
+      - Know
+      - Stealth
+    feats:
+      - I Meant to Do That!
+      - Quick and Nimble
+      - Saddle Up
+      - Silver Tongue
+
+  - id: detestable_bastard
+    label: Detestable Bastard
+    attribute_options:
+      - Smooth
+      - Crime
+    skill_points:
+      - Stunt
+      - Drive
+      - Speech
+      - Know
+      - Awareness
+      - Dexterity
+      - Stealth
+      - Streetwise
+    feats:
+      - Disguise
+      - Linguist
+      - Quick Fingers
+      - Subterfuge
+
+  - id: dreamer
+    label: Dreamer
+    attribute_options:
+      - Brawn
+      - Smooth
+    skill_points:
+      - Fight
+      - Force
+      - Stunt
+      - Cool
+      - Flirt
+      - Speech
+      - Style
+      - Heal
+    feats:
+      - Explorer
+      - I Meant to Do That!
+      - Reassure
+      - Watch and Learn
+
+  - id: flying_steamroller
+    label: Flying Steamroller
+    attribute_options:
+      - Nerves
+      - Smooth
+    skill_points:
+      - Stunt
+      - Cool
+      - Drive
+      - Shoot
+      - Flirt
+      - Style
+      - Fix
+      - Dexterity
+    feats:
+      - Fix-it
+      - Hardened
+      - Heartbreaker
+      - Pilot
+
+  - id: gentle_giant
+    label: Gentle Giant
+    attribute_options:
+      - Brawn
+      - Smooth
+    skill_points:
+      - Endure
+      - Force
+      - Fight
+      - Stunt
+      - Survival
+      - Heal
+      - Fix
+      - Leadership
+    feats:
+      - Big and Strong
+      - Bodyguard
+      - Chin Up
+      - Fighter
+
+  - id: indispensable_rogue
+    label: Indispensable Rogue
+    attribute_options:
+      - Nerves
+      - Crime
+    skill_points:
+      - Stunt
+      - Drive
+      - Survival
+      - Speech
+      - Fix
+      - Dexterity
+      - Stealth
+      - Streetwise
+    feats:
+      - Fix-it
+      - Lockpicker
+      - Quick Fingers
+      - Trailblazer
+
+  - id: parental_figure
+    label: Parental Figure
+    attribute_options:
+      - Smooth
+      - Focus
+    skill_points:
+      - Fight
+      - Cool
+      - Drive
+      - Survival
+      - Leadership
+      - Speech
+      - Detect
+      - Know
+    feats:
+      - Archeology
+      - Chin Up
+      - Reassure
+      - Silver Tongue
+
+  - id: proper_gentleman
+    label: Proper Gentleman/Lady
+    attribute_options:
+      - Smooth
+      - Focus
+    skill_points:
+      - Stunt
+      - Flirt
+      - Leadership
+      - Speech
+      - Style
+      - Detect
+      - Know
+      - Stealth
+    feats:
+      - Archeology
+      - Favored Weapon
+      - Heartbreaker
+      - Moneybags
+
+  - id: reluctant_hero
+    label: Reluctant Hero
+    attribute_options:
+      - Brawn
+      - Nerves
+    skill_points:
+      - Endure
+      - Fight
+      - Stunt
+      - Drive
+      - Leadership
+      - Speech
+      - Detect
+      - Awareness
+    feats:
+      - Gunslinger
+      - Reassure
+      - That Was Close!
+      - Thrill Seeker
+
+  - id: salty_dog
+    label: Salty Dog
+    attribute_options:
+      - Nerves
+      - Focus
+    skill_points:
+      - Endure
+      - Force
+      - Cool
+      - Drive
+      - Survival
+      - Fix
+      - Know
+      - Streetwise
+    feats:
+      - Estimate
+      - Fix-it
+      - Hardened
+      - Sailor
+
+  - id: wild_at_heart
+    label: Wild at Heart
+    attribute_options:
+      - Brawn
+      - Nerves
+    skill_points:
+      - Endure
+      - Fight
+      - Cool
+      - Shoot
+      - Survival
+      - Leadership
+      - Heal
+      - Awareness
+    feats:
+      - Explorer
+      - Favored Weapon
+      - Guide
+      - Skulker

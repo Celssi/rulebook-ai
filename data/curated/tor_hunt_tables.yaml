@@ -1,0 +1,24 @@
+# The One Ring 2e - Strider Mode, Hunt Threshold tables (pp.13-14, 26)
+regions:
+  border:
+    label: "Border Land"
+    threshold: 18
+  wild:
+    label: "Wild Land"
+    threshold: 16
+  dark:
+    label: "Dark Land"
+    threshold: 14
+modifiers:
+  wizard_blessing:
+    modifier: 4
+    text: "The Player-hero is protected by the blessing of a Wizard, or another powerful character"
+  discreet:
+    modifier: 2
+    text: "The Player-hero is travelling under a false name, treading paths that are seldom trodden, or otherwise taking actions to be discreet and unobtrusive"
+  renown:
+    modifier: -2
+    text: "The Player-hero has gained great renown in the area thanks to some exceptional deed"
+  enemy_hunting:
+    modifier: -4
+    text: "The Enemy is actively looking for the Player-hero, or their mission or goal is known to them"

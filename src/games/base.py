@@ -52,6 +52,7 @@ class GamePlugin:
     ocr_pdfs: list[str] = field(default_factory=list)
     has_game_state: bool = False
     has_character_sheet: bool = False
+    play_style: str = "solo_journal"  # solo_journal | rules_reference | gm_solo
 
     def enhance_query(self, question: str, context: RagContext) -> str:
         return question

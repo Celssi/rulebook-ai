@@ -87,6 +87,86 @@ export const api = {
       header: CharacterHeader;
     }>(`/brambletrek/shortcuts/${id}`, { method: "POST" }),
   getLonelog: (n = 50) => request<{ lines: string[]; path: string | null }>(`/brambletrek/lonelog?n_lines=${n}`),
+  getBt2Header: () => request<CharacterHeader>("/brambletrek_2/header"),
+  getBt2Character: () =>
+    request<{
+      entity: Record<string, unknown>;
+      abilities: LegacyAbility[];
+      options: Record<string, unknown>;
+      settings: Record<string, string>;
+    }>("/brambletrek_2/character"),
+  updateBt2Character: (entity: Record<string, unknown>) =>
+    request<{ entity: Record<string, unknown>; header: CharacterHeader }>(
+      "/brambletrek_2/character",
+      { method: "PUT", body: JSON.stringify({ entity }) }
+    ),
+  drawBt2Arrival: () =>
+    request<{ card: string; label: string; band: string; entity: Record<string, unknown> }>(
+      "/brambletrek_2/character/draw-arrival",
+      { method: "POST" }
+    ),
+  resetBt2Character: () =>
+    request<{ entity: Record<string, unknown>; header: CharacterHeader }>(
+      "/brambletrek_2/character/reset",
+      { method: "POST" }
+    ),
+  getBt2Roster: () =>
+    request<{ entries: { id: string; name: string }[]; active_id: string }>("/brambletrek_2/roster"),
+  createBt2Traveller: (name: string) =>
+    request<{ entity: Record<string, unknown>; entries: { id: string; name: string }[] }>(
+      "/brambletrek_2/roster",
+      { method: "POST", body: JSON.stringify({ name }) }
+    ),
+  switchBt2Traveller: (id: string) =>
+    request<SessionState>(`/brambletrek_2/roster/${id}/switch`, { method: "POST" }),
+  deleteBt2Traveller: (id: string) =>
+    request<{ entries: { id: string; name: string }[]; session: SessionState }>(
+      `/brambletrek_2/roster/${id}`,
+      { method: "DELETE" }
+    ),
+  getBt2Exploration: () =>
+    request<{ pending_exploration: import("../types").PendingExploration | null }>(
+      "/brambletrek_2/exploration"
+    ),
+  applyBt2Exploration: (event_index: number) =>
+    request<import("../types").ExplorationActionResult>("/brambletrek_2/exploration/apply", {
+      method: "POST",
+      body: JSON.stringify({ event_index }),
+    }),
+  finishBt2Exploration: () =>
+    request<import("../types").ExplorationActionResult>("/brambletrek_2/exploration/finish", {
+      method: "POST",
+    }),
+  discardBt2Exploration: () =>
+    request<import("../types").ExplorationActionResult>("/brambletrek_2/exploration/discard", {
+      method: "POST",
+    }),
+  getBt2Hollow: () =>
+    request<{ hollow: import("../types").HollowState | null }>("/brambletrek_2/hollow"),
+  moveBt2Hollow: (row: number, col: number) =>
+    request<{
+      summary: string;
+      entity: Record<string, unknown>;
+      header: CharacterHeader;
+      hollow: import("../types").HollowState | null;
+    }>("/brambletrek_2/hollow/move", {
+      method: "POST",
+      body: JSON.stringify({ row, col }),
+    }),
+  getBt2Shortcuts: () => request<{ shortcuts: Shortcut[] }>("/brambletrek_2/shortcuts"),
+  runBt2Shortcut: (id: string) =>
+    request<{
+      answer: string;
+      sources: Source[];
+      route: string;
+      messages: Message[];
+      pending_exploration: import("../types").PendingExploration | null;
+      hollow: import("../types").HollowState | null;
+      entity: Record<string, unknown>;
+      header: CharacterHeader;
+    }>(`/brambletrek_2/shortcuts/${id}`, { method: "POST" }),
+  getBt2Lonelog: (n = 50) =>
+    request<{ lines: string[]; path: string | null }>(`/brambletrek_2/lonelog?n_lines=${n}`),
   getVisitHeader: () => request<import("../types").VisitHeader>("/sansibilia/header"),
   getVisit: () =>
     request<{

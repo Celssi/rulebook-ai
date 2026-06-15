@@ -1,0 +1,22 @@
+[
+  {
+    "query": "How does Magic Shift tracking work in My Little Pony RPG spellcasting?",
+    "expected_terms": ["spellcasting", "downshift", "ladder"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "What pony Origins exist in the MLP RPG?",
+    "expected_terms": ["earth pony", "unicorn", "pegasus"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "How do Friendship Points help in MLP RPG?",
+    "expected_terms": ["friendship", "point", "pool"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "How do Skill Tests work in My Little Pony RPG?",
+    "expected_terms": ["d20", "skill", "dif"],
+    "require_core_in_top_n": 3
+  }
+]

@@ -1,0 +1,51 @@
+# The One Ring 2e - Strider Mode, Journey Event Detail tables (pp.17-18, 25-26)
+# Roll Success d6 after Feat d12 main event. Keys match event_type from main table.
+terrible_misfortune:
+  "1": {event: "Dire confrontation", outcome: "Noteworthy Encounter"}
+  "2": {event: "Rival Predator", outcome: "HUNTING to avoid becoming the hunted"}
+  "3": {event: "Violent weather", outcome: "EXPLORE to find shelter"}
+  "4": {event: "Hidden hazard", outcome: "AWARENESS to avoid stumbling into danger"}
+  "5": {event: "Dangerous terrain", outcome: "EXPLORE to find a safer route"}
+  "6": {event: "Stalking enemy", outcome: "AWARENESS to spot the foul presence"}
+despair:
+  "1": {event: "Servants of the Enemy", outcome: "Noteworthy Encounter"}
+  "2": {event: "Torrential weather", outcome: "EXPLORE to find the least exposed path"}
+  "3": {event: "Nightmarish presence", outcome: "AWARENESS to sense the danger"}
+  "4": {event: "Fading vigour", outcome: "HUNTING to gain sustenance"}
+  "5": {event: "Corrupted site", outcome: "EXPLORE to find your way out"}
+  "6": {event: "Grisly scene or foreboding portent", outcome: "AWARENESS to be forewarned"}
+ill_choices:
+  "1": {event: "Mismanaged provisions", outcome: "HUNTING to replenish stores"}
+  "2": {event: "Wayward path", outcome: "EXPLORE to retrace your steps"}
+  "3": {event: "Overlooked hazard", outcome: "AWARENESS to escape safely"}
+  "4": {event: "Lost quarry", outcome: "HUNTING to follow its tracks"}
+  "5": {event: "Disorienting environs", outcome: "EXPLORE to find your way"}
+  "6": {event: "Haunting visions", outcome: "AWARENESS to overcome darkness"}
+mishap:
+  "1": {event: "Sparse wildlife", outcome: "HUNTING to forage what you can"}
+  "2": {event: "Lost direction", outcome: "EXPLORE to find your way"}
+  "3": {event: "Obstructed path", outcome: "AWARENESS to spot a way around"}
+  "4": {event: "Elusive quarry", outcome: "HUNTING to track it down"}
+  "5": {event: "Rough terrain", outcome: "EXPLORE to safely traverse"}
+  "6": {event: "Wandering enemies", outcome: "AWARENESS to sense their coming"}
+short_cut:
+  "1": {event: "Game trail", outcome: "HUNTING to traverse the path"}
+  "2": {event: "Secluded path", outcome: "EXPLORE to navigate the wilds"}
+  "3": {event: "Helpful tracks", outcome: "AWARENESS to follow the tracks"}
+  "4": {event: "Animal guide", outcome: "HUNTING to follow at a distance"}
+  "5": {event: "Favourable weather", outcome: "EXPLORE to make the most of it"}
+  "6": {event: "Familiar waypoint", outcome: "AWARENESS to recognize the landmark"}
+chance_meeting:
+  "1": {event: "Lone hunter", outcome: "HUNTING to trade stories"}
+  "2": {event: "Fellow traveller", outcome: "EXPLORE to learn about the path ahead"}
+  "3": {event: "Discreet watcher", outcome: "AWARENESS to spot them"}
+  "4": {event: "Noble beast", outcome: "HUNTING to commune"}
+  "5": {event: "Secluded encampment", outcome: "EXPLORE to find your way off the beaten path"}
+  "6": {event: "Auspicious gathering", outcome: "Noteworthy Encounter"}
+joyful_sight:
+  "1": {event: "Majestic creatures", outcome: "HUNTING to observe without startling them"}
+  "2": {event: "Inspiring vista", outcome: "EXPLORE to reach a vantage point"}
+  "3": {event: "Benevolent being", outcome: "AWARENESS to sense their presence"}
+  "4": {event: "Abundant foraging", outcome: "HUNTING to replenish your rations"}
+  "5": {event: "Ancient monument", outcome: "AWARENESS to recognize its significance"}
+  "6": {event: "Peaceful sanctuary", outcome: "Noteworthy Encounter"}

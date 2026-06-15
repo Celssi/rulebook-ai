@@ -1,0 +1,21 @@
+# Cosmere RPG plot dice — CS007 GM Rules Overview
+# 1 = complication, 6 = opportunity; 2–5 are neutral.
+faces:
+  "1":
+    label: complication
+    text: "A complication arises — something makes the situation harder or introduces a new obstacle."
+  "2":
+    label: neutral
+    text: "No special plot twist on this die."
+  "3":
+    label: neutral
+    text: "No special plot twist on this die."
+  "4":
+    label: neutral
+    text: "No special plot twist on this die."
+  "5":
+    label: neutral
+    text: "No special plot twist on this die."
+  "6":
+    label: opportunity
+    text: "An opportunity appears — a chance to gain advantage, insight, or a helpful twist."

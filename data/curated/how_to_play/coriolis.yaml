@@ -1,0 +1,29 @@
+game_id: coriolis
+title: Näin pelaat
+source:
+  pdf: docs/coriolis/Coriolis_The_Great_Dark_Core_Rulebook.pdf
+  pages: [12, 21, 47, 68, 214]
+sections:
+  - heading: Yleiskuva
+    body: |
+      Coriolis: The Great Dark sijoittuu Lost Horizoniin — islamilaisen sci-fin maailmaan, jossa Explorers Guild lähettää tutkimusretkiä Blightin ja Builder-raunioiden luo. **Solopelissä** toimit sekä pelaajana että GM:nä.
+  - heading: Tarvitset
+    bullets:
+      - Coriolis: The Great Dark -sääntökirja
+      - noppasarja (d6), mielellään kaksi väriä (base + gear)
+      - Explorer- ja crew-arkki (tai sovelluksen Character)
+  - heading: Explorer ja miehistö
+    body: |
+      Luo Explorer attribuuteilla (Strength, Agility, Logic, Perception, Insight, Empathy) ja talenteilla. Valitse ammatti ja erikoisala. Merkitse **crew_name**, **bird_name**, **shuttle_name** ja **rover_name**. Health = STR+AGL, Hope = LOG+EMP, Heart = INS+PER.
+  - heading: Heitot
+    body: |
+      Heitä base-noppia yhtä monta kuin attribuutti + talent-taso. Gear-nopat tulevat varusteista. **6 = onnistuminen.** Voit **pushata** ja heittää uudelleen kaikki paitsi 6:t ja 1:t; base-1:t vähentävät Hopea, gear-1:t heikentävät varustetta.
+  - heading: Despair ja kohtaamiset
+    body: |
+      Stressaavat tilanteet aiheuttavat despairia — vastusta EMPATHY-heitolla. Jos Hope laskee nollaan, arvo mental trauma. Random encounter -shortcut ehdottaa tilannetta Lost Horizonissa.
+  - heading: Sovelluksessa
+    bullets:
+      - Asetukset → **Character**: attribuutit, ammatti, talentit, crew ja Bird
+      - Shortcuts → **Attribute roll**, **Pushed roll**, **Despair check**, **Encounter**
+      - AI narrator kirjoittaa kohtausprosan nopista ja encountereista
+      - Lonelog tallentaa heitot ja merkinnät

@@ -1,0 +1,347 @@
+# Opponent tactics and combat reward items (BT2 pp. 61-83).
+opponents:
+  bumblebeast:
+    tactics:
+      '2': 'Wingbeat Flurry: The Bumblebeast beats its wings rapidly, dealing 2 damage and knocking you off balance.'
+      '3': 'Pollen Puff: A burst of pollen makes you sneeze! Discard a next tactic card.'
+      '4': 'Crystal Sting: Deal 3 damage.'
+      '5': 'Unnerving Buzz: The weird humming gets under your fur. Lose 2 Morale.'
+      '6': 'Zigzag Zip: It zips around unpredictably! Your next attack deals -2 damage.'
+      '7': 'Hive Helper: A tiny Bumblebuddy joins the fun! It bops you for 2 damage, then zooms off giggling.'
+      '8': 'Crystal Flash: A bright flash of color! You flinch, your next attack automatically misses.'
+      '9': 'Bouncy Bump: It bumps into you mid- air! Deal 4 damage and drop 1 Supply if you''re carrying any.'
+      '10': 'Wiggly Jab: An excited stingy wiggle! Deal 5 damage.'
+      jack: 'Sticky Wax: Covers itself in goop! Halve damage from your next attack.'
+      queen: 'Buzz-Buzz Break: It calms down and hums softly. Heal 4 Health.'
+      king: 'Drone Dazzle: A deep hum fills the air.'
+      ace: 'Flutter Finale: Deal 5 damage, then it floats gently out of reach for the rest of the turn.'
+    reward_items:
+      '2': Sticky Honeycomb. A chunk of golden honey. (Restores 1 Morale and can be used to halve an enemy attack.)
+      '3': Buzzing Chitin. A fragment of the Bumblebeast’s exoskeleton. (Reduces damage from the next attack by 2.)
+      '4': Bumblebeast looks proud of itself. Gleaming Pollen. Glows faintly with an unnatural hue. (Can blind an enemy, causing them to miss their next turn.)
+      '5': Cracked Crystal Stinger. A broken piece of the cursed stinger. (Deals 3 damage when thrown at an opponent.)
+      '6': Scented Wax. A faintly floral wax that can be molded. (Grants a temporary +2 Damage boost in combat for 2 turns.)
+      '7': Echoing Carapace. A hollow shell that hums when tapped. (Next attack deals an additional 2 damage.)
+      '8': Golden Nectar. A rare, shimmering nectar. (Restores 2 Health and reduces the opponent’s next attack by 1.)
+      '9': Queen’s Fragment. A tiny piece of what might have been part of a hive leader. (Confuses the enemy and they hit themselves with their next attack.)
+      '10': The Bumblebeast wobbles and looks dizzy afterward. Resonant Shard. A shard of crystal that vibrates softly. (Used to deal 3 damage.)
+      jack: Hive Guardian’s Charm. A protective charm made from woven wax and pollen. (Once per combat, reduces an attack’s damage by 3.)
+      queen: Echoing Pollen Bloom. A pouch of rare pollen that increases focus. (Next two attacks gain +3 damage each.)
+      king: You can't draw any new cards next turn. Ancient Hive Relic. A forgotten artifact from the oldest hives. (Boosts Health by 3 for one combat.)
+      ace: Heart of the Swarm. A core of collected memories from the Bumblebeasts. (Restores all Health.)
+  heffalump:
+    tactics:
+      '2': 'Trunk Swipe: A wide swing knocks you off your paws. Deal 2 damage.'
+      '3': 'Heavy Footfall: The ground rumbles. Your next attack deals -1 damage.'
+      '4': 'Crushing Step: A big stomp deals 3 damage. You drop 1 Item from your bag (if you have any).'
+      '5': 'Echoing Trumpet: A loud trumpet makes you dizzy. Lose 2 Morale.'
+      '6': 'Protective Curl: The Heffalump tucks in.'
+      '7': 'Mighty Push: With a nudge (that feels like a boulder), you fall down.'
+      '8': 'Crystal Sparkle: Its forest crystal glows bright. All your next turn’s attacks deal - 1 damage.'
+      '9': 'Bouncy Stampede: A playful but powerful charge! Deal 4 damage and lose 2 Morale.'
+      '10': 'Wobbly Whack: A wild tail swing deals 5 damage. The Heffalump stumbles and takes 3 damage itself.'
+      jack: 'Huff-Puff Bellow: A grumpy bellow makes you doubt yourself.'
+      queen: 'Forest Nap: The Heffalump takes a moment to rest. It restores 4 Health.'
+      king: 'Unmovable: You can''t budge it! Ignore all effects from your next attack except damage.'
+      ace: 'Tremble-Trot: The Heffalump charges forward with all its weight! Deal 6 damage and you drop 3 Morale.'
+    reward_items:
+      '2': Shiny Pebble. A small, polished stone. (Can be thrown to distract an enemy, causing them to miss their next turn.)
+      '3': Torn Blanket. A piece of soft fabric. (Can be used to restore 1 Morale.)
+      '4': Heffalump Tooth. A large, worn tooth. (Can be used once to increase an attack by 2 damage.)
+      '5': Crystal Dust. Faintly glowing shards of crystal. (Can be crushed to reduce an opponent’s next attack by 2.)
+      '6': Halve the damage from your next attack. Heffalump’s Tear. A drop of shimmering liquid. (Restores 2 Health.)
+      '7': Miss your next turn. Worn Carving. A wooden figure, perhaps once important. (Boosts Morale by 2.)
+      '8': Heavy Stompers. Boots that steady the wearer. (Reduce physical damage by half.)
+      '9': Echoing Horn. A horn that mimics the Heffalump’s trumpet. (Draw a card, reduce the next attack by the value.)
+      '10': Crystal Chunk. A large, radiant crystal shard. (Used once per combat to deal 3 unblockable damage.)
+      jack: Your next attack deals half damage and you lose Morale equal to the damage. Guardian’s Amulet. A necklace imbued with past protection. (Once per combat, reduces an attack’s damage by 3.)
+      queen: Resonating Crystal. Vibrates with energy. (Restore 2 Health per turn for 3 turns.)
+      king: Heffalump Relic. A treasured artifact. (Boosts Health and Morale by 3.)
+      ace: Heffalump's Notebook. A fragment with memories. (Restores all Morale.)
+  jagular:
+    tactics:
+      '2': 'Clever Feint: The Jagular dodges the next attack and counters for 2 damage.'
+      '3': 'Ambush Strike: If the Jagular acts first this round, deal 3 damage. Otherwise, deal 1.'
+      '4': 'Treetop Leap: It bounds into the canopy! You miss your next attack.'
+      '5': 'Echoing Call: A creepy growl from somewhere nearby… you lose 2 Morale.'
+      '6': 'Twisting Pounce: A sudden strike! Deal 3 damage. Your next attack deals -1 damage.'
+      '7': 'Lurking Dread: Its unsettling presence drains your spirit. Lose 3 Morale.'
+      '8': 'Glare: The Jagular’s gem flashes.'
+      '9': 'Claw Flicker: Quick strikes! Deal 4 damage.'
+      '10': 'Predatory Pause: It just watches. Draw a Card: If Black, your next attack misses.'
+      jack: 'Shifting Shadows: It moves the fight into darker terrain.'
+      queen: 'Cunning Recuperation: The Jagular blends into the shadows and heals 4 Health.'
+      king: 'Flickering Form: You try to hit then realize it wasn’t there.'
+      ace: 'Final Pounce: A dramatic leap! Deal damage equal to half the Jagular’s current Health (rounded up).'
+    reward_items:
+      '2': Jagular Whisker. A long, sharp whisker. (Grants +1 damage on your next attack.)
+      '3': Shadowed Claw. A faded claw that hums with latent energy. (Can be used to evade one attack.)
+      '4': Cursed Hide. A fragment of its fur, crackling with residual energy. (Reduces all incoming damage by 1 for one combat.)
+      '5': Echoing Growl. A bottled sound of its call. (Draw 2 tactics and keep the tactic you prefer, reshuffle the unchosen card.)
+      '6': Jagged Fang. A sharp, crystalline fang. (Deals 2 extra damage on your next attack.)
+      '7': Twisting Vines. Vines imbued with Hollow energy. (Can be used to snare an enemy, making them miss a turn.)
+      '8': Your next turn’s attack deals half damage. Hunter’s Mark. A strange marking that lingers. (Next attack against the same opponent deals +3 damage.)
+      '9': Jagular's Shadow. A misty remnant of its movement. (Grants one free dodge per combat.)
+      '10': Crystal Stone. A hardened drop of energy. (Can be used to temporarily weaken an enemy’s attack by 2.)
+      jack: You must use a tactic and discard another next turn. Phantom Pawprint. A spectral mark left behind. (Use once to confuse an opponent, making their next attack miss.)
+      queen: Silent Charm. An eerie trinket that enhances awareness. (Your next two attacks cannot be dodged or missed.)
+      king: Halve the damage of your current attack. Jagular’s Bracelet. A deep understanding of movement. (Once per combat, allows you to take an extra turn.)
+      ace: It then bows dramatically. Hunting Guidebook. A pulse of the Jagular’s power. (Your next attack deals half your current health.)
+  rockodile:
+    tactics:
+      '2': 'Tidal Thump: The Rockadile slams its tail! Deal 2 damage and your next attack deals -1 damage (you’re rattled).'
+      '3': 'Jaw Clamp: A big, toothy snap! Deal 3 damage and discard 1 tactic card.'
+      '4': 'Boulder Roll: Rolls straight into you! Deal 3 damage and you lose 1 Morale.'
+      '5': 'Echoing Roar: A thunderous bellow shakes the canopy. Lose 2 Morale.'
+      '6': 'Gator Glide: Dashes with surprising speed! Evade your next attack and gain +1 damage on its next one.'
+      '7': 'Murky Ambush: Leaps from the water! Deal 4 damage.'
+      '8': 'Crystal Shock: Its crystal pulses with heat.'
+      '9': 'Stony Hide: Its skin hardens. Halve the damage from your next attack (rounded up).'
+      '10': 'Iron Maw: A mighty chomp! Deal 5 damage. Your next attack deals -2 damage.'
+      jack: 'Riptide Toss: Tosses you with a snout- flick! Deal 3 damage.'
+      queen: 'Shake-It-Off: Wiggles and stretches. Restore 4 Health.'
+      king: 'Sentinel Stomp: Stands firm, then strikes.'
+      ace: 'Final Roar: With one last shout, deal 5 damage. Then the Rockadile flops on its belly, skipping its next turn.'
+    reward_items:
+      '2': Rough Scale. A jagged piece of armor. (Reduces the next attack’s damage by 2.)
+      '3': Heavy Fang. A stone-like tooth. (Deals 3 extra damage when thrown in combat.)
+      '4': Echoing Stone. Vibrates with residual energy. (Can be used once to force an enemy to skip a turn.)
+      '5': Riverstone Shard. A smooth, polished fragment. (Once per combat, allows you to block an attack entirely.)
+      '6': Heavystone Charm. A relic infused with endurance. (If you reach 0 health or morale, instead remain at 3.)
+      '7': Guardian’s Claw. A claw hardened by time. (Grants +1 damage on your next two attacks.)
+      '8': Your next attack automatically misses. Crystalized Mud. Hardened, enchanted sediment. (Can be thrown at an enemy to reduce their next attack’s damage by 3.)
+      '9': Tectonic Core. A shard of earthbound energy. (Increases your damage resistance by 1 for the next three turns.)
+      '10': Stonebound Totem. A relic once used to ward off intruders. (Once per combat, can absorb 4 damage.)
+      jack: You discard your right most card. Rockodile’s Crest. A weathered crest symbolizing endurance. (Reduces all damage taken by 1 for one full battle.)
+      queen: Echoing Coin. Emits a faint vibration. (Enemies draw an extra card on their turn. If value is lower than 10 their Tactic Fails.)
+      king: Halve damage from your next attack. Then its next attack deals +2 damage. Ancient Guardian’s Relic. A relic from the old river guardians. (Boosts Damage by 3 for one combat.)
+      ace: Heart of the Earth. A fragment of resilience. (Restores all Health and Morale.)
+  snuffalo:
+    tactics:
+      '2': 'Flex and Pose: The Snuffalo strikes a heroic stance! The next attack against it deals -2 damage.'
+      '3': 'Herculean Charge: It lunges with full force! Deal 3 damage and you lose 1 Morale from the impact.'
+      '4': 'Boulder Lift: Lifts a massive stone and tosses it! Deal 3 damage.'
+      '5': 'Snorting Power: Lets out a powerful snort! Its next attack deals +2 damage.'
+      '6': 'Buffed Up: Tense muscles deflect harm.'
+      '7': 'Stampeding Reps: Dashes in circles! Its next attack hits twice (and get’s +2 damage each).'
+      '8': 'Crystal Pulse: The Snuffalo’s cursed crystal throbs. Your next attack deals -2 damage. Stone-Lifting Gloves. Thick, well-worn gloves. (Once per combat, lets you avoid knockback effects.)'
+      '9': 'Bench Press Slam: Slams a heavy log overhead! Deal 5 damage. Buffed-Up Brew. A drink made from secret herbs. (Grants +2 Health and +1 damage next turn.)'
+      '10': 'Unstoppable: Roars with triumph! Its next attack deals +3 damage.'
+      jack: 'Tornado Sneeze: A ridiculous sneeze sends dust everywhere! Deal 3 damage to all creatures (including the Snuffalo).'
+      queen: 'Power Puff: Shakes off soreness. Restore 4 Health.'
+      king: 'Iron Bulk: Tenses all over. The next attack against it deals only 1 damage.'
+      ace: 'Final Blowout: With a final epic pose, it deals 5 damage… then falls over dramatically and skips its next turn to catch its breath.'
+    reward_items:
+      '2': Snuffalo Sweatband. A band soaked in sheer effort. (Increases Morale by +2.)
+      '3': Horn Shard. A piece of Snuffalo horn. (Once per combat, adds +2 to an attack.)
+      '4': Training Manual. A well-used book on fitness. (Boosts Strength-based rolls by +1.)
+      '5': Crystalized Protein Powder. Infused with lingering power. (Once per combat, grants +1 to all damage dealt.)
+      '6': Halve the damage of the next attack it takes. Champion’s Belt. A golden belt once worn by the strongest Snuffalo. (Reduces next attack damage by 3.)
+      '7': Muscle Balm. A paste to ease soreness. (Heals +3 Health outside of combat.)
+      '10': Then it skip its next turn. Snuffalo’s Weighted Bracer. A heavy bracer that strengthens the wearer. (Grants +2 damage for the rest of combat.)
+      jack: Champion’s Medallion. Proof of immense strength. (Once per combat, prevents Stun effects.)
+      queen: Gilded Horn Ring. A ring once fitted around a Snuffalo’s horn. (Boosts Health by 3 in one combat.)
+      king: Herd Legacy. A stone with inscriptions. (Boosts Morale by +1 when resting.)
+      ace: Unbreakable Core. A relic of strength. (Once per combat, makes you immune to all damage for one turn.)
+  woozle:
+    tactics:
+      '2': Shifting Footsteps.
+      '3': Illusionary Strike. A feint attack causes you to react too soon, reducing your next attack’s damage by 2.
+      '4': Misdirection. The Woozle distracts you with a sudden movement, causing you to lose 1 Morale.
+      '5': 'Confusing Echo. Its voice bounces off the trees, making it hard to focus. (Draw a Card: Red – Your next card hits, Black – Your next card misses.) Blurred Lens. A lens that distorts vision. (Use once to Draw a card if Red the enemy’s attack will miss.)'
+      '6': Retreat. Woozle disengages, reducing the damage of your next attack by 3.
+      '7': Shadow Dash. A rapid movement allows the Woozle to reposition and strike for 4 damage.
+      '8': Crystal Pulse. The cursed crystal embedded in the Woozle shimmers, reducing your next attack by 2 damage.
+      '9': Feign Vulnerability.
+      '10': Dizzying Spin. A quick spinning move forces you to lose your balance, making you miss your next turn.
+      jack: Vanishing Blink. The Woozle disappears into the mist, forcing you to miss your next attack.
+      queen: Regenerative Trickery. The Woozle siphons energy from the Hollow, healing 2 Health per turn for the next two turns.
+      king: Master of Deception. The Woozle confounds your senses, causing your next two attacks to deal half damage.
+      ace: Grand Trickster’s Finale. The Woozle unleashes a powerful illusion, dealing damage equal to its remaining Health before vanishing.
+    reward_items:
+      '2': The Woozle dodges your next attack and moves unpredictably. Tattered Cloak. A cloak flickers with magic. (Grants a free dodge.)
+      '3': Glinting Trinket. A shiny object of unknown purpose. (Once per combat, distracts an enemy, reducing their next attack’s damage by 2.)
+      '4': Echo Stone. A small stone that repeats whispers. (Once per combat, forces an enemy to miss a turn.)
+      '6': Phantom Dust. A pouch of shimmering dust. (Once per combat, allows you to avoid an area attack.)
+      '7': Flickering Amulet. A charm that shifts in and out of sight. (Boosts Morale by 2.)
+      '8': Shadow Sliver. A fragment of the Woozle’s illusionary magic. (Once per combat, lets you redraw a tactic.)
+      '9': The Woozle baits you into an overextension. (You take 2 extra damage next turn.) Cursed Ribbon. A tattered piece of fabric from the Woozle’s past. (Reduces an enemy’s next attack by 3.)
+      '10': Gleaming Mirage. A mysterious, shifting object. (Once per combat, swap turns with an ally or take over an enemy’s turn.)
+      jack: 'Trickster’s Coin. A two-sided coin that never lands the same. (Draw a Card: Red – Dodge an attack, Black – Deal 3 damage.)'
+      queen: Echoing Charm. A charm that causes eerie laughter when held. (Forces an enemy to redraw their Tactic Card.)
+      king: Whispering Band. A bracelet that vibrates. (Gain armor that can absorb damage equal to half your current health.)
+      ace: Phantom’s Gift. A relic that flickers out of existence. (Once per combat, you vanish and avoid all attacks until your next turn.)
+  tootle:
+    tactics:
+      '2': Shell Drum. Beats on its shell, the vibrations cancel your next card draw.
+      '3': Bass Boom. A deep thump rattles your chest, dealing 2 Health and -1 Morale.
+      '4': Reed Whistle. Piercing tone startles you, making you drop 2 Supplies.
+      '5': 'Harmony Clash. Strikes a chord: deal 3 Health and -1 Morale.'
+      '6': Discordant Chord. The tune twists, dealing 2 Health and forcing you to discard your top tactic card.
+      '7': Nature’s Crescendo. A roar of sound calls animals. It deals 4 Health and takes 1 Supply.
+      '8': Melodic Rush.
+      '9': Chaotic Encore. Plays wildly, hitting twice for 2 Health each (total 4).
+      '10': Drumquake.
+      jack: Feral Rhythm. A wild beat overwhelms, deal 6 Health damage.
+      queen: Crystal Hymn. The cursed crystal hums, restoring 4 Health to itself and stealing 2 Supplies from you.
+      king: Finale Roar. A devastating chord shakes the whole area, deal 5 Health and -2 Supplies.
+      ace: 'Grand Crescendo. Plays with full force: deals 4 Health, -2 Morale, and -2 Supplies all at once.'
+    reward_items:
+      '2': Rhythm Stone. A flat stone carved with grooves. (Once per combat, force an enemy to redraw their tactic card.)
+      '3': 'Forest Flute. A carved wooden flute. (Outside combat: calm beasts or charm travellers; in combat: restore 2 Morale.)'
+      '4': Meadow Rattle. A woven reed rattle. (Once per exploration, reroll/re-draw any Supplies-loss event.)
+      '5': Sunbeat Pendant. A pendant with a carved sun. (Once per combat, add +2 damage to your next attack.)
+      '6': 'Wild Drumstick. A stick chewed by beetles. (Outside combat: redraw a Depth event; in combat: block 1 damage once.)'
+      '7': Bramble Charm. A vine-woven charm. (Once per combat, reflect 2 damage back at an attacker.)
+      '8': 'The rhythm drives it into a frenzy. Deal 5 Health to you but also 1 recoil to itself. Songleaf. A large leaf with holes that hum in the wind. (Outside combat: forecast weather; in combat: restore 2 Health once.)'
+      '9': Bloomstone. A moss-covered stone. (Once per rest, heal 2 Health and gain +1 Supply from foraging.)
+      '10': Slams its shell like thunder. Deal 3 Health and -2 Morale. Earth Idol. Once per combat, negate the effects of a morale-loss attack.
+      jack: 'Totem Stick. A carved, painted baton. (Once per combat, rally allies: all allies gain +1 damage on their next attack.)'
+      queen: Echo Gem. A gem that repeats sounds. (Redraw your hand once.)
+      king: Unity Banner. A banner made of stitched leaves. (Prevent the next Supply loss.)
+      ace: Festival Crown. A circlet of vines and beads. (Once per game, restore 3 Health, 3 Morale, and 3 Supplies at camp.)
+  totter:
+    tactics:
+      '2': Slide Trick.
+      '3': Pebble Ping. Flicks a pebble with precision, dealing 2 Health.
+      '4': Splash Spray. Blasts water in your face, you lose 1 Supply.
+      '5': Tail Flick. Smacks you for 2 Health and forces you to redraw your card.
+      '6': Illusion.
+      '7': Double Dip. Pops up twice, hitting you for 2 Health and 2 Morale.
+      '8': Red Blur. Darts around wildly, striking for 4 Health.
+      '9': Blue Trick.
+      '10': Snatch & Dash. Swipes something from you, lose 2 Supplies.
+      jack: Group Prank. Other Totters join, together they deal 3 Health and force you to redraw your hand.
+      queen: Chaotic Spin. Whirls through the water, 3 Health and 2 Morale lost.
+      king: Otterstorm. Splashes everywhere, deal 4 Health & lose 1 Supply.
+      ace: 'Grand Prank. Pretends to be defeated, flip a card: Red, you take 5 Health; Black, nothing happens.'
+    reward_items:
+      '2': Slips under your swing and dodges your attack completely. Skipping Stone. A perfectly flat stone. (Once per combat, force an enemy to redraw their card.)
+      '3': 'Shiny Button. A lost button polished smooth. (Once per combat: distract an enemy to reduce their damage by 1.)'
+      '4': Watershell Cup. A shell that holds water. (Once per rest, negate a Supply loss due to thirst or spoilage.)
+      '5': 'River Charm. A plaited talisman. (Once per combat: cancel an enemy’s tactic.)'
+      '6': Splits into echos. Your attack misses, & you lose 1 Morale in frustration. Glass Bauble. A colorful bead. (Once per combat, restore 2 Morale and swap cards with the top card in the deck.)
+      '7': Otter Pawprint Stone. A river stone etched by claws. (Once, let you draw your lowest-value card.)
+      '8': 'Copper Whistle. A tiny whistle. (Once per combat: once, boost your next Morale gain by +2.)'
+      '9': Mimics you. Copy your last tactic, but deal half its value to you. Mirror Pebble. A pebble that shines like glass. (Once per combat, reflect half the damage of an attack back to the attacker.)
+      '10': Hidden Cache Map. A scrap of waterproof hide. (Once per day, negate a single Supply loss.)
+      jack: Otter Totem. A carved figurine. (Once per day, skip a Hollow Event.)
+      queen: Rainbow Scale. A fish scale shimmering with color. (Once per combat, negate a Morale-loss effect once.)
+      king: River Crown. A crown woven from weeds and flowers. (When worn restore 2 Health at camp)
+      ace: 'Trickster’s Coin. A two-sided coin. (Outside combat: used for decisions or dares; in combat: flip Red = dodge an attack, Black = deal 3 damage.)'
+  lizzle:
+    tactics:
+      '2': Blazing Scales. Its body flares bright, negating your attack and lowering your Morale by 1.
+      '3': Tail Sweep. Knocks you aside for 2 Health and 1 Supply.
+      '4': Orderly Bite. Deals 2 Health. Both sides discard their lowest-value card.
+      '5': Shielding Stance. Reduces your attack this round by 3 and heals itself 2 Health.
+      '6': Sacred Dash. Charges in, dealing 3 Health and lowering Morale by 1.
+      '7': Battle Chant. A piercing cry rallies itself, restoring 2 Health and causing you to lose 2 Morale.
+      '8': Fiery Trample. Leaps with reckless energy for 4 Health and scatters 2 Supplies.
+      '9': Lawful Lash. A tail strike for 3 Health. If your next attack does 5+ damage, reduce it to 3.
+      '10': Radiant Pulse. Crystal glows, dealing 3 Health and lowering Morale by 2.
+      jack: Pack Rally. Other lizards splash in, together deal 4 Health and cost you 1 Supply.
+      queen: Molten Renewal. Sheds its heated skin, healing 5 Health and burning your confidence (Morale -2).
+      king: Judgment Strike. A mighty slam deals 5 Health and forces both sides to lose 1 Supply.
+      ace: Grand Marshal’s Roar. Heals itself 3 Health, deals 3 Health to you, lowers everyone’s Morale by 2, and shakes 2 Supplies loose.
+    reward_items:
+      '2': Heatstone. A warm riverstone. (Once per combat, negate 1 Morale loss.)
+      '3': Balance Bell. A tiny bronze bell. (Once per day, restore +1 Morale when rung at camp.)
+      '4': 'Unity Beads. A string of carved beads. (Permanent: you gain +1 Morale maximum.)'
+      '5': Ivory Token. A smooth bone charm. (Once per combat, prevent 3 damage to yourself.)
+      '6': 'Marcher’s Strap. A sturdy leather strap. (Permanent: reduce Supply loss from travel events by 1.)'
+      '7': Chant Stone. A rune-etched pebble. (Once per combat, force an enemy to redraw their tactic card.)
+      '8': Flame Ribbon. A scorched ribbon. (Once per day, add 2 Supplies during a supplies event.)
+      '9': Scales of Justice. A balanced talisman. (Once per combat, reduce the damage of the highest attack card played by 2.)
+      '10': Radiant Shard. A white-hot crystal. (During combat, deal 2 damage that cannot be prevented.)
+      jack: Banner Charm. A woven charm. (Once per combat, all allies add +1 damage to their next attack.)
+      queen: Molted Hide. A thick piece of skin. (Once per combat, absorb 4 damage before it reaches you.)
+      king: Oath Stone. A polished stone. (Once per day, negate any Supply loss from an event.)
+      ace: Crown of Ashes. A scorched circlet. (Once per combat, negate all incoming damage for one round, then discard this item.)
+  lumpus:
+    tactics:
+      '2': Stonehide Guard.
+      '3': Snout Slam. A sudden thrust deals 2 Health and knocks away 1 Supply.
+      '4': River Splash. Crashes into the water sending waves that scatter 2 Supplies.
+      '5': Wide Maw. A huge bite crushes down for 3 Health.
+      '6': Mud Wall. Kicks up sludge blocking vision & reducing your next attack by 3.
+      '7': Bellowing Roar. Lets out a thunderous cry that shakes your spirit causing -3 Morale.
+      '8': River Charge. Lumbers forward for 4 Health and knocks away 1 Supply.
+      '9': Equalizing Stomp. A mighty stomp that deals 2 Health to both combatants and forces both to drop 1 Supply.
+      '10': Thornhide Bash. Scrapes across you with its bulk for 3 Health and lowers Morale by 2.
+      jack: Territorial Rally. Calls other river beasts who trample in dealing 4 Health and scattering 2 Supplies.
+      queen: Soothing Submerge. Slips into the water and heals 5 Health.
+      king: Crystal Surge. The crystal pulses for 4 Health and -2 Morale.
+      ace: Nature’s Verdict. The Lumpus slams the riverbank with all its strength causing 3 Health damage, -2 Morale, and loss of 2 Supplies to its opponent.
+    reward_items:
+      '2': The Lumpus hardens its stance and ignores all damage this turn. Riverstone Idol. A carved hippo idol. (Once per day, restore +1 Morale when used at camp.)
+      '3': Hippo Tooth. A large worn tooth. (Once per combat, prevent 2 damage to yourself.)
+      '4': Mud Jar. A clay jar sealed with river mud. (Once per day, negate 1 Supply loss.)
+      '5': Jawbone Bead. A bead carved from bone. (Once per combat, add +2 damage to your next attack.)
+      '6': Clay Pendant. A pendant hardened in fire. (Once per combat, reduce an enemy’s attack by 3.)
+      '7': Horn Token. A polished horn fragment. (Once per day, restore 2 Morale at camp when blown.)
+      '8': Charging Stone. A smooth weighty rock. (Once per combat, deal 3 damage to an enemy.)
+      '9': Balance Stone. A round white stone. (Once per combat, force all players to discard their lowest-value card.)
+      '10': Bramble Charm. A charm of thorn and vine. (Once per combat, reflect 2 damage back at an attacker.)
+      jack: River Banner. A reed-woven banner. (Once per combat, all allies add +1 damage to their next attack.)
+      queen: Reed Crown. A circlet of reeds. (Once per day, restore 3 Health when worn at camp.)
+      king: Pulse Gem. A glowing shard. (Once per combat, cancel the tactic of an enemy.)
+      ace: Relic of the River. A moss-covered stone crown. (Once per combat, deal 2 damage & negate Supply loss this round.)
+  grizzle:
+    tactics:
+      '2': Cautious Swipe. A light strike deals 2 Health.
+      '3': Heavy Claw. A wide paw swipe deals 3 Health.
+      '4': Rooted Might. Stands tall and heals 3 Health, then slams for damage equal to its current Health - 3.
+      '5': Foraging Bite. Bites down for 2 Health and knocks away 2 Supplies.
+      '6': Overhead Slam. A crushing strike deals damage equal to half its current Health (rounded down).
+      '7': Roar. A roar lowers your Morale by damage equal to half the number of Supplies you have (rounded down).
+      '8': Enduring Hide. Absorbs your blow, ignores damage, then retaliates for 4 Health.
+      '9': Crushing Maul.
+      '10': Feral Slam. Hits with full weight, dealing 4 Health and -2 Morale.
+      jack: Endless Appetite. Bites deeply for 3 Health, then heals 3 Health.
+      queen: Verdant Wrath. Calls the forest to aid, Draw a card and deal damage equal to its value.
+      king: Primal Crash. Slams down, lowering your Morale equal to its current Health and dealing 3 Health.
+      ace: Nature Unleashed. At peak fury, deals damage equal to its current Health, lowers Morale by 3, and knocks away 3 Supplies.
+    reward_items:
+      '2': Cub Totem. A carved cub idol. (Once per day, restore 1 Morale at camp.)
+      '3': Hunter’s Claw. A sharpened claw. (Once per combat, add +2 damage to an attack.)
+      '4': Strength Bead. A mossy bead. (Once per day, restore 2 Health at camp.)
+      '5': Berry Bundle. A pouch of forest berries. (Once per day, gain +2 Supplies.)
+      '6': Stone Tooth. A cracked fang. (Once per combat, deal 4 damage.)
+      '7': Roar Pendant. A fang pendant. (Once per combat, reduce an enemy’s Morale by 2.)
+      '8': Hide Strip. A strip of fur. (Once per combat, absorb 3 damage.)
+      '9': Leaps forward dealing Morale damage equal to half its current Health. Maul Stone. A weighty charm. (Once per combat, deal 3 damage.)
+      '10': Feral Token. A carved bone. (Once per combat, deal 2 damage and reduce enemy Morale by 1.)
+      jack: Bloodleaf Herb. A red-veined leaf. (Once per day, restore 3 Health at camp.)
+      queen: Wrath Stone. A rune-marked stone. (Once per combat, deal 2 damage to all enemies.)
+      king: Crash Relic. A carved relic. (Once per combat, negate Morale loss this round.)
+      ace: Relic of Growth. A moss-covered crown stone. (Once per combat, deal 3 damage to all enemies and restore 2 Health to yourself.)
+  spookle:
+    tactics:
+      '2': Root Snare. Vines cancel your next attack & reduce your Morale by 1.
+      '3': Rotting Touch. Strikes with decayed bark dealing 2 Health and lowering Supplies by 1 as food spoils.
+      '4': Leeching Vines. Strikes for 2 Health and heals itself for 2 Health.
+      '5': Fungal Bloom. Spores cloud the air lowering Morale by 3.
+      '6': Branch Slam. A swing deals 4 Health.
+      '7': Supply Rot. Roots coil around your pack scattering 2 Supplies.
+      '8': Decay Howl. A hollow cry lowers your Morale by 2 and deals 2 Health.
+      '9': Entangling Crash. Slams down dealing 3 Health and lowering your Morale by 1.
+      '10': Corrupt Growth. Roots erupt violently dealing damage equal to half its current Health (rounded up).
+      jack: Thor Swarm. Thorns and brambles whip out dealing 4 Health and forcing you to drop 2 Supplies.
+      queen: Verdant Drain. Lashes of ivy deal 3 Health and it heals 3 Health.
+      king: Forest’s Hunger. The trees themselves seem alive dealing 5 Health and lowering Morale by 2.
+      ace: Rot and Bloom. A surge deals damage equal to half its current Health, lowers Morale by 3, and scatters 3 Supplies.
+    reward_items:
+      '2': Snare Thorn. A hooked thorn. (Once per combat, cancel one enemy attack.)
+      '3': Rotwood Chip. A piece of dark bark. (Once per day, negate 1 Supply loss event.)
+      '4': Leech Seed. A seed pod. (Once per combat, heal 2 Health after attacking.)
+      '5': Spore Pouch. A pouch of mushrooms. (Once per combat, increase damage by 2.)
+      '6': Branch Club. A carved stick. (Once per combat, deal 3 damage.)
+      '7': Hollow Gourd. A dried container. (Once per day, add +2 Supplies after an event.)
+      '8': Howl Stone. A carved stone. (Once per day, restore 2 Morale when held at camp.)
+      '9': Vine Token. A vine knot charm. (Once per combat, absorb 2 damage.)
+      '10': Corruption Seed. A black seed. (Once per combat, deal 2 damage and regain 1 morale.)
+      jack: Crown of Leaves. A circlet. (Once per combat, reflect 2 damage back.)
+      queen: Drain Gem. A dark gem. (Once per combat, restore 2 Health after being hit.)
+      king: Hunger Idol. A carved idol. (Once per combat, deal 3 damage and reduce enemy Morale by 1.)
+      ace: Relic of Decay. A relic bound in roots. (Once per combat, deal 2 damage to all enemies & stop them healing for 2 turns.)

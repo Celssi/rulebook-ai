@@ -14,6 +14,19 @@ from pytesseract import TesseractNotFoundError
 from src.config import OCR_CACHE_DIR, OCR_MIN_CHARS_SAMPLE, OCR_RENDER_DPI, TESSERACT_LANG
 from src.text_utils import clean_text, is_meaningful
 
+# Stay under PIL's decompression bomb limit on oversized PDF pages (e.g. DMG spreads).
+_MAX_OCR_PIXELS = 150_000_000
+
+
+def _render_page_pixmap(page: fitz.Page, dpi: int) -> fitz.Pixmap:
+    current_dpi = dpi
+    while current_dpi >= 72:
+        pix = page.get_pixmap(dpi=current_dpi)
+        if pix.width * pix.height <= _MAX_OCR_PIXELS:
+            return pix
+        current_dpi = int(current_dpi * 0.75)
+    return page.get_pixmap(dpi=72)
+
 
 class OcrNotAvailableError(RuntimeError):
     """Raised when Tesseract is not installed on the system."""
@@ -61,7 +74,7 @@ def ocr_pdf_pages(
 
     for i in range(total):
         page = doc[i]
-        pix = page.get_pixmap(dpi=dpi)
+        pix = _render_page_pixmap(page, dpi)
         img = Image.open(io.BytesIO(pix.tobytes("png")))
         text = pytesseract.image_to_string(img, lang=TESSERACT_LANG)
         cleaned = clean_text(text)
@@ -99,7 +112,7 @@ def ocr_pdf_page_indices(
         idx = page_no - 1
         if idx >= len(doc):
             continue
-        pix = doc[idx].get_pixmap(dpi=dpi)
+        pix = _render_page_pixmap(doc[idx], dpi)
         img = Image.open(io.BytesIO(pix.tobytes("png")))
         text = pytesseract.image_to_string(img, lang=TESSERACT_LANG)
         cleaned = clean_text(text)

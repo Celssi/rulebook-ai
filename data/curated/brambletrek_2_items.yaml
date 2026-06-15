@@ -1,0 +1,41 @@
+# Items table (BT2 p. 39).
+items:
+  '2':
+    label: Smudged Storybook Page
+    effect: Smudged Storybook Page. A page from a book, filled with scribbles & doodles. Reading it fills you with warmth
+  '3':
+    label: Rabbit’s Spare Scarf
+    effect: Rabbit’s Spare Scarf. A well-knitted scarf, slightly itchy but full of care
+  '4':
+    label: Bouncing Shoes
+    effect: Bouncing Shoes. A pair of well-worn shoes with extra spring in the soles
+  '5':
+    label: Jar of Very Special Honey
+    effect: Jar of Very Special Honey. A perfectly golden jar of honey, rich and soothing
+  '6':
+    label: Map of the Woods
+    effect: Map of the Woods. A hand-drawn map with notes about shortcuts and secret paths
+  '7':
+    label: Eeyore’s Lost Ribbon
+    effect: Eeyore’s Lost Ribbon. A faded ribbon. Holding it reminds you that even little things matter
+  '8':
+    label: Owl’s Wind Chime
+    effect: Owl’s Wind Chime. A delicate chime that gently tinkles when danger is near
+  '9':
+    label: Roo’s Favorite Acorn
+    effect: Roo’s Favorite Acorn. A small, well-loved acorn, said to bring good luck
+  '10':
+    label: Christopher’s Pocket Watch
+    effect: Christopher’s Pocket Watch. An old but reliable watch, ticking steadily in your hand
+  jack:
+    label: Tigger’s Striped Sash
+    effect: Tigger’s Striped Sash. A lively, energetic sash that makes you feel ready for anything
+  queen:
+    label: The Seasons’ Jar
+    effect: The Seasons’ Jar. A glass jar filled with little bits of each season, leaves, petals, and snowflakes
+  king:
+    label: Crown of the Thicket King
+    effect: Crown of the Thicket King. A playful circlet of twigs and flowers, woven with care
+  ace:
+    label: Pooh’s Golden Sigil
+    effect: Pooh’s Golden Sigil. A symbol of friendship and adventures, glowing softly. ITEM TABLE In some exploration results on the surface world you will see the word ITEM. In these cases you can draw an additional card and consult the Item Table to see what you discover on your journey. It could be as insignificant as a pebble to the sigil of an old house. Remember, you can use these as prompts & come up with your own items! These are one-time use trinkets. Once the effect has been used up, they don’t disappear but no longer have the ability they came with so use them wisely. If you overcome a combat event using your ‘Overcome the Odds’ ability and get a Critical Success, your opponent will always drop an item! Any Heart or Diamond Encounter will also give you an item as a reward if you beat them. ITEMS

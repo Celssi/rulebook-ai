@@ -1,0 +1,43 @@
+game_id: mlp
+title: Näin pelaat
+source:
+  pdf: docs/mlp/core-rulebook.pdf
+  pages: [19, 20, 30, 118, 328]
+sections:
+  - heading: Yleiskuva
+    body: |
+      My Little Pony RPG (Renegade) on ystävyyskeskeinen Essence20-seikkailupeli Equestriassa. Sovellus tukee **GM solo** -peliä: pelaat oman ponisi ja toimit tarvittaessa Pelinjohtajana kohtausten ja sääntöjen ratkaisijana.
+  - heading: Tarvitset
+    bullets:
+      - MLP RPG -ydinsäännöt (Core Rulebook)
+      - d20 ja muut nopat (d2–d12)
+      - hahmoarkki tai sovelluksen tallennuspaikka
+  - heading: Hahmonluonti (taso 1)
+    body: |
+      Luo ponisi ydinoppaan mukaan (luku 2) ja tallenna sovellukseen:
+
+      1. **Character Concept** — kuka ponisi on?
+      2. **Origin, Influences, Role** — Earth Pony / Pegasus / Unicorn; enintään 3 Influencea ja Hang-Upit; yksi Spirit of Harmony -rooli
+      3. **Essence Scores** — 12 pistettä jaettavaksi (Strength, Speed, Smarts, Social) + Origin + Role -bonukset → yhteensä 16
+      4. **Defenses** — Toughness, Evasion, Willpower, Cleverness = 10 + Essence
+      5. **Skills** — jokainen Essence antaa skill-pisteitä; rankit d2–d12
+      6. **Kuvaus** — nimi, Cutie Mark, Background Bonds, Friendship Points -pooli
+  - heading: Skill Test
+    body: |
+      Heitä **d20 + skill die** ja vertaa **Difficulty (DIF)** -arvoon. **Edge** / **Snag** = kaksi d20:ää, parempi/huonompi. Käytä **Skill Test** -oikotietä; valitse oletusskill ja DIF Asetuksissa.
+  - heading: Spellcasting ja Magic Shift
+    body: |
+      Unicornit ja muut taikurit käyttävät **Spellcasting**-taitoa. Loitsut maksavat **downshift**-kustannuksen Magic Shift -taulukossa; palautat **+1 upshift** vuorosi alussa. Oikotiet: **Pay spell cost** ja **Recover spellcasting (+1)**.
+  - heading: Friendship Points
+    body: |
+      Jaettu **Friendship Points** -pooli (solo: aloita 1). Käytä pisteitä uudelleenheittoon (1), väliaikaiseen Specializationiin, +5 Defenseen tai GM-vihjeeseen. **Friendship Points** -oikotie selittää säännöt.
+  - heading: Kohtaamiset
+    body: |
+      **Encounters in Ponyville** -lisä tarjoaa valmiita kohtausideoita. Käytä **Encounter**-oikotietä.
+  - heading: Sovelluksessa
+    bullets:
+      - Asetukset → **Character**: täysi taso 1 -arkki (Origin, Role, Influences, Essences, Skills, Cutie Mark)
+      - Shortcuts → **Skill Test**, **Pay spell cost**, **Recover spellcasting**, **Friendship Points**, **Encounter**
+      - Asetukset → **Play**: player vs AI narrator
+      - AI narrator kirjoittaa kohtausprosan heittojen jälkeen
+      - Lonelog tallentaa toiminnot ja yhteenvedot

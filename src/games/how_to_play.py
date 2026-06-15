@@ -15,11 +15,18 @@ HOW_TO_PLAY_GAME_IDS = frozenset(
     {
         "sansibilia",
         "brambletrek",
+        "brambletrek_2",
         "lighthouse",
         "apothecaria",
         "whispers",
         "colostle",
         "ashes",
+        "outgunned",
+        "tor",
+        "coriolis",
+        "cosmere",
+        "mlp",
+        "dnd5e",
     }
 )
 

@@ -1,0 +1,91 @@
+# Coriolis: The Great Dark — mental trauma D66 (core rulebook p. 69)
+
+trauma:
+  "11": { label: Trembling, effect: You become Dazed. }
+  "12": { label: Trembling, effect: You become Dazed. }
+  "13": { label: Trembling, effect: You become Dazed. }
+  "14": { label: Anxious, effect: You become Shaken. }
+  "15": { label: Anxious, effect: You become Shaken. }
+  "16": { label: Anxious, effect: You become Shaken. }
+  "21": { label: Sullen, effect: You become Disheartened. }
+  "22": { label: Sullen, effect: You become Disheartened. }
+  "23": { label: Sullen, effect: You become Disheartened. }
+  "24": { label: Changed personality, effect: Choose a new quirk. }
+  "25": { label: Changed personality, effect: Choose a new quirk. }
+  "26": { label: Changed personality, effect: Choose a new quirk. }
+  "31":
+    {
+      label: Worrisome,
+      effect: Even minor concerns count as stressful situations with potential Hope loss of 1.,
+    }
+  "32":
+    {
+      label: Worrisome,
+      effect: Even minor concerns count as stressful situations with potential Hope loss of 1.,
+    }
+  "33":
+    {
+      label: Worrisome,
+      effect: Even minor concerns count as stressful situations with potential Hope loss of 1.,
+    }
+  "34":
+    {
+      label: Nightmares,
+      effect: Make an Insight roll every shift spent sleeping; failure means sleep does not count.,
+    }
+  "35":
+    {
+      label: Nightmares,
+      effect: Make an Insight roll every shift spent sleeping; failure means sleep does not count.,
+    }
+  "36":
+    {
+      label: Nightmares,
+      effect: Make an Insight roll every shift spent sleeping; failure means sleep does not count.,
+    }
+  "41": { label: Addict, effect: You must consume a drug every day or become Disheartened. }
+  "42": { label: Addict, effect: You must consume a drug every day or become Disheartened. }
+  "43": { label: Addict, effect: You must consume a drug every day or become Disheartened. }
+  "44": { label: Apathetic, effect: You cannot push any dice rolls. }
+  "45": { label: Apathetic, effect: You cannot push any dice rolls. }
+  "46": { label: Apathetic, effect: You cannot push any dice rolls. }
+  "51":
+    {
+      label: Phobic,
+      effect: You suffer 1 despair each round within Short range of your phobia.,
+    }
+  "52":
+    {
+      label: Phobic,
+      effect: You suffer 1 despair each round within Short range of your phobia.,
+    }
+  "53":
+    {
+      label: Claustrophobic,
+      effect: You suffer 1 despair every stretch in a confined space.,
+    }
+  "54":
+    {
+      label: Claustrophobic,
+      effect: You suffer 1 despair every stretch in a confined space.,
+    }
+  "55":
+    {
+      label: Hallucinations,
+      effect: Every shift you experience a hallucination with potential Hope loss of 1.,
+    }
+  "56":
+    {
+      label: Hallucinations,
+      effect: Every shift you experience a hallucination with potential Hope loss of 1.,
+    }
+  "61": { label: Mythomaniac, effect: You cannot stop yourself from lying about everything. }
+  "62": { label: Paranoia, effect: You are certain that someone is out to get you. }
+  "63": { label: Delusion, effect: You are totally convinced of something untrue. }
+  "64":
+    {
+      label: Amnesia,
+      effect: You lose all memory and cannot recollect who you or the other Explorers are.,
+    }
+  "65": { label: Catatonic, effect: You stare blankly and do not respond to any stimuli. }
+  "66": { label: Heart attack, effect: Your heart stops and you die of pure fright. }

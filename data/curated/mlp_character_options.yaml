@@ -1,0 +1,167 @@
+# My Little Pony RPG — Core Rulebook character options (level 1)
+# PDF: docs/mlp/core-rulebook.pdf
+
+level_1_essence_total: 16
+level_1_essence_breakdown:
+  player_points: 12
+  origin_bonus: 1
+  role_bonus: 3  # diamond +2, gold +1
+
+origins:
+  earth_pony:
+    label: Earth Pony
+    pdf_page: 34
+    health: 3
+    movement: 45
+    essence_bonus_options: [strength, social]
+    essence_bonus_note: "Or Essence tied to an Influence Skill"
+    perks_summary: "Adaptable, Grounded (General Perk at level 1)"
+  pegasus:
+    label: Pegasus
+    pdf_page: 36
+    health: 2
+    movement: 30
+    aerial_movement: 30
+    essence_bonus_options: [speed]
+    essence_bonus_note: "Or Essence tied to an Influence Skill"
+    perks_summary: "Air Born, Lighter Than Air (+1 Acrobatics)"
+  unicorn:
+    label: Unicorn
+    pdf_page: 38
+    health: 2
+    movement: 30
+    essence_bonus_options: [smarts]
+    essence_bonus_note: "Or Essence tied to an Influence Skill"
+    perks_summary: "Magical (free), Telekinesis"
+    default_spellcasting_rank: 2
+
+roles:
+  spirit_of_generosity:
+    label: Spirit of Generosity
+    element: Generosity
+    pdf_page: 74
+    diamond_essence: smarts
+    gold_essence: social
+  spirit_of_honesty:
+    label: Spirit of Honesty
+    element: Honesty
+    pdf_page: 78
+    diamond_essence: strength
+    gold_essence: smarts
+  spirit_of_kindness:
+    label: Spirit of Kindness
+    element: Kindness
+    pdf_page: 82
+    diamond_essence: social
+    gold_essence: smarts
+  spirit_of_laughter:
+    label: Spirit of Laughter
+    element: Laughter
+    pdf_page: 86
+    diamond_essence: social
+    gold_essence: speed
+  spirit_of_loyalty:
+    label: Spirit of Loyalty
+    element: Loyalty
+    pdf_page: 90
+    diamond_essence: speed
+    gold_essence: strength
+  spirit_of_magic:
+    label: Spirit of Magic
+    element: Magic
+    pdf_page: 94
+    diamond_essence: smarts
+    gold_essence: speed
+
+influences:
+  - { id: adventurer, label: Adventurer, influence_skill: survival, hang_up: "I can't resist a mystery or hidden path." }
+  - { id: animal_whisperer, label: Animal Whisperer, influence_skill: animal_handling, hang_up: "I trust animals more than ponies." }
+  - { id: artisan, label: Artisan, influence_skill: finesse, hang_up: "I'm never satisfied with my work." }
+  - { id: bookworm, label: Bookworm, influence_skill: culture, hang_up: "I get lost in books and forget the world." }
+  - { id: buckballer, label: Buckballer, influence_skill: targeting, hang_up: "I always need to win." }
+  - { id: business_savvy, label: Business Savvy, influence_skill: persuasion, hang_up: "Everything has a price." }
+  - { id: chatty, label: Chatty, influence_skill: persuasion, hang_up: "I talk when I should listen." }
+  - { id: crowdpleaser, label: Crowdpleaser, influence_skill: performance, hang_up: "I need applause to feel worthwhile." }
+  - { id: futurist, label: Futurist, influence_skill: technology, hang_up: "Old ways bore me." }
+  - { id: heavy_hitter, label: Heavy Hitter, influence_skill: might, hang_up: "I solve problems with force first." }
+  - { id: intense, label: Intense, influence_skill: intimidation, hang_up: "I often feel like nobody understands me." }
+  - { id: mentor, label: Mentor, influence_skill: culture, hang_up: "I lecture when I should act." }
+  - { id: mountebank, label: Mountebank, influence_skill: deception, hang_up: "A little lie never hurt anypony." }
+  - { id: nimble, label: Nimble, influence_skill: acrobatics, hang_up: "I can't sit still." }
+  - { id: party_maestro, label: Party Maestro, influence_skill: persuasion, hang_up: "Every problem needs a party." }
+  - { id: powerhouse, label: Powerhouse, influence_skill: brawn, hang_up: "I overexert and crash." }
+  - { id: precise, label: Precise, influence_skill: finesse, hang_up: "I obsess over tiny details." }
+  - { id: shrewd, label: Shrewd, influence_skill: streetwise, hang_up: "I assume everypony has an angle." }
+  - { id: sporty, label: Sporty, influence_skill: athletics, hang_up: "I turn everything into a competition." }
+  - { id: spring_into_action, label: Spring into Action, influence_skill: initiative, hang_up: "I act before I think." }
+  - { id: stylish, label: Stylish, influence_skill: performance, hang_up: "Appearance matters more than comfort." }
+  - { id: tricky, label: Tricky, influence_skill: infiltration, hang_up: "I can't resist a prank or scheme." }
+  - { id: vigilant, label: Vigilant, influence_skill: alertness, hang_up: "I see danger everywhere." }
+  - { id: wheel_obsession, label: Wheel Obsession, influence_skill: driving, hang_up: "I'd rather drive than walk." }
+
+skills_by_essence:
+  strength:
+    - { id: athletics, label: Athletics }
+    - { id: brawn, label: Brawn }
+    - { id: conditioning, label: Conditioning }
+    - { id: intimidation, label: Intimidation }
+    - { id: might, label: Might }
+  speed:
+    - { id: acrobatics, label: Acrobatics }
+    - { id: finesse, label: Finesse }
+    - { id: driving, label: Driving }
+    - { id: infiltration, label: Infiltration }
+    - { id: initiative, label: Initiative }
+    - { id: targeting, label: Targeting }
+    - { id: flying, label: Flying }
+  smarts:
+    - { id: alertness, label: Alertness }
+    - { id: culture, label: Culture }
+    - { id: science, label: Science }
+    - { id: technology, label: Technology }
+    - { id: survival, label: Survival }
+  social:
+    - { id: animal_handling, label: Animal Handling }
+    - { id: deception, label: Deception }
+    - { id: performance, label: Performance }
+    - { id: persuasion, label: Persuasion }
+    - { id: streetwise, label: Streetwise }
+
+skill_ranks:
+  - { rank: 0, die: untrained, label: Untrained }
+  - { rank: 1, die: d2, label: d2 }
+  - { rank: 2, die: d4, label: d4 }
+  - { rank: 3, die: d6, label: d6 }
+  - { rank: 4, die: d8, label: d8 }
+  - { rank: 5, die: d10, label: d10 }
+  - { rank: 6, die: d12, label: d12 }
+
+dif_presets:
+  - { id: extremely_simple, label: Extremely Simple, dif: 5 }
+  - { id: routine, label: Routine, dif: 10 }
+  - { id: challenging, label: Challenging, dif: 15 }
+  - { id: difficult, label: Difficult, dif: 20 }
+  - { id: formidable, label: Formidable, dif: 25 }
+  - { id: nearly_impossible, label: Nearly Impossible, dif: 30 }
+
+# Magic Shift Tracking Sheet — pp. 328-329
+spellcasting_ladder:
+  - { id: critical_success, label: Critical Success, roll: auto_or_3d6 }
+  - { id: auto_success, label: Auto Success, roll: auto }
+  - { id: triple_d6, label: 3d6, roll: d20_plus_3d6 }
+  - { id: double_d8, label: 2d8, roll: d20_plus_2d8 }
+  - { id: d12, label: d12, roll: d20_plus_die }
+  - { id: d10, label: d10, roll: d20_plus_die }
+  - { id: d8, label: d8, roll: d20_plus_die }
+  - { id: d6, label: d6, roll: d20_plus_die }
+  - { id: d4, label: d4, roll: d20_plus_die }
+  - { id: d2, label: d2, roll: d20_plus_die }
+  - { id: base_die, label: Base Die, roll: d20_only }
+  - { id: auto_fail, label: Auto Fail, roll: auto_fail }
+  - { id: fumble, label: Fumble, roll: fumble }
+
+friendship_spend:
+  - { id: reroll_one, label: Re-roll a 1, cost: 1 }
+  - { id: temp_specialization, label: Roll as if Specialized, cost: 1 }
+  - { id: defense_boost, label: "+5 Defense for scene", cost: 1 }
+  - { id: gm_hint, label: GM hint when stuck, cost: 1 }

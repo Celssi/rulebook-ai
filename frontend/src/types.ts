@@ -1,21 +1,35 @@
 export type GameId =
   | "40k"
   | "brambletrek"
+  | "brambletrek_2"
   | "sansibilia"
   | "lighthouse"
   | "apothecaria"
   | "whispers"
   | "colostle"
-  | "ashes";
+  | "ashes"
+  | "outgunned"
+  | "tor"
+  | "coriolis"
+  | "cosmere"
+  | "mlp"
+  | "dnd5e";
 
 export const PLAY_GAME_IDS: GameId[] = [
   "brambletrek",
+  "brambletrek_2",
   "sansibilia",
   "lighthouse",
   "apothecaria",
   "whispers",
   "colostle",
   "ashes",
+  "outgunned",
+  "tor",
+  "coriolis",
+  "cosmere",
+  "mlp",
+  "dnd5e",
 ];
 
 export function isPlayGameId(id: string): id is GameId {
@@ -48,11 +62,14 @@ export interface SessionState {
   has_character_sheet: boolean;
   has_game_state: boolean;
   has_play_roster: boolean;
+  play_style?: string;
   slot_id?: string;
   settings?: Record<string, string>;
   messages: Message[];
   entity?: Record<string, unknown>;
   pending_journey?: unknown;
+  pending_exploration?: unknown;
+  hollow?: HollowState | null;
   deck_remaining?: number;
   game_state?: Record<string, unknown>;
 }
@@ -66,7 +83,53 @@ export interface CharacterHeader {
   name: string;
   legacy: string;
   legacy_label?: string;
-  in_aldwund: boolean;
+  exploration_day?: number;
+  in_aldwund?: boolean;
+  in_hollow?: boolean;
+  memory_fragments?: number;
+  hollow_awareness?: boolean;
+}
+
+export interface ExplorationEvent {
+  index: number;
+  card: string;
+  applied: boolean;
+  can_apply: boolean;
+  label?: string;
+  preview: string;
+  needs_item: boolean;
+  needs_hollow?: boolean;
+  item_card?: string | null;
+  item_label?: string | null;
+}
+
+export interface PendingExploration {
+  events: ExplorationEvent[];
+}
+
+export interface ExplorationActionResult {
+  summary?: string;
+  entity?: Record<string, unknown>;
+  header?: CharacterHeader;
+  pending_exploration?: PendingExploration | null;
+}
+
+export interface HollowCell {
+  card: string;
+  revealed: boolean;
+  row: number;
+  col: number;
+}
+
+export interface HollowState {
+  entry_card: string;
+  entry_prompt: string;
+  grid: HollowCell[][];
+  marker_row: number;
+  marker_col: number;
+  memory_fragments: number;
+  awareness: boolean;
+  adjacent?: { row: number; col: number }[];
 }
 
 export interface JourneyEvent {
@@ -229,4 +292,6 @@ export type PlayHeader =
   | CottageHeader
   | ColostleHeader
   | InvestigationHeader
-  | ScionHeader;
+  | ScionHeader
+  | import("./games/gmSoloGames").GmSoloHeader
+  | import("./games/gmSoloGames").OutgunnedHeader;

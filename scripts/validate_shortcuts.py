@@ -10,7 +10,15 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.config import GAME_APOTHECARIA, GAME_BRAMBLETREK, GAME_COLOSTLE, GAME_LIGHTHOUSE, GAME_SANSIBILIA, GAME_WHISPERS
+from src.config import (
+    GAME_APOTHECARIA,
+    GAME_BRAMBLETREK,
+    GAME_BRAMBLETREK_2,
+    GAME_COLOSTLE,
+    GAME_LIGHTHOUSE,
+    GAME_SANSIBILIA,
+    GAME_WHISPERS,
+)
 from src.games.apothecaria.actions import (
     SHORTCUT_IDS as APO_SHORTCUT_IDS,
     match_apothecaria_shortcut,
@@ -21,6 +29,11 @@ from src.games.brambletrek.actions import (
     match_brambletrek_shortcut,
     run_shortcut as bt_run_shortcut,
     shortcuts_for_character,
+)
+from src.games.brambletrek_2.actions import (
+    BRAMBLETREK_2_SHORTCUTS,
+    match_brambletrek_2_shortcut,
+    run_shortcut as bt2_run_shortcut,
 )
 from src.games.sansibilia.actions import (
     SHORTCUT_IDS,
@@ -49,6 +62,36 @@ from src.games.colostle.actions import (
     SHORTCUT_IDS as COLOSTLE_SHORTCUT_IDS,
     match_colostle_shortcut,
     run_shortcut as col_run_shortcut,
+)
+from src.games.tor.actions import (
+    SHORTCUT_IDS as TOR_SHORTCUT_IDS,
+    match_tor_shortcut,
+    run_shortcut as tor_run_shortcut,
+)
+from src.games.outgunned.actions import (
+    SHORTCUT_IDS as OUTGUNNED_SHORTCUT_IDS,
+    match_outgunned_shortcut,
+    run_shortcut as og_run_shortcut,
+)
+from src.games.coriolis.actions import (
+    SHORTCUT_IDS as CORIOLIS_SHORTCUT_IDS,
+    match_coriolis_shortcut,
+    run_shortcut as cor_run_shortcut,
+)
+from src.games.cosmere.actions import (
+    SHORTCUT_IDS as COSMERE_SHORTCUT_IDS,
+    match_cosmere_shortcut,
+    run_shortcut as cos_run_shortcut,
+)
+from src.games.mlp.actions import (
+    SHORTCUT_IDS as MLP_SHORTCUT_IDS,
+    match_mlp_shortcut,
+    run_shortcut as mlp_run_shortcut,
+)
+from src.games.dnd5e.actions import (
+    SHORTCUT_IDS as DND5E_SHORTCUT_IDS,
+    match_dnd5e_shortcut,
+    run_shortcut as dnd_run_shortcut,
 )
 from src.games.sansibilia.visit import SansibiliaVisit, visit_to_dict
 from src.play_tools import clear_deck_store, reset_deck
@@ -127,6 +170,42 @@ def test_sansibilia_visit_shortcut_lists() -> None:
     assert active == SHORTCUT_IDS
     ended = {s["id"] for s in shortcuts_for_visit(visit_complete=True)}
     assert ended == {"ending_prompts", "city_change_help"}
+
+
+def test_brambletrek_2_match() -> None:
+    assert match_brambletrek_2_shortcut("exploration day please") == "exploration_day"
+    assert match_brambletrek_2_shortcut("today's exploration cards") == "exploration_day"
+    assert match_brambletrek_2_shortcut("combat setup please") == "combat_setup"
+    assert match_brambletrek_2_shortcut("enter misty hollow") == "hollow_enter"
+    assert match_brambletrek_2_shortcut("how did i get here") == "how_did_i_get_here"
+    assert match_brambletrek_2_shortcut("random legacy") == "random_legacy"
+    assert match_brambletrek_2_shortcut("how do i start playing") == "start_playing"
+
+
+def test_brambletrek_2_static_run() -> None:
+    clear_deck_store()
+    reset_deck(game_id=GAME_BRAMBLETREK_2, char_id="shortcut_test")
+
+    start = bt2_run_shortcut("start_playing", game_id=GAME_BRAMBLETREK_2)
+    assert start["kind"] == "static"
+    assert "Legacy" in start["user_message"]
+
+    legacy = bt2_run_shortcut(
+        "random_legacy",
+        game_id=GAME_BRAMBLETREK_2,
+        char_id="shortcut_test",
+    )
+    assert legacy["kind"] == "roll_rag"
+    assert "Legacy" in legacy["user_message"] or "d6" in legacy["user_message"].lower()
+
+    overview = bt2_run_shortcut("legacy_overview", game_id=GAME_BRAMBLETREK_2)
+    assert overview["kind"] == "rag_only"
+    assert "Legacies" in overview["user_message"]
+
+    ids = {s["id"] for s in BRAMBLETREK_2_SHORTCUTS}
+    assert "exploration_day" in ids and "hollow_enter" in ids
+
+    clear_deck_store()
 
 
 def test_brambletrek_static_run() -> None:
@@ -482,13 +561,95 @@ def test_colostle_narrator_routing() -> None:
     clear_deck_store()
 
 
+def test_gm_solo_shortcuts() -> None:
+    """Smoke tests for GM solo game shortcut matching and static rolls."""
+    assert match_tor_shortcut("telling table please") == "telling_oracle"
+    assert match_tor_shortcut("roll patron quest") == "patron_quest"
+    assert match_tor_shortcut("experience milestones") == "milestones_help"
+    assert match_tor_shortcut("hunt threshold") == "hunt_threshold"
+    assert match_tor_shortcut("revelation episode") == "revelation_episode"
+    assert match_tor_shortcut("unrelated") is None
+    tor_result = tor_run_shortcut("telling_oracle", telling_chance="certain")
+    assert "user_message" in tor_result
+    assert tor_result.get("static") or tor_result.get("prompt")
+    ms = tor_run_shortcut("milestones_help")
+    assert ms.get("static") is True
+    assert "Experience Milestones" in ms["user_message"]
+    hunt = tor_run_shortcut("hunt_threshold", hunt_region="wild")
+    assert hunt.get("static") is True
+    assert "16" in hunt["user_message"]
+    journey = tor_run_shortcut("journey_event")
+    assert journey.get("journey")
+    assert journey["journey"].get("success_roll")
+    _ = TOR_SHORTCUT_IDS
+
+    assert match_outgunned_shortcut("ad prompt") == "ad_prompt"
+    assert match_outgunned_shortcut("death roulette") == "death_roulette"
+    assert match_outgunned_shortcut("re-roll") == "outgunned_reroll"
+    assert match_outgunned_shortcut("tension track") == "tension"
+    assert match_outgunned_shortcut("yes/no oracle") == "yes_no_oracle"
+    assert match_outgunned_shortcut("scene drama") == "scene_drama"
+    og_result = og_run_shortcut("outgunned_roll", pool_dice=3)
+    assert "user_message" in og_result
+    assert og_run_shortcut("yes_no_oracle").get("static")
+    assert og_run_shortcut("tension", ad_state={"tension": 2}).get("ad_state_patch")
+    _ = OUTGUNNED_SHORTCUT_IDS
+
+    assert match_coriolis_shortcut("despair check") == "despair_check"
+    cor_result = cor_run_shortcut("despair_check", base_pool=4, hope=5, max_hope=8)
+    assert cor_result.get("static")
+    _ = CORIOLIS_SHORTCUT_IDS
+
+    assert match_cosmere_shortcut("plot dice roll") == "plot_dice"
+    cos_result = cos_run_shortcut("plot_dice", plot_dice_pool=2)
+    assert cos_result.get("static")
+    _ = COSMERE_SHORTCUT_IDS
+
+    assert match_mlp_shortcut("skill test") == "skill_test"
+    assert match_mlp_shortcut("magic shift") == "recover_spellcasting"
+    assert match_mlp_shortcut("friendship points") == "friendship_points"
+    mlp_result = mlp_run_shortcut(
+        "recover_spellcasting",
+        pony_name="Twilight",
+        spellcasting_rank=3,
+        spellcasting_current=8,
+    )
+    assert mlp_result.get("static")
+    assert "new_spellcasting_current" in mlp_result
+    _ = MLP_SHORTCUT_IDS
+
+    assert match_dnd5e_shortcut("death save") == "death_save"
+    assert match_dnd5e_shortcut("oracle question") == "oracle"
+    dnd_result = dnd_run_shortcut("initiative", name="Aldric", modifier=3)
+    assert "user_message" in dnd_result
+    oracle = dnd_run_shortcut("oracle")
+    assert oracle.get("static") is True
+    attack = dnd_run_shortcut("attack_roll", modifier=5, target_ac=15)
+    assert "15" in attack["user_message"]
+    assert "Target AC" not in attack["user_message"]
+    rest = dnd_run_shortcut(
+        "short_rest",
+        level=3,
+        hp=5,
+        max_hp=20,
+        hit_die=10,
+        hit_dice_max=3,
+        hit_dice_spent=0,
+        ability_scores={"con": 14},
+    )
+    assert rest.get("entity_updates")
+    _ = DND5E_SHORTCUT_IDS
+
+
 def main() -> int:
     test_shortcut_catalog()
     test_sansibilia_match()
     test_brambletrek_match()
+    test_brambletrek_2_match()
     test_sansibilia_static_run()
     test_sansibilia_visit_shortcut_lists()
     test_brambletrek_static_run()
+    test_brambletrek_2_static_run()
     test_brambletrek_sidebar_filter()
     test_sansibilia_run_visit_shortcut_static()
     test_lighthouse_shortcut_ids()
@@ -508,6 +669,7 @@ def main() -> int:
     test_colostle_static_run()
     test_lighthouse_narrator_routing()
     test_colostle_narrator_routing()
+    test_gm_solo_shortcuts()
     print("validate_shortcuts: OK")
     return 0
 

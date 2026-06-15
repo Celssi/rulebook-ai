@@ -1,0 +1,42 @@
+# The One Ring 2e - Strider Mode, Experience Milestones (pp.7, 21)
+milestones:
+  accept_patron_mission:
+    label: "Accept a mission from a patron"
+    adventure_points: 1
+    skill_points: 0
+  notable_personal_goal:
+    label: "Achieve a notable personal goal"
+    adventure_points: 1
+    skill_points: 1
+  complete_patron_mission:
+    label: "Complete a patron's mission"
+    adventure_points: 1
+    skill_points: 1
+  meaningful_journey:
+    label: "Complete a meaningful journey"
+    adventure_points: 0
+    skill_points: 2
+  noteworthy_encounter:
+    label: "Face a Noteworthy Encounter during a journey"
+    adventure_points: 0
+    skill_points: 1
+  significant_discovery:
+    label: "Reveal a significant location or discovery"
+    adventure_points: 1
+    skill_points: 0
+  tricky_obstacle:
+    label: "Overcome a tricky obstacle"
+    adventure_points: 0
+    skill_points: 1
+  council:
+    label: "Participate in a Council"
+    adventure_points: 0
+    skill_points: 1
+  dangerous_combat:
+    label: "Survive a dangerous combat"
+    adventure_points: 1
+    skill_points: 0
+  revelation_episode:
+    label: "Face a Revelation Episode"
+    adventure_points: 1
+    skill_points: 0

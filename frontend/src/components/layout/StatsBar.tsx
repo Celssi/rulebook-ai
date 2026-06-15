@@ -13,14 +13,16 @@ function StatChip({
   icon: Icon,
   value,
   color,
+  max = 20,
 }: {
   icon: typeof Heart;
   value: number;
   color: string;
+  max?: number;
 }) {
-  const pct = Math.min(100, Math.max(0, (value / 20) * 100));
+  const pct = Math.min(100, Math.max(0, (value / max) * 100));
   return (
-    <div className="flex items-center gap-1.5 min-w-[4.5rem]" title={`${value}/20`}>
+    <div className="flex items-center gap-1.5 min-w-[4.5rem]" title={`${value}/${max}`}>
       <Icon className="w-3.5 h-3.5 shrink-0" style={{ color }} />
       <div className="flex-1 min-w-0">
         <div className="text-xs font-semibold tabular-nums">{value}</div>
@@ -171,6 +173,63 @@ export default function StatsBar({ gameId, header, gameLabel, onOpenSettings, on
         </div>
       )}
 
+      {header && gameId === "brambletrek_2" && isCharacterHeader(header) && (
+        <div className="flex items-center gap-3 min-w-0 flex-1">
+          <div className="min-w-0 hidden sm:block">
+            <div className="font-medium text-sm truncate">{header.name || "Unnamed"}</div>
+            {header.legacy_label && (
+              <div className="text-xs text-muted truncate">{header.legacy_label}</div>
+            )}
+          </div>
+          <div className="flex items-center gap-4 ml-auto shrink-0">
+            <StatChip icon={Heart} value={header.health} color="#e05a5a" max={30} />
+            <StatChip icon={Smile} value={header.morale} color="#6b9fff" max={30} />
+            <StatChip icon={Package} value={header.supplies} color="#d4a24c" max={30} />
+            <span className="text-xs text-muted whitespace-nowrap hidden md:inline">
+              Day {header.exploration_day ?? header.journey_day ?? 1}
+            </span>
+            {header.in_hollow && <span className="badge-accent">Hollow</span>}
+          </div>
+        </div>
+      )}
+
+      {header && gameId === "tor" && (
+        <div className="flex items-center gap-3 min-w-0 flex-1">
+          {(() => {
+            const h = header as Record<string, unknown>;
+            const name = String(h.name || "Hero");
+            const culture = String(h.culture || "");
+            const calling = String(h.calling || "");
+            return (
+              <>
+                <div className="min-w-0 hidden sm:block">
+                  <div className="font-medium text-sm truncate">{name}</div>
+                  {(culture || calling) && (
+                    <div className="text-xs text-muted truncate capitalize">
+                      {[culture, calling]
+                        .filter(Boolean)
+                        .map((s) => s.replace(/_/g, " "))
+                        .join(" · ")}
+                    </div>
+                  )}
+                </div>
+                <div className="flex items-center gap-4 ml-auto shrink-0">
+                  <StatChip icon={Smile} value={Number(h.hope ?? 0)} color="#6b9fff" />
+                  <StatChip icon={Heart} value={Number(h.dread ?? 0)} color="#c45c5c" />
+                  <StatChip icon={Package} value={Number(h.eye_awareness ?? 0)} color="#d4a24c" />
+                  {Number(h.journey_day ?? 0) > 0 && (
+                    <span className="text-xs text-muted whitespace-nowrap hidden md:inline">
+                      Day {Number(h.journey_day)}
+                    </span>
+                  )}
+                  {Boolean(h.weary) && <span className="badge-accent">Weary</span>}
+                </div>
+              </>
+            );
+          })()}
+        </div>
+      )}
+
       {header && gameId === "brambletrek" && isCharacterHeader(header) && (
         <div className="flex items-center gap-3 min-w-0 flex-1">
           <div className="min-w-0 hidden sm:block">
@@ -189,6 +248,31 @@ export default function StatsBar({ gameId, header, gameLabel, onOpenSettings, on
             </span>
             {header.in_aldwund && <span className="badge-accent">Depths</span>}
           </div>
+        </div>
+      )}
+
+      {header && gameId === "outgunned" && (
+        <div className="flex items-center gap-3 min-w-0 flex-1">
+          {(() => {
+            const h = header as Record<string, unknown>;
+            return (
+              <>
+                <div className="min-w-0 hidden sm:block">
+                  <div className="font-medium text-sm truncate">{String(h.name || "Hero")}</div>
+                  {h.mission_title ? (
+                    <div className="text-xs text-muted truncate">{String(h.mission_title)}</div>
+                  ) : null}
+                </div>
+                <div className="flex items-center gap-3 ml-auto shrink-0 text-xs text-muted">
+                  {h.ad_phase ? <span>{String(h.ad_phase)}</span> : null}
+                  {h.tension !== undefined ? <span>Tension {Number(h.tension)}/12</span> : null}
+                  {h.death_roulette_bullets !== undefined ? (
+                    <span>Roulette {Number(h.death_roulette_bullets)}/6</span>
+                  ) : null}
+                </div>
+              </>
+            );
+          })()}
         </div>
       )}
 

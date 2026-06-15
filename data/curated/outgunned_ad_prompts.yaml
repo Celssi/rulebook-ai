@@ -1,0 +1,142 @@
+# Outgunned Assistant Director (OG_Assistent_Director_ENG_1_0.pdf)
+# Scene prompts p.54; hurdle/climax p.19–20; yes/no p.43; mission p.59
+
+scene_prompts:
+  - id: background
+    roll: 1
+    text: "Background: An old friend or foe resurfaces, dredging up your past."
+  - id: interaction
+    roll: 2
+    text: "Interaction: Spend a Scene interacting with a friendly NPC or pursuing an NPC connected to the Villain."
+  - id: pursue_lead
+    roll: 3
+    text: "Pursue a Lead: Use intel to discover new information — follow a clue or generate a new lead."
+  - id: side_mission
+    roll: 4
+    text: "Side Mission: Your Ally needs you to do something — roll on the Mission Generator or spread it across Shots."
+  - id: on_the_run
+    roll: 5
+    text: "On the Run: Someone chases you or you pursue someone — use Chase, Run, or Hunt rules."
+  - id: under_attack
+    roll: 6
+    text: "Under Attack: An Enemy tracks you down or ambushes you."
+
+ad_prompts:
+  - category: scene
+    text: "Background: An old friend or foe resurfaces, dredging up your past."
+  - category: scene
+    text: "Interaction: Spend a Scene with a friendly NPC or pursue someone tied to the Villain."
+  - category: scene
+    text: "Pursue a Lead: Follow a clue from your list or generate a new lead with the Clue Generator."
+  - category: scene
+    text: "Side Mission: Your Ally needs a favor — use the Mission Generator for complications."
+  - category: scene
+    text: "On the Run: A chase erupts — break out Chase, Run, or Hunt rules."
+  - category: scene
+    text: "Under Attack: An Enemy ambushes you or closes in for a fight."
+  - category: drama
+    text: "Inject tension: roll Scene Drama (Subject × Sense × Snag) if the scene lacks stakes."
+  - category: climax
+    text: "Climax check: does this Scene overcome the Phase Hurdle and reach the Aim?"
+
+# Core outgunned campaign (AD s. 19)
+hurdles:
+  "1": "Extreme weather / Natural disaster"
+  "2": "Criminal turf / Law enforcement"
+  "3": "Hazardous location / Confined location"
+  "4": "Unfamiliar location / MacGuffin at risk"
+  "5": "Target on the move / Big crowd of people"
+  "6": "Enemy"
+
+# Adventure solo campaign (AD s. 35)
+hurdles_adventure:
+  "1": "Extreme weather / Natural disaster"
+  "2": "Dangerous locals / Local law enforcement"
+  "3": "Hazardous location / Confined location"
+  "4": "Unfamiliar location / Key is at risk"
+  "5": "Target on the move / Big crowd of people"
+  "6": "Enemy"
+
+# Scene Drama Generator (AD s. 59)
+scene_drama:
+  subject:
+    "1": "Ally or NPC"
+    "2": "Enemy"
+    "3": "Location"
+    "4": "Object"
+    "5": "Perception"
+    "6": "Surroundings"
+  sense:
+    "1": "Active"
+    "2": "Dangerous"
+    "3": "Lucky"
+    "4": "Missing"
+    "5": "Suspicious"
+    "6": "Unusual"
+  snag:
+    "1": "Chase"
+    "2": "Combat"
+    "3": "Crowd"
+    "4": "Hazard"
+    "5": "Ruse"
+    "6": "Time"
+
+climaxes:
+  "1": "Disorientated / Lost"
+  "2": "Pursuit / Ticking Clock"
+  "3": "Destruction / Natural disaster"
+  "4": "Innocent bystanders / Surrounded"
+  "5": "Betrayal / Threatened Ally"
+  "6": "Outclassed / Trapped"
+
+yes_no:
+  "1": "Extreme No"
+  "2": "No"
+  "3": "No"
+  "4": "Yes"
+  "5": "Yes"
+  "6": "Extreme Yes"
+
+mission_generator:
+  "1":
+    type: "Deliver item"
+    complication: "Objective is on the move"
+  "2":
+    type: "Steal item"
+    complication: "Objective is guarded"
+  "3":
+    type: "Gather intel"
+    complication: "Very small window of time"
+  "4":
+    type: "Protect NPC"
+    complication: "Objective is obscure or ambiguous"
+  "5":
+    type: "Rescue Ally or NPC"
+    complication: "Objective is nearly inaccessible"
+  "6":
+    type: "Antagonize Enemy"
+    complication: "Objective is in a very public place"
+
+villain_nature:
+  "1": "Politician"
+  "2": "Law Enforcer"
+  "3": "Ruthless Criminal"
+  "4": "Secret Organization"
+  "5": "Celebrity"
+  "6": "Evil Billionaire"
+
+villain_desire:
+  "1": "Avarice / Decadence"
+  "2": "Reprisal / Vengeance"
+  "3": "Fame / Infamy"
+  "4": "Control / Power"
+  "5": "Dissent / Revolution"
+  "6": "Anarchy / Chaos"
+
+villain_problem:
+  "1": "The Authorities"
+  "2": "Strong Competition"
+  "3": "Lacking Expertise"
+  "4": "Vital Resource"
+  "5": "Lack of Time"
+  "6": "Internal Quarrel"

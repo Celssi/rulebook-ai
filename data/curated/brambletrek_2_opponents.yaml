@@ -1,0 +1,54 @@
+# Opponent by drawn rank (BT2 p. 51).
+by_rank:
+  "2":
+    id: bumblebeast
+    label: Bumblebeast
+    health: 10
+  "3":
+    id: heffalump
+    label: Heffalump
+    health: 12
+  "4":
+    id: jagular
+    label: Jagular
+    health: 9
+  "5":
+    id: rockodile
+    label: Rockodile
+    health: 13
+  "6":
+    id: snuffalo
+    label: Snuffalo
+    health: 11
+  "7":
+    id: woozle
+    label: Woozle
+    health: 9
+  "8":
+    id: tootle
+    label: Tootle
+    health: 10
+  "9":
+    id: totter
+    label: Totter
+    health: 8
+  "10":
+    id: lizzle
+    label: Lizzle
+    health: 10
+  jack:
+    id: lumpus
+    label: Lumpus
+    health: 12
+  queen:
+    id: grizzle
+    label: Grizzle
+    health: 14
+  king:
+    id: bumblebeast
+    label: Bumblebeast
+    health: 8
+  ace:
+    id: spookle
+    label: Spookle
+    health: 10

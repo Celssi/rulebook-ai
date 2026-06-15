@@ -1,0 +1,53 @@
+# The One Ring 2e - Strider Mode, Fortune & Ill-Fortune tables (p.8, appendix p.21)
+fortune:
+  gandalf:
+    text: "The Eye of the Enemy focuses elsewhere. Decrease Eye Awareness by 1."
+    eye_awareness_delta: -1
+  "1":
+    text: "You may bypass a threat without attracting notice"
+  "2":
+    text: "You gain the attention of a potential ally"
+  "3":
+    text: "An enemy inadvertently reveals their position"
+  "4":
+    text: "You gain favoured ground"
+  "5":
+    text: "Enemies run afoul of danger"
+  "6":
+    text: "You locate or learn of a useful item"
+  "7":
+    text: "Your success instils new hope or renewed resolve"
+  "8":
+    text: "You find a moment of comfort or safety"
+  "9":
+    text: "You learn or realize something which gives helpful insight into your mission"
+  "10":
+    text: "You encounter an opportunity suited to your nature or abilities"
+  sauron:
+    text: "An unexpected ally appears or sends aid"
+ill_fortune:
+  sauron:
+    text: "Your actions catch the Eye of the Enemy. Increase Eye Awareness by 2."
+    eye_awareness_delta: 2
+  "1":
+    text: "You draw unwanted attention"
+  "2":
+    text: "Your actions are observed by someone of ill-intent"
+  "3":
+    text: "Unexpected enemies emerge or are sighted"
+  "4":
+    text: "You are hindered by difficult terrain or an unfavourable environment"
+  "5":
+    text: "You find yourself ill-equipped for the circumstances"
+  "6":
+    text: "A favoured weapon or item is lost, broken, or sacrificed"
+  "7":
+    text: "You are plagued by troubling visions or thoughts"
+  "8":
+    text: "An old injury or stress resurfaces"
+  "9":
+    text: "You learn or realize something which adds a new complication to your mission"
+  "10":
+    text: "You face a test which is contrary to your nature or abilities"
+  gandalf:
+    text: "An ally becomes a hindrance or liability"

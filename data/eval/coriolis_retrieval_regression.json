@@ -1,0 +1,22 @@
+[
+  {
+    "query": "How do attribute and talent rolls work in Coriolis The Great Dark?",
+    "expected_terms": ["attribute", "talent", "dice"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "What happens when you push a roll in Coriolis The Great Dark?",
+    "expected_terms": ["push", "hope", "gear"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "How does despair work in Coriolis The Great Dark?",
+    "expected_terms": ["despair", "empathy", "hope"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "How do you create a crew and Bird in Coriolis The Great Dark?",
+    "expected_terms": ["crew", "bird", "explorer"],
+    "require_core_in_top_n": 3
+  }
+]

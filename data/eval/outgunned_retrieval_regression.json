@@ -1,0 +1,32 @@
+[
+  {
+    "query": "How does the Assistant Director work in Outgunned solo play?",
+    "expected_terms": ["assistant director", "scene", "prompt"],
+    "require_faction_in_top_n": "assistant_director"
+  },
+  {
+    "query": "What is Death Roulette in Outgunned?",
+    "expected_terms": ["death", "roulette", "spin"],
+    "require_faction_in_top_n": "assistant_director"
+  },
+  {
+    "query": "How do Outgunned custom dice work?",
+    "expected_terms": ["success", "reroll", "dice"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "How do you structure a mission in Outgunned?",
+    "expected_terms": ["mission", "villain", "hurdle"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "How does Tension work in Outgunned solo play?",
+    "expected_terms": ["tension", "climax", "scene"],
+    "require_faction_in_top_n": "assistant_director"
+  },
+  {
+    "query": "Outgunned Adventure dice matching pairs success",
+    "expected_terms": ["success", "dice", "roll"],
+    "require_core_in_top_n": 3
+  }
+]

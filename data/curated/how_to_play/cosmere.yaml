@@ -1,0 +1,42 @@
+game_id: cosmere
+title: Näin pelaat
+source:
+  pdf: docs/cosmere/stormlight-handbook.pdf
+  pages: [1, 10, 20, 30, 40, 50]
+sections:
+  - heading: Yleiskuva
+    body: |
+      Cosmere RPG (Stormlight) on hahmovetoihin perustuva seikkailupeli Rosharilla. Sovellus tukee **GM solo** -peliä: sinä pelaat sankarisi ja toimit tarvittaessa myös Pelinjohtajana, kun maailma vastaa noppiin ja sääntöihin.
+  - heading: Tarvitset
+    bullets:
+      - Stormlight Handbook (tai vastaavat säännöt)
+      - d20 ja d6 -nopat
+      - hahmoarkki tai sovelluksen tallennuspaikka
+  - heading: Hahmo
+    body: |
+      Stormlight Handbookissa luot hahmon **Path**- ja **Role** -valinnoilla sekä **Expertises**-taidoilla. Tallenna sovellukseen:
+
+      - **Path** — agentti, metsästäjä, johtaja, tutkija tai soturi
+      - **Role** — taistelija, käsityöläinen, metsästäjä, johtaja, tutkija, selviytyjä tai soturi
+      - **Expertises** — erikoistumiset
+      - **Plot dice pool** — kuinka monta plot-noppaa voit heittää kerralla
+      - **Deflection** — puolustus taistelussa
+  - heading: Plot-nopat
+    body: |
+      Plot-nopat (d6) tuovat tarinaan käänteitä. GM Rules -yhteenvetoon perustuen:
+
+      - **1** = **complication** — uusi este tai pahennus
+      - **6** = **opportunity** — etu, oivallus tai avullinen käänne
+      - **2–5** = neutraali
+
+      Heitä plot-noppia skill testeissä ja taistelussa GM:n ohjeiden mukaan.
+  - heading: Skill testit ja taistelu
+    body: |
+      Skill testit käyttävät d20:tä (etu tai haitta tilanteen mukaan). Taistelussa hyökkäys heitetään vastustajan **deflection**-arvoa vastaan; plot-noppa voi muuttaa tilannetta.
+  - heading: Sovelluksessa
+    bullets:
+      - Asetukset → **Character**: path, role, expertises, plot dice pool, deflection
+      - Shortcuts → **Roll plot dice**, **Skill test**, **Combat attack**
+      - Asetukset → **Play**: player vs AI narrator, physical vs virtual deck
+      - AI narrator kirjoittaa GM-kohtausprosan noppatulosten jälkeen
+      - Lonelog tallentaa toiminnot ja yhteenvedot

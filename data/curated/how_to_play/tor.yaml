@@ -1,0 +1,50 @@
+game_id: tor
+title: Näin pelaat
+source:
+  pdf: docs/tor/strider_mode.pdf
+  pages: [1, 5, 7, 8, 10, 11, 13, 17, 26]
+sections:
+  - heading: Yleiskuva
+    body: |
+      **The One Ring** Strider Mode on yksinpeli, jossa pelaat Player-heroa ilman erillistä Loremasteria. Sovellus tukee **GM solo** -peliä: sinä pelaat sankarisi ja käytät taulukoita sekä noppia kun maailma vastaa.
+  - heading: Tarvitset
+    bullets:
+      - The One Ring 2e -ydinsäännöt ja Strider Mode -liite
+      - Feat d12 ja Success d6 -nopat
+      - hahmoarkki tai sovelluksen tallennuspaikka
+      - kynä ja vihko tai Lonelog sovelluksessa
+  - heading: Hahmo
+    body: |
+      Luo hahmo ydinoppaan ja Strider Mode -liitteen mukaan (attribuutit, taidot ja hyveet paperilla). Tallenna sovellukseen:
+
+      - **Culture** — ydinoppaan kuusi kulttuuria (Hobbit, Barding, Dwarf, Elf, Men of Bree, Ranger)
+      - **Calling** — Captain, Champion, Messenger, Scholar, Treasure Hunter, Warden
+      - **Strider** — erityispiirre: Inspired matkojen skill-nopissa (oletuksena päällä)
+      - **Hope** ja **Dread** (varjo)
+      - **Weary** — väsynyt (Feat-noppa heikkenee)
+      - **Eye Awareness** — vihollisen katse
+      - **Patron** — suojelija (Bilbo, Gandalf, Gilraen, Balin, Círdan, Tom & Goldberry)
+      - **Safe Haven** — turvapaikka
+      - **Journey day** — matkan päivä
+      - **Hunt region** — Border / Wild / Dark (vaikuttaa matkatapahtuman Feat-noppaan)
+  - heading: Taulukot ja nopat
+    body: |
+      Strider Mode tarjoaa keskeiset työkalut:
+
+      - **Telling Table** — kyllä/ei -kysymyksiin (Feat d12; chance: certain → unthinkable)
+      - **Lore Table** — Action / Aspect / Focus -vihjeitä (Feat d12 + Success d6)
+      - **Fortune / Ill-Fortune** — onnen ja epäonnan käänteet Feat-nopasta
+      - **Patron quests** — suojelijan tehtävä (d6 per patron)
+      - **Skill roll** — Feat d12 + Success-nopat
+      - **Journey event** — Feat d12 (päätaulukko) + Success d6 (Event Detail) + skill-testi
+      - **Experience milestones** — vaihtoehtoinen XP-järjestelmä sessioiden sijaan
+      - **Hunt threshold** — alueen mukaan (Border 18, Wild 16, Dark 14) + modifierit
+      - **Revelation episode** — Fellowship Phase -käänteet (Feat d12)
+  - heading: Sovelluksessa
+    bullets:
+      - Asetukset → **Character**: kaikki hahmokentät (culture, calling, hope, dread, weary, strider, eye awareness, patron, safe haven, journey day, hunt region)
+      - Asetukset → **Play**: player vs AI narrator
+      - Shortcuts → Telling, Lore, Patron quest, Fortune, Ill-Fortune, Skill roll, Journey event, Experience milestones, Hunt threshold, Revelation episode
+      - AI narrator kirjoittaa Loremaster-tyylisen kohtausprosan noppatulosten jälkeen
+      - Lonelog tallentaa toiminnot ja yhteenvedot
+      - StatsBar näyttää Hope, Dread, Eye Awareness ja matkapäivän

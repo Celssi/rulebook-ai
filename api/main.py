@@ -12,15 +12,22 @@ from api.routes import (
     apothecaria,
     ashes,
     brambletrek,
+    brambletrek_2,
     chat,
     colostle,
+    coriolis,
+    cosmere,
     deck,
+    dnd5e,
     games,
     index,
     lighthouse,
+    mlp,
+    outgunned,
     play,
     sansibilia,
     session,
+    tor,
     warhammer_40k,
     whispers,
 )
@@ -40,12 +47,19 @@ app.include_router(session.router)
 app.include_router(chat.router)
 app.include_router(play.router)
 app.include_router(brambletrek.router)
+app.include_router(brambletrek_2.router)
 app.include_router(lighthouse.router)
 app.include_router(sansibilia.router)
 app.include_router(apothecaria.router)
 app.include_router(colostle.router)
 app.include_router(whispers.router)
 app.include_router(ashes.router)
+app.include_router(outgunned.router)
+app.include_router(tor.router)
+app.include_router(coriolis.router)
+app.include_router(cosmere.router)
+app.include_router(mlp.router)
+app.include_router(dnd5e.router)
 app.include_router(deck.router)
 app.include_router(index.router)
 app.include_router(warhammer_40k.router)

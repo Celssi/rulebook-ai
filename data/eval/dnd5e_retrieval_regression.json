@@ -1,0 +1,27 @@
+[
+  {
+    "query": "How do ability checks work in D&D 5e 2024?",
+    "expected_terms": ["ability check", "d20", "modifier"],
+    "require_faction_in_top_n": "player"
+  },
+  {
+    "query": "What is advantage and disadvantage on attack rolls?",
+    "expected_terms": ["advantage", "disadvantage", "d20"],
+    "require_faction_in_top_n": "player"
+  },
+  {
+    "query": "How do death saving throws work?",
+    "expected_terms": ["death", "saving throw", "success"],
+    "require_faction_in_top_n": "player"
+  },
+  {
+    "query": "What is in Adventures in Faerûn campaign framework?",
+    "expected_terms": ["faerûn", "adventure", "region"],
+    "require_faction_in_top_n": "adventures_faerun"
+  },
+  {
+    "query": "How do short rests and long rests work in 5e?",
+    "expected_terms": ["short rest", "long rest", "hit dice"],
+    "require_faction_in_top_n": "player"
+  }
+]

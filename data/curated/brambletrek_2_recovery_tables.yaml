@@ -1,0 +1,37 @@
+# Recovery tables when a resource hits 0 (BT2 p. 13).
+
+health:
+  "2-4":
+    label: "A hedgehog healer gives you a bundle of herbs."
+  "5-7":
+    label: "You find a cosy burrow lined with moss."
+  "8-10":
+    label: "A friendly badger shares a warm meal of roasted roots and honeyed nuts."
+  jack-queen:
+    label: "You drink from a bubbling brook, its crystal-clear water refreshing your body."
+  king-ace:
+    label: "A wise old turtle patches you up and offers some advice."
+
+morale:
+  "2-4":
+    label: "A butterfly lands on your nose before fluttering away, leaving you at peace."
+  "5-7":
+    label: "Fireflies dance like stars in a clearing, their glow lifting your spirits."
+  "8-10":
+    label: "A magpie tells you a funny story about a foolish fox who tried to trick the wind."
+  jack-queen:
+    label: "The wind carries a soft melody, as if the Woods themselves are singing to you."
+  king-ace:
+    label: "You find an old trinket in your bag, reminding you why you started this journey."
+
+supplies:
+  "2-4":
+    label: "A family of field mice lead you to a hidden patch of berries and nuts."
+  "5-7":
+    label: "A clever fox nudges a small fish your way before trotting off."
+  "8-10":
+    label: "You find a log filled with acorns, likely left by a forgetful squirrel."
+  jack-queen:
+    label: "A wandering hare shares some provisions."
+  king-ace:
+    label: "You follow a sweet scent and find an abandoned picnic basket full of treats."

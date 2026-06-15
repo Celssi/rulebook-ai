@@ -174,6 +174,7 @@ def run_checks(*, skip: bool = False) -> bool:
         ROOT / "scripts" / "validate_play_tools.py",
         ROOT / "scripts" / "validate_how_to_play.py",
         ROOT / "scripts" / "validate_brambletrek_lonelog.py",
+        ROOT / "scripts" / "validate_brambletrek_2_lonelog.py",
     ]
     ok = True
     for script in scripts:
@@ -189,6 +190,14 @@ def run_checks(*, skip: bool = False) -> bool:
         result = subprocess.run([sys.executable, str(curated)], cwd=ROOT, check=False)
         if result.returncode != 0:
             print(f"  WARNING: {curated.name} failed (Brambletrek PDFs/YAML may be incomplete)")
+
+    curated_bt2 = ROOT / "scripts" / "validate_brambletrek_2_curated.py"
+    if curated_bt2.is_file():
+        print(f"Running {curated_bt2.name}...")
+        result = subprocess.run([sys.executable, str(curated_bt2)], cwd=ROOT, check=False)
+        if result.returncode != 0:
+            print(f"  ERROR: {curated_bt2.name} failed")
+            ok = False
 
     return ok
 

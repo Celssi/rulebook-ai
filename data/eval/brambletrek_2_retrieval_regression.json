@@ -1,0 +1,32 @@
+[
+  {
+    "query": "Brambletrek 2 exploration day — four cards for the Hundred Acre Woods.",
+    "expected_terms": ["four cards", "exploration", "woods"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "How do I create a character in Brambletrek 2? Legacy only, max 30 stats.",
+    "expected_terms": ["legacy", "health", "morale"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "Misty Hollow memory fragments and escape test Brambletrek 2.",
+    "expected_terms": ["hollow", "fragment", "escape"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "Brambletrek 2 combat setup initiative tactic cards opponent rank.",
+    "expected_terms": ["combat", "initiative", "tactic"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "How did I get here arrival prompt Brambletrek 2 page 17.",
+    "expected_terms": ["how did", "arrival", "woods"],
+    "require_core_in_top_n": 3
+  },
+  {
+    "query": "Pooh legacy abilities once per day Brambletrek 2.",
+    "expected_terms": ["pooh", "legacy", "ability"],
+    "require_core_in_top_n": 3
+  }
+]

@@ -1,0 +1,225 @@
+# Misty Hollow event tables (BT2 pp. 45-48).
+
+hearts:
+  '2':
+    memory_fragments: 1
+    label: A soft tune hums through the mist, one you swear you've heard before. Humming along strengthens your Health
+    tags:
+    - memory_fragment
+  '3':
+    morale: 2
+    label: A small stuffed bear sits atop a mossy rock, its button eye missing. Holding it fills you with warmth. Who did this belong to?
+  '4':
+    health: 1
+    label: You find small footprints leading in circles before vanishing. Were they yours? Or someone else’s?
+  '5':
+    memory_fragments: 1
+    label: A note pinned to a tree reads, “You’re not alone.” The ink is smudged, but the message is clear
+    tags:
+    - memory_fragment
+  '6':
+    health: 2
+    label: A fully prepared picnic sits untouched on a checkered cloth. The tea is still warm. If you sit down, does someone join you?
+  '7':
+    memory_fragments: 1
+    label: The wind whispers a name of someone you forgot. As you speak it aloud, the mist swirls
+    tags:
+    - memory_fragment
+  '8':
+    morale: 3
+    label: Faint giggles echo around you, but when you turn, no one is there. The sound lingers, filling you with hope
+  '9':
+    memory_fragments: 1
+    label: A small lantern flickers ahead, guiding you forward. When you reach it, there is no holder, just a quiet glow
+    tags:
+    - memory_fragment
+  '10':
+    memory_fragments: 2
+    label: A book rests on a tree stump, its pages blank except for the words, “Remember.” As you touch it, a forgotten story fills your mind
+    tags:
+    - memory_fragment
+  jack:
+    morale: 2
+    label: A figure stands just at the edge of sight, familiar but indistinct. You call out, but they are gone, leaving behind only a lingering warmth
+  queen:
+    memory_fragments: 1
+    label: A patch of flowers blooms perfectly, untouched by the Hollow’s mist. A place someone once cared for
+    tags:
+    - memory_fragment
+  king:
+    memory_fragments: 2
+    label: A wooden door stands alone in the clearing, slightly ajar. Behind it, a light beckons you forward. Do you step through?
+    tags:
+    - memory_fragment
+  ace:
+    memory_fragments: 3
+    label: A memory washes over you, vivid and clear. It is a moment of kindness, of joy, of something that mattered. The Hollow trembles as if recognizing your strength
+    tags:
+    - memory_fragment
+diamonds:
+  '2':
+    memory_fragments: 1
+    label: A fragile map flutters in the wind, its ink smudged by time. The paths don’t match the Woods you know, but something about it feels right
+    tags:
+    - memory_fragment
+  '3':
+    morale: 2
+    label: A small, rusted key lies in the dirt. No door or chest is in sight, but you can’t shake the feeling that it still belongs to something
+  '4':
+    memory_fragments: 1
+    label: A tree bears a name carved long ago, though you don’t recognize it. When you trace the letters with your fingers, warmth spreads through your palm
+    tags:
+    - memory_fragment
+  '5':
+    health: 1
+    label: A delicate envelope sits atop a stone, addressed to someone who may no longer exist. The words inside are blurred but full of longing
+  '6':
+    memory_fragments: 1
+    label: A single glass marble rolls at your feet, reflecting more than just the trees. Looking into it, you see a moment you don’t recall living
+    tags:
+    - memory_fragment
+  '7':
+    health: 2
+    label: An old pocket watch ticks in reverse. Holding it makes your head swim, as if the past and present are shifting places
+  '8':
+    morale: 3
+    memory_fragments: 1
+    label: A fully packed basket rests near a log, the food still fresh. Someone meant to return for it, but never did
+    tags:
+    - memory_fragment
+  '9':
+    memory_fragments: 1
+    label: As you step forward, faint voices drift through the mist. Half-heard words, laughter, a promise. When you turn, the sound fades
+    tags:
+    - memory_fragment
+  '10':
+    memory_fragments: 2
+    label: A lantern flickers ahead, revealing a hidden path. But when you reach it, the handle is cold, and the candle inside is untouched
+    tags:
+    - memory_fragment
+  jack:
+    morale: 2
+    label: A carved wooden puzzle piece lies alone in the dirt, its edges worn smooth. What picture did it once complete?
+  queen:
+    memory_fragments: 1
+    label: A large, weathered stone bears an inscription in a language you almost understand. If only you could read the missing words
+    tags:
+    - memory_fragment
+  king:
+    memory_fragments: 2
+    label: A small wooden box sits in the grass, locked tight. The moment you touch it, a faint hum vibrates through your fingertips. Do you open it?
+    tags:
+    - memory_fragment
+  ace:
+    memory_fragments: 3
+    label: As you step forward, a rush of images fills your mind. Moments of joy, sorrow, and belonging, none of them your own. The Hollow shifts, as if acknowledging what was lost
+    tags:
+    - memory_fragment
+spades:
+  '2':
+    health: -1
+    label: A fractured mirror stands in the mist, reflecting a version of you that doesn’t move quite right. As you step closer, your reflection whispers something you don’t understand
+  '3':
+    morale: 2
+    label: Shadows shift behind the trees, watching, waiting. You never catch them moving, but you know they are
+  '4':
+    health: -2
+    memory_fragments: 1
+    label: No matter how many steps you take, you find yourself back where you started. Something is keeping you here
+    tags:
+    - memory_fragment
+  '5':
+    morale: 3
+    label: The mist clings to your skin, and faint voices swirl around you. They speak in half- formed thoughts, trying to pull you deeper
+  '6':
+    health: -3
+    label: A statue stands in the Hollow, its form eerily lifelike. As you touch it, you realize the expression looks… familiar
+  '7':
+    health: -3
+    label: A towering tree covered in jagged crystals hums softly. Its roots pulse as if alive. As you move closer, the ground beneath you trembles
+  '8':
+    morale: 4
+    label: You step onto a narrow path, but your footsteps echo strangely, as if someone else is walking right behind you
+  '9':
+    health: -4
+    label: A distant cry for help reaches your ears, but when you follow it, you find nothing but broken shards of crystal in the dirt
+  '10':
+    morale: 5
+    memory_fragments: 1
+    label: You glimpse yourself in a pool of still water, but your reflection doesn’t match your movements. Then, it smiles
+    tags:
+    - memory_fragment
+  jack:
+    combat: true
+    label: A figure looms ahead, its body wrapped in shards of dark crystal. It moves with a purpose, but whose?
+    tags:
+    - combat
+  queen:
+    combat: true
+    memory_fragments: 1
+    label: A low voice murmurs from nowhere, telling you to turn back. Then, it speaks with your voice
+    tags:
+    - combat
+    - memory_fragment
+  king:
+    combat: true
+    label: A hulking form rises from the ground, its body more crystal than flesh. Its glowing eyes lock onto you, filled with something close to recognition
+    tags:
+    - combat
+  ace:
+    health: -6
+    label: You find the source of the corruption. It is a massive crystal, deep within the mist. The Hollow itself seems to hold its breath, waiting for your next move
+clubs:
+  '2':
+    health: -1
+    label: You step onto a wooden bridge, but halfway across, the planks dissolve into mist. Looking back, there is no sign it was ever there
+  '3':
+    morale: 2
+    label: A hollowed-out tree acts as a tunnel, stretching on far longer than it should. When you finally emerge, you’re somewhere you don’t recognize
+  '4':
+    health: -2
+    label: A trail splits into three identical routes, none of which were here moments ago. Each seems equally safe, or equally dangerous
+  '5':
+    morale: 3
+    label: Thick mist rolls in, swallowing up everything beyond a few feet. Shapes move just beyond sight. Which way is forward?
+  '6':
+    health: -3
+    memory_fragments: 1
+    label: The trees around you are not where they were a moment ago. One leans down, as if listening
+    tags:
+    - memory_fragment
+  '7':
+    health: -3
+    label: No matter how far you walk, you find yourself looping back to the same clearing. A single stone in the center seems to have moved slightly each time
+  '8':
+    morale: 4
+    label: A gentle stream winds through the Hollow, but its water moves against the current. Stepping in, you feel an unsettling tug
+  '9':
+    health: -4
+    memory_fragments: 1
+    label: A door stands alone in the clearing, slightly ajar. It leads… nowhere. Or does it?
+    tags:
+    - memory_fragment
+  '10':
+    morale: 5
+    label: You hear footsteps behind you, but when you turn, the path is empty. The prints in the dirt don’t belong to you
+  jack:
+    combat: true
+    label: You take a step, and the world tilts. The trees, the sky, the ground, it all shifts. Are you even in the same place anymore?
+    tags:
+    - combat
+  queen:
+    combat: true
+    memory_fragments: 1
+    label: A familiar voice calls from ahead, leading you forward. But something feels off, what if it isn’t real?
+    tags:
+    - combat
+    - memory_fragment
+  king:
+    combat: true
+    label: The path simply stops. No trees, no mist, just… emptiness. A step forward might be a step into nothingness
+    tags:
+    - combat
+  ace:
+    health: -5
+    label: The Hollow has decided to keep you. The mist rises, the ground trembles, and the world begins to fold in on itself

@@ -1,0 +1,29 @@
+# Strider Mode p.8 — Ill-Fortune Table (Feat die)
+"11":
+  result: "An ally becomes a hindrance or liability"
+"12":
+  result: "Eye of Sauron — roll Ill-Fortune. Increase Eye Awareness by 2."
+  eye_awareness: 2
+  special: sauron
+"1":
+  result: "Your actions catch the Eye. Increase Eye Awareness by 2."
+  eye_awareness: 2
+  bonus: "You draw unwanted attention"
+"2":
+  result: "Your actions are observed by someone of ill-intent"
+"3":
+  result: "Unexpected enemies emerge or are sighted"
+"4":
+  result: "Hindered by difficult terrain or unfavourable environment"
+"5":
+  result: "Ill-equipped for the circumstances"
+"6":
+  result: "A favoured weapon or item is lost, broken, or sacrificed"
+"7":
+  result: "Plagued by troubling visions or thoughts"
+"8":
+  result: "An old injury or stress resurfaces"
+"9":
+  result: "You learn something that complicates your mission"
+"10":
+  result: "A test contrary to your nature or abilities"

@@ -8,6 +8,12 @@ export const GAMES_RELOAD_SESSION: GameId[] = [
   "whispers",
   "ashes",
   "colostle",
+  "outgunned",
+  "tor",
+  "coriolis",
+  "cosmere",
+  "mlp",
+  "dnd5e",
 ];
 
 export function shouldReloadSession(gameId: string): boolean {
@@ -18,10 +24,17 @@ export type GameLoaderKey = Exclude<GameId, "40k">;
 
 export const GAME_LOADERS: Record<GameLoaderKey, string> = {
   brambletrek: "loadBrambletrek",
+  brambletrek_2: "loadBrambletrek2",
   sansibilia: "loadSansibilia",
   lighthouse: "loadLighthouse",
   apothecaria: "loadApothecaria",
   whispers: "loadWhispers",
   colostle: "loadColostle",
   ashes: "loadAshes",
+  outgunned: "loadGmSolo",
+  tor: "loadGmSolo",
+  coriolis: "loadGmSolo",
+  cosmere: "loadGmSolo",
+  mlp: "loadGmSolo",
+  dnd5e: "loadGmSolo",
 };

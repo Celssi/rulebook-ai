@@ -1,0 +1,26 @@
+# The One Ring 2e - Strider Mode, Revelation Episode Table (p.26)
+episodes:
+  gandalf:
+    text: "Internal strife or an external threat puts your Safe Haven in peril"
+  "1":
+    text: "Unexpected danger arises on the path ahead, forcing you to seek a new route"
+  "2":
+    text: "Nature is corrupted and turns against you"
+  "3":
+    text: "Spies of the Enemy carry word of your mission"
+  "4":
+    text: "Enemy minions launch an ambush or lay a trap"
+  "5":
+    text: "Enemy minions pick up your trail"
+  "6":
+    text: "An important location is overtaken by an enemy"
+  "7":
+    text: "An item you carry holds a curse, or is hunted by an enemy"
+  "8":
+    text: "You are tempted by something greatly desired, to the detriment of your mission"
+  "9":
+    text: "Malicious lies cause others to mistrust or fear you"
+  "10":
+    text: "Conflict brews between allies"
+  sauron:
+    text: "An important ally is put in danger"

@@ -5,6 +5,7 @@ from src.games.registry import (  # noqa: E402
     DEFAULT_GAME_ID,
     GAME_40K,
     GAME_BRAMBLETREK,
+    GAME_BRAMBLETREK_2,
     GAME_SANSIBILIA,
     GAME_LIGHTHOUSE,
     GAME_APOTHECARIA,

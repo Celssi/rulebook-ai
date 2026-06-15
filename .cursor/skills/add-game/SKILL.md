@@ -23,7 +23,7 @@ Full play always includes a PDF-only plugin layer. You rarely edit `src/rag.py` 
 Copy and track:
 
 ```
-- [ ] 1. PDFs in docs/<game_id>/ + attribution
+- [ ] 1. PDFs in docs/<game_id>/
 - [ ] 2. plugin.py + registry.py
 - [ ] 3. python -m src.ingest --game <game_id>
 - [ ] 4. Curated YAML (if card/dice tables) + curated.py
