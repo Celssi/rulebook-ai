@@ -163,7 +163,7 @@ def ensure_indexes(
         scope = "MVP" if mvp_only else "full"
         action = "rebuilding" if already else "building"
         ocr_note = " + OCR refresh" if force_ocr else ""
-        print(f"  {label}: {action} {scope} index ({len(pdfs)} MVP PDF(s)){ocr_note}...")
+        print(f"  {label}: {action} {scope} index ({scope} PDF set){ocr_note}...")
         code = run_ingest(
             game_id,
             mvp_only=mvp_only,

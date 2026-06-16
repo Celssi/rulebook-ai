@@ -23,6 +23,13 @@ from src.text_utils import clean_text, is_meaningful
 # Stay under PIL's decompression bomb limit on oversized PDF pages (e.g. DMG spreads).
 _MAX_OCR_PIXELS = 150_000_000
 
+# We already cap rendered pages at _MAX_OCR_PIXELS (and downscale anything larger),
+# so raise PIL's decompression-bomb threshold to match. Large rulebook spreads at
+# 300 DPI are expected here, not an attack — this just silences the per-page warning.
+from PIL import Image as _PILImage  # noqa: E402
+
+_PILImage.MAX_IMAGE_PIXELS = _MAX_OCR_PIXELS
+
 
 def _render_page_pixmap(page: fitz.Page, dpi: int) -> fitz.Pixmap:
     current_dpi = dpi
