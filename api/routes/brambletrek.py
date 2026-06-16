@@ -5,7 +5,7 @@ from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, Response
 
 from api.deps import SESSION_COOKIE, get_app_session
-from api.models import CharacterTableDrawRequest, CharacterUpdate, JourneyApplyRequest, RosterCreate
+from api.models import CharacterTableDrawRequest, CharacterUpdate, JourneyApplyRequest, ResourceBonusRequest, RosterCreate
 from api.services import brambletrek_service as bt
 from api.services.session_service import app_session_payload, get_active_play_context, get_messages
 from src.config import GAME_BRAMBLETREK
@@ -36,6 +36,7 @@ def get_character(app: AppSession = Depends(get_app_session)):
         "abilities": bt.legacy_abilities_payload(char.legacy, used) if char.legacy else [],
         "options": bt.character_options_payload(),
         "settings": ctx.settings,
+        "resource_draft": bt.resource_draft_response(ctx, ctx.extra.get("resource_draft")),
     }
 
 
@@ -55,6 +56,63 @@ def draw_character_table(
     ctx = _ctx(app)
     try:
         result = bt.draw_character_table(ctx, body.table)
+    except ValueError as e:
+        raise HTTPException(400, str(e)) from e
+    response.set_cookie(key=SESSION_COOKIE, value=app.session_id, httponly=True, samesite="lax")
+    return result
+
+
+@router.post("/character/draw-resources")
+def draw_character_resources(
+    response: Response,
+    app: AppSession = Depends(get_app_session),
+):
+    ctx = _ctx(app)
+    try:
+        result = bt.draw_character_resources(ctx)
+    except ValueError as e:
+        raise HTTPException(400, str(e)) from e
+    response.set_cookie(key=SESSION_COOKIE, value=app.session_id, httponly=True, samesite="lax")
+    return result
+
+
+@router.post("/character/resource-bonus")
+def draw_character_resource_bonus(
+    body: ResourceBonusRequest,
+    response: Response,
+    app: AppSession = Depends(get_app_session),
+):
+    ctx = _ctx(app)
+    try:
+        result = bt.draw_character_resource_bonus(ctx, body.stat)
+    except ValueError as e:
+        raise HTTPException(400, str(e)) from e
+    response.set_cookie(key=SESSION_COOKIE, value=app.session_id, httponly=True, samesite="lax")
+    return result
+
+
+@router.post("/character/apply-resources")
+def apply_character_resources(
+    response: Response,
+    app: AppSession = Depends(get_app_session),
+):
+    ctx = _ctx(app)
+    try:
+        result = bt.apply_character_resources(ctx)
+    except ValueError as e:
+        raise HTTPException(400, str(e)) from e
+    response.set_cookie(key=SESSION_COOKIE, value=app.session_id, httponly=True, samesite="lax")
+    return result
+
+
+@router.post("/character/roll-legacy")
+def roll_character_legacy(
+    response: Response,
+    app: AppSession = Depends(get_app_session),
+):
+    ctx = _ctx(app)
+    try:
+        result = bt.roll_character_legacy(ctx)
     except ValueError as e:
         raise HTTPException(400, str(e)) from e
     response.set_cookie(key=SESSION_COOKIE, value=app.session_id, httponly=True, samesite="lax")

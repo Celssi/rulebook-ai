@@ -25,6 +25,10 @@ class CharacterTableDrawRequest(BaseModel):
     table: str
 
 
+class ResourceBonusRequest(BaseModel):
+    stat: str
+
+
 class RosterCreate(BaseModel):
     name: str = ""
 

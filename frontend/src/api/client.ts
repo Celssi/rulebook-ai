@@ -11,6 +11,24 @@ import type {
 
 import { API, request } from "./core";
 
+export interface ResourceDraftStat {
+  stat: "health" | "morale" | "supplies";
+  cards: string[];
+  pair_sum: number;
+  base: number;
+  needs_bonus: boolean;
+  card_values: number[];
+}
+
+export interface ResourceDraft {
+  cards_by_stat: Record<string, string[]>;
+  pending_bonus: string[];
+  base_stats: { health: number; morale: number; supplies: number };
+  final_stats?: { health: number; morale: number; supplies: number };
+  stats: ResourceDraftStat[];
+  remaining?: number;
+}
+
 export const api = {
   getSession: () => request<SessionState>("/session"),
   updateSession: (body: Record<string, unknown>) =>
@@ -34,6 +52,7 @@ export const api = {
       abilities: LegacyAbility[];
       options: Record<string, { id: string; label: string }[]>;
       settings: Record<string, string>;
+      resource_draft: ResourceDraft | null;
     }>("/brambletrek/character"),
   updateCharacter: (entity: Record<string, unknown>) =>
     request<{ entity: Record<string, unknown>; header: CharacterHeader }>(
@@ -497,13 +516,42 @@ export const api = {
       method: "POST",
       body: JSON.stringify({ table }),
     }),
+  drawCharacterResources: () =>
+    request<{
+      draw_summary: string;
+      resource_draft: ResourceDraft;
+      remaining: number;
+    }>("/brambletrek/character/draw-resources", { method: "POST" }),
+  drawCharacterResourceBonus: (stat: "health" | "morale" | "supplies") =>
+    request<{
+      draw_summary: string;
+      bonus_card: string;
+      resource_draft: ResourceDraft;
+      remaining: number;
+    }>("/brambletrek/character/resource-bonus", {
+      method: "POST",
+      body: JSON.stringify({ stat }),
+    }),
+  applyCharacterResources: () =>
+    request<{
+      entity: Record<string, unknown>;
+      header: CharacterHeader;
+      resource_draft: null;
+    }>("/brambletrek/character/apply-resources", { method: "POST" }),
+  rollCharacterLegacy: () =>
+    request<{
+      roll_formatted: string;
+      legacy_id: string;
+      legacy_label: string;
+    }>("/brambletrek/character/roll-legacy", { method: "POST" }),
   deckStatus: () => request<{ remaining: number; card_source: string }>("/deck/status"),
   drawDeck: (count = 1) =>
     request<{ formatted: string; remaining: number }>("/deck/draw", {
       method: "POST",
       body: JSON.stringify({ count }),
     }),
-  resetDeck: () => request<{ remaining: number }>("/deck/reset", { method: "POST" }),
+  resetDeck: () =>
+    request<{ remaining: number; formatted: string }>("/deck/reset", { method: "POST" }),
   rollDice: (expression: string) =>
     request<{ formatted: string; messages: Message[] }>("/deck/roll", {
       method: "POST",

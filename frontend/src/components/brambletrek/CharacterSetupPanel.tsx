@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Loader2, Shuffle } from "lucide-react";
 import ReactMarkdown from "react-markdown";
-import { api } from "../../api/client";
-import { applyLegacyStatSwap } from "../../lib/legacyStats";
+import { api, type ResourceDraft } from "../../api/client";
+import { applyLegacyStatSwap, applyLegacyToBases, hasResourceBases } from "../../lib/legacyStats";
 import type { CharacterHeader } from "../../types";
 import { FormSelect, RosterSelect, SelectField } from "../shared/FormFields";
 
@@ -126,15 +126,20 @@ export default function CharacterSetupPanel({
   onSwitchRoster,
 }: Props) {
   const [options, setOptions] = useState<CharacterOptions | null>(null);
+  const [resourceDraft, setResourceDraft] = useState<ResourceDraft | null>(null);
   const [reasonPreview, setReasonPreview] = useState("");
   const [saving, setSaving] = useState(false);
   const [drawing, setDrawing] = useState<string | null>(null);
+  const [resourceBusy, setResourceBusy] = useState<string | null>(null);
   const [switching, setSwitching] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    api.getCharacter().then((res) => setOptions(res.options as unknown as CharacterOptions));
-  }, []);
+    api.getCharacter().then((res) => {
+      setOptions(res.options as unknown as CharacterOptions);
+      setResourceDraft(res.resource_draft);
+    });
+  }, [activeId]);
 
   const reasonBand = String(entity.reason_band || "");
   useEffect(() => {
@@ -167,21 +172,93 @@ export default function CharacterSetupPanel({
   const changeLegacy = (id: string) => {
     const oldLegacy = options?.legacies.find((l) => l.id === String(entity.legacy || ""));
     const newLegacy = options?.legacies.find((l) => l.id === id);
-    const stats = applyLegacyStatSwap(
-      {
-        health: Number(entity.health ?? 10),
-        morale: Number(entity.morale ?? 10),
-        supplies: Number(entity.supplies ?? 10),
-      },
-      oldLegacy,
-      newLegacy
-    );
+    let stats: { health: number; morale: number; supplies: number };
+    if (hasResourceBases(entity)) {
+      stats = applyLegacyToBases(
+        {
+          health: Number(entity.resource_base_health ?? 0),
+          morale: Number(entity.resource_base_morale ?? 0),
+          supplies: Number(entity.resource_base_supplies ?? 0),
+        },
+        newLegacy
+      );
+    } else {
+      stats = applyLegacyStatSwap(
+        {
+          health: Number(entity.health ?? 10),
+          morale: Number(entity.morale ?? 10),
+          supplies: Number(entity.supplies ?? 10),
+        },
+        oldLegacy,
+        newLegacy
+      );
+    }
     onChange({
       ...entity,
       legacy: id,
       ...stats,
       legacy_abilities_used: {},
     });
+    if (resourceDraft?.base_stats) {
+      setResourceDraft({
+        ...resourceDraft,
+        final_stats: applyLegacyToBases(resourceDraft.base_stats, newLegacy),
+      });
+    }
+  };
+
+  const rollLegacy = async () => {
+    setDrawing("legacy");
+    setError(null);
+    try {
+      const res = await api.rollCharacterLegacy();
+      changeLegacy(res.legacy_id);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Legacy roll failed");
+    } finally {
+      setDrawing(null);
+    }
+  };
+
+  const drawResources = async () => {
+    setResourceBusy("draw");
+    setError(null);
+    try {
+      const res = await api.drawCharacterResources();
+      setResourceDraft(res.resource_draft);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Resource draw failed");
+    } finally {
+      setResourceBusy(null);
+    }
+  };
+
+  const drawResourceBonus = async (stat: "health" | "morale" | "supplies") => {
+    setResourceBusy(stat);
+    setError(null);
+    try {
+      const res = await api.drawCharacterResourceBonus(stat);
+      setResourceDraft(res.resource_draft);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Bonus draw failed");
+    } finally {
+      setResourceBusy(null);
+    }
+  };
+
+  const applyResources = async () => {
+    setResourceBusy("apply");
+    setError(null);
+    try {
+      const res = await api.applyCharacterResources();
+      setResourceDraft(null);
+      onChange(res.entity);
+      onSaved?.(res.entity, res.header);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Apply resources failed");
+    } finally {
+      setResourceBusy(null);
+    }
   };
 
   const selectedLegacy = options?.legacies.find((l) => l.id === String(entity.legacy || ""));
@@ -286,6 +363,22 @@ export default function CharacterSetupPanel({
         options={[{ id: "", label: "— Not set —" }, ...options.legacies]}
         onChange={changeLegacy}
       />
+      <div className="flex items-center gap-2">
+        <button
+          type="button"
+          className="btn-ghost text-[11px] px-2 py-1 border border-border rounded-md inline-flex items-center gap-1 text-muted hover:text-accent"
+          disabled={drawing === "legacy"}
+          onClick={rollLegacy}
+        >
+          {drawing === "legacy" ? (
+            <Loader2 className="w-3 h-3 animate-spin" />
+          ) : (
+            <Shuffle className="w-3 h-3" />
+          )}
+          Roll d6
+        </button>
+        <span className="text-[11px] text-muted">Rulebook order: resources from cards, then legacy modifiers.</span>
+      </div>
       {selectedLegacy?.boost && (
         <p className="text-xs">
           <span className="text-moss">{selectedLegacy.boost}</span>
@@ -316,8 +409,92 @@ export default function CharacterSetupPanel({
         </div>
       )}
 
-      <div>
-        <div className="label mb-2">Resources (max 20 each)</div>
+      <div className="rounded-lg border border-border p-3 space-y-3">
+        <div className="flex items-center justify-between gap-2">
+          <div>
+            <div className="section-title">Resources (max 20 each)</div>
+            <p className="text-[11px] text-muted mt-0.5">
+              Draw six cards (1–2 Health, 3–4 Morale, 5–6 Supplies). Ace = 11, J/Q/K = 10. Pair total ≤ 6
+              may take one bonus card.
+            </p>
+          </div>
+          <button
+            type="button"
+            className="btn-ghost text-[11px] px-2 py-1 border border-border rounded-md inline-flex items-center gap-1 text-muted hover:text-accent shrink-0"
+            disabled={Boolean(resourceBusy)}
+            onClick={drawResources}
+          >
+            {resourceBusy === "draw" ? (
+              <Loader2 className="w-3 h-3 animate-spin" />
+            ) : (
+              <Shuffle className="w-3 h-3" />
+            )}
+            Draw 6
+          </button>
+        </div>
+
+        {resourceDraft && (
+          <div className="space-y-2">
+            {resourceDraft.stats.map((row) => (
+              <div key={row.stat} className="text-xs rounded-md bg-surface/50 p-2">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="capitalize font-medium">{row.stat}</span>
+                  <span className="text-muted">
+                    base {row.base}
+                    {resourceDraft.final_stats && (
+                      <span className="text-gray-300">
+                        {" "}
+                        → {resourceDraft.final_stats[row.stat]}
+                      </span>
+                    )}
+                  </span>
+                </div>
+                <div className="text-muted mt-1">
+                  {row.cards.map((card, i) => (
+                    <span key={`${card}-${i}`}>
+                      {i > 0 ? ", " : ""}
+                      {card} ({row.card_values[i] ?? "?"})
+                    </span>
+                  ))}
+                </div>
+                {row.needs_bonus && (
+                  <button
+                    type="button"
+                    className="mt-1.5 text-[11px] text-accent hover:underline"
+                    disabled={resourceBusy === row.stat}
+                    onClick={() => drawResourceBonus(row.stat)}
+                  >
+                    {resourceBusy === row.stat ? "Drawing bonus…" : "Low roll — draw bonus card"}
+                  </button>
+                )}
+              </div>
+            ))}
+            <button
+              type="button"
+              className="btn btn-secondary text-xs w-full"
+              disabled={Boolean(resourceBusy)}
+              onClick={applyResources}
+            >
+              {resourceBusy === "apply" ? "Applying…" : "Apply resources to character"}
+            </button>
+          </div>
+        )}
+
+        {hasResourceBases(entity) && !resourceDraft && (
+          <div className="text-[11px] text-muted space-y-1">
+            {(["health", "morale", "supplies"] as const).map((k) => {
+              const cards = (entity.resource_cards as Record<string, string[]> | undefined)?.[k] || [];
+              if (!cards.length) return null;
+              return (
+                <div key={k}>
+                  <span className="capitalize">{k}</span>: {cards.join(", ")} (base{" "}
+                  {Number(entity[`resource_base_${k}`] ?? 0)})
+                </div>
+              );
+            })}
+          </div>
+        )}
+
         <div className="grid grid-cols-3 gap-2">
           {(["health", "morale", "supplies"] as const).map((k) => (
             <div key={k}>

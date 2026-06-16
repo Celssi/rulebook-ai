@@ -32,3 +32,20 @@ export function applyLegacyStatSwap(
     supplies: clampStat(stats.supplies - os + ns),
   };
 }
+
+export function applyLegacyToBases(
+  bases: { health: number; morale: number; supplies: number },
+  legacy: LegacyDeltas | undefined
+): { health: number; morale: number; supplies: number } {
+  const [dh, dm, ds] = legacyDeltasFromOption(legacy);
+  return {
+    health: clampStat(bases.health + dh),
+    morale: clampStat(bases.morale + dm),
+    supplies: clampStat(bases.supplies + ds),
+  };
+}
+
+export function hasResourceBases(entity: Record<string, unknown>): boolean {
+  const cards = entity.resource_cards as Record<string, string[]> | undefined;
+  return Boolean(cards?.health?.length || cards?.morale?.length || cards?.supplies?.length);
+}

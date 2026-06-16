@@ -39,6 +39,10 @@ class BrambletrekCharacter:
     trinket_card: str = ""
     notes: str = ""
     legacy_abilities_used: dict[str, bool] = field(default_factory=dict)
+    resource_cards: dict[str, list[str]] = field(default_factory=dict)
+    resource_base_health: int | None = None
+    resource_base_morale: int | None = None
+    resource_base_supplies: int | None = None
 
     def is_set(self) -> bool:
         return bool(
@@ -179,6 +183,26 @@ def character_from_dict(data: dict | None) -> BrambletrekCharacter:
             str(k): bool(v)
             for k, v in (data.get("legacy_abilities_used") or {}).items()
         },
+        resource_cards={
+            str(k): [str(c) for c in v]
+            for k, v in (data.get("resource_cards") or {}).items()
+            if isinstance(v, list)
+        },
+        resource_base_health=(
+            int(data["resource_base_health"])
+            if data.get("resource_base_health") is not None
+            else None
+        ),
+        resource_base_morale=(
+            int(data["resource_base_morale"])
+            if data.get("resource_base_morale") is not None
+            else None
+        ),
+        resource_base_supplies=(
+            int(data["resource_base_supplies"])
+            if data.get("resource_base_supplies") is not None
+            else None
+        ),
     )
 
 
@@ -202,6 +226,10 @@ def character_to_dict(char: BrambletrekCharacter) -> dict:
         "trinket_card": char.trinket_card,
         "notes": char.notes,
         "legacy_abilities_used": dict(char.legacy_abilities_used),
+        "resource_cards": {k: list(v) for k, v in char.resource_cards.items()},
+        "resource_base_health": char.resource_base_health,
+        "resource_base_morale": char.resource_base_morale,
+        "resource_base_supplies": char.resource_base_supplies,
     }
 
 

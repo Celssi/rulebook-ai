@@ -43,12 +43,17 @@ _SUIT_ALIASES = {
     "♠": "spades",
 }
 _CARD_OF_RE = re.compile(
-    r"(?i)(?:drew|drawn|pulled|report|playing|played|got|have)?\s*"
-    r"(?P<rank>ace|[akq2-9]|10|jack|queen|king)\s*(?:of\s+)?"
-    r"(?P<suit>hearts|heart|diamonds|diamond|clubs|club|spades|spade|[hdcs♥♦♣♠])"
+    r"(?:\b(?:drew|drawn|pulled|report|playing|played|got|have)\s+)?"
+    r"(?P<rank>ace|10|jack|queen|king|[2-9])\s+"
+    r"(?:of\s+)?"
+    r"(?P<suit>hearts|heart|diamonds|diamond|clubs|club|spades|spade)\b"
+    r"|"
+    r"\b(?P<rank2>ace|10|jack|queen|king|[2-9])\s+of\s+"
+    r"(?P<suit2>hearts|heart|diamonds|diamond|clubs|club|spades|spade)\b",
+    re.IGNORECASE,
 )
 _CARD_SHORT_RE = re.compile(
-    r"(?P<rank>[akq2-9]|10)\s*(?P<suit>[♥♦♣♠hdcs])",
+    r"(?<![a-zA-Z])(?P<rank>[akq2-9]|10)\s*(?P<suit>[♥♦♣♠hdcs])(?![a-zA-Z])",
     re.IGNORECASE,
 )
 
@@ -109,8 +114,9 @@ def normalize_card_name(text: str) -> str | None:
 
     m = _CARD_OF_RE.search(raw)
     if m:
-        rank = _RANK_ALIASES.get(m.group("rank").lower(), m.group("rank").lower())
-        suit_key = m.group("suit").lower()
+        rank = (m.group("rank") or m.group("rank2") or "").lower()
+        suit_key = (m.group("suit") or m.group("suit2") or "").lower()
+        rank = _RANK_ALIASES.get(rank, rank)
         suit = _SUIT_ALIASES.get(suit_key)
         if suit:
             candidate = f"{rank} of {suit}"
@@ -141,8 +147,27 @@ def _cards_equivalent(a: str, b: str) -> bool:
 
 def is_physical_card_report(text: str) -> bool:
     """True if text looks like reporting a physical card pull."""
-    return normalize_card_name(text) is not None and any(
-        p in text.lower()
+    if not normalize_card_name(text):
+        return False
+    lower = text.lower()
+    if "?" in text:
+        return False
+    if any(
+        p in lower
+        for p in (
+            "when ",
+            "what ",
+            "how ",
+            "why ",
+            "does ",
+            "explain",
+            "mean",
+            "rule",
+        )
+    ):
+        return False
+    return any(
+        p in lower
         for p in (
             "i drew",
             "i pulled",
@@ -154,7 +179,7 @@ def is_physical_card_report(text: str) -> bool:
             "have ",
             " of ",
         )
-    )
+    ) or len(text.split()) <= 4
 
 
 def is_ai_draw_request(text: str) -> bool:

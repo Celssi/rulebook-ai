@@ -20,6 +20,16 @@ _PROVIDER_LABELS: dict[ChatProvider, str] = {
     "claude": "Claude (cloud)",
 }
 
+# Retired 2026-06-15; map old env values to current Sonnet.
+_CLAUDE_MODEL_ALIASES: dict[str, str] = {
+    "claude-sonnet-4-20250514": "claude-sonnet-4-6",
+}
+
+
+def resolve_claude_model(model: str | None = None) -> str:
+    name = (model or CLAUDE_CHAT_MODEL).strip()
+    return _CLAUDE_MODEL_ALIASES.get(name, name)
+
 
 def resolve_anthropic_api_key(*, anthropic_key: str | None = None) -> str | None:
     """Return API key from explicit override, env, or settings."""
@@ -44,7 +54,7 @@ def provider_display_name(provider: ChatProvider) -> str:
 
 def active_model_name(provider: ChatProvider) -> str:
     if provider == "claude":
-        return CLAUDE_CHAT_MODEL
+        return resolve_claude_model()
     return CHAT_MODEL
 
 
@@ -55,7 +65,7 @@ def get_llamaindex_chat_llm(provider: ChatProvider = "ollama", *, api_key: str |
         key = resolve_anthropic_api_key(anthropic_key=api_key)
         if not key:
             raise ValueError("ANTHROPIC_API_KEY is required for Claude chat provider")
-        return Anthropic(model=CLAUDE_CHAT_MODEL, api_key=key)
+        return Anthropic(model=resolve_claude_model(), api_key=key)
 
     from llama_index.llms.ollama import Ollama
 
@@ -73,7 +83,7 @@ def get_langchain_chat_llm(provider: ChatProvider = "ollama", *, api_key: str | 
         key = resolve_anthropic_api_key(anthropic_key=api_key)
         if not key:
             raise ValueError("ANTHROPIC_API_KEY is required for Claude chat provider")
-        return ChatAnthropic(model=CLAUDE_CHAT_MODEL, api_key=key, temperature=0.2)
+        return ChatAnthropic(model=resolve_claude_model(), api_key=key, temperature=0.2)
 
     from langchain_ollama import ChatOllama
 

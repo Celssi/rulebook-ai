@@ -48,7 +48,7 @@ def _load_dotenv_value(name: str) -> str | None:
 
 
 ANTHROPIC_API_KEY = _load_dotenv_value("ANTHROPIC_API_KEY")
-CLAUDE_CHAT_MODEL = os.environ.get("CLAUDE_CHAT_MODEL", "claude-sonnet-4-20250514")
+CLAUDE_CHAT_MODEL = os.environ.get("CLAUDE_CHAT_MODEL", "claude-sonnet-4-6")
 
 CHUNK_SIZE = 1200
 CHUNK_OVERLAP = 200

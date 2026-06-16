@@ -83,7 +83,12 @@ def reset(app: AppSession = Depends(get_app_session)):
         store = get_play_store(app.selected_game_id)
         if store:
             store.persist_ctx(ctx)
-    return {"remaining": deck_remaining(_deck_scope(app, ctx)), "ok": True}
+    remaining = deck_remaining(_deck_scope(app, ctx))
+    return {
+        "remaining": remaining,
+        "ok": True,
+        "formatted": f"Deck reset and shuffled (**{remaining}** cards).",
+    }
 
 
 @router.post("/roll")

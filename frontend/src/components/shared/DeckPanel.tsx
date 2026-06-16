@@ -39,7 +39,8 @@ export default function DeckPanel({ remaining, cardSource, onAction, embedded }:
           type="button"
           className="btn flex-1 flex items-center justify-center gap-1"
           onClick={async () => {
-            await api.resetDeck();
+            const res = await api.resetDeck();
+            onAction(res.formatted);
           }}
         >
           <RotateCcw className="w-3.5 h-3.5" />

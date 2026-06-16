@@ -134,7 +134,7 @@ def answer_user_prompt(
 
     if is_card_question(prompt):
         if card_source == "physical" and not is_ai_draw_request(prompt):
-            if normalize_card_name(prompt) or is_physical_card_report(prompt):
+            if is_physical_card_report(prompt):
                 result = register_physical_card(prompt, game_id=game_id, char_id=char_id)
                 if char_id and result.get("ok") and result.get("cards") and store:
                     store.log_draw(char_id, result["cards"], label="Physical draw", ctx=ctx)

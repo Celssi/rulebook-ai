@@ -47,7 +47,7 @@ def _register() -> None:
                 "story_mode": {"default": "player", "choices": ["player", "ai_narrator"]},
                 "card_source": {"default": "virtual", "choices": ["physical", "virtual"]},
             },
-            session_extra_keys=["pending_journey"],
+            session_extra_keys=["pending_journey", "resource_draft"],
             resolve_play_modes=ph.get_play_settings,
             log_user_prompt=ph.log_user_prompt,
             try_handle_prompt=ph.try_handle_prompt,

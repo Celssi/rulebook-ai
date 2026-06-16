@@ -65,6 +65,7 @@ export default function CharacterPanel({
   }, [entity]);
 
   const displayName = rosterEntryLabel(String(local.name || ""));
+  const usedMap = (local.legacy_abilities_used as Record<string, boolean>) || {};
 
   const patch = (key: string, value: unknown) => {
     setLocal((prev) => ({ ...prev, [key]: value }));
@@ -83,13 +84,11 @@ export default function CharacterPanel({
   };
 
   const toggleAbility = async (id: string, used: boolean) => {
-    const usedMap = {
-      ...((local.legacy_abilities_used as Record<string, boolean>) || {}),
-      [id]: used,
-    };
-    const next = { ...local, legacy_abilities_used: usedMap };
+    const nextUsedMap = { ...usedMap, [id]: used };
+    const next = { ...local, legacy_abilities_used: nextUsedMap };
     setLocal(next);
     const res = await api.updateCharacter(next);
+    setLocal(res.entity);
     onUpdate(res.entity, res.header);
   };
 
@@ -166,12 +165,12 @@ export default function CharacterPanel({
                 <label
                   key={ab.id}
                   className={`flex items-start gap-2 p-2 rounded-lg hover:bg-elevated/50 cursor-pointer ${
-                    ab.used ? "opacity-50" : ""
+                    usedMap[ab.id] ? "opacity-50" : ""
                   }`}
                 >
                   <input
                     type="checkbox"
-                    checked={ab.used}
+                    checked={Boolean(usedMap[ab.id])}
                     onChange={(e) => toggleAbility(ab.id, e.target.checked)}
                     className="mt-0.5 rounded border-border"
                   />
@@ -191,7 +190,7 @@ export default function CharacterPanel({
                         </span>
                       ))}
                     </div>
-                    <div className="text-xs text-muted line-clamp-2">{ab.description}</div>
+                    <div className="text-xs text-muted leading-relaxed">{ab.description}</div>
                   </div>
                 </label>
               ))}

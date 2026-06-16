@@ -604,7 +604,136 @@ def reset_character(ctx: PlayContext) -> dict:
     reset = default_character()
     if ctx.slot_id:
         reset.id = ctx.slot_id
+    ctx.set_extra("resource_draft", None)
     return persist_character(ctx, character_to_dict(reset))
+
+
+def resource_draft_response(ctx: PlayContext, draft: dict[str, Any] | None) -> dict[str, Any] | None:
+    if not draft:
+        return None
+    from src.games.brambletrek.resource_creation import resource_draft_payload
+
+    char = get_character(ctx)
+    return resource_draft_payload(draft, legacy_id=char.legacy)
+
+
+def draw_character_resources(ctx: PlayContext) -> dict:
+    from src.games.brambletrek.resource_creation import (
+        RESOURCE_DRAFT_KEY,
+        draw_character_resources as _draw,
+    )
+
+    char = get_character(ctx)
+    result = _draw(
+        game_id=GAME_ID,
+        char_id=ctx.slot_id or None,
+        legacy_id=char.legacy,
+    )
+    ctx.set_extra(RESOURCE_DRAFT_KEY, result["draft"])
+    store = _store()
+    if ctx.slot_id:
+        cards: list[str] = []
+        for key in ("health", "morale", "supplies"):
+            cards.extend(result.get("cards_by_stat", {}).get(key) or [])
+        log_draw(
+            ctx.slot_id,
+            cards,
+            label="Character resource creation (6 cards)",
+            char=char,
+        )
+        ctx.refresh_deck()
+    if store:
+        store.persist_ctx(ctx)
+    return {
+        "draw_summary": result.get("draw_summary", ""),
+        "resource_draft": resource_draft_response(ctx, result["draft"]),
+        "remaining": result.get("remaining", 0),
+    }
+
+
+def draw_character_resource_bonus(ctx: PlayContext, stat: str) -> dict:
+    from src.games.brambletrek.resource_creation import (
+        RESOURCE_DRAFT_KEY,
+        draw_resource_bonus as _draw_bonus,
+    )
+
+    draft = ctx.extra.get(RESOURCE_DRAFT_KEY)
+    if not draft:
+        raise ValueError("Draw six resource cards first")
+    char = get_character(ctx)
+    result = _draw_bonus(
+        draft,
+        stat,
+        game_id=GAME_ID,
+        char_id=ctx.slot_id or None,
+        legacy_id=char.legacy,
+    )
+    ctx.set_extra(RESOURCE_DRAFT_KEY, result["draft"])
+    store = _store()
+    if ctx.slot_id:
+        log_draw(
+            ctx.slot_id,
+            [result.get("bonus_card", "")],
+            label=f"Low-roll bonus ({stat})",
+            char=char,
+        )
+        ctx.refresh_deck()
+    if store:
+        store.persist_ctx(ctx)
+    return {
+        "draw_summary": result.get("draw_summary", ""),
+        "bonus_card": result.get("bonus_card", ""),
+        "resource_draft": resource_draft_response(ctx, result["draft"]),
+        "remaining": result.get("remaining", 0),
+    }
+
+
+def apply_character_resources(ctx: PlayContext) -> dict:
+    from src.games.brambletrek.resource_creation import (
+        RESOURCE_DRAFT_KEY,
+        apply_resource_draft,
+    )
+
+    draft = ctx.extra.get(RESOURCE_DRAFT_KEY)
+    if not draft:
+        raise ValueError("Draw six resource cards first")
+    char = get_character(ctx)
+    char = apply_resource_draft(char, draft)
+    if ctx.slot_id:
+        char.id = ctx.slot_id
+    ctx.entity = character_to_dict(char)
+    ctx.set_extra(RESOURCE_DRAFT_KEY, None)
+    save_character(char)
+    store = _store()
+    if ctx.slot_id:
+        log_mechanical(
+            ctx.slot_id,
+            format_resources(char.health, char.morale, char.supplies),
+            char=char,
+        )
+    if store:
+        store.persist_ctx(ctx)
+    return {
+        "entity": ctx.entity,
+        "header": character_header(ctx),
+        "resource_draft": None,
+    }
+
+
+def roll_character_legacy(ctx: PlayContext) -> dict:
+    from src.games.brambletrek.resource_creation import roll_legacy
+
+    result = roll_legacy()
+    if ctx.slot_id:
+        log_mechanical(
+            ctx.slot_id,
+            f"Legacy roll: {result['roll_formatted']} → {result['legacy_label']}",
+            char=get_character(ctx),
+        )
+        store = _store()
+        if store:
+            store.persist_ctx(ctx)
+    return result
 
 
 def lonelog_tail(ctx: PlayContext, n_lines: int = 50) -> list[str]:

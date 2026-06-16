@@ -788,6 +788,8 @@ export default function PlayPage() {
         onUpdate={(entity, h) => {
           setSession({ ...session, entity });
           setBtHeader(h);
+          const used = (entity.legacy_abilities_used as Record<string, boolean>) || {};
+          setAbilities((prev) => prev.map((ab) => ({ ...ab, used: Boolean(used[ab.id]) })));
         }}
         onSwitch={refresh}
       />
@@ -800,6 +802,8 @@ export default function PlayPage() {
         onUpdate={(entity, h) => {
           setSession({ ...session, entity });
           setBtHeader(h);
+          const used = (entity.legacy_abilities_used as Record<string, boolean>) || {};
+          setAbilities((prev) => prev.map((ab) => ({ ...ab, used: Boolean(used[ab.id]) })));
         }}
         onSwitch={refresh}
       />
@@ -933,8 +937,11 @@ export default function PlayPage() {
         roster={roster}
         onClose={() => setSettingsOpen(false)}
         onRosterSwitch={refresh}
-        onSaved={(s, header) => {
+        onSaved={async (s, header) => {
           setSession(s);
+          setMessages(s.messages || []);
+          setSources(s.last_sources || []);
+          setLastRoute("");
           if (header) {
             if (gameId === "sansibilia") setSsHeader(header as VisitHeader);
             else if (gameId === "lighthouse") setLhHeader(header as WatchHeader);
@@ -944,7 +951,7 @@ export default function PlayPage() {
             else if (gameId === "colostle") setColHeader(header as ColostleHeader);
             else setBtHeader(header as CharacterHeader);
           }
-          reloadCurrentGame();
+          await loadPlayData(s.selected_game_id, s.has_character_sheet, s.has_game_state);
         }}
       />
 

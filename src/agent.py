@@ -11,6 +11,7 @@ from langgraph.graph.message import add_messages
 from src.games.registry import DEFAULT_GAME_ID, get_game_plugin
 from src.games.warhammer_40k import retrieval as r40k
 from src.games.warhammer_40k.state import GameState
+from src.llm import ChatProvider
 from src.prompts import build_system_prompt, detect_language, tool_output_instructions
 from src.tools import (
     draw_cards,
@@ -77,9 +78,7 @@ def router_node(state: AgentState) -> dict:
         route = "dice"
     elif is_card_plus_rules_question(text):
         route = "card_rag"
-    elif card_source == "physical" and (
-        is_physical_card_report(text) or normalize_card_name(text)
-    ):
+    elif card_source == "physical" and is_physical_card_report(text):
         route = "physical_card"
     elif is_card_question(text) and (card_source != "physical" or is_ai_draw_request(text)):
         route = "cards"

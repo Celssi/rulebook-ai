@@ -191,10 +191,10 @@ export ANTHROPIC_API_KEY="your-key-here"
 
 2. In **Settings → RAG**, choose **Chat provider → Claude (cloud)**.
 
-Default Claude model is `claude-sonnet-4-20250514`. Override with:
+Default Claude model is `claude-sonnet-4-6`. Override with:
 
 ```bash
-export CLAUDE_CHAT_MODEL=claude-opus-4-20250514
+export CLAUDE_CHAT_MODEL=claude-opus-4-6
 ```
 
 Ollama must still be running for embeddings and indexing.

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { RotateCcw } from "lucide-react";
 import { api } from "../../api/client";
 import { rosterEntryLabel } from "../../lib/rosterLabel";
 import type { CharacterHeader, LegacyAbility } from "../../types";
@@ -56,6 +57,8 @@ export default function CharacterPanel({ entity, abilities, roster, activeId, on
 
   useEffect(() => setLocal(entity), [entity]);
 
+  const usedMap = (local.legacy_abilities_used as Record<string, boolean>) || {};
+
   const save = async (next?: Record<string, unknown>) => {
     const payload = next ?? local;
     setSaving(true);
@@ -66,6 +69,14 @@ export default function CharacterPanel({ entity, abilities, roster, activeId, on
     } finally {
       setSaving(false);
     }
+  };
+
+  const toggleAbility = async (id: string, used: boolean) => {
+    const next = { ...local, legacy_abilities_used: { ...usedMap, [id]: used } };
+    setLocal(next);
+    const res = await api.updateBt2Character(next);
+    setLocal(res.entity);
+    onUpdate(res.entity, res.header);
   };
 
   return (
@@ -82,13 +93,41 @@ export default function CharacterPanel({ entity, abilities, roster, activeId, on
       <StatBar label="morale" value={Number(local.morale) || 0} color="#6b9fff" onChange={(v) => setLocal((p) => ({ ...p, morale: v }))} onBlur={() => save()} />
       <StatBar label="supplies" value={Number(local.supplies) || 0} color="#d4a24c" onChange={(v) => setLocal((p) => ({ ...p, supplies: v }))} onBlur={() => save()} />
       {abilities.length > 0 && (
-        <div className="text-[11px] text-muted space-y-1 pt-2 border-t border-border">
-          {abilities.map((a) => (
-            <div key={a.id} className={a.used ? "opacity-50" : ""}>
-              <span className="text-gray-300">{a.label}</span>
-              {a.used && " (used)"}
-            </div>
-          ))}
+        <div className="pt-2 border-t border-border">
+          <div className="section-title mb-2">Daily abilities</div>
+          <div className="space-y-1.5">
+            {abilities.map((ab) => (
+              <label
+                key={ab.id}
+                className={`flex items-start gap-2 p-2 rounded-lg hover:bg-elevated/50 cursor-pointer ${
+                  usedMap[ab.id] ? "opacity-50" : ""
+                }`}
+              >
+                <input
+                  type="checkbox"
+                  checked={Boolean(usedMap[ab.id])}
+                  onChange={(e) => toggleAbility(ab.id, e.target.checked)}
+                  className="mt-0.5 rounded border-border"
+                />
+                <div className="flex-1 min-w-0">
+                  <div className="font-medium text-xs text-gray-300">{ab.label}</div>
+                  <div className="text-[11px] text-muted leading-relaxed">{ab.description}</div>
+                </div>
+              </label>
+            ))}
+          </div>
+          <button
+            type="button"
+            className="btn-ghost w-full mt-2 flex items-center justify-center gap-1 text-xs"
+            onClick={async () => {
+              const res = await api.updateBt2Character({ ...local, legacy_abilities_used: {} });
+              setLocal(res.entity);
+              onUpdate(res.entity, res.header);
+            }}
+          >
+            <RotateCcw className="w-3 h-3" />
+            Reset daily abilities
+          </button>
         </div>
       )}
       {saving && <span className="text-[10px] text-muted">Saving…</span>}
